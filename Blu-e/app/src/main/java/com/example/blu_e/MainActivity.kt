@@ -1,7 +1,9 @@
 package com.example.blu_e
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.blu_e.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -48,5 +50,35 @@ class MainActivity : AppCompatActivity() {
             }
             selectedItemId = R.id.menu_home
         }
+
+        val centerButton = viewBinding.toolbar.customerCenter
+        centerButton.setOnClickListener {
+            centerButton.isSelected = centerButton.isSelected != true
+
+            if (centerButton.isSelected) {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(viewBinding.containerFragment.id, CenterFragment())
+                    .commitAllowingStateLoss()
+            }
+            else {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(viewBinding.containerFragment.id, HomeFragment())
+                    .commitAllowingStateLoss()
+            }
+
+        }
+
+    }
+
+    //질문 선택 <-> 상세화면
+    fun openFragment(n: Int) {
+        val transaction = supportFragmentManager.beginTransaction()
+        when(n) {
+            1 -> transaction.replace(viewBinding.containerFragment.id, QuestionDetailFragment())
+            2 -> transaction.replace(viewBinding.containerFragment.id, CenterFragment())
+        }
+        transaction.commit()
     }
 }

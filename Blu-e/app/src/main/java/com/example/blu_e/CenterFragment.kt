@@ -48,8 +48,8 @@ class CenterFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        //자주하는 질문과 내가 작성한 글 -> 한 화면에 담는 것 고민 필요.
 
+        //자주하는 질문과 내가 작성한 글 -> 한 화면에 담는 것 고민 필요.
         api.allFAQ().enqueue(object: Callback <ArrayList<Question>>{
             override fun onResponse(call: Call<ArrayList<Question>>, response: Response<ArrayList<Question>>) {
                 //성공시

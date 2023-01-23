@@ -12,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.blu_e.databinding.FragmentGroupBinding
 import com.example.blu_e.databinding.FragmentQuestionFormBinding
+import java.sql.Timestamp
+import java.time.LocalDateTime
 
 class QuestionFormFragment : Fragment() {
     private lateinit var mContext: MainActivity
@@ -42,11 +44,12 @@ class QuestionFormFragment : Fragment() {
                 .setMessage("Q&amp;A 등록이 완료 되었습니다.")
                 .setPositiveButton("확인",
                     DialogInterface.OnClickListener { dialog, id ->
-                        val bundle = Bundle()
-                        api.questionWriting()
-//                        bundle.putInt("questionId", question.questionId)
-//                        bundle.putString("content", question.contents)
-
+                        var question = Question(it.id).apply {
+                            title = viewBinding.title.toString()
+                            contents = viewBinding.content.toString()
+                            createdAt = Timestamp(System.currentTimeMillis())
+                        }
+                        api.questionWriting(question)
                         mContext!!.openFragment(2)
                     })
                 .setNegativeButton("취소",

@@ -33,6 +33,11 @@ interface RetroInterface {
     //answer update
     //answer delete
 
+    //service/accusations
+    //service/accusations/writing
+    //service/accusations/writing
+    //service/accusations/attach
+
     companion object {
         private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //
 

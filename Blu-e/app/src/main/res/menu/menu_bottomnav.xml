@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:title="home"
+        android:icon="@drawable/home_outlined"/>
+    <item
+        android:id="@+id/menu_group"
+        android:title="group"
+        android:icon="@drawable/group_outlined"/>
+    <item
+        android:id="@+id/menu_noti"
+        android:title="noti"
+        android:icon="@drawable/notifications_outlined"/>
+    <item
+        android:id="@+id/menu_mypage"
+        android:title="mypage"
+        android:icon="@drawable/account_circle_full"/>
+</menu>

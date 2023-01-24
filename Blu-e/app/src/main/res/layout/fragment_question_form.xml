@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/sky"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></View>
+
+    <ImageButton
+        android:id="@+id/backToCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="102dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/arrow_forward_ios"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Q&amp;A 등록하기"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvInput"
+        android:layout_width="344dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/question_guide"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <View
+        android:id="@+id/dialogTitle"
+        android:layout_width="342dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.693"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInput"></View>
+
+    <View
+        android:id="@+id/dialogContent"
+        android:layout_width="345dp"
+        android:layout_height="293dp"
+        android:layout_marginStart="32dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogTitle"></View>
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="173dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:gravity="top|left"
+        android:hint="제목을 입력하세요."
+        android:inputType="text"
+        android:lines="1"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/dialogTitle"
+        app:layout_constraintTop_toTopOf="@+id/dialogTitle" />
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="326dp"
+        android:layout_height="258dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="19dp"
+        android:background="@android:color/transparent"
+        android:gravity="top|left"
+        android:hint="내용을 입력하세요."
+        android:inputType="text|textMultiLine"
+        android:lines="10"
+        android:scrollbars="vertical"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/dialogContent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogTitle" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="52dp"
+        android:width="320dp"
+        android:height="40dp"
+        android:background="@drawable/shape_round"
+        android:backgroundTint="@color/sky"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:letterSpacing="0.01"
+        android:lineSpacingExtra="10sp"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogContent"
+        app:layout_constraintVertical_bias="0.747"
+        tools:text="등록하기" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

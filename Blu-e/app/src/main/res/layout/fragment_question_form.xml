@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="102dp"
+        android:layout_marginEnd="90dp"
         android:background="@android:color/transparent"
         android:src="@drawable/arrow_forward_ios"
         app:layout_constraintEnd_toStartOf="@+id/textView"
@@ -32,10 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="Q&amp;A 등록하기"
-        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:text="Q&amp;A 등록하기"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,13 +54,11 @@
 
     <View
         android:id="@+id/dialogTitle"
-        android:layout_width="342dp"
+        android:layout_width="345dp"
         android:layout_height="58dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="16dp"
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.693"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvInput"></View>
 
@@ -68,16 +66,15 @@
         android:id="@+id/dialogContent"
         android:layout_width="345dp"
         android:layout_height="293dp"
-        android:layout_marginStart="32dp"
         android:background="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/dialogTitle"
         app:layout_constraintTop_toBottomOf="@+id/dialogTitle"></View>
 
     <EditText
         android:id="@+id/title"
         android:layout_width="173dp"
         android:layout_height="27dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:background="@android:color/transparent"
         android:gravity="top|left"
@@ -93,8 +90,9 @@
         android:id="@+id/content"
         android:layout_width="326dp"
         android:layout_height="258dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
         android:background="@android:color/transparent"
         android:gravity="top|left"
         android:hint="내용을 입력하세요."
@@ -102,6 +100,7 @@
         android:lines="10"
         android:scrollbars="vertical"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/dialogContent"
         app:layout_constraintTop_toBottomOf="@+id/dialogTitle" />
 
@@ -109,7 +108,7 @@
         android:id="@+id/btn_save"
         android:layout_width="320dp"
         android:layout_height="45dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         android:width="320dp"
         android:height="40dp"
         android:background="@drawable/shape_round"
@@ -118,13 +117,12 @@
         android:gravity="center"
         android:letterSpacing="0.01"
         android:lineSpacingExtra="10sp"
+        android:text="등록하기"
         android:textSize="21sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialogContent"
-        app:layout_constraintVertical_bias="0.747"
-        tools:text="등록하기" />
+        app:layout_constraintTop_toBottomOf="@+id/dialogContent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,8 +36,15 @@ class QuestionDetailFragment : Fragment() {
         viewBinding.showTitle.setText(question.title)
         viewBinding.showContent.setText(question.contents)
         viewBinding.showAnswer.setText(question.answer.contents)
+    }
 
-        viewBinding.btnAdd2.setOnClickListener {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewBinding.backToCenterD.setOnClickListener{
+            mContext!!.openFragment(2)
+        }
+
+        viewBinding.btnAdd3.setOnClickListener {
             mContext!!.openFragment(3)
         }
     }

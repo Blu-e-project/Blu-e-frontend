@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             2 -> transaction.replace(viewBinding.containerFragment.id, CenterFragment())
             3 -> transaction.replace(viewBinding.containerFragment.id, QuestionFormFragment())
         }
+        transaction.addToBackStack(null);
         transaction.commit()
     }
 }

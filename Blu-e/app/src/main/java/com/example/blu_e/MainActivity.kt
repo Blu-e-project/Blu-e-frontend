@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         when(n) {
             1 -> transaction.replace(viewBinding.containerFragment.id, QuestionDetailFragment())
             2 -> transaction.replace(viewBinding.containerFragment.id, CenterFragment())
+            3 -> transaction.replace(viewBinding.containerFragment.id, QuestionFormFragment())
         }
         transaction.commit()
     }

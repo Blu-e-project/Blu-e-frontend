@@ -60,7 +60,6 @@
         android:id="@+id/showContent"
         android:layout_width="334dp"
         android:layout_height="121dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="124dp"
         android:fontFamily="sans-serif"
         android:hint="상세 내용"
@@ -68,49 +67,51 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/showTitle"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="320dp"
         android:layout_height="1dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="264dp"
         android:background="@color/sky"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/showAnswer"
-        android:layout_width="358dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="276dp"
+        android:layout_width="335dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="292dp"
         android:fontFamily="sans-serif"
         android:hint="A. 하단 Q&amp;A 등록하기를 통해 질문을 등록하실 수 있습니다."
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="@+id/showContent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvInput"
-        android:layout_width="366dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="96dp"
+        android:layout_width="357dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="152dp"
         android:lines="1"
         android:text="@string/question_guide2"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showAnswer" />
 
     <Button
-        android:id="@+id/btn_add"
+        android:id="@+id/btn_add3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="633dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginTop="3dp"
         android:width="320dp"
         android:height="40dp"
         android:background="@drawable/shape_round"
@@ -119,15 +120,13 @@
         android:gravity="center"
         android:letterSpacing="0.01"
         android:lineSpacingExtra="10sp"
+        android:text="Q&amp;A 등록하기"
         android:textSize="21sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483"
-        tools:text="Q&amp;A 등록하기">
+        app:layout_constraintTop_toBottomOf="@+id/tvInput">
 
     </Button>
 </androidx.constraintlayout.widget.ConstraintLayout >

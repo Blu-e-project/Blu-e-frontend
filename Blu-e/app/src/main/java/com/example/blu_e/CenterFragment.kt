@@ -44,6 +44,9 @@ class CenterFragment : Fragment() {
             }
         })
 
+        viewBinding.btnAdd.setOnClickListener {
+            mContext!!.openFragment(3)
+        }
     }
 
     override fun onResume() {

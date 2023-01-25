@@ -32,6 +32,10 @@ class QuestionFormFragment : Fragment() {
         // Inflate the layout for this fragment
         viewBinding = FragmentQuestionFormBinding.inflate(inflater, container, false)
         return viewBinding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         viewBinding.backToCenter.setOnClickListener{
             mContext!!.openFragment(2)
@@ -40,8 +44,8 @@ class QuestionFormFragment : Fragment() {
         viewBinding.btnSave.setOnClickListener {
             val builder = AlertDialog.Builder(mContext)
             builder
-                .setTitle("Q&amp;A 등록")
-                .setMessage("Q&amp;A 등록이 완료 되었습니다.")
+                .setTitle("Q&A 등록")
+                .setMessage("Q&A 등록이 완료 되었습니다.")
                 .setPositiveButton("확인",
                     DialogInterface.OnClickListener { dialog, id ->
                         var question = Question(it.id).apply {

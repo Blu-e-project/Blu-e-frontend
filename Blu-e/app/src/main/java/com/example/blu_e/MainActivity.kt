@@ -8,10 +8,10 @@ import com.example.blu_e.databinding.ActivityMainBinding
 import com.example.blu_e.databinding.ActivitySignUpBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewBinding:ActivitySignUpBinding
+    private lateinit var viewBinding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivitySignUpBinding.inflate(layoutInflater)
+        viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
         supportFragmentManager
@@ -79,7 +79,9 @@ class MainActivity : AppCompatActivity() {
         when(n) {
             1 -> transaction.replace(viewBinding.containerFragment.id, QuestionDetailFragment())
             2 -> transaction.replace(viewBinding.containerFragment.id, CenterFragment())
+            3 -> transaction.replace(viewBinding.containerFragment.id, QuestionFormFragment())
         }
+        transaction.addToBackStack(null);
         transaction.commit()
     }
 }

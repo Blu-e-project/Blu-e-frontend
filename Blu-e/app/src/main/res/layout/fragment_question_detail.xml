@@ -46,7 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginTop="76dp"
-        android:layout_marginEnd="22dp"
         android:fontFamily="sans-serif"
         android:hint="Q. Q&amp;A를 남기고 싶어요."
         android:textColor="@color/black"
@@ -55,6 +54,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/question_delete_icon"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/dot_delete_icon"
+        app:layout_constraintBottom_toTopOf="@+id/showContent"
+        app:layout_constraintStart_toEndOf="@+id/showTitle" />
 
     <TextView
         android:id="@+id/showContent"

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.ItemQuestionBinding
 
 class FaqAdapter(private val items: ArrayList<Question>): RecyclerView.Adapter<FaqAdapter.QuestionViewHolder>() {
-    //한 화면에서 전부 나오게 하면 안되고.. 더보기 필요할 수도
     inner class QuestionViewHolder (private val viewBinding: ItemQuestionBinding): RecyclerView.ViewHolder(viewBinding.root) {
         fun bind(questionItem: Question) {
             viewBinding.itemData.text = questionItem.title
@@ -21,7 +20,8 @@ class FaqAdapter(private val items: ArrayList<Question>): RecyclerView.Adapter<F
     }
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
-        holder.bind(items[position])
+        val model = items!![position]
+        holder.bind(model)
         holder.itemView.setOnClickListener() {
             Log.d("selected", position.toString())
             itemClickListener.onClick(it, position)

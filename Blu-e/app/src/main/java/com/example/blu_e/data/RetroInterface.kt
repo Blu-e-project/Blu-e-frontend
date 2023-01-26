@@ -6,31 +6,33 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface RetroInterface {
     @GET("/service")
-    //question read
+    //all faqs read
     fun allFAQ(): Call<ArrayList<Question>>
 
-//    @GET("/service/{questionId}/answer")
-//    fun requestQuestionInfo(@Path("questionId") questionId: Int): Call<Question> //-> data class에 Answer 타입 넣으면 필요 없을 수도?
+    //answer read
+    @GET("/service/{questionId}/answer")
+    fun requestAnswerInQuestion(@Path("questionId") questionId: Int): Call<Answer>
 
-    //my question read
-    @GET("/service/questions") //+userId
-    fun requestMyQuestions(): Call<ArrayList<Question>>
+    //my questions read
+    @GET("/service/questions")
+    fun requestMyQuestions(@Query("userId") userId: Int): Call<ArrayList<Question>>
 
     //question create
-    @POST("/service/questions/writing") //+userId
-    fun questionWriting(@Body question: Question): Call<Question>
+    @POST("/service/questions/writing")
+    fun questionWriting(@Query("userId") userId: Int): Call<Question>
 
-    //question update
     //question delete
-
-    //answer create
-    //answer update
-    //answer delete
+    @DELETE("/service/questions/writing")
+    fun questionDelete(@Query("userId") userId: Int, @Path("questionId") questionId: Int): Call<Question>
 
     //service/accusations
     //service/accusations/writing

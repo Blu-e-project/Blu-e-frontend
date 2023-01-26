@@ -53,7 +53,7 @@ class QuestionFormFragment : Fragment() {
                             createdAt = Timestamp(System.currentTimeMillis())
                         }
                         //+ userId, question..
-                        api.questionWriting(0)
+                        api.questionWriting(0, question)
                         mContext!!.openFragment(2)
                     })
                 .setNegativeButton("취소",

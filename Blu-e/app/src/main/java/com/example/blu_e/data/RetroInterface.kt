@@ -28,16 +28,20 @@ interface RetroInterface {
 
     //question create
     @POST("/service/questions/writing")
-    fun questionWriting(@Query("userId") userId: Int): Call<Question>
+    fun questionWriting(@Query("userId") userId: Int, @Body question: Question): Call<Question>
 
     //question delete
     @DELETE("/service/questions/writing")
     fun questionDelete(@Query("userId") userId: Int, @Path("questionId") questionId: Int): Call<Question>
 
-    //service/accusations
-    //service/accusations/writing
-    //service/accusations/writing
+    //accusation read
+    //accusation create
+//    @POST("/service/accusations/writing")
+//    fun reportMember(@Query("userId") userId: Int): Call<User>
+
     //service/accusations/attach
+    @POST("/service/accusations/attach")
+    fun uploadPicture()
 
     companion object {
         private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //

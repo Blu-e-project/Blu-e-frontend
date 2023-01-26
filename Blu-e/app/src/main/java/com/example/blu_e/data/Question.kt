@@ -1,9 +1,7 @@
-package com.example.blu_e
+package com.example.blu_e.data
 
-import java.math.BigInteger
+import com.example.blu_e.data.Answer
 import java.sql.Timestamp
-import java.io.Serializable
-import java.lang.reflect.Constructor
 
 data class Question(var questionId: Int) {
     var userId: Int = 0

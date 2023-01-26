@@ -1,19 +1,18 @@
-package com.example.blu_e
+package com.example.blu_e.customercenter
 
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.blu_e.databinding.FragmentGroupBinding
+import com.example.blu_e.MainActivity
+import com.example.blu_e.data.Question
+import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.FragmentQuestionFormBinding
 import java.sql.Timestamp
-import java.time.LocalDateTime
 
 class QuestionFormFragment : Fragment() {
     private lateinit var mContext: MainActivity

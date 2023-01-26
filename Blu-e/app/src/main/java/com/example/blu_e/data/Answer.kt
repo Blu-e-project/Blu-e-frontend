@@ -1,4 +1,4 @@
-package com.example.blu_e
+package com.example.blu_e.data
 
 import java.math.BigInteger
 import java.sql.Timestamp

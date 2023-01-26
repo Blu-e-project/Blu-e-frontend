@@ -1,11 +1,11 @@
 package com.example.blu_e
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.example.blu_e.customercenter.CenterFragment
+import com.example.blu_e.customercenter.QuestionDetailFragment
+import com.example.blu_e.customercenter.QuestionFormFragment
 import com.example.blu_e.databinding.ActivityMainBinding
-import com.example.blu_e.databinding.ActivitySignUpBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewBinding:ActivityMainBinding

@@ -1,4 +1,4 @@
-package com.example.blu_e
+package com.example.blu_e.customercenter
 
 import android.app.AlertDialog
 import android.content.Context
@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.blu_e.MainActivity
 import com.example.blu_e.databinding.FragmentAccusationBinding
-import java.sql.Timestamp
 
 class AccusationFragment : Fragment() {
     private lateinit var mContext: MainActivity

@@ -1,16 +1,11 @@
-package com.example.blu_e
+package com.example.blu_e.data
 
-import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.ItemQuestionBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class FaqAdapter(private val items: ArrayList<Question>): RecyclerView.Adapter<FaqAdapter.QuestionViewHolder>() {
     //한 화면에서 전부 나오게 하면 안되고.. 더보기 필요할 수도

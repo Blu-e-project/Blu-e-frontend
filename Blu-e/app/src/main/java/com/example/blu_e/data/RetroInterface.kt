@@ -1,4 +1,4 @@
-package com.example.blu_e
+package com.example.blu_e.data
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -8,7 +8,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Path
 
 interface RetroInterface {
     @GET("/service")

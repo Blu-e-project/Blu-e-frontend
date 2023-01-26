@@ -1,4 +1,4 @@
-package com.example.blu_e
+package com.example.blu_e.customercenter
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.blu_e.MainActivity
+import com.example.blu_e.data.Question
 import com.example.blu_e.databinding.FragmentQuestionDetailBinding
 
 class QuestionDetailFragment : Fragment() {

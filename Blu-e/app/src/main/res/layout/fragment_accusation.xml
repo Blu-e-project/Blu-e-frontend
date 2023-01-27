@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="멘티 신고"
+        android:text="신고"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -75,7 +75,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="35dp"
         android:fontFamily="sans-serif"
-        android:text="멘티 이름"
+        android:text="이름"
         android:textColor="@color/blue"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -114,8 +114,8 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_width="233dp"
+        android:layout_height="245dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="-9dp"
 
@@ -135,7 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="295dp"
+        android:layout_marginTop="236dp"
         android:fontFamily="sans-serif"
         android:text="첨부 자료"
         android:textColor="@color/blue"
@@ -160,14 +160,13 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/accusPic"
-        tools:text="사진 첨부하기" />
+        android:text="사진 첨부하기" />
 
     <Button
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="633dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginTop="524dp"
         android:width="320dp"
         android:height="40dp"
         android:background="@drawable/shape_round"
@@ -178,11 +177,11 @@
         android:lineSpacingExtra="10sp"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="신고 내용 등록"/>
+        android:text="신고 내용 등록" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout >

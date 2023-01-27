@@ -2,14 +2,18 @@ package com.example.blu_e.data
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -35,13 +39,16 @@ interface RetroInterface {
     fun questionDelete(@Query("userId") userId: Int, @Path("questionId") questionId: Int): Call<Question>
 
     //accusation read
+
     //accusation create
+    @POST("/service/accusations/writing")
+    fun reportMember(@Query("userId") userId: Int, @Body report: Report) : Call<Report>
+
+//    @Multipart
 //    @POST("/service/accusations/writing")
-//    fun reportMember(@Query("userId") userId: Int): Call<User>
+//    fun reportMember( @Query("userId") userId: Int, @Part image: MultipartBody.Part?, @Part("postData") postData: RequestBody) : Call<Report>
 
     //service/accusations/attach
-    @POST("/service/accusations/attach")
-    fun uploadPicture()
 
     companion object {
         private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //

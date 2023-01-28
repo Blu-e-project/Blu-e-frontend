@@ -13,5 +13,7 @@
     =======
     <string name="question_guide">님, Blu-e를 이용하시다가 궁금한 점이 생기신다면 Q&amp;A를 등록해주세요. 최대한 빠른 시일 내에 답변 드리겠습니다.</string>
     <string name="question_guide2">아직 해결 되지 않으셨거나, 다른 질문이 있으시다면?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     >>>>>>> 7d3a0827f33f5dafe859a91f3f504acf308a52d1
 </resources>

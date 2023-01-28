@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="86dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/memberPicture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/memberNickName"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:hint="닉네임"
+        android:fontFamily="sans-serif"
+        android:textSize="10sp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memberPicture" />
+
+    <TextView
+        android:id="@+id/showWrittenDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:hint="작성 날짜/수정날짜"
+        android:fontFamily="sans-serif"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/memberPicture"
+        app:layout_constraintTop_toTopOf="@+id/memberPicture" />
+
+    <TextView
+        android:id="@+id/commentContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:hint="[댓글내용입니다.]"
+        android:fontFamily="sans-serif"
+        android:maxWidth="149dp"
+        android:maxLines="2"
+        app:layout_constraintTop_toBottomOf="@+id/showWrittenDate"
+        app:layout_constraintStart_toEndOf="@+id/memberPicture"/>
+
+    <!--<Button
+        android:id="@+id/acceptButton"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/shape_round"
+        android:backgroundTint="@color/blue"
+        android:text="수락"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/denyButton"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/rounded_blue"
+        android:backgroundTint="@color/white"
+        android:text="거절"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="10sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/acceptButton"/>-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

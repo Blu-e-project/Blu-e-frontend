@@ -50,6 +50,17 @@ interface RetroInterface {
 
     //service/accusations/attach
 
+    //request mentoring comments read
+    @GET
+    fun getComments(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int): Call<ArrayList<PickMemberComment>>
+    //request mentoring comments create
+//    @POST
+//    fun requestMatching(@Query("pickMemberId") pickMemberId: Int, @Body pickMemberComments :PickMemberComment): Call<PickMemberComment>
+
+    //request mentoring comments update
+
+    //request mentoring comments delete
+
     companion object {
         private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //
 

@@ -7,15 +7,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.PATCH
-import retrofit2.http.POST
-import retrofit2.http.Part
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface RetroInterface {
     @GET("/service")
@@ -74,4 +66,12 @@ interface RetroInterface {
                 .create(RetroInterface::class.java)
         }
     }
+    //이 뒤는 이현 코드입니다!!!!!!!
+    //회원 로그인
+    @FormUrlEncoded
+    @POST("/users/login")
+    fun login(@Field("id") id:String, @Field("password") pw:String): Call<User>
+    
+    
+
 }

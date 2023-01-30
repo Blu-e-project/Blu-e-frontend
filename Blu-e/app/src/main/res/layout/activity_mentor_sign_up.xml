@@ -116,37 +116,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="23dp"
         >
-    <ImageButton
-        android:id="@+id/kakao_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/kakao_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/naver_icon"
+        <ImageButton
+            android:id="@+id/kakao_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/kakao_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/naver_icon"
 
-        />
-    <ImageButton
-        android:id="@+id/naver_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/naver_icon"
-        app:layout_constraintStart_toEndOf="@+id/kakao_icon"
-        app:layout_constraintEnd_toStartOf="@+id/google_icon"
-        android:layout_marginRight="19.56dp"
-        android:layout_marginLeft="19.56dp"
-        />
-    <ImageButton
-
-        android:id="@+id/google_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/google_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/naver_icon"
-        />
+            tools:ignore="MissingConstraints" />
+        <ImageButton
+            android:id="@+id/naver_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/naver_icon"
+            app:layout_constraintStart_toEndOf="@+id/kakao_icon"
+            app:layout_constraintEnd_toStartOf="@+id/google_icon"
+            android:layout_marginRight="19.56dp"
+            android:layout_marginLeft="19.56dp"
+            tools:ignore="MissingConstraints" />
+        <ImageButton
+            android:id="@+id/google_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/google_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/naver_icon"
+            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,6 @@ class RegisterProblemFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         viewBinding = FragmentRegisterProblemBinding.inflate(inflater, container, false)
         return viewBinding.root
     }

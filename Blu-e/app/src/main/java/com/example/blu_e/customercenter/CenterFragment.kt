@@ -2,11 +2,13 @@ package com.example.blu_e.customercenter
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.MainActivity
 import com.example.blu_e.data.FaqAdapter
 import com.example.blu_e.data.Question
@@ -19,10 +21,10 @@ import retrofit2.Response
 class CenterFragment : Fragment() {
     private lateinit var mContext: MainActivity
     private lateinit var viewBinding: FragmentCenterBinding
-    private lateinit var faqs: ArrayList<Question>
+    private lateinit var faqExampleList: ArrayList<Question>
     private lateinit var qs: ArrayList<Question>
     private lateinit var adapter: FaqAdapter
-    private val api = RetroInterface.create()
+//    private val api = RetroInterface.create()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,8 +41,26 @@ class CenterFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        faqExampleList = ArrayList<Question>()
+        for (i in 0..4) {
+            var questionExample: Question = Question(i)
+            questionExample.title = "$i 번째 자주하는 질문"
+            questionExample.contents = "$i 번째 자주하는 질문의 상세 내용"
+            faqExampleList.add(i, questionExample)
+        }
+        adapter = FaqAdapter(faqExampleList)
+        viewBinding.recyclerViewFaq.adapter = adapter
+        viewBinding.recyclerViewFaq.layoutManager = LinearLayoutManager(mContext)
 
-        api.allFAQ().enqueue(object: Callback <ArrayList<Question>>{
+        adapter.setItemClickListener(object : FaqAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                var detailFragment = QuestionDetailFragment.newInstance(faqExampleList, position)
+                mContext.supportFragmentManager.beginTransaction().replace(
+                    mContext.viewBinding.containerFragment.id, detailFragment
+                ).commit()
+            }
+        })
+        /*api.allFAQ().enqueue(object: Callback <ArrayList<Question>>{
             override fun onResponse(call: Call<ArrayList<Question>>, response: Response<ArrayList<Question>>) {
                 //성공시
                 if(response.isSuccessful) {
@@ -54,10 +74,10 @@ class CenterFragment : Fragment() {
             override fun onFailure(call: Call<ArrayList<Question>>, t: Throwable) {
                 //실패시
             }
-        })
+        })*/
 
         //+ userId 받아오기
-        api.requestMyQuestions(0).enqueue(object: Callback <ArrayList<Question>>{
+        /*api.requestMyQuestions(0).enqueue(object: Callback <ArrayList<Question>>{
             override fun onResponse(call: Call<ArrayList<Question>>, response: Response<ArrayList<Question>>) {
                 //성공시
                 if(response.isSuccessful) {
@@ -71,21 +91,11 @@ class CenterFragment : Fragment() {
             override fun onFailure(call: Call<ArrayList<Question>>, t: Throwable) {
                 //실패시
             }
-        })
+        })*/
     }
 
     override fun onResume() {
         super.onResume()
-
-        adapter.setItemClickListener(object : FaqAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
-                val fragment = QuestionDetailFragment()
-                val bundle = Bundle()
-                bundle.putInt("questionId", faqs[position].questionId)
-                fragment.arguments = bundle
-                mContext?.openFragment(1)
-            }
-        })
 
         viewBinding.btnAdd.setOnClickListener {
             mContext!!.openFragment(3)

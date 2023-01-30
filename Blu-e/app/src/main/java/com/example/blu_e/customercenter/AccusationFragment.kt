@@ -26,7 +26,7 @@ import java.sql.Timestamp
 class AccusationFragment : Fragment() {
     private lateinit var mContext: MainActivity
     private lateinit var viewBinding: FragmentAccusationBinding
-    private val api = RetroInterface.create()
+//    private val api = RetroInterface.create()
     private lateinit var report: Report
 
     override fun onAttach(context: Context) {
@@ -62,7 +62,7 @@ class AccusationFragment : Fragment() {
                             image = mContext.profileImageBase64.toString()
                             createdAt = Timestamp(0)
                         }
-                        api.reportMember(0, report).enqueue(object: Callback<Report> {
+                        /*api.reportMember(0, report).enqueue(object: Callback<Report> {
                             override fun onResponse(call: Call<Report>, response: Response<Report>) {
                                 //성공시
                             }
@@ -70,7 +70,7 @@ class AccusationFragment : Fragment() {
                             override fun onFailure(call: Call<Report>, t: Throwable) {
                                 //실패시
                             }
-                        })
+                        })*/
                         mContext!!.openFragment(2)//변경필요
                     })
             builder.show()

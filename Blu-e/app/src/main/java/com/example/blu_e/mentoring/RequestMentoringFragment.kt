@@ -23,7 +23,7 @@ class RequestMentoringFragment : Fragment() {
     private lateinit var mContext: MainActivity
     private lateinit var viewBinding: FragmentRequestMentoringBinding
     private lateinit var requestMentoringCommentadapter: RequestMentoringCommentAdapter
-    private val api = RetroInterface.create()
+//    private val api = RetroInterface.create()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -55,19 +55,19 @@ class RequestMentoringFragment : Fragment() {
             pickMemberComment.pickWriterId = 0
             pickMemberComment.contents = ""
             pickMemberComment.createdAt = Timestamp(System.currentTimeMillis())
-            api.commentCreate(0, 0, pickMemberComment).enqueue(object: Callback<PickMemberComment> {
+            /*api.commentCreate(0, 0, pickMemberComment).enqueue(object: Callback<PickMemberComment> {
                 override fun onResponse(call: Call<PickMemberComment>, response: Response<PickMemberComment>) {
                 }
                 override fun onFailure(call: Call<PickMemberComment>, t: Throwable) {
                 }
-            })
+            })*/
         }
     }
 
     override fun onResume() {
         super.onResume()
         //+ 사용자 id, 글 id수정해야
-        api.requestAllComments(0, 0).enqueue(object: Callback<ArrayList<PickMemberComment>> {
+       /* api.requestAllComments(0, 0).enqueue(object: Callback<ArrayList<PickMemberComment>> {
             override fun onResponse(call: Call<ArrayList<PickMemberComment>>, response: Response<ArrayList<PickMemberComment>>) {
                 var commentList = ArrayList<PickMemberComment>()
                 commentList.addAll(response.body() ?: return)
@@ -78,7 +78,7 @@ class RequestMentoringFragment : Fragment() {
             override fun onFailure(call: Call<ArrayList<PickMemberComment>>, t: Throwable) {
                 //실패시
             }
-        })
+        })*/
 
     }
 }

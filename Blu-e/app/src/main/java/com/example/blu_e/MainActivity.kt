@@ -18,7 +18,7 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewBinding: ActivityMainBinding
+    lateinit var viewBinding: ActivityMainBinding
     var profileImageBase64: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

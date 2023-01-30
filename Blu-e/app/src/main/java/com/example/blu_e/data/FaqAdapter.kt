@@ -22,7 +22,7 @@ class FaqAdapter(private val items: ArrayList<Question>): RecyclerView.Adapter<F
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         val model = items!![position]
         holder.bind(model)
-        holder.itemView.setOnClickListener() {
+        holder.itemView.setOnClickListener {
             Log.d("selected", position.toString())
             itemClickListener.onClick(it, position)
         }
@@ -30,7 +30,6 @@ class FaqAdapter(private val items: ArrayList<Question>): RecyclerView.Adapter<F
 
     override fun getItemCount(): Int = items.size
 
-    //fragment <-> fragment
     interface ItemClickListener {
         fun onClick(view: View, position: Int)
     }

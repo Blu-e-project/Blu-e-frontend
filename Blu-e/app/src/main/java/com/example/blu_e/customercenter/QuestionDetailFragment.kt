@@ -9,23 +9,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.Answer
-import com.example.blu_e.data.FaqAdapter
 import com.example.blu_e.data.Question
-import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.FragmentQuestionDetailBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.sql.Timestamp
 
 class QuestionDetailFragment : Fragment() {
     private lateinit var mContext: MainActivity
+    private var centerFragment: CenterFragment = CenterFragment()
     private lateinit var viewBinding: FragmentQuestionDetailBinding
     private lateinit var question: Question
-    private val api = RetroInterface.create()
+//    private val api = RetroInterface.create()
+
+    companion object {
+        fun newInstance(faqList: ArrayList<Question>, faqId: Int) = QuestionDetailFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable("faqList", faqList)
+                putInt("questionId", faqId)
+            }
+        }
+    }
+    val receivedFaqList by lazy { requireArguments().getSerializable("faqList") as ArrayList<Question>}
+    val receviedQuestionId by lazy { requireArguments().getInt("questionId")}
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -42,6 +46,7 @@ class QuestionDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewBinding.backToCenterD.setOnClickListener{
             mContext!!.openFragment(2)
         }
@@ -58,7 +63,7 @@ class QuestionDetailFragment : Fragment() {
                 .setPositiveButton("예",
                     DialogInterface.OnClickListener { dialog, id ->
                         //userId와 questionId
-                        api.questionDelete(0, 0)
+//                        api.questionDelete(0, 0)
                     })
                 .setNegativeButton("아니오",
                     DialogInterface.OnClickListener { dialog, id ->
@@ -69,15 +74,13 @@ class QuestionDetailFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        var questionId = requireArguments().getInt("questionId")
 
-        Log.d("질문", questionId.toString())
-
-        question = Question(questionId)
+        Log.d("질문", receviedQuestionId.toString())
+        question = receivedFaqList[receviedQuestionId]
         viewBinding.showTitle.setText(question.title)
         viewBinding.showContent.setText(question.contents)
 
-        api.requestAnswerInQuestion(0).enqueue(object: Callback<Answer> {
+        /*api.requestAnswerInQuestion(0).enqueue(object: Callback<Answer> {
             override fun onResponse(call: Call<Answer>, response: Response<Answer>) {
                 //성공시
                 if(response.isSuccessful) {
@@ -89,6 +92,6 @@ class QuestionDetailFragment : Fragment() {
             override fun onFailure(call: Call<Answer>, t: Throwable) {
                 //실패시
             }
-        })
+        })*/
     }
 }

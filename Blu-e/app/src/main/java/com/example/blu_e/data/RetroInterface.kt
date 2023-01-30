@@ -6,6 +6,16 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
+
+import retrofit2.http.*
+import java.time.LocalDate
 
 interface RetroInterface {
     @GET("/service")
@@ -76,7 +86,15 @@ interface RetroInterface {
     @FormUrlEncoded
     @POST("/users/login")
     fun login(@Field("id") id:String, @Field("password") pw:String): Call<User>
-    
-    
+
+    //회원 가입
+    @POST("/users/signup")
+    fun signUp1(@Field("name") name : String, @Field("nickname") nickname: String,
+                @Field("birth") birth: LocalDate, @Field("education") education: String,
+                @Field("department") department:String,
+                @Field("address") address: String,
+    @Field("introduce") introduce: String) :Call<User>
+
+
 
 }

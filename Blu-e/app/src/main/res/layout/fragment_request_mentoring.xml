@@ -3,9 +3,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:windowSoftInputMode="adjustResize">
 
     <View
         android:id="@+id/mentoringTitleView"
@@ -48,5 +48,69 @@
         android:layout_marginTop="408dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chat_form"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:id="@+id/chat_form_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="10dp"
+            android:background="transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/memberPicture2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <View
+            android:id="@+id/editTextRec"
+            android:layout_width="275dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/memberPicture2"
+            app:layout_constraintTop_toTopOf="parent"></View>
+
+        <EditText
+            android:id="@+id/chat_edit_text"
+            android:layout_width="237dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="댓글 달기"
+            android:textSize="5sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/editTextRec" />
+
+        <ImageButton
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="248dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="6dp"
+            android:background="transparent"
+            android:src="@drawable/send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/editTextRec"
+            app:layout_constraintTop_toTopOf="@+id/editTextRec"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout >

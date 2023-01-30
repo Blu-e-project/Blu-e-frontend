@@ -17,6 +17,7 @@ import com.example.blu_e.databinding.FragmentRequestMentoringBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Timestamp
 
 class RequestMentoringFragment : Fragment() {
     private lateinit var mContext: MainActivity
@@ -47,12 +48,26 @@ class RequestMentoringFragment : Fragment() {
             requestMentoringCommentadapter = RequestMentoringCommentAdapter()
             adapter = requestMentoringCommentadapter
         }
+
+        viewBinding.sendButton?.setOnClickListener{
+            var pickMemberComment = PickMemberComment(0)
+            pickMemberComment.userId = 0
+            pickMemberComment.pickWriterId = 0
+            pickMemberComment.contents = ""
+            pickMemberComment.createdAt = Timestamp(System.currentTimeMillis())
+            api.commentCreate(0, 0, pickMemberComment).enqueue(object: Callback<PickMemberComment> {
+                override fun onResponse(call: Call<PickMemberComment>, response: Response<PickMemberComment>) {
+                }
+                override fun onFailure(call: Call<PickMemberComment>, t: Throwable) {
+                }
+            })
+        }
     }
 
     override fun onResume() {
         super.onResume()
         //+ 사용자 id, 글 id수정해야
-        api.getComments(0, 0).enqueue(object: Callback<ArrayList<PickMemberComment>> {
+        api.requestAllComments(0, 0).enqueue(object: Callback<ArrayList<PickMemberComment>> {
             override fun onResponse(call: Call<ArrayList<PickMemberComment>>, response: Response<ArrayList<PickMemberComment>>) {
                 var commentList = ArrayList<PickMemberComment>()
                 commentList.addAll(response.body() ?: return)

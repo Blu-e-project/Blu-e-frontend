@@ -2,18 +2,14 @@ package com.example.blu_e.data
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.PATCH
 import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -52,14 +48,21 @@ interface RetroInterface {
 
     //request mentoring comments read
     @GET
-    fun getComments(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int): Call<ArrayList<PickMemberComment>>
+    fun requestAllComments(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int): Call<ArrayList<PickMemberComment>>
+
     //request mentoring comments create
-//    @POST
-//    fun requestMatching(@Query("pickMemberId") pickMemberId: Int, @Body pickMemberComments :PickMemberComment): Call<PickMemberComment>
+    @POST
+    fun commentCreate(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Body pickMemberComment: PickMemberComment): Call<PickMemberComment>
+    @POST
+    fun requestMatching(@Query("pickMenteeId") pickMenteeId: Int, @Query("pickMentorId") pickMentorId: Int): Call<Matching>
 
     //request mentoring comments update
+    @PUT
+    fun commentUpdate(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Body pickMemberComment: PickMemberComment): Call<PickMemberComment>
 
     //request mentoring comments delete
+    @DELETE
+    fun commentDelete(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Query("pickMemberComment") pickMemberComment: Int): Call<PickMemberComment>
 
     companion object {
         private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //

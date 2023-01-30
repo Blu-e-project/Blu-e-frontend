@@ -1,11 +1,7 @@
 package com.example.blu_e.data
 
-data class Matching(var id: Int) {
-    val matchingId
-        get() = id
-    var pickMenteeId: Int = 0
-    var pickMenteeComId: Int = 0
-    var pickMentorId: Int = 0
-    var pickMentorComId: Int = 0
-    var status: Int = 0
+data class Matching(val matchingId: Int, var pickMenteeId: Int, var pickMenteeComId: Int,
+                    var pickMentorId: Int, var pickMentorComId: Int,  var status: Int)
+{
+    constructor(matchingId: Int) : this(matchingId, 0, 0, 0,0,0)
 }

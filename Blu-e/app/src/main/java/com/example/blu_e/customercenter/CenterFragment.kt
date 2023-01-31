@@ -39,7 +39,7 @@ class CenterFragment : Fragment() {
         for (i in 0..4) {
             var questionExample: FaqData = FaqData(i)
             questionExample.title = "$i 번째 자주하는 질문"
-            questionExample.answer = "$i 번재 자주하는 질문의 답변"
+            questionExample.answer = "$i 번째 자주하는 질문의 답변"
             faqExampleList.add(i, questionExample)
         }
         adapter = FaqAdapter(faqExampleList)

@@ -42,7 +42,7 @@ class MyPageFragment : Fragment() {
 
         settingTitleList.get(0).settingTitle = "정보 수정"
         settingTitleList.get(1).settingTitle = "멘토링 내역"
-        settingTitleList.get(2).settingTitle = "멘티 신고"
+        settingTitleList.get(2).settingTitle = "회원 신고"
         settingTitleList.get(3).settingTitle = "리뷰"
         settingTitleList.get(4).settingTitle = "내가 쓴 글/ 댓글 단 글"
         settingTitleList.get(5).settingTitle = "버전"

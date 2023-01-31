@@ -2,10 +2,8 @@
 <!--멘티 메인화면-->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     android:orientation="vertical">
 
@@ -61,10 +59,6 @@
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src=""/>
     </LinearLayout>
 
     <!--궁금한 문제가 있어요!-->
@@ -116,7 +110,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:textStyle="bold"
-            android:text="멘티 구인글 작성하기"
+            android:text="@string/menteeInfo"
             android:background="@drawable/rectangle_2"/>
     </LinearLayout>
 </LinearLayout>

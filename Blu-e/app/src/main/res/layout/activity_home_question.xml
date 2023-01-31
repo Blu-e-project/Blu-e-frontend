@@ -11,10 +11,10 @@
 
         <ImageButton
             android:id="@+id/backHome"
-            android:layout_width="10dp"
+            android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/vector"
-            android:background="@drawable/rectangle_50"/>
+            android:background="@drawable/rectangle_50"
+            android:src="@drawable/vector" />
 
         <!-- 궁금한 문제가 있어요! -->
         <TextView

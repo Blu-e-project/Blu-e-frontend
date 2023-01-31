@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //질문, 신고 관련 화면 전환
+    //Fragment 화면 전환
     fun openFragment(n: Int) {
         val transaction = supportFragmentManager.beginTransaction()
         when(n) {
@@ -93,6 +93,7 @@ class MainActivity : AppCompatActivity() {
             2 -> transaction.replace(viewBinding.containerFragment.id, CenterFragment())
             3 -> transaction.replace(viewBinding.containerFragment.id, QuestionFormFragment())
             4 -> transaction.replace(viewBinding.containerFragment.id, AccusationFragment())
+            5 -> transaction.replace(viewBinding.containerFragment.id, MyPageFragment())
         }
         transaction.addToBackStack(null);
         transaction.commit()

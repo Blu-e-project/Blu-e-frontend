@@ -46,7 +46,7 @@ class AccusationFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewBinding.backToCenterA.setOnClickListener {
             mContext.openFragment(5)
-        }
+        }//push 확인용. 주석
         viewBinding.btnAddPic.setOnClickListener {
             selectGallery()
         }

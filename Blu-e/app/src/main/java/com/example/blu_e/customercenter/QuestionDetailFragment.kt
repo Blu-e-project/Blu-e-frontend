@@ -88,7 +88,6 @@ class QuestionDetailFragment : Fragment() {
 //                    viewBinding.showAnswer.setText() //Async ..
                 }
             }
-
             override fun onFailure(call: Call<Answer>, t: Throwable) {
                 //실패시
             }

@@ -6,14 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.customercenter.AccusationFragment
-import com.example.blu_e.customercenter.QuestionDetailFragment
-import com.example.blu_e.data.FaqAdapter
 import com.example.blu_e.data.ListInMyPageAdapter
 import com.example.blu_e.data.ListInMyPageData
-import com.example.blu_e.data.Question
 import com.example.blu_e.databinding.FragmentMyPageBinding
 
 class MyPageFragment : Fragment() {

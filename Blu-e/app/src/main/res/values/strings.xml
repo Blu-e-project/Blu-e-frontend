@@ -10,4 +10,8 @@
     <string name="askQuestion">▷ 궁금한 문제가 있어요!</string>
     <string name="activityReview">▷ 이달의 활동 리뷰</string>
     <string name="recruitMentee">▷ 멘티를 구해요</string>
+    <string name="recruitingMentee">멘티를 구하고 있어요!</string>
+    <string name="recruitingMentor">멘토를 구하고 있어요!</string>
+    <string name="menteeInfo">멘티 구인글 작성하기</string>
+    <string name="recruit_mentee">멘티를 구하고 있어요!</string>
 </resources>

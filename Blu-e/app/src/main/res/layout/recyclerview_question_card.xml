@@ -17,13 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="31dp"
                 android:inputType="none"
-                android:text="과목"
                 android:ems="10"
-                android:id="@+id/menteeCardTitle"
+                android:id="@+id/questionCardSubject"
                 android:background="#BAC9FF"
                 android:textStyle="bold"
                 android:textSize="10sp"
@@ -41,14 +40,13 @@
                     android:text="[문제]"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardDesiredSubjectTitle"
+                    android:id="@+id/questionDesiredProblemTitle"
                     android:textSize="10sp"
                     android:textColor="@color/black"/>
                 <TextView
-                    android:text="이미지 첨부"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardDesiredSubject"
+                    android:id="@+id/questionDesiredProblem"
                     android:textSize="10sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>
@@ -62,14 +60,13 @@
                     android:text="[단원]"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardDesiredPeriodTitle"
+                    android:id="@+id/questionCardDesiredrangeTitle"
                     android:textSize="10sp"
                     android:textColor="@color/black"/>
                 <TextView
-                    android:text="반복문(for문)"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardDesiredPeriod"
+                    android:id="@+id/questionCardDesiredrange"
                     android:textSize="10sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>
@@ -83,14 +80,13 @@
                     android:text="[질문]"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardMethodTitle"
+                    android:id="@+id/questionCardDesiredQuestionTitle"
                     android:textSize="10sp"
                     android:textColor="@color/black"/>
                 <TextView
-                    android:text="조건이 왜 위와 같이 나오\n는지 모르겠어요!"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardMethod"
+                    android:id="@+id/questionCardDesiredQuestion"
                     android:textSize="10sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>

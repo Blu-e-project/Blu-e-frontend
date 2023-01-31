@@ -44,6 +44,9 @@ class AccusationFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewBinding.backToCenterA.setOnClickListener {
+            mContext.openFragment(5)
+        }
         viewBinding.btnAddPic.setOnClickListener {
             selectGallery()
         }
@@ -71,7 +74,7 @@ class AccusationFragment : Fragment() {
                                 //실패시
                             }
                         })*/
-                        mContext!!.openFragment(2)//변경필요
+                        mContext!!.openFragment(5)
                     })
             builder.show()
         }

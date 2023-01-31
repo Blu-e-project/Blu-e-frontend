@@ -71,19 +71,20 @@
         android:layout_marginTop="164dp"
         android:layout_marginEnd="40dp"
         android:fontFamily="sans-serif"
+        android:textStyle="bold"
         android:hint="A. 하단 Q&amp;A 등록하기를 통해 질문을 등록하실 수 있습니다."
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="@+id/showContent_f"
+        app:layout_constraintStart_toStartOf="@+id/showTitle_f"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvInput_f"
         android:layout_width="357dp"
         android:layout_height="28dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="280dp"
         android:lines="1"
         android:text="@string/question_guide2"
         android:textSize="16sp"
@@ -110,7 +111,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvInput_f">
-
-    </Button>
+        app:layout_constraintTop_toBottomOf="@+id/tvInput_f"></Button>
 </androidx.constraintlayout.widget.ConstraintLayout >

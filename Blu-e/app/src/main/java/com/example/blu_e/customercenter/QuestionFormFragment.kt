@@ -16,7 +16,7 @@ import java.sql.Timestamp
 
 class QuestionFormFragment : Fragment() {
     private lateinit var mContext: MainActivity
-    private val api = RetroInterface.create()
+//    private val api = RetroInterface.create()
     private lateinit var viewBinding: FragmentQuestionFormBinding
 
     override fun onAttach(context: Context) {

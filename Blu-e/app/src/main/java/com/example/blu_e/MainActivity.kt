@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.blu_e.customercenter.AccusationFragment
 import com.example.blu_e.customercenter.CenterFragment
-import com.example.blu_e.customercenter.QuestionDetailFragment
+import com.example.blu_e.customercenter.FaqDetailFragment
 import com.example.blu_e.customercenter.QuestionFormFragment
 import com.example.blu_e.databinding.ActivityMainBinding
 import java.io.ByteArrayOutputStream
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     fun openFragment(n: Int) {
         val transaction = supportFragmentManager.beginTransaction()
         when(n) {
-            1 -> transaction.replace(viewBinding.containerFragment.id, QuestionDetailFragment())
+            1 -> transaction.replace(viewBinding.containerFragment.id, FaqDetailFragment())
             2 -> transaction.replace(viewBinding.containerFragment.id, CenterFragment())
             3 -> transaction.replace(viewBinding.containerFragment.id, QuestionFormFragment())
             4 -> transaction.replace(viewBinding.containerFragment.id, AccusationFragment())

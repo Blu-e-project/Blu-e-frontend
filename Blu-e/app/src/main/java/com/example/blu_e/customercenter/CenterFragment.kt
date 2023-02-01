@@ -8,16 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.FaqAdapter
-import com.example.blu_e.data.Question
+import com.example.blu_e.data.*
 import com.example.blu_e.databinding.FragmentCenterBinding
 
 class CenterFragment : Fragment() {
     private lateinit var mContext: MainActivity
     private lateinit var viewBinding: FragmentCenterBinding
-    private lateinit var faqExampleList: ArrayList<Question>
+    private lateinit var faqExampleList: ArrayList<FaqData>
     private lateinit var qs: ArrayList<Question>
     private lateinit var adapter: FaqAdapter
+    private lateinit var adapter2: QuestionAdapter
 //    private val api = RetroInterface.create()
 
     override fun onAttach(context: Context) {
@@ -35,50 +35,47 @@ class CenterFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        faqExampleList = ArrayList<Question>()
-        for (i in 0..4) {
-            var questionExample: Question = Question(i)
-            questionExample.title = "$i 번째 자주하는 질문"
-            questionExample.contents = "$i 번째 자주하는 질문의 상세 내용"
+        faqExampleList = ArrayList<FaqData>()
+        var questionExample: FaqData
+        for (i in 0..5) {
+            questionExample = FaqData(i)
             faqExampleList.add(i, questionExample)
         }
+        faqExampleList.get(0).title = "Q&A를 남기고 싶어요."
+        faqExampleList.get(0).answer = "자주하는 질문1에 대한 답변"
+        faqExampleList.get(1).title = "멘토/멘티 신고는 어떻게 하나요?"
+        faqExampleList.get(1).answer = "자주하는 질문2에 대한 답변"
+        faqExampleList.get(2).title = "모든 서비스가 무료인가요?"
+        faqExampleList.get(2).answer = "자주하는 질문3에 대한 답변"
+        faqExampleList.get(3).title = "멘토는 같은 지역에 멘티만 구할 수 있나요?"
+        faqExampleList.get(3).answer = "자주하는 질문4에 대한 답변"
+        faqExampleList.get(4).title = "멘티는 몇 개 과목까지 멘토를 구할 수 있나요?"
+        faqExampleList.get(4).answer = "자주하는 질문5에 대한 답변"
+        faqExampleList.get(5).title = "활동을 중간에 중단하면 어떤 불이익이 있나요?"
+        faqExampleList.get(5).answer = "자주하는 질문6에 대한 답변"
+
         adapter = FaqAdapter(faqExampleList)
         viewBinding.recyclerViewFaq.adapter = adapter
         viewBinding.recyclerViewFaq.layoutManager = LinearLayoutManager(mContext)
 
         adapter.setItemClickListener(object : FaqAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
-                var detailFragment = QuestionDetailFragment.newInstance(faqExampleList, position)
+                var detailFragment = FaqDetailFragment.newInstance(faqExampleList, position)
                 mContext.supportFragmentManager.beginTransaction().replace(
                     mContext.viewBinding.containerFragment.id, detailFragment
                 ).commit()
             }
         })
-        /*api.allFAQ().enqueue(object: Callback <ArrayList<Question>>{
-            override fun onResponse(call: Call<ArrayList<Question>>, response: Response<ArrayList<Question>>) {
-                //성공시
-                if(response.isSuccessful) {
-                    viewBinding.recyclerViewFaq.layoutManager = LinearLayoutManager(mContext)
-                    faqs = response.body() ?: return
-                    adapter = FaqAdapter(faqs)
-                    viewBinding.recyclerViewFaq.adapter = adapter
-                }
-            }
-
-            override fun onFailure(call: Call<ArrayList<Question>>, t: Throwable) {
-                //실패시
-            }
-        })*/
 
         //+ userId 받아오기
-        /*api.requestMyQuestions(0).enqueue(object: Callback <ArrayList<Question>>{
+       /* api.requestMyQuestions(0).enqueue(object: Callback <ArrayList<Question>>{
             override fun onResponse(call: Call<ArrayList<Question>>, response: Response<ArrayList<Question>>) {
                 //성공시
                 if(response.isSuccessful) {
-                    viewBinding.recyclerViewFaq.layoutManager = LinearLayoutManager(mContext)
+                    viewBinding.recyclerViewQa.layoutManager = LinearLayoutManager(mContext)
                     qs = response.body() ?: return
-                    adapter = FaqAdapter(qs)
-                    viewBinding.recyclerViewFaq.adapter = adapter
+                    adapter2 = QuestionAdapter(qs)
+                    viewBinding.recyclerViewQa.adapter = adapter2
                 }
             }
 

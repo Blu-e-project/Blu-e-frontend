@@ -10,6 +10,7 @@
         android:id="@+id/memberPicture_m"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:src="@drawable/rounded_gray"
         android:layout_marginStart="27dp"
         android:layout_marginTop="19dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,9 +37,9 @@
     <View
         android:id="@+id/line_m"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="3dp"
         android:layout_marginTop="96dp"
-        android:background="@color/sky"
+        android:background="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,4 +1,4 @@
-package com.example.blu_e.mainPage
+package com.example.blu_e.data
 
 class MentorData (
     val title: String,

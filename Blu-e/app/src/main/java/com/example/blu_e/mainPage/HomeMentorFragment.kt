@@ -34,6 +34,9 @@ class HomeMentorFragment : Fragment() {
     ): View? {
         viewBinding = FragmentHomeMentorBinding.inflate(inflater, container, false)
 
+
+/*
+
         //새로운 멘티가 있어요!
         menteeAdapter = MenteeDataRVAdapter(menteeList)
         viewBinding.recyclerViewNewMentee.adapter = menteeAdapter
@@ -45,7 +48,22 @@ class HomeMentorFragment : Fragment() {
         viewBinding.recyclerViewQuestion.adapter = questionAdapter
         viewBinding.recyclerViewQuestion.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
+*/
         return viewBinding.root
+    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewBinding.btnMenteeAdd.setOnClickListener{
+            mContext!!.openFragment(6)
+        }
+
+        viewBinding.btnQuestionAdd.setOnClickListener {
+            mContext!!.openFragment(7)
+        }
+
+        viewBinding.btnMenteeInfo.setOnClickListener {
+            mContext!!.openFragment(8)
+        }
     }
 }

@@ -44,16 +44,209 @@
             android:textSize="15sp"
             android:textStyle="bold"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_newMentee"
-            android:layout_width="match_parent"
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:fillViewport="true">
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            tools:listitem="@layout/recyclerview_mentee_card"
-            android:layout_marginBottom="20dp" />
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/mentee_profile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:id="@+id/mentee_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="금림" />
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:srcCompat="@drawable/rounded_gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="엘라" />
+                </LinearLayout>
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:srcCompat="@drawable/rounded_gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="맨디" />
+                </LinearLayout>
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:srcCompat="@drawable/rounded_gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="주디" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="융" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="쫑" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="제이드" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/mentee_profile2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:id="@+id/mentee_name2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="시니" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/mentee_profile3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:id="@+id/mentee_name3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="그리드" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="니케" />
+            </LinearLayout>
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/btnMenteeAdd"
+                    android:text="▶▶"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/rounded_gray"/>
+            </LinearLayout>
+        </LinearLayout>
+        </HorizontalScrollView>
     </LinearLayout>
 
     <!--궁금한 문제가 있어요-->
@@ -73,59 +266,549 @@
             android:textSize="15sp"
             android:textStyle="bold"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_question"
-            android:layout_width="match_parent"
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/recyclerview_question_card"/>
+            android:scrollbars="none"
+            android:fillViewport="true">
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="15dp"
+                app:cardMaxElevation="20dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:text="코딩"
+                        android:layout_width="match_parent"
+                        android:layout_height="31dp"
+                        android:inputType="none"
+                        android:ems="10"
+                        android:id="@+id/menteeCardTitle"
+                        android:background="#BAC9FF"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="textStart"
+                        android:paddingLeft="9dp"
+                        android:paddingTop="10dp"
+                        tools:ignore="RtlCompat" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[희망과목]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/menteeCardDesiredSubjectTitle"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:text="이미지 첨부"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/menteeCardDesiredSubject"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[희망기간]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/menteeCardDesiredPeriodTitle"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/menteeCardDesiredPeriod"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[멘토링 방식]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/menteeCardMethodTitle"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/menteeCardMethod"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[지역]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/menteeCardAreaTitle"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/menteeCardArea"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="15dp"
+                app:cardMaxElevation="20dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:text="수학"
+                        android:layout_width="match_parent"
+                        android:layout_height="31dp"
+                        android:inputType="none"
+                        android:ems="10"
+                        android:background="#BAC9FF"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="textStart"
+                        android:paddingLeft="9dp"
+                        android:paddingTop="10dp"
+                        tools:ignore="RtlCompat" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[희망과목]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:text="이미지 첨부"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[희망기간]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[멘토링 방식]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[지역]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="15dp"
+                app:cardMaxElevation="20dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:text="수학"
+                        android:layout_width="match_parent"
+                        android:layout_height="31dp"
+                        android:inputType="none"
+                        android:ems="10"
+                        android:background="#BAC9FF"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="textStart"
+                        android:paddingLeft="9dp"
+                        android:paddingTop="10dp"
+                        tools:ignore="RtlCompat" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[희망과목]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[희망기간]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[멘토링 방식]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[지역]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="15dp"
+                app:cardMaxElevation="20dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:text="수학"
+                        android:layout_width="match_parent"
+                        android:layout_height="31dp"
+                        android:inputType="none"
+                        android:ems="10"
+                        android:background="#BAC9FF"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="textStart"
+                        android:paddingLeft="9dp"
+                        android:paddingTop="10dp"
+                        tools:ignore="RtlCompat" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[희망과목]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[희망기간]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[멘토링 방식]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="3dp">
+                        <TextView
+                            android:text="[지역]"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </TableRow>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/btnQuestionAdd"
+                android:text="▶▶"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/rounded_gray"/>
+        </LinearLayout>
+        </HorizontalScrollView>
+
     </LinearLayout>
 
-    <!--이달의 활동 리뷰-->
+    <!-- 이달의 활동 리뷰-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/review_btn"
+            android:id="@+id/question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="sans-serif"
-            android:text="@string/activityReview"
+            android:text="▷ 이달의 활동 리뷰"
             android:textColor="#000000"
             android:textSize="15sp"
-            android:textStyle="bold"/>
-
+            android:textStyle="bold" />
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:orientation="vertical">
-            <!--<ImageButton
-                android:id="@+id/menteeProfile"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/rounded_gray" />
-            <TextView
-                android:id="@+id/menteeName"
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:gravity="center_horizontal"
-                android:text="name" />-->
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/review_profile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:id="@+id/review_profile_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="금림" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                tools:listitem="@layout/recyclerview_mentee_card"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/review_profile2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:id="@+id/review_profile_name2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="엘라" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/review_profile3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/rounded_gray" />
+
+                <TextView
+                    android:id="@+id/review_profile_name3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center_horizontal"
+                    android:text="맨디" />
+            </LinearLayout>
         </LinearLayout>
+
+        <!--
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_review"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            tools:listitem="@layout/recyclerview_mentee_card"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"/>
+        -->
     </LinearLayout>
 
     <!--멘티를 구해요-->
@@ -139,14 +822,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="sans-serif"
-            android:layout_marginTop="26dp"
             android:text="@string/recruitMentee"
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/menteeInfo"
+            android:id="@+id/btnMenteeInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

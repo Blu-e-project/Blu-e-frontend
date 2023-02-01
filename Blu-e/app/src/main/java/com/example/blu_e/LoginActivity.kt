@@ -7,11 +7,6 @@ import android.util.Log
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.User
 import com.example.blu_e.databinding.ActivityLoginBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
-import retrofit2.Retrofit
 
 class LoginActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityLoginBinding
@@ -27,17 +22,20 @@ class LoginActivity : AppCompatActivity() {
             val id = viewBinding.userId.text.toString()
             val pw = viewBinding.userPw.text.toString()
 
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
 //            Log.d("아이디", "아이디는 ${id}")
 //            Log.d("비번", "비번은 ${pw}")
-            api.login(id,pw).enqueue(object :Callback<User>{
-                override fun onResponse(call: Call<User>, response: Response<User>) {
-                    Log.d("login", "성공")
-                }
-
-                override fun onFailure(call: Call<User>, t: Throwable) {
-                   Log.e("login","error", t)
-                }
-            })
+//            api.login(id,pw).enqueue(object :Callback<User>{
+//                override fun onResponse(call: Call<User>, response: Response<User>) {
+//                    Log.d("login", "성공")
+//                    startActivity(intent)
+//                }
+//
+//                override fun onFailure(call: Call<User>, t: Throwable) {
+//                   Log.e("login","error", t)
+//                }
+//            })
 
         }
 //    아이디 찾기 페이지로

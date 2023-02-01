@@ -55,8 +55,8 @@
             />
         <EditText
             android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="238dp"
+            android:layout_height="40dp"
             android:width="238dp"
             android:height="40dp"
             app:layout_constraintTop_toBottomOf="@id/mentoringTitleView"
@@ -85,8 +85,8 @@
             />
         <EditText
             android:id="@+id/content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="238dp"
+            android:layout_height="80dp"
             android:hint="내용을 입력하세요"
             android:width="238dp"
             android:height="80dp"
@@ -114,8 +114,8 @@
             />
         <EditText
             android:id="@+id/subject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="238dp"
+            android:layout_height="40dp"
             android:width="238dp"
             android:height="40dp"
             android:text="과목명을 입력하세요"

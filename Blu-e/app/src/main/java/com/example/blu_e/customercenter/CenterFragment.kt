@@ -2,21 +2,15 @@ package com.example.blu_e.customercenter
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.MainActivity
 import com.example.blu_e.data.FaqAdapter
 import com.example.blu_e.data.Question
-import com.example.blu_e.data.RetroInterface
-import retrofit2.Callback
 import com.example.blu_e.databinding.FragmentCenterBinding
-import retrofit2.Call
-import retrofit2.Response
 
 class CenterFragment : Fragment() {
     private lateinit var mContext: MainActivity

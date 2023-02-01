@@ -30,9 +30,9 @@ class HomeRecruitMentorFragment : Fragment() {
         }
         val mentorAdapter = MentorDataRVAdapter(list)
         val grid = GridLayoutManager(context, 2)
-
+/*
         viewBinding.recyclerViewMentor.adapter = mentorAdapter
-        viewBinding.recyclerViewMentor.layoutManager = grid
+        viewBinding.recyclerViewMentor.layoutManager = grid*/
 
         return viewBinding.root
     }

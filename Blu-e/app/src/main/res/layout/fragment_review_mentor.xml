@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <View
+        android:id="@+id/reviewView_mentor"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/sky"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></View>
+
+    <ImageButton
+        android:id="@+id/backToCenter_a_mentor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="102dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/arrow_forward_ios"
+        app:layout_constraintEnd_toStartOf="@+id/textView3_mentor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/textView3_mentor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="리뷰"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/reviewView_mentor"
+        app:layout_constraintEnd_toEndOf="@+id/reviewView_mentor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/MenteeName_mentor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="sans-serif"
+        android:text="멘티이름"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviewView_mentor" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-9dp"
+        android:background="@drawable/text_border"
+        android:hint="멘티 이름을 입력하세요"
+        android:paddingLeft="12dp"
+        android:paddingTop="14dp"
+        android:paddingRight="124dp"
+        android:paddingBottom="14dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/MenteeName_mentor" />
+    <TextView
+        android:id="@+id/subject_mentor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="sans-serif"
+        android:text="과목"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MenteeName_mentor" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-9dp"
+        android:background="@drawable/text_border"
+        android:hint="멘토링 과목을 입력하세요"
+        android:paddingLeft="12dp"
+        android:paddingTop="14dp"
+        android:paddingRight="124dp"
+        android:paddingBottom="14dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/subject_mentor" />
+
+    <TextView
+        android:id="@+id/reviewContent_mentor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="sans-serif"
+        android:text="내용"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subject_mentor" />
+
+    <EditText
+        android:id="@+id/editText_mentor"
+        android:layout_width="254dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-9dp"
+
+        android:background="@drawable/text_border"
+        android:gravity="top|left"
+        android:hint="멘토링이 종료된 멘티에 대한 리뷰를 남겨주세요"
+        android:paddingLeft="12dp"
+        android:paddingTop="14dp"
+        android:paddingRight="124dp"
+        android:paddingBottom="14dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/reviewContent_mentor" />
+
+    <Button
+        android:id="@+id/btn_add_mentor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="320dp"
+        android:height="40dp"
+        android:background="@drawable/shape_round"
+        android:backgroundTint="@color/sky"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:letterSpacing="0.01"
+        android:lineSpacingExtra="10sp"
+        android:text="리뷰 등록"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_mentor"
+        app:layout_constraintVertical_bias="0.502" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

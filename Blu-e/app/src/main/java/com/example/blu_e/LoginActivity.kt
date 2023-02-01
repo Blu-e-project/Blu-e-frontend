@@ -7,11 +7,7 @@ import android.util.Log
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.User
 import com.example.blu_e.databinding.ActivityLoginBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-import retrofit2.Retrofit
 
 class LoginActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityLoginBinding

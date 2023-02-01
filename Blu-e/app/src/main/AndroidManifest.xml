@@ -18,6 +18,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MyPostCommentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MentoringHistoryActivity"
             android:exported="false">
             <meta-data
@@ -88,7 +95,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".IntroActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -102,7 +109,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".IntroActivity"
+            android:name=".LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

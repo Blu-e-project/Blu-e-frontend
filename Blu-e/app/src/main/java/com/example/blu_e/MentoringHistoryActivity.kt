@@ -27,6 +27,8 @@ class MentoringHistoryActivity : AppCompatActivity() {
         viewBinding.rvData.adapter = dataRVAdapter
         viewBinding.rvData.layoutManager = LinearLayoutManager(this)
 
-
+        viewBinding.backToCenterD.setOnClickListener {
+            finish()
+        }
     }
 }

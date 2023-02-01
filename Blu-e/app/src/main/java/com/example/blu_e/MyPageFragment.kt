@@ -1,6 +1,7 @@
 package com.example.blu_e
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -54,9 +55,10 @@ class MyPageFragment : Fragment() {
         adapter.setItemClickListener (object : ListInMyPageAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 val transaction = mContext.supportFragmentManager.beginTransaction()
+                val intent = Intent(mContext, MentoringHistoryActivity::class.java)
                 when(position) {
                     0 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorChangeInfoFragment()).commit() //"멘토 정보 수정"
-                    1 ->  "멘토링 내역"
+                    1 -> startActivity(intent)
                     2 -> transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit() //"멘티 신고"
                     3 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorReviewFragment()).commit() //"멘티 리뷰"
                     4 -> "내가 쓴 글/ 댓글 단 글"

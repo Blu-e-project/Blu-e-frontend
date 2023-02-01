@@ -69,7 +69,7 @@ interface RetroInterface {
     fun commentDelete(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Query("pickMemberComment") pickMemberComment: Int): Call<PickMemberComment>
 
     companion object {
-        private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //
+        private const val BASE_URL = "http://192.168.136.1" //"http://본인 컴퓨터 IP 주소:포트번호" //
 
         fun create(): RetroInterface {
             val gson : Gson = GsonBuilder().setLenient().create()

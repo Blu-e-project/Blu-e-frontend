@@ -195,45 +195,43 @@
       android:textColor="#6B000000"
       android:backgroundTint="#006BCE"
       />
-
-  <FrameLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginRight="14dp"
-      android:layout_marginTop="22dp"
+  <View
+      android:id="@+id/profile"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:background="@drawable/rounded_gray"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/check_pw">
+      app:layout_constraintTop_toBottomOf="@id/check_pw"
+      android:layout_marginTop="22dp"
+      />
+  <ImageView
+      android:layout_width="41.81dp"
+      android:layout_height="42.37dp"
+      android:layout_marginTop="28.94dp"
+      android:layout_marginLeft="29.1dp"
+      android:src="@drawable/profile_img"
+      app:layout_constraintStart_toStartOf="@id/profile"
+      app:layout_constraintTop_toTopOf="@id/profile"/>
+  <ImageButton
+      android:layout_width="35dp"
+      android:layout_height="35dp"
+      app:layout_constraintStart_toStartOf="@id/profile"
+      android:layout_marginLeft="70dp"
+      app:layout_constraintTop_toTopOf="@id/profile"
+      android:background="@drawable/rounded_black"
+      android:layout_marginTop="65dp"
 
-    <ImageView
-        android:id="@+id/profile"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/rounded_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/check_pw"
-
-        />
-
-    <ImageView
-        android:layout_width="41.81dp"
-        android:layout_height="42.37dp"
-        android:layout_marginTop="28.94dp"
-        android:layout_marginLeft="29.1dp"
-        android:src="@drawable/profile_img"
-        app:layout_constraintTop_toBottomOf="@id/check_pw" />
-    <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@drawable/rounded_black"
-        />
-    <ImageButton
-        android:layout_width="18.33dp"
-        android:layout_height="18.33dp"
-        android:src="@drawable/profile_btn"
-        />
-  </FrameLayout>
+      />
+  <ImageButton
+      app:layout_constraintStart_toStartOf="@id/profile"
+      android:layout_marginLeft="79dp"
+      app:layout_constraintTop_toTopOf="@id/profile"
+      android:layout_marginTop="73.64dp"
+      android:layout_width="18.33dp"
+      android:layout_height="18.33dp"
+      android:src="@drawable/profile_btn"
+      />
 
   <Button
       android:id="@+id/sign_up_btn"

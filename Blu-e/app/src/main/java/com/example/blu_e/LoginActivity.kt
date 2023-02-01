@@ -8,6 +8,7 @@ import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.User
 import com.example.blu_e.databinding.ActivityLoginBinding
 
+
 class LoginActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityLoginBinding
     private val api = RetroInterface.create()

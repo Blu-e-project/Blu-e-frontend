@@ -19,6 +19,6 @@ data class User(
     val role: Int,
     val createdAt: Timestamp,
     val updatedAt: Timestamp,
-    val status: Int,
+    val status: Int = 1,
     val userImg: String
 )

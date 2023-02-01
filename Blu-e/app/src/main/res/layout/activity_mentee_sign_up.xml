@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:lineHeight="22sp"
-        android:text="멘티 회원가입"
+        android:text="멘토 회원가입"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/logo"
-        app:layout_constraintStart_toStartOf="@+id/mentor_btn"
+        app:layout_constraintStart_toStartOf="@+id/mentee_btn"
         app:layout_constraintTop_toBottomOf="@+id/view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/mentor_btn"
+        android:id="@+id/mentee_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -74,7 +74,7 @@
         android:height="45dp"
         android:background="@drawable/rounded_blue"
         android:lineHeight="22sp"
-        android:text="Blu-e멘티 계정 만들기"
+        android:text="Blu-e멘토 계정 만들기"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textFontWeight="600"
@@ -90,11 +90,11 @@
         android:layout_marginTop="23dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mentor_btn"
+        app:layout_constraintTop_toBottomOf="@id/mentee_btn"
         android:background="@drawable/hr_gray"/>
     <TextView
         android:id="@+id/sns"
-        app:layout_constraintTop_toBottomOf="@+id/mentor_btn"
+        app:layout_constraintTop_toBottomOf="@+id/mentee_btn"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
         android:layout_gravity="center"
@@ -143,5 +143,6 @@
             app:layout_constraintStart_toEndOf="@+id/naver_icon"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

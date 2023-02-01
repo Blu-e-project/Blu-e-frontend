@@ -41,21 +41,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/showTitle_f"
+        android:id="@+id/showTitle_f_q"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="76dp"
-        android:fontFamily="sans-serif"
-        android:hint="Q. Q&amp;A를 남기고 싶어요."
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="25dp"
+        android:text="Q."
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/centerView_f" />
+
+    <TextView
+        android:id="@+id/showTitle_f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="sans-serif"
+        android:hint="Q&amp;A를 남기고 싶어요."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/showTitle_f_q"
+        app:layout_constraintStart_toEndOf="@id/showTitle_f_q" />
 
     <View
-        android:layout_width="320dp"
+        android:id="@+id/view5"
+        android:layout_width="350dp"
         android:layout_height="1dp"
         android:layout_marginTop="132dp"
         android:background="@color/sky"
@@ -65,32 +78,43 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/showAnswer_f_q"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="96dp"
+        android:text="A."
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showTitle_f" />
+
+    <TextView
         android:id="@+id/showAnswer_f"
         android:layout_width="335dp"
         android:layout_height="55dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="96dp"
         android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:hint="A. 하단 Q&amp;A 등록하기를 통해 질문을 등록하실 수 있습니다."
+        android:hint="하단 Q&amp;A 등록하기를 통해 질문을 등록하실 수 있습니다."
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="@+id/showTitle_f"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/showTitle_f_q"
+        app:layout_constraintTop_toBottomOf="@+id/showTitle_f" />
 
     <TextView
         android:id="@+id/tvInput_f"
         android:layout_width="357dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="280dp"
-        android:lines="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="464dp"
         android:text="@string/question_guide2"
-        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showAnswer_f" />
+        app:layout_constraintStart_toStartOf="@+id/btn_add3_f"
+        app:layout_constraintTop_toBottomOf="@+id/centerView_f" />
 
     <Button
         android:id="@+id/btn_add3_f"

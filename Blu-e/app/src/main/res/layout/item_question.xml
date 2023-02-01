@@ -4,17 +4,35 @@
     android:id="@+id/item_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="2dp">
 
     <TextView
         android:id="@+id/item_data"
         android:layout_width="329dp"
         android:layout_height="33dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="16dp"
-        android:textSize="16dp"
-        android:textStyle="bold"
+        android:textSize="12dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="310dp"
+        android:src="@drawable/arrow_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/item_data"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:background="@color/sky"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_data" />
 </androidx.constraintlayout.widget.ConstraintLayout>

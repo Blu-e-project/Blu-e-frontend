@@ -7,13 +7,12 @@
     tools:context=".customercenter.CenterFragment">
 
     <View
+        android:id="@+id/view4"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="0dp"
         android:background="@color/sky"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </View>
+        app:layout_constraintTop_toTopOf="parent"></View>
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,11 +28,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginTop="76dp"
-        android:layout_marginEnd="22dp"
         android:fontFamily="sans-serif"
         android:text="FAQ 자주하는 질문"
         android:textColor="@color/black"
@@ -43,22 +42,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:layout_width="320dp"
+        android:id="@+id/view2"
+        android:layout_width="350dp"
         android:layout_height="1dp"
-        android:layout_marginTop="109dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="109dp"
         android:background="@color/sky"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_faq"
-        android:layout_width="342dp"
-        android:layout_height="204dp"
-        android:layout_marginTop="124dp"
+        android:layout_width="391dp"
+        android:layout_height="198dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,22 +73,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/view3"
         android:layout_width="320dp"
         android:layout_height="1dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="372dp"
         android:background="@color/sky"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_qa"
-        android:layout_width="343dp"
+        android:layout_width="395dp"
         android:layout_height="183dp"
-        android:layout_marginTop="384dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/view3" />
 
     <Button
         android:id="@+id/btn_add"
@@ -98,9 +96,7 @@
         android:layout_marginBottom="20dp"
         android:width="320dp"
         android:height="40dp"
-
         android:background="@drawable/shape_round"
-
         android:backgroundTint="@color/sky"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
@@ -111,7 +107,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent">
 
     </Button>

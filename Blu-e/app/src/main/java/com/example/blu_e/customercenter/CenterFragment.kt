@@ -36,12 +36,24 @@ class CenterFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         faqExampleList = ArrayList<FaqData>()
-        for (i in 0..4) {
-            var questionExample: FaqData = FaqData(i)
-            questionExample.title = "$i 번째 자주하는 질문"
-            questionExample.answer = "$i 번째 자주하는 질문의 답변"
+        var questionExample: FaqData
+        for (i in 0..5) {
+            questionExample = FaqData(i)
             faqExampleList.add(i, questionExample)
         }
+        faqExampleList.get(0).title = "Q&A를 남기고 싶어요."
+        faqExampleList.get(0).answer = "자주하는 질문1에 대한 답변"
+        faqExampleList.get(1).title = "멘토/멘티 신고는 어떻게 하나요?"
+        faqExampleList.get(1).answer = "자주하는 질문2에 대한 답변"
+        faqExampleList.get(2).title = "모든 서비스가 무료인가요?"
+        faqExampleList.get(2).answer = "자주하는 질문3에 대한 답변"
+        faqExampleList.get(3).title = "멘토는 같은 지역에 멘티만 구할 수 있나요?"
+        faqExampleList.get(3).answer = "자주하는 질문4에 대한 답변"
+        faqExampleList.get(4).title = "멘티는 몇 개 과목까지 멘토를 구할 수 있나요?"
+        faqExampleList.get(4).answer = "자주하는 질문5에 대한 답변"
+        faqExampleList.get(5).title = "활동을 중간에 중단하면 어떤 불이익이 있나요?"
+        faqExampleList.get(5).answer = "자주하는 질문6에 대한 답변"
+
         adapter = FaqAdapter(faqExampleList)
         viewBinding.recyclerViewFaq.adapter = adapter
         viewBinding.recyclerViewFaq.layoutManager = LinearLayoutManager(mContext)

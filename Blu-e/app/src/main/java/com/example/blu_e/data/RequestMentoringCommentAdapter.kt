@@ -7,8 +7,7 @@ import com.example.blu_e.databinding.ItemQuestionBinding
 import com.example.blu_e.databinding.ItemRequestMentoringCommentBinding
 import java.sql.Timestamp
 
-class RequestMentoringCommentAdapter: RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
-    var commentListData = ArrayList<PickMemberComment>()
+class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickMemberComment>): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
 
     inner class RequestMentoringCommentViewHolder (private val viewBinding: ItemRequestMentoringCommentBinding): RecyclerView.ViewHolder(viewBinding.root) {
         val memberPicture = viewBinding.memberPicture
@@ -24,7 +23,8 @@ class RequestMentoringCommentAdapter: RecyclerView.Adapter<RequestMentoringComme
                 .load(url)
                 .circleCrop()
                 .into(memberPicture)*/
-//            memberNickName.text = commentItem.userId.nickname
+//            memberNickName.text = User(commentItem.userId).nickname
+            memberNickName.text = "블루님"
             showWrittenDate.text = commentItem.createdAt.toString()
             commentContent.text = commentItem.contents
         }

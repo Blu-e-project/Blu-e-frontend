@@ -11,7 +11,7 @@ import com.example.blu_e.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityLoginBinding
-    private val api = RetroInterface.create()
+//    private val api = RetroInterface.create()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityLoginBinding.inflate(layoutInflater)

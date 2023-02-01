@@ -2,6 +2,7 @@ package com.example.blu_e.mainPage
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +34,7 @@ class HomeMentorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = FragmentHomeMentorBinding.inflate(inflater, container, false)
-
-
+        Log.d("왜않되", "1")
 /*
 
         //새로운 멘티가 있어요!
@@ -55,10 +55,12 @@ class HomeMentorFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewBinding.btnMenteeAdd.setOnClickListener{
+            Log.d("왜않되", "1")
             mContext!!.openFragment(6)
         }
 
         viewBinding.btnQuestionAdd.setOnClickListener {
+            Log.d("왜않되", "1")
             mContext!!.openFragment(7)
         }
 

@@ -1,18 +1,23 @@
 package com.example.blu_e.mainPage
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.blu_e.databinding.ActivityHomeRecruitMentorBinding
+import com.example.blu_e.data.MentorData
+import com.example.blu_e.databinding.FragmentHomeRecruitMentorBinding
 
-class HomeRecruitMentorActivity : AppCompatActivity() {
-    lateinit var viewBinding: ActivityHomeRecruitMentorBinding
+class HomeRecruitMentorFragment : Fragment() {
+    lateinit var viewBinding: FragmentHomeRecruitMentorBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewBinding = ActivityHomeRecruitMentorBinding.inflate(layoutInflater)
-        setContentView(viewBinding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewBinding = FragmentHomeRecruitMentorBinding.inflate(layoutInflater)
 
         val list: ArrayList<MentorData> = arrayListOf()
 
@@ -23,10 +28,12 @@ class HomeRecruitMentorActivity : AppCompatActivity() {
             add(MentorData("비문학 쉽게 풀고 싶어요", "국어", "23.01 ~ 23.03", "온라인", "인천 부평구"))
             add(MentorData("매주 목요일에 멘토링 원해요", "영어", "23.01 ~ 23.03", "온라인", "서울 성북구"))
         }
-            val mentorAdapter = MentorDataRVAdapter(list)
-            val grid = GridLayoutManager(applicationContext, 2)
+        val mentorAdapter = MentorDataRVAdapter(list)
+        val grid = GridLayoutManager(context, 2)
 
-            viewBinding.recyclerViewMentor.adapter = mentorAdapter
-            viewBinding.recyclerViewMentor.layoutManager = grid
+        viewBinding.recyclerViewMentor.adapter = mentorAdapter
+        viewBinding.recyclerViewMentor.layoutManager = grid
+
+        return viewBinding.root
     }
 }

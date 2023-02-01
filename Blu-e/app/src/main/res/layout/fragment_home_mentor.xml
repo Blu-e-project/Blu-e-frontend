@@ -10,7 +10,7 @@
     android:orientation="vertical">
 
     <!--검색창-->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -26,7 +26,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="20dp"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <!--새로운 멘티가 있어요-->
     <LinearLayout
@@ -34,7 +34,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/newMentee"
+            android:id="@+id/newMentee_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
@@ -42,13 +42,18 @@
             android:text="@string/newMentee"
             android:textColor="#000000"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="112dp"
-            android:orientation="horizontal">
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_newMentee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            tools:listitem="@layout/recyclerview_mentee_card"
+            android:layout_marginBottom="20dp" />
     </LinearLayout>
 
     <!--궁금한 문제가 있어요-->
@@ -57,30 +62,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/question"
+            android:id="@+id/question_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
             android:fontFamily="sans-serif"
             android:text="@string/askQuestion"
             android:textColor="#000000"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_question"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                tools:listitem="@layout/recyclerview_question_card"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp" />
-        </LinearLayout>
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/recyclerview_question_card"/>
     </LinearLayout>
 
     <!--이달의 활동 리뷰-->
@@ -89,16 +90,42 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/review"
+            android:id="@+id/review_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
             android:fontFamily="sans-serif"
             android:text="@string/activityReview"
             android:textColor="#000000"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+            <!--<ImageButton
+                android:id="@+id/menteeProfile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/rounded_gray" />
+            <TextView
+                android:id="@+id/menteeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:gravity="center_horizontal"
+                android:text="name" />-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                tools:listitem="@layout/recyclerview_mentee_card"
+                android:layout_marginBottom="20dp" />
+        </LinearLayout>
     </LinearLayout>
 
     <!--멘티를 구해요-->
@@ -111,8 +138,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="107dp"
             android:fontFamily="sans-serif"
+            android:layout_marginTop="26dp"
             android:text="@string/recruitMentee"
             android:textColor="#000000"
             android:textSize="15sp"

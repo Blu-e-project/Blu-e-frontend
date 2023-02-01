@@ -1,10 +1,9 @@
 package com.example.blu_e.mainPage
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.blu_e.data.MentorData
 import com.example.blu_e.databinding.RecyclerviewMentorCardBinding
 
 class MentorDataRVAdapter(private val items: ArrayList<MentorData>) : RecyclerView.Adapter<MentorDataRVAdapter.ViewHolder>() {
@@ -25,7 +24,7 @@ class MentorDataRVAdapter(private val items: ArrayList<MentorData>) : RecyclerVi
     }
 
     //항목 뷰에 데이터 연결
-    override fun onBindViewHolder(holder: MentorDataRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = items[position]
         holder.bind(model)
     }

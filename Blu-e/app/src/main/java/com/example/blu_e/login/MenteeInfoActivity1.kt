@@ -1,4 +1,4 @@
-package com.example.blu_e
+package com.example.blu_e.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

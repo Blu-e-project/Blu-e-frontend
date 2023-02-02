@@ -81,7 +81,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ResetPwActivity"
+            android:name=".login.ResetPwActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

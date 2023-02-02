@@ -20,7 +20,7 @@ class RecruitingMenteeRVAdapter(private val dataList: ArrayList<RecruitingMentee
             //var edate = data.periodEnd.format(DateTimeFormatter.ofPattern("yyyy-MM"))
             //viewBinding.menteeCardDesiredStartPeriod.text = sdate.toString()
             //viewBinding.menteeCardDesiredEndPeriod.text = edate.toString()
-            viewBinding.menteeCardDesiredPeriod.text = data.periodStart
+            viewBinding.menteeCardDesiredStartPeriod.text = data.periodStart
             viewBinding.menteeCardDesiredPeriod2.text = data.periodEnd
             viewBinding.menteeCardMethod.text = data.metoringMethod
             viewBinding.menteeCardAreaTitle.text= "[희망 성별]"

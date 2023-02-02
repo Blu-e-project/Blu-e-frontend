@@ -1,51 +1,26 @@
 package com.example.blu_e.mentoring
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.DividerItemDecoration
+import android.widget.PopupMenu
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-import com.example.blu_e.MainActivity
-import com.example.blu_e.MyPageFragment
-import com.example.blu_e.customercenter.AccusationFragment
-import com.example.blu_e.customercenter.CenterFragment
-import com.example.blu_e.customercenter.FaqDetailFragment
-import com.example.blu_e.customercenter.QuestionFormFragment
+import com.example.blu_e.R
 import com.example.blu_e.data.*
-import com.example.blu_e.databinding.FragmentRequestMentoringBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.sql.Time
+import com.example.blu_e.databinding.ActivityRequestMentoringBinding
 import java.sql.Timestamp
 
-class RequestMentoringFragment : Fragment() {
-    private lateinit var mContext: MainActivity
-    private lateinit var viewBinding: FragmentRequestMentoringBinding
+class RequestMentoringActivity : AppCompatActivity()  {
+    private lateinit var viewBinding: ActivityRequestMentoringBinding
     private lateinit var adapter: RequestMentoringCommentAdapter
     private lateinit var commentExampleList: ArrayList<PickMemberComment>
 //    private val api = RetroInterface.create()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mContext = context as MainActivity
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        viewBinding = FragmentRequestMentoringBinding.inflate(inflater, container, false)
-        return viewBinding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewBinding = ActivityRequestMentoringBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
         commentExampleList = ArrayList<PickMemberComment>()
         var commentExample: PickMemberComment
@@ -65,8 +40,25 @@ class RequestMentoringFragment : Fragment() {
 
         Log.d("checkList", commentExampleList.toString())
         adapter = RequestMentoringCommentAdapter(commentExampleList)
-        viewBinding.recyclerViewComment.layoutManager = LinearLayoutManager(mContext)
+        viewBinding.recyclerViewComment.layoutManager = LinearLayoutManager(this)
         viewBinding.recyclerViewComment.adapter = adapter
+
+        viewBinding.requestMemberPostDeleteIcon.setOnClickListener {
+            var pop = PopupMenu(this, it)
+
+            menuInflater.inflate(R.menu.popup_menu, pop.menu)
+
+            pop.setOnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.deleteMenu ->
+                        Toast.makeText(this,"삭제될겁니다.", Toast.LENGTH_SHORT).show()
+                    R.id.updateMenu ->
+                        Toast.makeText(this, "수정될겁니다.",Toast.LENGTH_SHORT).show()
+                }
+                false
+            }
+            pop.show()
+        }
 
         viewBinding.sendButton?.setOnClickListener {
             var pickMemberComment = PickMemberComment(3)
@@ -86,18 +78,18 @@ class RequestMentoringFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         //+ 사용자 id, 글 id수정해야
-       /* api.requestAllComments(0, 0).enqueue(object: Callback<ArrayList<PickMemberComment>> {
-            override fun onResponse(call: Call<ArrayList<PickMemberComment>>, response: Response<ArrayList<PickMemberComment>>) {
-                var commentList = ArrayList<PickMemberComment>()
-                commentList.addAll(response.body() ?: return)
-                requestMentoringCommentadapter.commentListData = commentList
-                requestMentoringCommentadapter.notifyDataSetChanged()
-            }
+        /* api.requestAllComments(0, 0).enqueue(object: Callback<ArrayList<PickMemberComment>> {
+             override fun onResponse(call: Call<ArrayList<PickMemberComment>>, response: Response<ArrayList<PickMemberComment>>) {
+                 var commentList = ArrayList<PickMemberComment>()
+                 commentList.addAll(response.body() ?: return)
+                 requestMentoringCommentadapter.commentListData = commentList
+                 requestMentoringCommentadapter.notifyDataSetChanged()
+             }
 
-            override fun onFailure(call: Call<ArrayList<PickMemberComment>>, t: Throwable) {
-                //실패시
-            }
-        })*/
+             override fun onFailure(call: Call<ArrayList<PickMemberComment>>, t: Throwable) {
+                 //실패시
+             }
+         })*/
 
     }
 }

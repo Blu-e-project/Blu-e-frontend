@@ -2,13 +2,9 @@
  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-<<<<<<< HEAD
-    android:layout_height="wrap_content">
-=======
     android:layout_height="wrap_content"
     android:layout_marginLeft="20dp"
     android:layout_marginTop="20dp">
->>>>>>> 1f6f3ce425f5eb1d0f4df973dd4f7777b0143227
 
     <androidx.cardview.widget.CardView
         android:layout_marginLeft="20dp"

@@ -1,22 +1,21 @@
-package com.example.blu_e
+package com.example.blu_e.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.blu_e.databinding.ActivityFindIdBinding
+import com.example.blu_e.databinding.ActivityFindPwBinding
 
-class FindIdActivity : AppCompatActivity() {
-    lateinit var viewBinding : ActivityFindIdBinding
+class FindPwActivity : AppCompatActivity() {
+    lateinit var viewBinding: ActivityFindPwBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivityFindIdBinding.inflate(layoutInflater)
+        viewBinding = ActivityFindPwBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        //뒤로가기(로그인 화면으로)
+        //뒤로가기(로그인으로 돌아가기)
         viewBinding.backToCenterD.setOnClickListener {
             var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
     }
 }

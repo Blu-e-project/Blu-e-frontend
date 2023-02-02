@@ -1,10 +1,9 @@
-package com.example.blu_e
+package com.example.blu_e.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.blu_e.databinding.ActivityMentorInfo2Binding
-import com.example.blu_e.databinding.ActivityMentorSignUpBinding
+import com.example.blu_e.R
 import com.example.blu_e.databinding.ActivityMentorSignUpSuccessBinding
 
 class MentorSignUpSuccessActivity : AppCompatActivity() {

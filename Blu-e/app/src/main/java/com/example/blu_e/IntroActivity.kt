@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.blu_e.databinding.ActivityIntroBinding
+import com.example.blu_e.login.LoginActivity
 
 class IntroActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityIntroBinding

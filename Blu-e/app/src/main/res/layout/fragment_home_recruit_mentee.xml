@@ -10,15 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/backHome"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle_50"
-            android:src="@drawable/vector"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:contentDescription="@string/back" />
-
         <!-- 멘티를 구하고 있어요! -->
         <TextView
             android:id="@+id/some_id"

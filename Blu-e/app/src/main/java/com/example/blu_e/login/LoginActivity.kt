@@ -1,6 +1,7 @@
 package com.example.blu_e.login
 
 import android.content.Intent
+<<<<<<< HEAD
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -15,11 +16,21 @@ import com.example.blu_e.databinding.ActivityLoginBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+=======
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.blu_e.MainActivity
+import com.example.blu_e.databinding.ActivityLoginBinding
+>>>>>>> c5d86b6eba49fd686c254af4536ae673faa30701
 
 
 class LoginActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityLoginBinding
+<<<<<<< HEAD
     private val api = RetroInterface.create()
+=======
+//    private val api = RetroInterface.create()
+>>>>>>> c5d86b6eba49fd686c254af4536ae673faa30701
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityLoginBinding.inflate(layoutInflater)
@@ -32,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
             val pw = viewBinding.userPw.text.toString()
 
             val intent = Intent(this, MainActivity::class.java)
+<<<<<<< HEAD
             Log.d("아이디", "아이디는 ${id}")
             Log.d("비번", "비번은 ${pw}")
 
@@ -68,6 +80,19 @@ class LoginActivity : AppCompatActivity() {
 //
 //                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
 //                    TODO("Not yet implemented")
+=======
+            startActivity(intent)
+//            Log.d("아이디", "아이디는 ${id}")
+//            Log.d("비번", "비번은 ${pw}")
+//            api.login(id,pw).enqueue(object :Callback<User>{
+//                override fun onResponse(call: Call<User>, response: Response<User>) {
+//                    Log.d("login", "성공")
+//                    startActivity(intent)
+//                }
+//
+//                override fun onFailure(call: Call<User>, t: Throwable) {
+//                   Log.e("login","error", t)
+>>>>>>> c5d86b6eba49fd686c254af4536ae673faa30701
 //                }
 //            })
 

@@ -1,7 +1,8 @@
-package com.example.blu_e
+package com.example.blu_e.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.blu_e.R
 
 class MenteeSignUpSuccessActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

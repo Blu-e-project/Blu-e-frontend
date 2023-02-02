@@ -39,42 +39,42 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MenteeInfoActivity1"
+            android:name=".login.MenteeInfoActivity1"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MenteeInfoActivity2"
+            android:name=".login.MenteeInfoActivity2"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MentorInfoActivity2"
+            android:name=".login.MentorInfoActivity2"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MentorInfoActivity1"
+            android:name=".login.MentorInfoActivity1"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MenteeSignUpSuccessActivity"
+            android:name=".login.MenteeSignUpSuccessActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MentorSignUpSuccessActivity"
+            android:name=".login.MentorSignUpSuccessActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -88,7 +88,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FindPwActivity"
+            android:name=".login.FindPwActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -102,35 +102,35 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FindIdActivity"
+            android:name=".login.FindIdActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MenteeSignUpActivity"
+            android:name=".login.MenteeSignUpActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MentorSignUpActivity"
+            android:name=".login.MentorSignUpActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".login.SignUpActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

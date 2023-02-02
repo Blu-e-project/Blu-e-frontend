@@ -1,5 +1,6 @@
 package com.example.blu_e.data
 
+import com.example.blu_e.LoginResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Call
@@ -85,15 +86,21 @@ interface RetroInterface {
     //회원 로그인
     @FormUrlEncoded
     @POST("/users/login")
-    fun login(@Field("id") id:String, @Field("password") pw:String): Call<User>
+    fun login(@Field("id") id:String, @Field("password") pw:String): Call<LoginResponse>
 
-    //회원 가입
-    @POST("/users/signup")
-    fun signUp1(@Field("name") name : String, @Field("nickname") nickname: String,
-                @Field("birth") birth: LocalDate, @Field("education") education: String,
-                @Field("department") department:String,
-                @Field("address") address: String,
-    @Field("introduce") introduce: String) :Call<User>
+//    //회원 가입
+//    @POST("/users/signup")
+////    fun signUp1(@Field("name") name : String, @Field("nickname") nickname: String,
+////                @Field("birth") birth: LocalDate, @Field("education") education: String,
+////                @Field("department") department:String,
+////                @Field("address") address: String,
+////    @Field("introduce") introduce: String) :Call<User>
+
+    //비밀번호 변경
+//    @FormUrlEncoded
+//    @PUT("/users/password")
+//    fun pwUpdate(@Query("password") password: String, @Body user:User): Call<User>
+
 
 
 

@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.menu_group -> {
                         supportFragmentManager
                             .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, GroupFragment())
+                            .replace(viewBinding.containerFragment.id, HomeRecruitMentorFragment())
                             .commitAllowingStateLoss()
                     }
                     R.id.menu_noti -> {

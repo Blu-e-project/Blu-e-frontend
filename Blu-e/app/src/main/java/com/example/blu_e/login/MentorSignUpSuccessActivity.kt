@@ -11,7 +11,6 @@ class MentorSignUpSuccessActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding =ActivityMentorSignUpSuccessBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_mentor_info2)
         setContentView(viewBinding.root)
 
         //다시 로그인 페이지로

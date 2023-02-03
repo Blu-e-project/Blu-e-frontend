@@ -4,6 +4,7 @@ import com.example.blu_e.CreateRecruitResponse
 import com.example.blu_e.LoginResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +17,6 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-import retrofit2.http.*
 import java.time.LocalDate
 
 interface RetroInterface {
@@ -89,19 +89,20 @@ interface RetroInterface {
     @POST("/users/login")
     fun login(@Field("id") id:String, @Field("password") pw:String): Call<LoginResponse>
 
-//    //회원 가입
-//    @POST("/users/signup")
-////    fun signUp1(@Field("name") name : String, @Field("nickname") nickname: String,
-////                @Field("birth") birth: LocalDate, @Field("education") education: String,
-////                @Field("department") department:String,
-////                @Field("address") address: String,
-////    @Field("introduce") introduce: String) :Call<User>
+    //회원 가입
+    @POST("/users/signup")
+    fun signup(@Field("id") id: String, @Field("password") password: String, @Field("phone") phone:String,
+               @Field("name") name: String, @Field("nickname") nickname: String,
+               @Field("birth") birth: LocalDate, @Field("education") education: String,
+               @Field("department") department:String?, @Field("grade") grade: Int?, @Field("address") address: String?,
+               @Field("introduce") introduce: String?, @Field("role") role: Int,
+               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status:Int,
+               @Field("userImg") userImg: Text?) :Call<LoginResponse>
 
     //비밀번호 변경
 //    @FormUrlEncoded
 //    @PUT("/users/password")
 //    fun pwUpdate(@Query("password") password: String, @Body user:User): Call<User>
-
     //멘토 구인글 작성
     @POST("/mentoring/mentors")
     fun recruitMentor(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,

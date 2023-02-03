@@ -19,7 +19,7 @@ class MentorSignUpActivity : AppCompatActivity() {
         
         //멘터 정보입력 페이지로
         viewBinding.mentorBtn.setOnClickListener {
-            var mintent = Intent(this, MentorInfoActivity1::class.java)
+            var mintent = Intent(this, MentorInfoActivity::class.java)
             startActivity(mintent)
         }
     }

@@ -1,5 +1,6 @@
 package com.example.blu_e.data
 
+import com.example.blu_e.CreateRecruitResponse
 import com.example.blu_e.LoginResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -101,7 +102,19 @@ interface RetroInterface {
 //    @PUT("/users/password")
 //    fun pwUpdate(@Query("password") password: String, @Body user:User): Call<User>
 
+    //멘토 구인글 작성
+    @POST("/mentoring/mentors")
+    fun recruitMentor(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
+                      @Field("area") area: String, @Field("mentoringMethod") mentoringMethod:String,
+                        @Field("mentorCareer") mentorCareer: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
+                        @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
 
+    //멘티 구인글
+    @POST("/mentoring/mentees")
+    fun recruitMentee(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
+                      @Field("area") area: String, @Field("mentoringMethod") mentoringMethod:String,
+                      @Field("menteeLevel") menteeLevel: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
+                      @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
 
 
 }

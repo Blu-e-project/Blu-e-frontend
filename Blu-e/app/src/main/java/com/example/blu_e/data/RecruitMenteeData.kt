@@ -2,7 +2,7 @@ package com.example.blu_e.data
 
 import java.time.LocalDate
 
-data class RecruitingMenteeData(
+data class RecruitMenteeData(
     val region: String,
     val subject: String,
     //val periodStart:LocalDate,

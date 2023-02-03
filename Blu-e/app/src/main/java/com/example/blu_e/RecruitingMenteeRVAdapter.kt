@@ -5,15 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.example.blu_e.databinding.ActivityMyPostCommentBinding
 import com.example.blu_e.databinding.RecyclerviewMentorCardBinding
-import java.time.format.DateTimeFormatter
 
-class RecruitingMenteeRVAdapter(private val dataList: ArrayList<RecruitingMenteeData> = arrayListOf()):
+class RecruitingMenteeRVAdapter(private val dataList: ArrayList<RecruitMenteeData> = arrayListOf()):
     RecyclerView.Adapter<RecruitingMenteeRVAdapter.DataViewHolder>() {
     inner class DataViewHolder(private val viewBinding:RecyclerviewMentorCardBinding) : RecyclerView.ViewHolder(viewBinding.root) {
         @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(data:RecruitingMenteeData) { //viewHolder가 어떤걸 표시할 때 호출 시켜주는함수 data class를 인자값으로, 뷰 설정
+        fun bind(data:RecruitMenteeData) { //viewHolder가 어떤걸 표시할 때 호출 시켜주는함수 data class를 인자값으로, 뷰 설정
             viewBinding.menteeCardTitle.text = data.region
             viewBinding.menteeCardDesiredSubject.text = data.subject
             //var sdate = data.periodStart.format(DateTimeFormatter.ofPattern("yyyy-MM"))

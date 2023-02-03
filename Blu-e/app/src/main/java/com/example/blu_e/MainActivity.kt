@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             //main page
             6 -> transaction.replace(viewBinding.containerFragment.id, HomeNewMenteeFragment())
             7 -> transaction.replace(viewBinding.containerFragment.id, HomeRecruitMentorFragment())
-            8 -> transaction.replace(viewBinding.containerFragment.id, RecruitMentorFragment())
+            //8 -> transaction.replace(viewBinding.containerFragment.id, RecruitMentorFragment())
         }
         transaction.addToBackStack(null);
         transaction.commit()

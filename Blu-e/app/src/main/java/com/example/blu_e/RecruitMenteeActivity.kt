@@ -49,8 +49,8 @@ class RecruitMenteeActivity : AppCompatActivity() {
 //                })
 
             val builder = AlertDialog.Builder(this)
-                .setTitle("멘토 구인글")
-                .setMessage("멘토 구인 글 등록이 완료 되었습니다")
+                .setTitle("멘티 구인글")
+                .setMessage("멘티 구인 글 등록이 완료 되었습니다")
                 .setPositiveButton("확인",
                     DialogInterface.OnClickListener{ dialog, which ->
                         Toast.makeText(this, "확인", Toast.LENGTH_SHORT).show()

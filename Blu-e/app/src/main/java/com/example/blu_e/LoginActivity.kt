@@ -7,8 +7,8 @@ import android.util.Log
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.User
 import com.example.blu_e.databinding.ActivityLoginBinding
-import com.example.blu_e.mainPage.HomeMentorActivity
-import com.example.blu_e.mainPage.HomeNewMentorActivity
+//import com.example.blu_e.mainPage.HomeMentorActivity
+//import com.example.blu_e.mainPage.HomeNewMentorActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

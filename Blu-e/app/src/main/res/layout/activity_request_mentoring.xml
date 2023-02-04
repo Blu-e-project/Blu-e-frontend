@@ -141,10 +141,10 @@
                 android:id="@+id/request_member_post_delete_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginEnd="40dp"
                 android:layout_marginTop="40dp"
                 android:src="@drawable/dot_delete_icon"
-                app:layout_constraintStart_toEndOf="@id/update"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -372,9 +372,10 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_comment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="39dp"
+                android:layout_width="391dp"
+                android:layout_height="175dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bg" />
         </androidx.constraintlayout.widget.ConstraintLayout>

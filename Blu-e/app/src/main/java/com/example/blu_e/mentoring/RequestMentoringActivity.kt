@@ -98,7 +98,7 @@ class RequestMentoringActivity : AppCompatActivity()  {
             //1. 글을 불러와야 함 (글점3개 o), 댓글도 불러와야
                 //retrofit (get 글)
                 //retrofit (get 댓글)
-            //2. 매칭중 여부,, 데이터 불러와서
+            //2. 매칭중 여부,, 데이터 불러와서 -> matchingStatus|matchedStatus
                 //retrofit (get 글 - 매칭 필드)
             //3.0 매칭 중일 때
                 //3.0.1 댓글들 보임.

@@ -20,13 +20,19 @@
         <activity
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3f50a86ae86a20cade3c23c67c3ea4a7fed14ce1
             android:name=".login.MenteeSmsActivity"
 =======
             android:name=".RegisterQuestionFormActivity"
 >>>>>>> cd763a1d57a5972beab469f7f5f04ee45369e9c0
+<<<<<<< HEAD
 =======
             android:name=".RegisterQuestionFormActivity"
 >>>>>>> cd763a1d57a5972beab469f7f5f04ee45369e9c0
+=======
+>>>>>>> 3f50a86ae86a20cade3c23c67c3ea4a7fed14ce1
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -35,13 +41,19 @@
         <activity
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3f50a86ae86a20cade3c23c67c3ea4a7fed14ce1
             android:name=".login.MentorSmsActivity"
 =======
             android:name=".AskQuestionActivity"
 >>>>>>> cd763a1d57a5972beab469f7f5f04ee45369e9c0
+<<<<<<< HEAD
 =======
             android:name=".AskQuestionActivity"
 >>>>>>> cd763a1d57a5972beab469f7f5f04ee45369e9c0
+=======
+>>>>>>> 3f50a86ae86a20cade3c23c67c3ea4a7fed14ce1
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

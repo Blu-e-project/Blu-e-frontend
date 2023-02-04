@@ -1,6 +1,7 @@
 package com.example.blu_e.mentoring
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.blu_e.ProfileActivity
 import com.example.blu_e.R
 import com.example.blu_e.data.*
 import com.example.blu_e.databinding.ActivityRequestMentoringBinding
@@ -70,6 +72,15 @@ class RequestMentoringActivity : AppCompatActivity()  {
             closeKeyboard()
             sendMessage()
             //+ 댓글 한번만 날려야해서 댓글창 View.GONE
+        }
+
+        //글쓴이 프로필 클릭 시
+        viewBinding.image.setOnClickListener {
+            //if 멘티 라면
+            //else 멘토 라면
+            var intent = Intent(this, ProfileActivity::class.java)
+            //userId 보내기
+            startActivity(intent)
         }
     }
 

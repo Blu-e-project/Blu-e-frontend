@@ -1,6 +1,7 @@
 package com.example.blu_e.data
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.blu_e.ProfileActivity
 import com.example.blu_e.R
 import com.example.blu_e.databinding.ItemRequestMentoringCommentBinding
 import com.example.blu_e.mentoring.RequestMentoringActivity
@@ -39,14 +42,14 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
         var changeCommentMenu = viewBinding.requestMemberCommentDeleteIcon
 
         fun bind(commentItem: PickMemberComment) {
-            /*
-            Glide 라이브러리 아직 추가 안 함. + User dto 생기면 수정
-            val url = commentItem.userId?.userImg
-            Glide.with(memberPicture)
-                .load(url)
+            val url = ""
+//          commentItem.userId?   .userImg
+            Glide.with(context)
+                .load(R.drawable.ic_baseline_person_24)
                 .circleCrop()
-                .into(memberPicture)*/
-//            memberNickName.text = User(commentItem.userId).nickname
+//                .fallback(R.drawable.ic_baseline_person_24)
+                .into(memberPicture)
+//            memberNickName.text = User(commentItem.userId)   .nickname
 
             memberNickName.text = "블루님"
             showWrittenDate.text = commentItem.createdAt.toString()
@@ -92,6 +95,14 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 }
                 pop.show()
             }
+        }
+        //댓쓴이 프로필 클릭시
+        holder.memberPicture.setOnClickListener {
+            //if 멘티 라면
+            //else 멘토 라면
+            var intent = Intent(context, ProfileActivity::class.java)
+            //userId 보내기
+            context.startActivity(intent)
         }
     }
 

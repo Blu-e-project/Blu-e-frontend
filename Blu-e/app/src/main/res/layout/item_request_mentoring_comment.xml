@@ -54,33 +54,43 @@
         android:id="@+id/acceptButton"
         android:layout_width="50dp"
         android:layout_height="25dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="60dp"
         android:background="@drawable/shape_round"
         android:backgroundTint="@color/blue"
-        android:text="수락"
         android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:textSize="10sp"
+        android:text="수락"
         android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/denyButton"
+    <TextView
+        android:id="@+id/completedText"
         android:layout_width="50dp"
         android:layout_height="25dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="60dp"
         android:background="@drawable/rounded_blue"
-        android:backgroundTint="@color/white"
-        android:text="거절"
+        android:backgroundTint="@color/gray"
         android:fontFamily="sans-serif"
-        android:textStyle="bold"
+        android:gravity="center"
+        android:text="매칭 완료"
+        android:textColor="@color/white"
         android:textSize="10sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/acceptButton"/>
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/request_member_comment_delete_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dot_delete_icon"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

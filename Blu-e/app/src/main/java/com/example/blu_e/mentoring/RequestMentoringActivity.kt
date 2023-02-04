@@ -39,7 +39,7 @@ class RequestMentoringActivity : AppCompatActivity()  {
         commentExampleList.get(2).createdAt = Timestamp(System.currentTimeMillis() + 2)
 
         Log.d("checkList", commentExampleList.toString())
-        adapter = RequestMentoringCommentAdapter(commentExampleList)
+        adapter = RequestMentoringCommentAdapter(commentExampleList, this)
         viewBinding.recyclerViewComment.layoutManager = LinearLayoutManager(this)
         viewBinding.recyclerViewComment.adapter = adapter
 
@@ -77,6 +77,29 @@ class RequestMentoringActivity : AppCompatActivity()  {
 
     override fun onResume() {
         super.onResume()
+        //0.0 글쓴이 님 로그인함 (댓글창 x)
+
+            //1. 글을 불러와야 함 (글점3개 o), 댓글도 불러와야 함
+            //2. 매칭중 여부,, 데이터 불러와서
+            //3.0 매칭 중일 때
+                //3.0.1 댓글들 보임.
+                    //매칭 완료 UI x
+                      adapter.updateCompletdTv(0)
+                      adapter.updateAcceptBtnv(1)
+            //3.1 매칭중 아닐 때 (매칭 완료)
+                //3.1.1 댓글 매칭된 사람 하나만 보임. (그 사람 댓글 데이터의 매칭완료 데이터 불러와)
+                    // 수락 UI x
+        //0.1 댓쓴이 님 로그인 함 (댓글 창 x, 글점3개 x)
+            //1. 내가 쓴 댓글
+                //매칭 완료 UI x, 수락 UI x, 댓점3개 o
+            //2. 다른 사람들이 쓴 댓글
+                //매칭 완료 UI x, 수락 UI x, 댓점3개 x
+
+        //0.2 일반 회원(잠재적 댓쓴이) 님 로그인 함 (댓글 창 o, 글점3개 x)
+            //1. 다른 사람들이 쓴 댓글
+                //매칭 완료 UI x, 수락 UI x, 댓점3개 x
+
+
         //+ 사용자 id, 글 id수정해야
         /* api.requestAllComments(0, 0).enqueue(object: Callback<ArrayList<PickMemberComment>> {
              override fun onResponse(call: Call<ArrayList<PickMemberComment>>, response: Response<ArrayList<PickMemberComment>>) {

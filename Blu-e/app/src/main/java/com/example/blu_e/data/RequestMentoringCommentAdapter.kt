@@ -15,7 +15,7 @@ import com.example.blu_e.mentoring.RequestMentoringActivity
 
 class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickMemberComment>, private val context: Context): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
     private var acceptCheck = 1
-    private var completedCheck = 1
+    private var completedCheck = 0
     private var menuCheck = 1
 
     fun updateAcceptBtnv(n: Int) {
@@ -73,7 +73,9 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 acceptCheck = 0
                 completedCheck = 1
                 menuCheck = 0
-                //버튼 상태(수락 여부) 서버에 알리기
+
+                //****여기가 관건.. 매칭 안 된 사람들 댓글 수락, 매칭 UI 없애기 -> listener(commentListData[position]) or 새로고침****
+                //매칭 됐다고 서버에 알리기 (댓글 다 삭제해 줄 예정)
             }
         }
         if(menuCheck == 1) {

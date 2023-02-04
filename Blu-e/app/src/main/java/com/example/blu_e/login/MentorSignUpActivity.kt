@@ -11,16 +11,16 @@ class MentorSignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMentorSignUpBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+
         //뒤로가기(회원가입 페이지로)
         viewBinding.backToCenterD.setOnClickListener {
             var intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
-        
-        //멘터 정보입력 페이지로
+        //멘티 정보입력으로 이동
         viewBinding.mentorBtn.setOnClickListener {
-            var mintent = Intent(this, MentorInfoActivity::class.java)
-            startActivity(mintent)
+            var intent = Intent(this, MentorSmsActivity::class.java)
+            startActivity(intent)
         }
     }
 }

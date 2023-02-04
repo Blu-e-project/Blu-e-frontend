@@ -96,8 +96,8 @@
         app:layout_constraintStart_toStartOf="@id/id"
         app:layout_constraintTop_toBottomOf="@id/certificate_ment" />
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="99dp"
+        android:layout_height="40dp"
         android:width="99dp"
         android:height="40dp"
         android:layout_marginLeft="9dp"

@@ -74,7 +74,7 @@
         android:height="45dp"
         android:background="@drawable/rounded_blue"
         android:lineHeight="22sp"
-        android:text="Blu-e멘토 계정 만들기"
+        android:text="Blu-e멘티 계정 만들기"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textFontWeight="600"

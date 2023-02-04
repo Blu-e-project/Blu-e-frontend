@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".login.FindIdActivity">
+    android:layout_height="match_parent"
+    tools:context=".login.MenteeSmsActivity">
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:lineHeight="22sp"
-        android:text="아이디 찾기"
+        android:text="멘티 회원가입"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -49,7 +49,7 @@
         android:textSize="20sp"
         android:lineHeight="23dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/certificate_num"
+        app:layout_constraintStart_toStartOf="@+id/verify_num"
         app:layout_constraintBottom_toTopOf="@+id/phone_number"
         app:layout_constraintTop_toBottomOf="@id/view" />
 
@@ -64,9 +64,10 @@
         android:textColorHint="#6B000000"
         android:textSize="16sp"
         android:backgroundTint="#006BCE"
-        app:layout_constraintStart_toStartOf="@id/certificate_num"
+        app:layout_constraintStart_toStartOf="@id/verify_num"
         app:layout_constraintTop_toBottomOf="@+id/certificate_ment" />
     <Button
+        android:id="@+id/sms_btn"
         android:layout_width="99dp"
         android:layout_height="40dp"
         android:width="99dp"
@@ -85,7 +86,7 @@
         />
 
     <EditText
-        android:id="@+id/certificate_num"
+        android:id="@+id/verify_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
@@ -100,6 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/phone_number" />
 
     <Button
+        android:id="@+id/mentee_info_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="320dp"
@@ -107,9 +109,9 @@
         android:layout_marginTop="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/certificate_num"
+        app:layout_constraintTop_toBottomOf="@id/verify_num"
         android:textStyle="bold"
-        android:text="아이디 확인"
+        android:text="멘티 회원 정보 입력"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:lineHeight="22sp"

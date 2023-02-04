@@ -19,7 +19,11 @@
         tools:targetApi="31">
         <activity
 <<<<<<< HEAD
+<<<<<<< HEAD
             android:name=".login.MenteeSmsActivity"
+=======
+            android:name=".RegisterQuestionFormActivity"
+>>>>>>> cd763a1d57a5972beab469f7f5f04ee45369e9c0
 =======
             android:name=".RegisterQuestionFormActivity"
 >>>>>>> cd763a1d57a5972beab469f7f5f04ee45369e9c0
@@ -30,7 +34,11 @@
         </activity>
         <activity
 <<<<<<< HEAD
+<<<<<<< HEAD
             android:name=".login.MentorSmsActivity"
+=======
+            android:name=".AskQuestionActivity"
+>>>>>>> cd763a1d57a5972beab469f7f5f04ee45369e9c0
 =======
             android:name=".AskQuestionActivity"
 >>>>>>> cd763a1d57a5972beab469f7f5f04ee45369e9c0

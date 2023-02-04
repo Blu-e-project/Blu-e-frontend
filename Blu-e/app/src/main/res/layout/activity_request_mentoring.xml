@@ -137,6 +137,36 @@
                 android:textFontWeight="400"
                 android:textColor="@color/black"/>
 
+            <TextView
+                android:id="@+id/matchingStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_blue"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="매칭중"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/matchedStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_blue"
+                android:backgroundTint="@color/gray"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="매칭완료"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <ImageView
                 android:id="@+id/request_member_post_delete_icon"
                 android:layout_width="wrap_content"
@@ -365,8 +395,8 @@
                 android:id="@+id/count_readed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="100000"
+                android:layout_marginBottom="16dp"
+                android:text="0"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerView_comment"
                 app:layout_constraintEnd_toEndOf="@+id/bg" />
 

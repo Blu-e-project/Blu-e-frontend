@@ -90,6 +90,7 @@ interface RetroInterface {
     fun login(@Field("id") id:String, @Field("password") pw:String): Call<LoginResponse>
 
     //회원 가입
+    @FormUrlEncoded
     @POST("/users/signup")
     fun signup(@Field("id") id: String, @Field("password") password: String, @Field("phone") phone:String,
                @Field("name") name: String, @Field("nickname") nickname: String,
@@ -104,6 +105,7 @@ interface RetroInterface {
 //    @PUT("/users/password")
 //    fun pwUpdate(@Query("password") password: String, @Body user:User): Call<User>
     //멘토 구인글 작성
+    @FormUrlEncoded
     @POST("/mentoring/mentors")
     fun recruitMentor(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
                       @Field("area") area: String, @Field("mentoringMethod") mentoringMethod:String,
@@ -111,11 +113,20 @@ interface RetroInterface {
                         @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
 
     //멘티 구인글
+    @FormUrlEncoded
     @POST("/mentoring/mentees")
     fun recruitMentee(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
                       @Field("area") area: String, @Field("mentoringMethod") mentoringMethod:String,
                       @Field("menteeLevel") menteeLevel: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
                       @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
+    
+    //본인 인증을 위한 전화번호 보내기
+    @FormUrlEncoded
+    @POST("/users/send")
+    fun sendPhoneNum(@Field("phoneNum") phoneNum: String): Call<LoginResponse>
 
-
+    //인증번호 보내기
+    @FormUrlEncoded
+    @POST("/users/verify")
+    fun verifyCode(@Field("phoneNumber") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<LoginResponse>
 }

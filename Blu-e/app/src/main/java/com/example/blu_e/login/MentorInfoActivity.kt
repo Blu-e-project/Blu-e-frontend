@@ -16,11 +16,12 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class MentorInfoActivity : AppCompatActivity() {
-    private val api = RetroInterface.create()
+    //private val api = RetroInterface.create()
     lateinit var viewBinding: ActivityMentorInfoBinding
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewBinding = ActivityMentorInfoBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
         //뒤로가기(멘티 회원가입 페이지로)

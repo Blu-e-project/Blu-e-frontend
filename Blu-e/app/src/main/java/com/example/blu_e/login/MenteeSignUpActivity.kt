@@ -19,7 +19,7 @@ class MenteeSignUpActivity : AppCompatActivity() {
         }
         //멘티 정보입력으로 이동
         viewBinding.menteeBtn.setOnClickListener {
-            var intent = Intent(this, MenteeInfoActivity::class.java)
+            var intent = Intent(this, MenteeSmsActivity::class.java)
             startActivity(intent)
         }
     }

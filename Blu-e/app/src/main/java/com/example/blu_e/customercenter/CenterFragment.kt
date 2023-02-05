@@ -2,17 +2,19 @@ package com.example.blu_e.customercenter
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.customercenter.FaqAdapter
-import com.example.blu_e.data.customercenter.FaqData
-import com.example.blu_e.data.customercenter.Question
-import com.example.blu_e.data.customercenter.QuestionAdapter
+import com.example.blu_e.data.RetroInterface
+import com.example.blu_e.data.customercenter.*
 import com.example.blu_e.databinding.FragmentCenterBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CenterFragment : Fragment() {
     private lateinit var mContext: MainActivity
@@ -69,23 +71,6 @@ class CenterFragment : Fragment() {
                 ).commit()
             }
         })
-
-        //+ userId 받아오기
-       /* api.requestMyQuestions(0).enqueue(object: Callback <ArrayList<Question>>{
-            override fun onResponse(call: Call<ArrayList<Question>>, response: Response<ArrayList<Question>>) {
-                //성공시
-                if(response.isSuccessful) {
-                    viewBinding.recyclerViewQa.layoutManager = LinearLayoutManager(mContext)
-                    qs = response.body() ?: return
-                    adapter2 = QuestionAdapter(qs)
-                    viewBinding.recyclerViewQa.adapter = adapter2
-                }
-            }
-
-            override fun onFailure(call: Call<ArrayList<Question>>, t: Throwable) {
-                //실패시
-            }
-        })*/
     }
 
     override fun onResume() {
@@ -94,5 +79,34 @@ class CenterFragment : Fragment() {
         viewBinding.btnAdd.setOnClickListener {
             mContext!!.openFragment(3)
         }
+
+       /* api.requestMyQuestions("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..", 1).enqueue(object: Callback<QuestionResponse> {
+            override fun onResponse(call: Call<QuestionResponse>, response: Response<QuestionResponse>) {
+                val body = response.body() ?: return
+                if(body.code == 1000) {
+                    Log.d("질문 목록 불러오기", "성공")
+                    qs = body.result
+                    adapter2 = QuestionAdapter(qs)
+                    viewBinding.recyclerViewQa.adapter = adapter2
+                    viewBinding.recyclerViewQa.layoutManager = LinearLayoutManager(mContext)
+
+                    adapter2.setItemClickListener(object: QuestionAdapter.ItemClickListener{
+                        override fun onClick(view: View, position: Int) {
+                            var detailFragment = QuestionDetailFragment.newInstance(qs, position)
+                            mContext.supportFragmentManager.beginTransaction().replace(
+                                mContext.viewBinding.containerFragment.id, detailFragment
+                            ).commit()
+                        }
+                    })
+                }
+                else {
+                    Log.d("질문 목록 불러오기", "실패")
+                }
+            }
+            override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
+                //실패시
+                Log.d("질문 목록 불러오기", "실패")
+            }
+        })*/
     }
 }

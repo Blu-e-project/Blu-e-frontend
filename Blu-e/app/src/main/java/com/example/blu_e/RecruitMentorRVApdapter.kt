@@ -17,9 +17,8 @@ class RecruitMentorRVApdapter(private val dataList: ArrayList<RecruitMentorData>
             //viewBinding.menteeCardDesiredStartPeriod.text = sdate.toString()
             //viewBinding.menteeCardDesiredEndPeriod.text = edate.toString()
             viewBinding.mentorCardDesiredStartPeriod.text = data.periodStart
-            viewBinding.menteeCardDesiredPeriod2.text = data.periodEnd
+            viewBinding.mentorCardDesiredEndPeriod.text = data.periodEnd
             viewBinding.mentorCardMethod.text = data.metoringMethod
-            viewBinding.mentorCardGenderTitle.text= "[희망 성별]"
             viewBinding.mentorCardGender.text= data.mentorGender
      }
     }

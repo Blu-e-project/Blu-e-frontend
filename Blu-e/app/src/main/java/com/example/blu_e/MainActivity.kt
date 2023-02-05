@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.menu_noti -> {
                         supportFragmentManager
                             .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, NotiFragment())
+                            .replace(viewBinding.containerFragment.id, MentorAlarmFragment())
                             .commitAllowingStateLoss()
                     }
                     R.id.menu_mypage -> {
@@ -103,7 +103,6 @@ class MainActivity : AppCompatActivity() {
             11 -> transaction.replace(viewBinding.containerFragment.id, HomeQuestionFragment()) //궁금한 문제가 있어요
             //12 -> transaction.replace(viewBinding.containerFragment.id, ) //궁금한 문제가 있어요_문제 등록하기
             //13 -> transaction.replace(viewBinding.containerFragment.id, ) //멘토 구인글
-
         }
         transaction.addToBackStack(null);
         transaction.commit()

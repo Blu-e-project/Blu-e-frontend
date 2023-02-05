@@ -6,6 +6,7 @@
     android:layout_marginRight="20dp">
 
     <androidx.cardview.widget.CardView
+        android:layout_marginLeft="20dp"
         android:layout_width="140dp"
         android:layout_height="100dp"
         app:cardCornerRadius="15dp"
@@ -78,6 +79,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/mentorCardDesiredEndPeriod"
+                    android:textSize="10sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text="~"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="3dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/menteeCardDesiredPeriod2"
                     android:textSize="10sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>

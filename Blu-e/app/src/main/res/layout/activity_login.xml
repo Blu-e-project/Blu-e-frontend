@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".login.LoginActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +45,15 @@
             android:backgroundTint="#006BCE"
             />
         <TextView
+            android:id="@+id/id_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
+            android:textSize="12sp"
+            android:textColor="#57FF0000"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="PASSWORD"
@@ -65,6 +74,15 @@
             android:textColor="#6B000000"
             android:textSize="16sp"
             android:backgroundTint="#006BCE"
+            />
+        <TextView
+            android:id="@+id/pw_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
+            android:textSize="12sp"
+            android:textColor="#57FF0000"
+            android:layout_marginLeft="20dp"
             />
         <Button
             android:id="@+id/login_btn"

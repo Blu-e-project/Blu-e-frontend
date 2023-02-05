@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .replace(viewBinding.containerFragment.id, HomeMenteeFragment())
+            .replace(viewBinding.containerFragment.id, HomeMentorFragment())
             .commitAllowingStateLoss()
 
         viewBinding.navBottom.run {
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.menu_home -> {
                         supportFragmentManager
                             .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, HomeMenteeFragment())
+                            .replace(viewBinding.containerFragment.id, HomeMentorFragment())
                             .commitAllowingStateLoss()
                     }
                     R.id.menu_group -> {

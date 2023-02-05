@@ -7,30 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.example.blu_e.MainActivity
 import com.example.blu_e.R
 import com.example.blu_e.customercenter.FaqDetailFragment
-import com.example.blu_e.data.FaqData
-import com.example.blu_e.data.MenteeData
+import com.example.blu_e.data.*
 import com.example.blu_e.databinding.FragmentHomeNewMenteeBinding
+import com.example.blu_e.databinding.FragmentHomeRecruitMentorBinding
+import java.lang.reflect.Type
 
 class HomeNewMenteeFragment : Fragment() {
+    lateinit var viewBinding: FragmentHomeNewMenteeBinding
     private lateinit var mContext: MainActivity
-    private lateinit var viewBinding: FragmentHomeNewMenteeBinding
 
-    companion object { //객체 생성
-        fun newInstance(menteeList: ArrayList<MenteeData>, menteeId: Int) = HomeNewMenteeFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable("menteeList", menteeList)
-                putInt("menteeId", menteeId)
-            }
-        }
-    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context as MainActivity
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,5 +34,29 @@ class HomeNewMenteeFragment : Fragment() {
         viewBinding = FragmentHomeNewMenteeBinding.inflate(layoutInflater)
 
         return viewBinding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val list: ArrayList<NewMenteeData> = arrayListOf()
+
+        list.apply {
+            add(NewMenteeData("금림"))
+            add(NewMenteeData("엘라"))
+            add(NewMenteeData("융"))
+            add(NewMenteeData("니케"))
+            add(NewMenteeData("맨디"))
+            add(NewMenteeData("제이드"))
+            add(NewMenteeData("주디"))
+            add(NewMenteeData("시니"))
+            add(NewMenteeData("쫑"))
+            add(NewMenteeData("그리드"))
+        }
+        val menteeAdapter = NewMenteeDataRVAdapter(list)
+        val grid = GridLayoutManager(mContext, 5)
+
+        viewBinding.recyclerViewNewMentee.adapter = menteeAdapter
+        viewBinding.recyclerViewNewMentee.layoutManager = grid
     }
 }

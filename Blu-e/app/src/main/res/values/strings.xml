@@ -6,7 +6,9 @@
     <string name="question_guide">님, Blu-e를 이용하시다가 궁금한 점이 생기신다면 Q&amp;A를 등록해주세요. 최대한 빠른 시일 내에 답변 드리겠습니다.</string>
     <string name="question_guide2">아직 해결 되지 않으셨거나, 다른 질문이 있으시다면?</string>
     <string name="newMentee">▷ 새로운 멘티가 있어요!</string>
-    <string name="newMentor">▷ 멘토를 구하고 있어요!</string>
+    <string name="recruitMentor">▷ 멘토를 구하고 있어요!</string>
+    <string name="newMentor">▷ 새로운 멘토가 있어요!</string>
+    <string name="HomeRecruitMentee">▷ 멘티를 구하고 있어요!</string>
     <string name="askQuestion">▷ 궁금한 문제가 있어요!</string>
     <string name="activityReview">▷ 이달의 활동 리뷰</string>
     <string name="recruitMentee">▷ 멘티를 구해요</string>
@@ -15,4 +17,6 @@
     <string name="menteeInfo">멘티 구인글 작성하기</string>
     <string name="recruit_mentee">멘티를 구하고 있어요!</string>
     <string name="back">back</string>
+    <string name="HomeAddProblem">문제 등록하기</string>
+    <string name="mentorInfo">멘토 구인글 작성하기</string>
 </resources>

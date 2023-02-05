@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="20dp">
+    android:layout_width="150dp"
+    android:layout_height="110dp"
+    android:layout_marginRight="20dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="140dp"
         android:layout_height="100dp"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="16dp"
         app:cardCornerRadius="15dp"
         app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="15dp"
-        app:cardMaxElevation="20dp">
+        app:cardElevation="5dp"
+        app:cardMaxElevation="10dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="31dp"
                 android:inputType="none"
                 android:ems="10"
-                android:id="@+id/menteeCardTitle"
+                android:id="@+id/mentorCardTitle"
                 android:background="#BAC9FF"
                 android:textStyle="bold"
                 android:textSize="10sp"
@@ -37,19 +34,18 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="3dp"
                 android:paddingLeft="3dp">
                 <TextView
                     android:text="[희망과목]"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardDesiredSubjectTitle"
+                    android:id="@+id/mentorCardDesiredSubjectTitle"
                     android:textSize="10sp"
                     android:textColor="@color/black"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardDesiredSubject"
+                    android:id="@+id/mentorCardDesiredSubject"
                     android:textSize="10sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>
@@ -57,7 +53,6 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="3dp"
                 android:paddingLeft="3dp">
                 <TextView
                     android:text="[희망기간]"
@@ -69,7 +64,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardDesiredStartPeriod"
+                    android:id="@+id/mentorCardDesiredStartPeriod"
+                    android:textSize="10sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/wave"
+                    android:text="~"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mentorCardDesiredEndPeriod"
                     android:textSize="10sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>
@@ -77,19 +85,18 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="3dp"
                 android:paddingLeft="3dp">
                 <TextView
                     android:text="[멘토링 방식]"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardMethodTitle"
+                    android:id="@+id/mentorCardMethodTitle"
                     android:textSize="10sp"
                     android:textColor="@color/black"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardMethod"
+                    android:id="@+id/mentorCardMethod"
                     android:textSize="10sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>
@@ -97,19 +104,18 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="3dp"
                 android:paddingLeft="3dp">
                 <TextView
-                    android:text="[지역]"
+                    android:text="[희망 멘토 성별]"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardAreaTitle"
+                    android:id="@+id/mentorCardGenderTitle"
                     android:textSize="10sp"
                     android:textColor="@color/black"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menteeCardArea"
+                    android:id="@+id/mentorCardGender"
                     android:textSize="10sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>

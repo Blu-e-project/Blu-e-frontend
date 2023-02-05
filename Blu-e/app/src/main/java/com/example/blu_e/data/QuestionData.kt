@@ -1,8 +1,8 @@
 package com.example.blu_e.data
 
 class QuestionData (
-    val sub: String,
+    val subject: String,
     val problem: String,
-    val range: String,
-    val question: String
+    val unit: String,
+    val contents: String
 )

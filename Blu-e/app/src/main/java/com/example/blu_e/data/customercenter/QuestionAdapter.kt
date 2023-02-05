@@ -1,4 +1,4 @@
-package com.example.blu_e.data
+package com.example.blu_e.data.customercenter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.ItemQuestionBinding
 
-class FaqAdapter(private val items: ArrayList<FaqData>): RecyclerView.Adapter<FaqAdapter.FaqDataViewHolder>() {
-    inner class FaqDataViewHolder (private val viewBinding: ItemQuestionBinding): RecyclerView.ViewHolder(viewBinding.root) {
-        fun bind(questionItem: FaqData) {
+class QuestionAdapter(private val items: ArrayList<Question>): RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>() {
+    inner class QuestionViewHolder (private val viewBinding: ItemQuestionBinding): RecyclerView.ViewHolder(viewBinding.root) {
+        fun bind(questionItem: Question) {
             viewBinding.itemData.text = questionItem.title
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FaqDataViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionViewHolder {
         var viewBinding = ItemQuestionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FaqDataViewHolder(viewBinding)
+        return QuestionViewHolder(viewBinding)
     }
 
-    override fun onBindViewHolder(holder: FaqDataViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         val model = items!![position]
         holder.bind(model)
         holder.itemView.setOnClickListener {

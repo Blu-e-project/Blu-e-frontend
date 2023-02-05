@@ -1,4 +1,4 @@
-package com.example.blu_e.data
+package com.example.blu_e.data.customercenter
 
 data class FaqData(val faqId: Int, var title: String, var answer: String)
 {

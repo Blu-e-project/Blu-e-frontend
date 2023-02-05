@@ -9,8 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.Question
-import com.example.blu_e.data.RetroInterface
+import com.example.blu_e.data.customercenter.Question
 import com.example.blu_e.databinding.FragmentQuestionFormBinding
 import java.sql.Timestamp
 

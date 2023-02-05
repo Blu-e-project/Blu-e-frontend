@@ -1,4 +1,4 @@
-package com.example.blu_e.data
+package com.example.blu_e.data.customercenter
 
 import java.sql.Timestamp
 

@@ -1,9 +1,7 @@
 package com.example.blu_e.mainPage
 
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -61,11 +59,12 @@ class MentorDataRVAdapter(private val dataList: ArrayList<MentorData> = arrayLis
     inner class DataViewHolder(private val viewBinding:RecyclerviewMentorCardBinding) : RecyclerView.ViewHolder(viewBinding.root) {
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(data:MentorData) { //viewHolder가 어떤걸 표시할 때 호출 시켜주는함수 data class를 인자값으로, 뷰 설정
-            viewBinding.menteeCardTitle.text = data.title
-            viewBinding.menteeCardDesiredSubject.text = data.subject
-            viewBinding.menteeCardDesiredStartPeriod.text = data.periodStart
-            //viewBinding.menteeCardDesiredEndPeriod.text = data.periodEnd
-            viewBinding.menteeCardMethod.text = data.mentoringMethod
+            viewBinding.mentorCardTitle.text = data.title
+            viewBinding.mentorCardDesiredSubject.text = data.subject
+            viewBinding.mentorCardDesiredStartPeriod.text = data.periodStart
+            viewBinding.mentorCardDesiredEndPeriod.text = data.periodEnd
+            viewBinding.mentorCardMethod.text = data.mentoringMethod
+            viewBinding.mentorCardGender.text = data.mentorGender
         }
     }
 

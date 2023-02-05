@@ -22,6 +22,7 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+import retrofit2.http.*
 import java.time.LocalDate
 
 interface RetroInterface {
@@ -76,18 +77,15 @@ interface RetroInterface {
     //회원 로그인
     @FormUrlEncoded
     @POST("/users/login")
-    fun login(@Field("id") id:String, @Field("password") pw:String): Call<LoginResponse>
+    fun login(@Field("id") id:String, @Field("password") pw:String): Call<User>
 
     //회원 가입
-    @FormUrlEncoded
     @POST("/users/signup")
-    fun signup(@Field("id") id: String, @Field("password") password: String, @Field("phone") phone:String,
-               @Field("name") name: String, @Field("nickname") nickname: String,
-               @Field("birth") birth: LocalDate, @Field("education") education: String,
-               @Field("department") department:String?, @Field("grade") grade: Int?, @Field("address") address: String?,
-               @Field("introduce") introduce: String?, @Field("role") role: Int,
-               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status:Int,
-               @Field("userImg") userImg: Text?) :Call<LoginResponse>
+    fun signUp1(@Field("name") name : String, @Field("nickname") nickname: String,
+                @Field("birth") birth: LocalDate, @Field("education") education: String,
+                @Field("department") department:String,
+                @Field("address") address: String,
+    @Field("introduce") introduce: String) :Call<User>
 
     //비밀번호 변경
 //    @FormUrlEncoded
@@ -101,14 +99,13 @@ interface RetroInterface {
                         @Field("mentorCareer") mentorCareer: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
                         @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
 
-    //멘티 구인글
     @FormUrlEncoded
     @POST("/mentoring/mentees")
     fun recruitMentee(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
                       @Field("area") area: String, @Field("mentoringMethod") mentoringMethod:String,
                       @Field("menteeLevel") menteeLevel: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
                       @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
-    
+
     //본인 인증을 위한 전화번호 보내기
     @FormUrlEncoded
     @POST("/users/send")
@@ -118,4 +115,15 @@ interface RetroInterface {
     @FormUrlEncoded
     @POST("/users/verify")
     fun verifyCode(@Field("phoneNumber") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<LoginResponse>
+
+    //---------------------------------------구만이 코드----------------------------------------------
+    //멘토 메인화면
+    //새로운 멘티가 있어요!
+
+    //멘토를 구하고 있어요!
+
+    //궁금한 문제가 있어요!
+
+    //궁금한 문제가 있어요!_세부
+    //멘티 구인글
 }

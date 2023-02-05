@@ -1,10 +1,19 @@
 package com.example.blu_e.login
 
+import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import com.example.blu_e.LoginResponse
 import com.example.blu_e.R
@@ -13,17 +22,21 @@ import com.example.blu_e.databinding.ActivityMenteeInfoBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class MenteeInfoActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeInfoBinding
-//    private val api = RetroInterface.create()
+
+    //    private val api = RetroInterface.create()
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMenteeInfoBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+        var profileImageBase64: String? = null
 
         //뒤로가기(멘티 회원가입 페이지로)
         viewBinding.backToCenterD.setOnClickListener {
@@ -35,12 +48,38 @@ class MenteeInfoActivity : AppCompatActivity() {
             val nick = viewBinding.nickname.text.toString()
 
         }
-        viewBinding.signUpBtn.setOnClickListener {
-            //비번과 비번확인이 같은지 확인
-            if(viewBinding.userPw.text.toString() == viewBinding.checkPw.text.toString()) {
-                //체크했는지 안했는지 확인
-                if (viewBinding.agreeCb.isChecked) {
-                    //Log.d("체크", "성공")
+        //갤러리 사진 선택
+        viewBinding.profileBtn.setOnClickListener {
+
+            //갤러리 사진 선택 후 Base64 인코딩
+            val imageResult =
+                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                    if (result.resultCode == Activity.RESULT_OK) {
+                        val imageUri = result.data?.data ?: return@registerForActivityResult
+                        val ins: InputStream? = imageUri?.let {
+                            contentResolver.openInputStream(it)
+                        }
+                        val img: Bitmap = BitmapFactory.decodeStream(ins)
+                        ins?.close()
+                        val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
+                        val byteArrayOutputStream = ByteArrayOutputStream()
+                        resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
+                        val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+                        val outStream = ByteArrayOutputStream()
+                        val res: Resources = resources
+                        profileImageBase64 =
+                            android.util.Base64.encodeToString(byteArray, Base64.NO_WRAP)
+                        if (profileImageBase64 != null) {
+                            Toast.makeText(this, "이미지가 첨부되었습니다!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            viewBinding.signUpBtn.setOnClickListener {
+                //비번과 비번확인이 같은지 확인
+                if (viewBinding.userPw.text.toString() == viewBinding.checkPw.text.toString()) {
+                    //체크했는지 안했는지 확인
+                    if (viewBinding.agreeCb.isChecked) {
+                        //Log.d("체크", "성공")
 //                    val id = viewBinding.userId.text.toString()
 //                    val password = viewBinding.userPw.text.toString()
 //                    //본인인증에서 번호 가져옴
@@ -85,11 +124,12 @@ class MenteeInfoActivity : AppCompatActivity() {
 //                            }
 //                        })
 
+                    }
                 }
-            }
-            //비번과 비번확인이 같지 않으면
-            else{
+                //비번과 비번확인이 같지 않으면
+                else {
 
+                }
             }
         }
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="150dp"
+    android:layout_width="wrap_content"
     android:layout_height="110dp"
     android:layout_marginRight="20dp">
 
@@ -9,78 +9,87 @@
         android:layout_marginLeft="20dp"
         android:layout_width="140dp"
         android:layout_height="100dp"
-        app:cardCornerRadius="15dp"
         app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="15dp"
         app:cardElevation="5dp"
         app:cardMaxElevation="10dp">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <TextView
+                android:id="@+id/mentorCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="31dp"
-                android:inputType="none"
-                android:ems="10"
-                android:id="@+id/mentorCardTitle"
                 android:background="#BAC9FF"
-                android:textStyle="bold"
-                android:textSize="10sp"
+                android:ems="10"
                 android:gravity="center_horizontal"
-                android:textAlignment="textStart"
+                android:inputType="none"
                 android:paddingLeft="9dp"
                 android:paddingTop="10dp"
+                android:textAlignment="textStart"
+                android:textSize="10sp"
+                android:textStyle="bold"
                 tools:ignore="RtlCompat" />
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="3dp">
+
                 <TextView
-                    android:text="[희망과목]"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/mentorCardDesiredSubjectTitle"
-                    android:textSize="10sp"
-                    android:textColor="@color/black"/>
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/mentorCardDesiredSubject"
-                    android:textSize="10sp"
+                    android:text="[희망과목]"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/mentorCardDesiredSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="3dp">
+
                 <TextView
-                    android:text="[희망기간]"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/menteeCardDesiredPeriodTitle"
-                    android:textSize="10sp"
-                    android:textColor="@color/black"/>
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="[희망기간]"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+                <TextView
                     android:id="@+id/mentorCardDesiredStartPeriod"
-                    android:textSize="10sp"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+                <TextView
                     android:id="@+id/wave"
-                    android:text="~"
-                    />
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="~" />
+
+                <TextView
                     android:id="@+id/mentorCardDesiredEndPeriod"
-                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:textSize="10sp"
                     android:layout_marginLeft="5dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -97,43 +106,49 @@
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="3dp">
+
                 <TextView
-                    android:text="[멘토링 방식]"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/mentorCardMethodTitle"
-                    android:textSize="10sp"
-                    android:textColor="@color/black"/>
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/mentorCardMethod"
-                    android:textSize="10sp"
+                    android:text="[멘토링 방식]"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/mentorCardMethod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="3dp">
+
                 <TextView
-                    android:text="[희망 멘토 성별]"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/mentorCardGenderTitle"
-                    android:textSize="10sp"
-                    android:textColor="@color/black"/>
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/mentorCardGender"
-                    android:textSize="10sp"
+                    android:text="[희망 멘토 성별]"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/mentorCardGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
             </TableRow>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

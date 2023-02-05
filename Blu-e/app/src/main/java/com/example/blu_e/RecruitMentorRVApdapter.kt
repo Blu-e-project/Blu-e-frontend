@@ -10,17 +10,17 @@ class RecruitMentorRVApdapter(private val dataList: ArrayList<RecruitMentorData>
     RecyclerView.Adapter<RecruitMentorRVApdapter.DataViewHolder>(){
     inner class DataViewHolder(private val viewBinding:RecyclerviewMentorCardBinding):RecyclerView.ViewHolder(viewBinding.root){
      fun bind(data: RecruitMentorData) {
-            viewBinding.menteeCardTitle.text = data.area
-            viewBinding.menteeCardDesiredSubject.text = data.subject
+            viewBinding.mentorCardTitle.text = data.area
+            viewBinding.mentorCardDesiredSubject.text = data.subject
             //var sdate = data.periodStart.format(DateTimeFormatter.ofPattern("yyyy-MM"))
             //var edate = data.periodEnd.format(DateTimeFormatter.ofPattern("yyyy-MM"))
             //viewBinding.menteeCardDesiredStartPeriod.text = sdate.toString()
             //viewBinding.menteeCardDesiredEndPeriod.text = edate.toString()
-            viewBinding.menteeCardDesiredStartPeriod.text = data.periodStart
+            viewBinding.mentorCardDesiredStartPeriod.text = data.periodStart
             viewBinding.menteeCardDesiredPeriod2.text = data.periodEnd
-            viewBinding.menteeCardMethod.text = data.metoringMethod
-            viewBinding.menteeCardAreaTitle.text= "[희망 성별]"
-            viewBinding.menteeCardArea.text= data.mentorGender
+            viewBinding.mentorCardMethod.text = data.metoringMethod
+            viewBinding.mentorCardGenderTitle.text= "[희망 성별]"
+            viewBinding.mentorCardGender.text= data.mentorGender
      }
     }
 

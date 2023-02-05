@@ -1,4 +1,4 @@
-package com.example.blu_e.data
+package com.example.blu_e.data.mentoring
 
 import java.sql.Date
 import java.sql.Timestamp

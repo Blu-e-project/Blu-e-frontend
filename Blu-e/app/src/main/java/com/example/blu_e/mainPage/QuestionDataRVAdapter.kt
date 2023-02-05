@@ -16,17 +16,16 @@ class QuestionDataRVAdapter(private val items: ArrayList<QuestionData>) : Recycl
         RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bind(data: QuestionData) {
-            viewBinding.questionCardSubject.text = data.sub
-            viewBinding.questionDesiredProblemTitle.text = data.problem
-            viewBinding.questionCardDesiredrangeTitle.text = data.range
-            viewBinding.questionCardDesiredQuestionTitle.text = data.question
+            viewBinding.questionCardSubject.text = data.subject
+            viewBinding.questionCardProblem.text = data.problem
+            viewBinding.questionCardUnit.text = data.unit
+            viewBinding.questionCardContents.text = data.contents
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionDataRVAdapter.ViewHolder {
         val viewBinding = RecyclerviewQuestionCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        Log.e("onCreateViewHolder", "${holderSize++}")
         return ViewHolder(viewBinding)
     }
 

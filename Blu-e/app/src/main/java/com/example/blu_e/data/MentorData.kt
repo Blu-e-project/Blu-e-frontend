@@ -4,5 +4,7 @@ class MentorData (
     val title: String,
     val subject: String,
     val periodStart: String,
-    val mentoringMethod: String
+    val periodEnd: String,
+    val mentoringMethod: String,
+    val mentorGender: String
 )

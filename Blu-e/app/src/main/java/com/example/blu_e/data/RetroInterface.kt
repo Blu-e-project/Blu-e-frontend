@@ -2,6 +2,11 @@ package com.example.blu_e.data
 
 import com.example.blu_e.CreateRecruitResponse
 import com.example.blu_e.LoginResponse
+import com.example.blu_e.data.accusation.Report
+import com.example.blu_e.data.customercenter.Answer
+import com.example.blu_e.data.customercenter.Question
+import com.example.blu_e.data.customercenter.QuestionResponse
+import com.example.blu_e.data.mentoring.PickMemberComment
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import org.w3c.dom.Text
@@ -20,37 +25,21 @@ import retrofit2.http.Query
 import java.time.LocalDate
 
 interface RetroInterface {
-    @GET("/service")
-    //all faqs read
-    fun allFAQ(): Call<ArrayList<Question>>
+    //작성한 QnA 조회
+    @GET("/service/questions/{userId}")
+    fun requestMyQuestions(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int): Call<QuestionResponse>
 
-    //answer read
-    @GET("/service/{questionId}/answer")
-    fun requestAnswerInQuestion(@Path("questionId") questionId: Int): Call<Answer>
+    //Question 작성
+    @POST("/service/questions/{userId}/writing")
+    fun questionWriting(@Header("blu-e-access-token") token: String, @Query("userId") userId: Int, @Field("title") title: String, @Field("contents") contents: String): Call<QuestionResponse>
 
-    //my questions read
-    @GET("/service/questions")
-    fun requestMyQuestions(@Query("userId") userId: Int): Call<ArrayList<Question>>
+    //Question 삭제
+    @DELETE("/service/questions/{userId}/writing")
+    fun questionDelete(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int, @Query("questionId") questionId: Int): Call<QuestionResponse>
 
-    //question create
-    @POST("/service/questions/writing")
-    fun questionWriting(@Query("userId") userId: Int, @Body question: Question): Call<Question>
-
-    //question delete
-    @DELETE("/service/questions/writing")
-    fun questionDelete(@Query("userId") userId: Int, @Path("questionId") questionId: Int): Call<Question>
-
-    //accusation read
-
-    //accusation create
+    //회원 신고
     @POST("/service/accusations/writing")
-    fun reportMember(@Query("userId") userId: Int, @Body report: Report) : Call<Report>
-
-//    @Multipart
-//    @POST("/service/accusations/writing")
-//    fun reportMember( @Query("userId") userId: Int, @Part image: MultipartBody.Part?, @Part("postData") postData: RequestBody) : Call<Report>
-
-    //service/accusations/attach
+    fun reportMember(@Header("blu-e-access-token") token: String, @Body report: Report) : Call<Report>
 
     //request mentoring comments read
     @GET

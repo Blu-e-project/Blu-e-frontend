@@ -2,19 +2,16 @@ package com.example.blu_e.login
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Base64
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.example.blu_e.LoginResponse
 import com.example.blu_e.R
 import com.example.blu_e.data.RetroInterface
@@ -29,14 +26,14 @@ import java.time.format.DateTimeFormatter
 
 class MenteeInfoActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeInfoBinding
-
     //    private val api = RetroInterface.create()
     @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMenteeInfoBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-        var profileImageBase64: String? = null
+
 
         //뒤로가기(멘티 회원가입 페이지로)
         viewBinding.backToCenterD.setOnClickListener {
@@ -50,30 +47,11 @@ class MenteeInfoActivity : AppCompatActivity() {
         }
         //갤러리 사진 선택
         viewBinding.profileBtn.setOnClickListener {
-
-            //갤러리 사진 선택 후 Base64 인코딩
-            val imageResult =
-                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                    if (result.resultCode == Activity.RESULT_OK) {
-                        val imageUri = result.data?.data ?: return@registerForActivityResult
-                        val ins: InputStream? = imageUri?.let {
-                            contentResolver.openInputStream(it)
-                        }
-                        val img: Bitmap = BitmapFactory.decodeStream(ins)
-                        ins?.close()
-                        val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
-                        val byteArrayOutputStream = ByteArrayOutputStream()
-                        resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
-                        val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
-                        val outStream = ByteArrayOutputStream()
-                        val res: Resources = resources
-                        profileImageBase64 =
-                            android.util.Base64.encodeToString(byteArray, Base64.NO_WRAP)
-                        if (profileImageBase64 != null) {
-                            Toast.makeText(this, "이미지가 첨부되었습니다!", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            Log.d("이미지", "성공")
+            activityResult.launch(intent)
+        }
             viewBinding.signUpBtn.setOnClickListener {
                 //비번과 비번확인이 같은지 확인
                 if (viewBinding.userPw.text.toString() == viewBinding.checkPw.text.toString()) {
@@ -132,5 +110,17 @@ class MenteeInfoActivity : AppCompatActivity() {
                 }
             }
         }
+    private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+
+        if(it.resultCode == RESULT_OK && it.data != null){
+            //값 담기
+            val uri = it.data!!.data
+            Log.d("이미지", "${uri}")
+            //화면에 보여주기
+            Glide.with(this)
+                .load(uri)
+                .into(viewBinding.profile)
     }
+}
+
 }

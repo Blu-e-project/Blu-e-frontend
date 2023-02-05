@@ -11,10 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.blu_e.ProfileActivity
 import com.example.blu_e.R
+import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ItemRequestMentoringCommentBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickMemberComment>, private val context: Context): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
+class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickComment>?, private val context: Context): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
+//    private val api = RetroInterface.create()
     private var acceptCheck = 1
     private var completedCheck = 0
     private var menuCheck = 1
@@ -39,7 +44,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
         var completedText = viewBinding.completedText
         var changeCommentMenu = viewBinding.requestMemberCommentDeleteIcon
 
-        fun bind(commentItem: PickMemberComment) {
+        fun bind(commentItem: PickComment) {
             val url = ""
 //          commentItem.userId?   .userImg
             Glide.with(context)
@@ -65,7 +70,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
     }
 
     override fun onBindViewHolder(holder: RequestMentoringCommentViewHolder, position: Int) {
-        holder.bind(commentListData[position])
+        holder.bind(commentListData!![position])
         if(acceptCheck == 1 && completedCheck == 0) {
             holder.accpetButton!!.setOnClickListener {
                 holder.completedText.visibility = View.VISIBLE
@@ -84,10 +89,26 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 var pop = PopupMenu(context, it)
                 pop.menuInflater.inflate(R.menu.popup_menu, pop.menu)
 
-                pop.setOnMenuItemClickListener { item ->
-                    when(item.itemId) {
-                        R.id.deleteMenu -> Log.d("댓글메뉴확인", "삭제될겁니다.")
-                        R.id.updateMenu -> Log.d("댓글메뉴확인", "수정될겁니다.")
+                pop.setOnMenuItemClickListener {
+                    if(it.itemId == R.id.deleteMenu) {
+                        Log.d("댓글메뉴확인", "삭제될겁니다.")
+                        /*api.commentDelete(2, 2).enqueue(object: Callback<PickCommentResponse> {
+                            override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
+                                //성공시
+                                val body = response.body()?: return
+                                Log.d("댓글 삭제", body.message)
+                            }
+
+                            override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
+                                //실패시
+                                Log.d("댓글 삭제", "실패")
+                            }
+                        })*/
+                    }
+                    else if(it.itemId == R.id.updateMenu) {
+                            Log.d("댓글메뉴확인", "수정될겁니다.")
+                            //수정 폼..필요?
+                            //api.commentUpdate(0,)
                     }
                     false
                 }
@@ -105,6 +126,6 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
     }
 
     override fun getItemCount(): Int {
-        return commentListData.size
+        return commentListData!!.size
     }
 }

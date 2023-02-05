@@ -8,14 +8,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/backHome"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle_50"
-            android:src="@drawable/vector" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <!-- 멘토를 구하고 있어요! -->
         <TextView
@@ -29,17 +23,11 @@
             android:text="@string/recruitingMentor"
             android:textAppearance="@style/some_id"
             />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMentor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        />
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_mentor"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/recyclerview_question_card"
-        app:spanCount="2"/>
 
 </LinearLayout>

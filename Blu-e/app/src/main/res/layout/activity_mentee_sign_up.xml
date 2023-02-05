@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenteeSignUpActivity">
+    tools:context=".login.MenteeSignUpActivity">
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
         android:height="45dp"
         android:background="@drawable/rounded_blue"
         android:lineHeight="22sp"
-        android:text="Blu-e멘토 계정 만들기"
+        android:text="Blu-e멘티 계정 만들기"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textFontWeight="600"

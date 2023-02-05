@@ -35,9 +35,9 @@ class HomeRecruitMenteeFragment : Fragment() {
         }
         val adapter = QuestionDataRVAdapter(list)
         val grid = GridLayoutManager(context, 2)
-
+/*
         viewBinding.recyclerViewMentee.adapter = adapter
-        viewBinding.recyclerViewMentee.layoutManager = grid
+        viewBinding.recyclerViewMentee.layoutManager = grid*/
 
         return viewBinding.root
     }

@@ -14,6 +14,8 @@ import com.example.blu_e.customercenter.CenterFragment
 import com.example.blu_e.customercenter.FaqDetailFragment
 import com.example.blu_e.customercenter.QuestionFormFragment
 import com.example.blu_e.databinding.ActivityMainBinding
+import com.example.blu_e.mainPage.HomeNewMenteeFragment
+import com.example.blu_e.mainPage.HomeRecruitMentorFragment
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
@@ -43,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.menu_group -> {
                         supportFragmentManager
                             .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, GroupFragment())
+                            .replace(viewBinding.containerFragment.id, HomeRecruitMentorFragment())
                             .commitAllowingStateLoss()
                     }
                     R.id.menu_noti -> {
@@ -94,6 +96,11 @@ class MainActivity : AppCompatActivity() {
             3 -> transaction.replace(viewBinding.containerFragment.id, QuestionFormFragment())
             4 -> transaction.replace(viewBinding.containerFragment.id, AccusationFragment())
             5 -> transaction.replace(viewBinding.containerFragment.id, MyPageFragment())
+
+            //main page
+            6 -> transaction.replace(viewBinding.containerFragment.id, HomeNewMenteeFragment())
+            7 -> transaction.replace(viewBinding.containerFragment.id, HomeRecruitMentorFragment())
+            //8 -> transaction.replace(viewBinding.containerFragment.id, RecruitMentorFragment())
         }
         transaction.addToBackStack(null);
         transaction.commit()

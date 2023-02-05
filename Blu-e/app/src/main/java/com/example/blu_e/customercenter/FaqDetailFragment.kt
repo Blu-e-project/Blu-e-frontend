@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.FaqData
+import com.example.blu_e.data.customercenter.FaqData
 import com.example.blu_e.databinding.FragmentFaqDetailBinding
 
 class FaqDetailFragment : Fragment() {

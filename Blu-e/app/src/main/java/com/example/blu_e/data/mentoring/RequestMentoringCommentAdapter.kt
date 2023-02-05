@@ -1,4 +1,4 @@
-package com.example.blu_e.data
+package com.example.blu_e.data.mentoring
 
 import android.content.Context
 import android.content.Intent
@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.blu_e.ProfileActivity
 import com.example.blu_e.R
 import com.example.blu_e.databinding.ItemRequestMentoringCommentBinding
-import com.example.blu_e.mentoring.RequestMentoringActivity
 
 
 class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickMemberComment>, private val context: Context): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {

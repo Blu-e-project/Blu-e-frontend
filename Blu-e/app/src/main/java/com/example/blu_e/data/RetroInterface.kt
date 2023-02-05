@@ -2,6 +2,10 @@ package com.example.blu_e.data
 
 import com.example.blu_e.CreateRecruitResponse
 import com.example.blu_e.LoginResponse
+import com.example.blu_e.data.accusation.Report
+import com.example.blu_e.data.customercenter.Answer
+import com.example.blu_e.data.customercenter.Question
+import com.example.blu_e.data.mentoring.PickMemberComment
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import org.w3c.dom.Text

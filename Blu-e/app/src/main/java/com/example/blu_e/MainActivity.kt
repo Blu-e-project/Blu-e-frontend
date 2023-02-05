@@ -21,7 +21,6 @@ import java.io.InputStream
 class MainActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMainBinding
     var profileImageBase64: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)

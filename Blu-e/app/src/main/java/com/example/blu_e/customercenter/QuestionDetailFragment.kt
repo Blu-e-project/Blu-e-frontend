@@ -10,8 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.blu_e.MainActivity
+import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.customercenter.Question
+import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.databinding.FragmentQuestionDetailBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class QuestionDetailFragment : Fragment() {
     private lateinit var mContext: MainActivity
@@ -23,12 +28,12 @@ class QuestionDetailFragment : Fragment() {
     companion object {
         fun newInstance(faqList: ArrayList<Question>, faqId: Int) = QuestionDetailFragment().apply {
             arguments = Bundle().apply {
-                putSerializable("faqList", faqList)
+                putSerializable("list", faqList)
                 putInt("questionId", faqId)
             }
         }
     }
-    val receivedFaqList by lazy { requireArguments().getSerializable("faqList") as ArrayList<Question>}
+    val receivedFaqList by lazy { requireArguments().getSerializable("list") as ArrayList<Question>}
     val receviedQuestionId by lazy { requireArguments().getInt("questionId")}
 
     override fun onAttach(context: Context) {
@@ -56,14 +61,26 @@ class QuestionDetailFragment : Fragment() {
         }
 
         viewBinding.questionDeleteIcon.setOnClickListener {
+            val userId: Int = 1
             val builder = AlertDialog.Builder(mContext)
             builder
                 .setTitle("Q&A 삭제")
                 .setMessage("질문을 삭제하시겠습니까?")
                 .setPositiveButton("예",
                     DialogInterface.OnClickListener { dialog, id ->
-                        //userId와 questionId
-//                        api.questionDelete(0, 0)
+                        /*api.questionDelete("", userId, receviedQuestionId).enqueue(object: Callback<QuestionResponse> {
+                            override fun onResponse(call: Call<QuestionResponse>, response: Response<QuestionResponse>) {
+                                val body = response.body() ?: return
+                                if(body.code == 1000) {
+                                    Log.d("질문 삭제하기", "성공")
+                                }
+                                else {
+                                    Log.d("질문 삭제하기", "실패")
+                                }
+                            }
+                            override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
+                            }
+                        })      */
                     })
                 .setNegativeButton("아니오",
                     DialogInterface.OnClickListener { dialog, id ->
@@ -77,20 +94,7 @@ class QuestionDetailFragment : Fragment() {
 
         Log.d("질문", receviedQuestionId.toString())
         question = receivedFaqList[receviedQuestionId]
-        viewBinding.showTitle.setText(question.title)
-        viewBinding.showContent.setText(question.contents)
-
-        /*api.requestAnswerInQuestion(0).enqueue(object: Callback<Answer> {
-            override fun onResponse(call: Call<Answer>, response: Response<Answer>) {
-                //성공시
-                if(response.isSuccessful) {
-                    val answer = response.body()
-//                    viewBinding.showAnswer.setText() //Async ..
-                }
-            }
-            override fun onFailure(call: Call<Answer>, t: Throwable) {
-                //실패시
-            }
-        })*/
+        viewBinding.showTitle.text = question.title
+        viewBinding.showContent.text = question.contents
     }
 }

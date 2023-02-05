@@ -9,7 +9,8 @@ class MentorAlarmDataRVAdapter(private val dataList: ArrayList<MentorAlarmData> 
     inner class DataViewHolder(private val viewBinding:MentoringAlarmItemBinding): RecyclerView.ViewHolder(viewBinding.root) {
         fun bind(data: MentorAlarmData){
             viewBinding.nicknameMentee.text = data.mentee
-            viewBinding.mentoringStatus.text = data.matching
+            viewBinding.mentoringStatus.text = data.mathcing
+            viewBinding.mentoringStatus2.text=data.mathcing2
         }
     }
 

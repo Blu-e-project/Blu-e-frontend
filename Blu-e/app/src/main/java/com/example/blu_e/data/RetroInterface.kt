@@ -1,7 +1,14 @@
 package com.example.blu_e.data
 
+import com.example.blu_e.CreateRecruitResponse
+import com.example.blu_e.LoginResponse
+import com.example.blu_e.data.accusation.Report
+import com.example.blu_e.data.customercenter.Answer
+import com.example.blu_e.data.customercenter.Question
+import com.example.blu_e.data.mentoring.PickMemberComment
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -95,6 +102,34 @@ interface RetroInterface {
                 @Field("address") address: String,
     @Field("introduce") introduce: String) :Call<User>
 
+    //비밀번호 변경
+//    @FormUrlEncoded
+//    @PUT("/users/password")
+//    fun pwUpdate(@Query("password") password: String, @Body user:User): Call<User>
+    //멘토 구인글 작성
+    @FormUrlEncoded
+    @POST("/mentoring/mentors")
+    fun recruitMentor(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
+                      @Field("area") area: String, @Field("mentoringMethod") mentoringMethod:String,
+                        @Field("mentorCareer") mentorCareer: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
+                        @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
+
+    @FormUrlEncoded
+    @POST("/mentoring/mentees")
+    fun recruitMentee(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
+                      @Field("area") area: String, @Field("mentoringMethod") mentoringMethod:String,
+                      @Field("menteeLevel") menteeLevel: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
+                      @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
+
+    //본인 인증을 위한 전화번호 보내기
+    @FormUrlEncoded
+    @POST("/users/send")
+    fun sendPhoneNum(@Field("phoneNum") phoneNum: String): Call<LoginResponse>
+
+    //인증번호 보내기
+    @FormUrlEncoded
+    @POST("/users/verify")
+    fun verifyCode(@Field("phoneNumber") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<LoginResponse>
 
     //---------------------------------------구만이 코드----------------------------------------------
     //멘토 메인화면
@@ -105,9 +140,5 @@ interface RetroInterface {
     //궁금한 문제가 있어요!
 
     //궁금한 문제가 있어요!_세부
-
-    //멘티 메인화면
-    //새로운 멘토가 있어요!
-
-    //멘티를 구하고 있어요!
+    //멘티 구인글
 }

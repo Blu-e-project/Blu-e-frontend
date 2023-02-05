@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View
+        android:id="@+id/registerQuestionView"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/sky"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></View>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:fontFamily="sans-serif"
+        android:text="궁금한 문제가 있어요!"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backToCenter_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="21dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/arrow_forward_ios"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/problemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="sans-serif"
+        android:text="과목"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerQuestionView" />
+
+    <EditText
+        android:layout_width="238dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-9dp"
+        android:background="@drawable/rounded_blue_edge"
+        android:hint="과목명을 입력하세요"
+        android:paddingLeft="12dp"
+        android:paddingTop="14dp"
+        android:paddingRight="124dp"
+        android:paddingBottom="14dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/problemTitle" />
+
+
+    <TextView
+        android:id="@+id/problemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="sans-serif"
+        android:text="단원"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/problemTitle" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-9dp"
+        android:background="@drawable/rounded_blue_edge"
+        android:hint="단원을 입력하세요"
+        android:paddingLeft="12dp"
+        android:paddingTop="14dp"
+        android:paddingRight="124dp"
+        android:paddingBottom="14dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/problemName" />
+
+    <TextView
+        android:id="@+id/problemContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="sans-serif"
+        android:text="문제"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/problemName" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="238dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-9dp"
+
+        android:background="@drawable/rounded_blue_edge"
+        android:gravity="top|left"
+        android:hint="궁금한 문제를 입력하세요"
+        android:paddingLeft="12dp"
+        android:paddingTop="14dp"
+        android:paddingRight="124dp"
+        android:paddingBottom="14dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/problemContent" />
+
+    <TextView
+        android:id="@+id/questionContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="139dp"
+        android:fontFamily="sans-serif"
+        android:text="질문"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/problemContent"/>
+
+    <EditText
+        android:layout_width="238dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-9dp"
+
+        android:background="@drawable/rounded_blue_edge"
+        android:gravity="top|left"
+        android:hint="질문을 입력하세요"
+        android:paddingLeft="12dp"
+        android:paddingTop="14dp"
+        android:paddingRight="124dp"
+        android:paddingBottom="14dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/questionContent" />
+
+    <TextView
+        android:id="@+id/problemPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="300dp"
+        android:fontFamily="sans-serif"
+        android:text="사진 첨부"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/problemContent" />
+
+    <Button
+        android:id="@+id/btn_add_pic_p"
+        android:layout_width="238dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="-9dp"
+        android:background="@drawable/shape_round"
+        android:backgroundTint="@color/sky"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:lineSpacingExtra="10sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/problemPic"
+        android:text="사진 첨부하기" />
+
+    <Button
+        android:id="@+id/btn_add_p"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="524dp"
+        android:width="320dp"
+        android:height="45dp"
+        android:background="@drawable/shape_round"
+        android:backgroundTint="@color/sky"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:letterSpacing="0.01"
+        android:lineSpacingExtra="10sp"
+        android:text="질문 내용 등록"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerQuestionView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout >

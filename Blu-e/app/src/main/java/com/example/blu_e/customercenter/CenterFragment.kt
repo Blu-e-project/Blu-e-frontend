@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.*
+import com.example.blu_e.data.customercenter.FaqAdapter
+import com.example.blu_e.data.customercenter.FaqData
+import com.example.blu_e.data.customercenter.Question
+import com.example.blu_e.data.customercenter.QuestionAdapter
 import com.example.blu_e.databinding.FragmentCenterBinding
 
 class CenterFragment : Fragment() {

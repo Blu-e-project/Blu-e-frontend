@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <View
         android:id="@+id/chagneView_mentee"
@@ -22,7 +23,8 @@
         android:src="@drawable/arrow_forward_ios"
         app:layout_constraintEnd_toStartOf="@+id/textView3_mentee"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView3_mentee"
         android:layout_width="wrap_content"
@@ -38,304 +40,343 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_add_mentee"
         app:layout_constraintTop_toBottomOf="@+id/chagneView_mentee">
 
-        <LinearLayout
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/name_tv_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginRight="23dp"
-                    android:layout_marginTop="38dp"
-                    android:text="이름"
-                    android:textSize="20sp"
-                    android:lineHeight="23sp"
-                    android:textStyle="bold"
-                    android:textColor="#006BCE"
-                    />
-
-                <EditText
-                    android:id="@+id/name_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:width="236dp"
-                    android:backgroundTint="#006BCE"
-                    android:hint="실명 입력"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@id/name_tv_mentee"
-                    app:layout_constraintTop_toTopOf="@+id/name_tv_mentee" />
-                <TextView
-                    android:id="@+id/nickname_tv_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="닉네임"
-                    app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
-                    app:layout_constraintTop_toBottomOf="@+id/name_tv_mentee"
-                    android:layout_marginTop="39dp"
-                    android:textSize="20sp"
-                    android:lineHeight="23sp"
-                    android:textStyle="bold"
-                    android:textColor="#006BCE"
-                    />
-                <EditText
-                    android:id="@+id/nickname_mentee"
-                    android:width="131dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="멘티 닉네임 입력"
-                    app:layout_constraintTop_toTopOf="@+id/nickname_tv_mentee"
-                    app:layout_constraintStart_toStartOf="@id/name_mentee"
-                    android:textSize="16sp"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:backgroundTint="#006BCE"
-                    />
-                <Button
-                    android:id="@+id/check_nickname_btn_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="중복 확인"
-                    android:width="99dp"
-                    android:height="40dp"
-                    app:layout_constraintTop_toBottomOf="@id/name_tv_mentee"
-                    android:layout_marginTop="31dp"
-                    app:layout_constraintStart_toEndOf="@id/nickname_mentee"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/rounded_blue_edge"
-                    android:textSize="14sp"
-                    android:lineHeight="22sp"
-                    />
-                <TextView
-                    android:id="@+id/birth_tv_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="생년월일"
-                    app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
-                    app:layout_constraintTop_toBottomOf="@+id/nickname_tv_mentee"
-                    android:layout_marginTop="39dp"
-                    android:textSize="20sp"
-                    android:lineHeight="23sp"
-                    android:textStyle="bold"
-                    android:textColor="#006BCE"
-                    />
-
-                <EditText
-                    android:id="@+id/birth_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="128dp"
-                    android:layout_marginTop="37dp"
-                    android:width="236dp"
-                    android:backgroundTint="#006BCE"
-                    android:hint="예) 0000-00-00"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@id/name_mentee"
-                    app:layout_constraintTop_toBottomOf="@id/nickname_tv_mentee" />
-
-                <TextView
-                    android:id="@+id/edu_tv_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="학력"
-                    app:layout_constraintStart_toStartOf="@+id/name_tv_mentee"
-                    app:layout_constraintTop_toBottomOf="@id/birth_tv_mentee"
-                    android:layout_marginTop="44dp"
-                    android:textSize="20sp"
-                    android:lineHeight="23sp"
-                    android:textStyle="bold"
-                    android:textColor="#006BCE"
-                    />
-                <EditText
-                    android:id="@+id/education_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:width="131dp"
-                    android:hint="XX대학교"
-                    app:layout_constraintStart_toEndOf="@id/name_tv_mentee"
-                    app:layout_constraintTop_toBottomOf="@id/birth_tv_mentee"
-                    android:layout_marginTop="42dp"
-                    app:layout_constraintStart_toStartOf="@id/name_mentee"
-                    android:textSize="16sp"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:backgroundTint="#006BCE"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/birth_mentee"
-                    android:layout_marginTop="28dp"
-                    app:layout_constraintStart_toEndOf="@id/education_mentee"
-                    android:layout_marginLeft="10dp"
-                    android:text="학교 검색"
-                    android:background="@drawable/rounded_blue_edge"
-                    android:textSize="14sp"
-                    android:lineHeight="22sp"
-                    />
-                <EditText
-                    android:id="@+id/major_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:width="236dp"
-                    android:hint="학과 입력"
-                    app:layout_constraintTop_toBottomOf="@id/edu_tv_mentee"
-                    android:layout_marginTop="43dp"
-                    app:layout_constraintStart_toStartOf="@+id/name_mentee"
-                    android:textSize="16sp"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:backgroundTint="#006BCE"
-                    />
-                <TextView
-                    android:id="@+id/addr_tv_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
-                    app:layout_constraintTop_toBottomOf="@+id/major_mentee"
-                    android:layout_marginTop="32dp"
-                    android:text="실거주지"
-                    android:textSize="20sp"
-                    android:lineHeight="23sp"
-                    android:textStyle="bold"
-                    android:textColor="#006BCE"
-                    />
-                <EditText
-                    android:id="@+id/addr_mentee"
-                    android:width="236dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/name_mentee"
-                    android:hint="도/시/동까지 입력"
-                    app:layout_constraintTop_toBottomOf="@id/edu_tv_mentee"
-                    android:layout_marginTop="101dp"
-                    android:textSize="16sp"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:backgroundTint="#006BCE"
-                    />
-
-                <TextView
-                    android:id="@+id/introduce_tv_mentee"
-                    app:layout_constraintTop_toBottomOf="@id/addr_tv_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
-                    android:layout_marginTop="36dp"
-                    android:text="한줄소개"
-                    android:textSize="20sp"
-                    android:lineHeight="23sp"
-                    android:textStyle="bold"
-                    android:textColor="#006BCE"
-                    />
-                <EditText
-                    android:id="@+id/introduce_ment_mentee"
-                    android:width="236dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/name_mentee"
-                    app:layout_constraintTop_toBottomOf="@id/addr_mentee"
-                    android:layout_marginTop="31dp"
-                    android:hint="소개 입력"
-                    android:textSize="16sp"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:backgroundTint="#006BCE"
-
-                    />
-                <TextView
-                    android:id="@+id/passwd_tv_mentee"
-                    app:layout_constraintTop_toBottomOf="@id/introduce_tv_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
-                    android:layout_marginTop="36dp"
-                    android:text="비밀번호"
-                    android:textSize="20sp"
-                    android:lineHeight="23sp"
-                    android:textStyle="bold"
-                    android:textColor="#006BCE"
-                    />
-                <EditText
-                    android:id="@+id/passwd_ment_mentee"
-                    android:width="236dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/name_mentee"
-                    app:layout_constraintTop_toBottomOf="@id/introduce_ment_mentee"
-                    android:layout_marginTop="31dp"
-                    android:hint="비밀번호입력"
-                    android:textSize="16sp"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:backgroundTint="#006BCE"
-
-                    />
-                <TextView
-                    app:layout_constraintTop_toBottomOf="@id/passwd_tv_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
-                    android:layout_marginTop="36dp"
-
-                    android:text="비밀번호\n    확인"
-                    android:textSize="20sp"
-                    android:lineHeight="23sp"
-                    android:textStyle="bold"
-                    android:textColor="#006BCE"
-                    />
-                <EditText
-                    android:id="@+id/passwdRe_ment_mentee"
-                    android:width="236dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/name_mentee"
-                    app:layout_constraintTop_toBottomOf="@id/passwd_ment_mentee"
-                    android:layout_marginTop="31dp"
-                    android:hint="비밀번호 재입력"
-                    android:textSize="16sp"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:backgroundTint="#006BCE"
-
-                    />
-
-                <CheckBox
-                    android:id="@+id/agree_cb_mentee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="61dp"
-                    android:button="@null"
-                    android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                    android:lineHeight="14sp"
-                    android:text="개인 정보 수집에 동의하시겠습니까?"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/passwdRe_ment_mentee" />
+            <ImageView
+                android:id="@+id/image_mentee"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="37dp"
+                android:background="@drawable/rounded_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/name_tv_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:lineHeight="23sp"
+                android:text="이름"
+                android:textColor="#006BCE"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_mentee" />
 
-        </LinearLayout>
+            <EditText
+                android:id="@+id/name_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:width="236dp"
+                android:backgroundTint="#006BCE"
+                android:hint="실명 입력"
+                android:lineHeight="18sp"
+                android:textColor="#6B000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/name_tv_mentee"
+                app:layout_constraintTop_toTopOf="@+id/name_tv_mentee" />
+
+            <TextView
+                android:id="@+id/nickname_tv_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="39dp"
+                android:lineHeight="23sp"
+                android:text="닉네임"
+                android:textColor="#006BCE"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
+                app:layout_constraintTop_toBottomOf="@+id/name_tv_mentee" />
+
+            <EditText
+                android:id="@+id/nickname_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="131dp"
+                android:backgroundTint="#006BCE"
+                android:hint="멘티 닉네임 입력"
+                android:lineHeight="18sp"
+                android:textColor="#6B000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/name_mentee"
+                app:layout_constraintTop_toTopOf="@+id/nickname_tv_mentee" />
+
+            <Button
+                android:id="@+id/check_nickname_btn_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="31dp"
+                android:width="99dp"
+                android:height="40dp"
+                android:background="@drawable/rounded_blue_edge"
+                android:lineHeight="22sp"
+                android:text="중복 확인"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/nickname_mentee"
+                app:layout_constraintTop_toBottomOf="@id/name_tv_mentee" />
+
+            <TextView
+                android:id="@+id/birth_tv_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="39dp"
+                android:lineHeight="23sp"
+                android:text="생년월일"
+                android:textColor="#006BCE"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
+                app:layout_constraintTop_toBottomOf="@+id/nickname_tv_mentee" />
+
+            <EditText
+                android:id="@+id/birth_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="236dp"
+                android:backgroundTint="#006BCE"
+                android:hint="예) 0000-00-00"
+                android:lineHeight="18sp"
+                android:textColor="#6B000000"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/education_mentee"
+                app:layout_constraintStart_toStartOf="@+id/name_mentee"
+                app:layout_constraintTop_toBottomOf="@+id/nickname_tv_mentee" />
+
+            <TextView
+                android:id="@+id/edu_tv_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:lineHeight="23sp"
+                android:text="학력"
+                android:textColor="#006BCE"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/name_tv_mentee"
+                app:layout_constraintTop_toBottomOf="@id/birth_tv_mentee" />
+
+            <EditText
+                android:id="@+id/education_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:width="131dp"
+                android:backgroundTint="#006BCE"
+                android:hint="XX대학교"
+                android:lineHeight="18sp"
+                android:textColor="#6B000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/name_tv_mentee"
+                app:layout_constraintStart_toStartOf="@id/name_mentee"
+                app:layout_constraintTop_toBottomOf="@id/birth_tv_mentee" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/rounded_blue_edge"
+                android:lineHeight="22sp"
+                android:text="학교 검색"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/education_mentee"
+                app:layout_constraintTop_toBottomOf="@id/birth_mentee" />
+
+            <EditText
+                android:id="@+id/major_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43dp"
+                android:width="236dp"
+                android:backgroundTint="#006BCE"
+                android:hint="학과 입력"
+                android:lineHeight="18sp"
+                android:textColor="#6B000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/name_mentee"
+                app:layout_constraintTop_toBottomOf="@id/edu_tv_mentee" />
+
+            <TextView
+                android:id="@+id/addr_tv_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:lineHeight="23sp"
+                android:text="실거주지"
+                android:textColor="#006BCE"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
+                app:layout_constraintTop_toBottomOf="@+id/major_mentee" />
+
+            <EditText
+                android:id="@+id/addr_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="101dp"
+                android:width="236dp"
+                android:backgroundTint="#006BCE"
+                android:hint="도/시/동까지 입력"
+                android:lineHeight="18sp"
+                android:textColor="#6B000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/name_mentee"
+                app:layout_constraintTop_toBottomOf="@id/edu_tv_mentee" />
+
+            <TextView
+                android:id="@+id/introduce_tv_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:lineHeight="23sp"
+                android:text="한줄소개"
+                android:textColor="#006BCE"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
+                app:layout_constraintTop_toBottomOf="@id/addr_tv_mentee" />
+
+            <EditText
+                android:id="@+id/introduce_ment_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:width="236dp"
+                android:backgroundTint="#006BCE"
+                android:hint="소개 입력"
+                android:lineHeight="18sp"
+                android:textColor="#6B000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/name_mentee"
+                app:layout_constraintTop_toBottomOf="@id/addr_mentee"
+
+                />
+
+            <TextView
+                android:id="@+id/passwd_tv_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:lineHeight="23sp"
+                android:text="비밀번호"
+                android:textColor="#006BCE"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
+                app:layout_constraintTop_toBottomOf="@id/introduce_tv_mentee" />
+
+            <EditText
+                android:id="@+id/passwd_ment_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:width="236dp"
+                android:backgroundTint="#006BCE"
+                android:hint="비밀번호입력"
+                android:lineHeight="18sp"
+                android:textColor="#6B000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/name_mentee"
+                app:layout_constraintTop_toBottomOf="@id/introduce_ment_mentee"
+
+                />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:lineHeight="23sp"
+
+                android:text="비밀번호\n    확인"
+                android:textColor="#006BCE"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/name_tv_mentee"
+                app:layout_constraintTop_toBottomOf="@id/passwd_tv_mentee" />
+
+            <EditText
+                android:id="@+id/passwdRe_ment_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:width="236dp"
+                android:backgroundTint="#006BCE"
+                android:hint="비밀번호 재입력"
+                android:lineHeight="18sp"
+                android:textColor="#6B000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/name_mentee"
+                app:layout_constraintTop_toBottomOf="@id/passwd_ment_mentee"
+
+                />
+
+            <CheckBox
+                android:id="@+id/agree_cb_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:button="@null"
+                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                android:lineHeight="14sp"
+                android:text="개인 정보 수집에 동의하시겠습니까?"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/passwdRe_ment_mentee"
+                />
+
+            <ImageView
+                android:id="@+id/image_edit_mentee"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="56dp"
+                android:background="@drawable/rounded_black"
+                app:layout_constraintEnd_toEndOf="@+id/name_mentee"
+                android:layout_marginRight="10dp"
+                app:layout_constraintHorizontal_bias="0.587"
+                app:layout_constraintStart_toStartOf="@+id/name_mentee"
+                app:layout_constraintTop_toTopOf="@+id/image_mentee" />
+
+            <ImageButton
+                android:id="@+id/image_edit_btn_mentee"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="64dp"
+                android:background="@drawable/edit_outlined"
+                app:layout_constraintEnd_toEndOf="@+id/name_mentee"
+                app:layout_constraintHorizontal_bias="0.556"
+                app:layout_constraintStart_toStartOf="@+id/name_mentee"
+                app:layout_constraintTop_toTopOf="@+id/image_mentee" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
     </ScrollView>
 
     <Button

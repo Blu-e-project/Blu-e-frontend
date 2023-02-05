@@ -8,15 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.blu_e.data.Report
 import com.example.blu_e.databinding.FragmentReviewMentorBinding
 import java.sql.Timestamp
 
 class MentorReviewFragment : Fragment() {
-    private lateinit var mContext: MainActivity
+    private lateinit var mContext: MainActivity //mainactivity에서 넘어가게 하려고
     private lateinit var viewBinding: FragmentReviewMentorBinding
 
-    override fun onAttach(context: Context) {
+    override fun onAttach(context: Context) { //mainactivity
         super.onAttach(context)
         mContext = context as MainActivity
     }

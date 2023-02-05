@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.menu_noti -> {
                         supportFragmentManager
                             .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, NotiFragment())
+                            .replace(viewBinding.containerFragment.id, MentorAlarmFragment())
                             .commitAllowingStateLoss()
                     }
                     R.id.menu_mypage -> {

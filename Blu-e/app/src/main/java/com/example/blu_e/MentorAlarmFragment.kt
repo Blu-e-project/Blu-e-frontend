@@ -61,7 +61,5 @@ class MentorAlarmFragment : Fragment() {
 
         viewBinding.rvDataAlarm.adapter=dataRVAdapter
         viewBinding.rvDataAlarm.layoutManager=LinearLayoutManager(this.context)*/
-
     }
-
 }

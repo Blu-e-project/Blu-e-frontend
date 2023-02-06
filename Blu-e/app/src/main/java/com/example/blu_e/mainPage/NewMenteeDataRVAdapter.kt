@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.blu_e.data.NewMenteeData
+import com.example.blu_e.data.mainPage.NewMenteeData
 import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
 
 class NewMenteeDataRVAdapter(private val items: ArrayList<NewMenteeData> = arrayListOf()) :

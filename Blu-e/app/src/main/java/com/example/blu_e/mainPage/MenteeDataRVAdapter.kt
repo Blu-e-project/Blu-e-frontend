@@ -1,13 +1,11 @@
 package com.example.blu_e.mainPage
 
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.example.blu_e.data.MenteeData
+import com.example.blu_e.data.mainPage.MenteeData
 import com.example.blu_e.databinding.RecyclerviewMenteeCardBinding
 
 class MenteeDataRVAdapter(private val dataList: ArrayList<MenteeData> = arrayListOf()):

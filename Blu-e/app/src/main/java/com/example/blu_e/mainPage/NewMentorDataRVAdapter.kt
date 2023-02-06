@@ -2,15 +2,10 @@ package com.example.blu_e.mainPage
 
 import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.example.blu_e.data.MentorData
-import com.example.blu_e.data.NewMenteeData
-import com.example.blu_e.data.NewMentorData
-import com.example.blu_e.databinding.RecyclerviewMentorCardBinding
-import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
+import com.example.blu_e.data.mainPage.NewMentorData
 import com.example.blu_e.databinding.RecyclerviewNewMentorCardBinding
 
 class NewMentorDataRVAdapter(private val dataList: ArrayList<NewMentorData> = arrayListOf()):

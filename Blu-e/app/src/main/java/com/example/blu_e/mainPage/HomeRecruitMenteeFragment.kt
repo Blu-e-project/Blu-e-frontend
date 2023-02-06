@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.MenteeData
+import com.example.blu_e.data.mainPage.MenteeData
 import com.example.blu_e.databinding.FragmentHomeRecruitMenteeBinding
 
 class HomeRecruitMenteeFragment : Fragment() {

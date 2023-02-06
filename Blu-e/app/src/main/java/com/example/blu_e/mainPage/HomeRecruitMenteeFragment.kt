@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.MenteeData
+import com.example.blu_e.data.mainPage.MenteeData
 import com.example.blu_e.databinding.FragmentHomeRecruitMenteeBinding
 
 class HomeRecruitMenteeFragment : Fragment() {
@@ -29,6 +29,15 @@ class HomeRecruitMenteeFragment : Fragment() {
         viewBinding = FragmentHomeRecruitMenteeBinding.inflate(layoutInflater)
 
         return viewBinding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        //새로운 멘티가 있어요!
+        viewBinding.backHome.setOnClickListener {
+            mContext!!.openFragment(15)
+        }
     }
 
     override fun onResume() {

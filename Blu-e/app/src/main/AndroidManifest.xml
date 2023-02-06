@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -39,7 +40,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".login.MenteeInfoActivity"
+            android:name=".IntroActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -109,7 +110,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".login.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -123,7 +124,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".login.MenteeInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -151,7 +152,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".IntroActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

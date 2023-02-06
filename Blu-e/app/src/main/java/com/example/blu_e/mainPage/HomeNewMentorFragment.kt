@@ -1,7 +1,6 @@
 package com.example.blu_e.mainPage
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.NewMentorData
+import com.example.blu_e.data.mainPage.NewMentorData
 import com.example.blu_e.databinding.FragmentHomeNewMentorBinding
 
 class HomeNewMentorFragment : Fragment() {
@@ -19,6 +18,15 @@ class HomeNewMentorFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context as MainActivity
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        //새로운 멘티가 있어요!
+        viewBinding.backHome.setOnClickListener {
+            mContext!!.openFragment(15)
+        }
     }
 
     override fun onCreateView(

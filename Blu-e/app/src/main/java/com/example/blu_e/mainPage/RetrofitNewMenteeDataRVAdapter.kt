@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.data.mainPage.NewMenteeData
 import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
 
-class NewMenteeDataRVAdapter(private val items: ArrayList<NewMenteeData> = arrayListOf()) :
-    RecyclerView.Adapter<NewMenteeDataRVAdapter.ViewHolder>() {
+class RetrofitNewMenteeDataRVAdapter(private val items: ArrayList<NewMenteeData> = arrayListOf()) :
+    RecyclerView.Adapter<RetrofitNewMenteeDataRVAdapter.ViewHolder>() {
     //각 항목에 필요한 기능 구현, ViewHolder 반환
     inner class ViewHolder(private val viewBinding: RecyclerviewNewMenteeCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
@@ -18,14 +18,14 @@ class NewMenteeDataRVAdapter(private val items: ArrayList<NewMenteeData> = array
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewMenteeDataRVAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RetrofitNewMenteeDataRVAdapter.ViewHolder {
         val viewBinding = RecyclerviewNewMenteeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(viewBinding)
     }
 
     //항목 뷰에 데이터 연결
-    override fun onBindViewHolder(holder: NewMenteeDataRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RetrofitNewMenteeDataRVAdapter.ViewHolder, position: Int) {
         val model = items[position]
         holder.bind(model)
     }

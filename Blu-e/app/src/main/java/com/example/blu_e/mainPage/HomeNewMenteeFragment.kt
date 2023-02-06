@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.*
+import com.example.blu_e.data.mainPage.NewMenteeData
 import com.example.blu_e.databinding.FragmentHomeNewMenteeBinding
 
 class HomeNewMenteeFragment : Fragment() {
@@ -18,6 +18,15 @@ class HomeNewMenteeFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context as MainActivity
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        //새로운 멘티가 있어요!
+        viewBinding.backHome.setOnClickListener {
+            mContext!!.openFragment(14)
+        }
     }
 
     override fun onCreateView(

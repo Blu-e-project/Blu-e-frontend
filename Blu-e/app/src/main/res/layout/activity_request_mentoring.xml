@@ -357,17 +357,18 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
+
             <TextView
                 android:id="@+id/gender_tv"
-                android:layout_marginTop="7dp"
-                app:layout_constraintStart_toStartOf="@id/sub_tv"
-                app:layout_constraintTop_toBottomOf="@id/end_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="희망 멘티 성별:"
+                android:layout_marginTop="4dp"
+                android:text="희망 성별:"
+                android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                app:layout_constraintStart_toStartOf="@id/sub_tv"
+                app:layout_constraintTop_toBottomOf="@id/end_tv" />
 
             <TextView
                 android:id="@+id/gender"

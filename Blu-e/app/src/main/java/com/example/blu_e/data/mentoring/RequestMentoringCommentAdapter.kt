@@ -58,6 +58,11 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
             showWrittenDate.text = commentItem.createdAt.toString()
             commentContent.text = commentItem.contents
 
+            //+ 댓쓴이라면
+            updateCommentMenuv(1)
+            //+ 댓쓴이가 아니라면
+            updateCommentMenuv(0)
+
             if(acceptCheck == 1) { accpetButton.visibility = View.VISIBLE } else { accpetButton.visibility = View.GONE }
             if(completedCheck == 1) { completedText.visibility = View.VISIBLE } else { completedText.visibility = View.GONE }
             if(menuCheck == 1) { changeCommentMenu.visibility = View.VISIBLE } else { changeCommentMenu.visibility = View.GONE }
@@ -82,6 +87,15 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
 
                 //****여기가 관건.. 매칭 안 된 사람들 댓글 수락, 매칭 UI 없애기 -> listener(commentListData[position]) or 새로고침****
                 //매칭 됐다고 서버에 알리기 (댓글 다 삭제해 줄 예정)
+                /*api.requestMatching("", 0,0).enqueue(object: Callback<PickCommentResponse>{
+                    override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
+                        val body = response.body()?: return
+                        Log.d("수락 요청 결과", body.message)
+                    }
+                    override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
+
+                    }
+                })*/
             }
         }
         if(menuCheck == 1) {
@@ -92,7 +106,19 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 pop.setOnMenuItemClickListener {
                     if(it.itemId == R.id.deleteMenu) {
                         Log.d("댓글메뉴확인", "삭제될겁니다.")
-                        /*api.commentDelete(2, 2).enqueue(object: Callback<PickCommentResponse> {
+                        /*api.commentDeleteAsMentee(2, 2).enqueue(object: Callback<PickCommentResponse> {
+                            override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
+                                //성공시
+                                val body = response.body()?: return
+                                Log.d("댓글 삭제", body.message)
+                            }
+
+                            override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
+                                //실패시
+                                Log.d("댓글 삭제", "실패")
+                            }
+                        })*/
+                        /*api.commentDeleteAsMentor(2, 2).enqueue(object: Callback<PickCommentResponse> {
                             override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
                                 //성공시
                                 val body = response.body()?: return
@@ -108,7 +134,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                     else if(it.itemId == R.id.updateMenu) {
                             Log.d("댓글메뉴확인", "수정될겁니다.")
                             //수정 폼..필요?
-                            //api.commentUpdate(0,)
+                            //api.commentUpdateAsMentee(0,)
                     }
                     false
                 }

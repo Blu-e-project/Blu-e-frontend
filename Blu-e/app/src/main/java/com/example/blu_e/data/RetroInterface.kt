@@ -2,6 +2,8 @@ package com.example.blu_e.data
 
 import com.example.blu_e.CreateRecruitResponse
 import com.example.blu_e.LoginResponse
+import com.example.blu_e.MainApplication
+import com.example.blu_e.SignupResponse
 import com.example.blu_e.data.accusation.Report
 import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
@@ -12,6 +14,14 @@ import com.example.blu_e.data.mentoring.PickCommentResponse
 import com.example.blu_e.data.mentoring.PickResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+<<<<<<< HEAD
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
+import org.w3c.dom.Text
+=======
+>>>>>>> a5938d28d64693e753b99512faf2ddd5e7a159e8
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,6 +33,11 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+<<<<<<< HEAD
+import retrofit2.http.*
+import java.io.IOException
+=======
+>>>>>>> a5938d28d64693e753b99512faf2ddd5e7a159e8
 import java.time.LocalDate
 import retrofit2.http.GET as GET
 
@@ -76,23 +91,42 @@ interface RetroInterface {
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient(AppInterceptor()))
                 .build()
                 .create(RetroInterface::class.java)
+        }
+        fun okHttpClient(interceptor: AppInterceptor): OkHttpClient {
+            return OkHttpClient.Builder()
+                .addInterceptor(interceptor) // okHttp에 인터셉터 추가
+                .addInterceptor(HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }).build()
+        }
+        class AppInterceptor : Interceptor {
+            @Throws(IOException::class)
+            override fun intercept(chain: Interceptor.Chain) : Response = with(chain) {
+                val accessToken = MainApplication.prefs.getString("blu-e-access-token", "") // ViewModel에서 지정한 key로 JWT 토큰을 가져온다.
+                val newRequest = request().newBuilder()
+                    .addHeader("blu-e-access-token", accessToken) // 헤더에 authorization라는 key로 JWT 를 넣어준다.
+                    .build()
+                proceed(newRequest)
+            }
         }
     }
     //이 뒤는 이현 코드입니다!!!!!!!
     //회원 로그인
     @FormUrlEncoded
     @POST("/users/login")
-    fun login(@Field("id") id:String, @Field("password") pw:String): Call<User>
+    fun login(@Field("id") id:String, @Field("password") pw:String): Call<LoginResponse>
 
     //회원 가입
     @POST("/users/signup")
-    fun signUp1(@Field("name") name : String, @Field("nickname") nickname: String,
-                @Field("birth") birth: LocalDate, @Field("education") education: String,
-                @Field("department") department:String,
-                @Field("address") address: String,
-    @Field("introduce") introduce: String) :Call<User>
+    fun signUp(@Field("userId") userId: Int, @Field("id") id: String,@Field("password") password:String, @Field("phoneNum") phoneNum: String,
+               @Field("name") name : String, @Field("nickname") nickname: String,
+               @Field("birth") birth: LocalDate, @Field("education") education: String,
+               @Field("department") department:String?, @Field("grade") grade: Int?,
+               @Field("address") address: String?, @Field("introduce") introduce: String?, @Field("role")role:Int,
+               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: Text?) :Call<SignupResponse>
 
     //비밀번호 변경
 //    @FormUrlEncoded
@@ -103,8 +137,8 @@ interface RetroInterface {
     @POST("/mentoring/mentors")
     fun recruitMentor(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
                       @Field("area") area: String, @Field("mentoringMethod") mentoringMethod:String,
-                        @Field("mentorCareer") mentorCareer: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
-                        @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
+                      @Field("mentorCareer") mentorCareer: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
+                      @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
 
     @FormUrlEncoded
     @POST("/mentoring/mentees")
@@ -116,12 +150,12 @@ interface RetroInterface {
     //본인 인증을 위한 전화번호 보내기
     @FormUrlEncoded
     @POST("/users/send")
-    fun sendPhoneNum(@Field("phoneNum") phoneNum: String): Call<LoginResponse>
+    fun sendPhoneNum(@Field("phoneNum") phoneNum: String): Call<SignupResponse>
 
     //인증번호 보내기
     @FormUrlEncoded
     @POST("/users/verify")
-    fun verifyCode(@Field("phoneNumber") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<LoginResponse>
+    fun verifyCode(@Field("phoneNumber") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<SignupResponse>
 
     //---------------------------------------구만이 코드----------------------------------------------
     //8 멘토 전체 조회(최근 가입한 순)

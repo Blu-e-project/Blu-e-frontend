@@ -154,6 +154,10 @@ interface RetroInterface {
     @GET("/main/hot-mentees")
     fun findHotMentees(@Header("blu-e-access-token") token: String): Call<FindHotMenteeResponse>
 
+    //29 궁금한 문제 삭제
+    @DELETE("/problems/{problemId}")
+    fun deleteProblem(@Path("problemId") problemId: Int): Call<DeleteProblemResponse>
+
     //30 멘토 구인글 전체 조회(최신순)
     @GET("/mentoring/find-mentors")
     fun findRecruitMentors(@Header("blu-e-access-token") token: String): Call<FindRecruitMentorResponse>

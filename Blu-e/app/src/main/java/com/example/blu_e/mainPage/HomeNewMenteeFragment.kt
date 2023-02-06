@@ -20,6 +20,15 @@ class HomeNewMenteeFragment : Fragment() {
         mContext = context as MainActivity
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        //새로운 멘티가 있어요!
+        viewBinding.backHome.setOnClickListener {
+            mContext!!.openFragment(14)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

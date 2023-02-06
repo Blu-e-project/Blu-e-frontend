@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.example.blu_e.data.MentorData
+import com.example.blu_e.data.mainPage.MentorData
 import com.example.blu_e.databinding.RecyclerviewMentorCardBinding
 
 /*
@@ -58,7 +58,7 @@ class MentorDataRVAdapter(private val dataList: ArrayList<MentorData> = arrayLis
     RecyclerView.Adapter<MentorDataRVAdapter.DataViewHolder>() {
     inner class DataViewHolder(private val viewBinding:RecyclerviewMentorCardBinding) : RecyclerView.ViewHolder(viewBinding.root) {
         @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(data:MentorData) { //viewHolder가 어떤걸 표시할 때 호출 시켜주는함수 data class를 인자값으로, 뷰 설정
+        fun bind(data: MentorData) { //viewHolder가 어떤걸 표시할 때 호출 시켜주는함수 data class를 인자값으로, 뷰 설정
             viewBinding.mentorCardTitle.text = data.title
             viewBinding.mentorCardDesiredSubject.text = data.subject
             viewBinding.mentorCardDesiredStartPeriod.text = data.periodStart

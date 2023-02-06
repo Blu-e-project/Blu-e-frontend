@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.MentorData
+import com.example.blu_e.data.mainPage.MentorData
 import com.example.blu_e.databinding.FragmentHomeRecruitMentorBinding
 
 class HomeRecruitMentorFragment : Fragment() {

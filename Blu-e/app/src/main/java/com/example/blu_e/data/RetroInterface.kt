@@ -5,7 +5,9 @@ import com.example.blu_e.LoginResponse
 import com.example.blu_e.data.accusation.Report
 import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
-import com.example.blu_e.data.mentoring.PickMemberComment
+import com.example.blu_e.data.mentoring.Matching
+import com.example.blu_e.data.mentoring.PickCommentResponse
+import com.example.blu_e.data.mentoring.PickResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Call
@@ -39,23 +41,29 @@ interface RetroInterface {
     @POST("/service/accusations/writing")
     fun reportMember(@Header("blu-e-access-token") token: String, @Body report: Report) : Call<Report>
 
-    //request mentoring comments read
-    @GET
-    fun requestAllComments(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int): Call<ArrayList<PickMemberComment>>
+    //특정 멘토 구인글 조회
+    @GET("/mentoring/mentors/{pickId}")
+    fun requestAPostOfMento(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickResponse>
 
-    //request mentoring comments create
-    @POST
-    fun commentCreate(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Body pickMemberComment: PickMemberComment): Call<PickMemberComment>
+    //멘토 구하는 글의 댓글 조회
+    @GET("/mentoring/mentors/{pickId}/comments")
+    fun requestComments(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickCommentResponse>
+
+    //멘토 구하는 글에 댓글 생성
+    @POST("/mentoring/mentors/{pickId}/comments")
+    fun commentWriting(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int, @Field("contents") contents: String): Call<PickCommentResponse>
+
+    //+ 수락 버튼 클릭 시 -> 매칭 테이블에 insert하는 부분?
     @POST
     fun requestMatching(@Query("pickMenteeId") pickMenteeId: Int, @Query("pickMentorId") pickMentorId: Int): Call<Matching>
 
-    //request mentoring comments update
-    @PUT
-    fun commentUpdate(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Body pickMemberComment: PickMemberComment): Call<PickMemberComment>
+    //멘토 구하는 글의 댓글 수정 (하려면 폼 필요)
+    @PATCH("/mentoring/mentors/{pickId}/comments/{pickCommentId}")
+    fun commentUpdate(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int, @Field("contents") contents: String): Call<PickCommentResponse>
 
-    //request mentoring comments delete
-    @DELETE
-    fun commentDelete(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Query("pickMemberComment") pickMemberComment: Int): Call<PickMemberComment>
+    //멘토 구하는 글의 댓글 삭제
+    @DELETE("/problems/{problemId}/solutions/{solutionId}")
+    fun commentDelete(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<PickCommentResponse>
 
     companion object {
         private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //

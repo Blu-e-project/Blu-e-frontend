@@ -1,11 +1,17 @@
 package com.example.blu_e.login
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.example.blu_e.LoginResponse
 import com.example.blu_e.R
 import com.example.blu_e.data.RetroInterface
@@ -13,17 +19,21 @@ import com.example.blu_e.databinding.ActivityMenteeInfoBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class MenteeInfoActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeInfoBinding
-//    private val api = RetroInterface.create()
+    //    private val api = RetroInterface.create()
     @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMenteeInfoBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+
 
         //뒤로가기(멘티 회원가입 페이지로)
         viewBinding.backToCenterD.setOnClickListener {
@@ -35,12 +45,19 @@ class MenteeInfoActivity : AppCompatActivity() {
             val nick = viewBinding.nickname.text.toString()
 
         }
-        viewBinding.signUpBtn.setOnClickListener {
-            //비번과 비번확인이 같은지 확인
-            if(viewBinding.userPw.text.toString() == viewBinding.checkPw.text.toString()) {
-                //체크했는지 안했는지 확인
-                if (viewBinding.agreeCb.isChecked) {
-                    //Log.d("체크", "성공")
+        //갤러리 사진 선택
+        viewBinding.profileBtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            Log.d("이미지", "성공")
+            activityResult.launch(intent)
+        }
+            viewBinding.signUpBtn.setOnClickListener {
+                //비번과 비번확인이 같은지 확인
+                if (viewBinding.userPw.text.toString() == viewBinding.checkPw.text.toString()) {
+                    //체크했는지 안했는지 확인
+                    if (viewBinding.agreeCb.isChecked) {
+                        //Log.d("체크", "성공")
 //                    val id = viewBinding.userId.text.toString()
 //                    val password = viewBinding.userPw.text.toString()
 //                    //본인인증에서 번호 가져옴
@@ -85,12 +102,25 @@ class MenteeInfoActivity : AppCompatActivity() {
 //                            }
 //                        })
 
+                    }
+                }
+                //비번과 비번확인이 같지 않으면
+                else {
+
                 }
             }
-            //비번과 비번확인이 같지 않으면
-            else{
-
-            }
         }
+    private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+
+        if(it.resultCode == RESULT_OK && it.data != null){
+            //값 담기
+            val uri = it.data!!.data
+            Log.d("이미지", "${uri}")
+            //화면에 보여주기
+            Glide.with(this)
+                .load(uri)
+                .into(viewBinding.profile)
     }
+}
+
 }

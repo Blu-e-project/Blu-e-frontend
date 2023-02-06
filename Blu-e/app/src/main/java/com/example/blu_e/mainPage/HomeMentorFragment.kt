@@ -1,28 +1,28 @@
 package com.example.blu_e.mainPage
-
+//새로운 멘티가 있어요!
+//궁금한 문제가 있어요!
+//멘토를 구하고 있어요!
+//멘티를 구해요
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.customercenter.FaqDetailFragment
-import com.example.blu_e.customercenter.QuestionDetailFragment
-import com.example.blu_e.customercenter.QuestionDetailFragment.Companion.newInstance
 import com.example.blu_e.data.*
 import com.example.blu_e.databinding.FragmentHomeMentorBinding
-import com.example.blu_e.databinding.FragmentHomeRecruitMentorBinding
+
 
 class HomeMentorFragment : Fragment() {
     private lateinit var mContext: MainActivity
     private lateinit var viewBinding: FragmentHomeMentorBinding
-    private lateinit var questionList: ArrayList<QuestionData>
-    private lateinit var menteeList: ArrayList<MenteeData>
     private lateinit var questionAdapter: QuestionDataRVAdapter //궁금한 문제가 있어요!
-    private lateinit var menteeAdapter: MenteeDataRVAdapter //새로운 멘티가 있어요!
+    private lateinit var menteeAdapter: NewMenteeDataRVAdapter //새로운 멘티가 있어요!
+    private lateinit var mentorAdapter: MentorDataRVAdapter //멘토를 구하고 있어요!
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -33,43 +33,61 @@ class HomeMentorFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ):  View? {
-        viewBinding = FragmentHomeMentorBinding.inflate(inflater, container, false)
+    ): View? {
+        viewBinding = FragmentHomeMentorBinding.inflate(layoutInflater)
+        Log.e("홈", "들어왔나?")
 
         return viewBinding.root
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         //새로운 멘티가 있어요!
-        menteeList.apply {
-            add(MenteeData("금림"))
-            add(MenteeData("엘라"))
-            add(MenteeData("맨디"))
-            add(MenteeData("주디"))
-            add(MenteeData("융"))
-            add(MenteeData("시니"))
-            add(MenteeData("쫑"))
-            add(MenteeData("제이드"))
-            add(MenteeData("니케"))
-            add(MenteeData("그리드"))
+        viewBinding.btnMenteeAdd.setOnClickListener {
+            mContext!!.openFragment(6)
         }
-
-        menteeAdapter = MenteeDataRVAdapter(menteeList)
-        viewBinding.recyclerViewNewMentee.adapter = menteeAdapter
-        viewBinding.recyclerViewNewMentee.layoutManager =
-            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
-        menteeAdapter.setItemClickListener(object : MenteeDataRVAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
-                var menteeFragment = HomeNewMenteeFragment.newInstance(menteeList, position)
-                mContext.supportFragmentManager.beginTransaction().replace(
-                    mContext.viewBinding.containerFragment.id, menteeFragment
-                ).commit()
-            }
-        })
-/*
         //궁금한 문제가 있어요!
+        viewBinding.btnQuestionAdd.setOnClickListener {
+            mContext!!.openFragment(11)
+        }
+        //멘토를 구하고 있어요!
+        viewBinding.btnMentorAdd.setOnClickListener {
+            mContext!!.openFragment(7)
+        }
+        //멘티를 구해요
+        viewBinding.btnMenteeInfo.setOnClickListener {
+            mContext!!.openFragment(8)
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+
+        //새로운 멘티가 있어요!
+        val newMenteeList: ArrayList<NewMenteeData> = arrayListOf()
+        Log.e("홈", "데이터 들어옴?")
+
+        newMenteeList.apply {
+            add(NewMenteeData("금림"))
+            add(NewMenteeData("엘라"))
+            add(NewMenteeData("맨디"))
+            add(NewMenteeData("주디"))
+            add(NewMenteeData("융"))
+            add(NewMenteeData("시니"))
+            add(NewMenteeData("쫑"))
+            add(NewMenteeData("제이드"))
+            add(NewMenteeData("니케"))
+            add(NewMenteeData("그리드"))
+        }
+        menteeAdapter = NewMenteeDataRVAdapter(newMenteeList)
+        viewBinding.recyclerViewHomeNewMentee.adapter = menteeAdapter
+        viewBinding.recyclerViewHomeNewMentee.layoutManager =
+            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        Log.e("홈", "어댑터 연결됨?")
+
+        //궁금한 문제가 있어요!
+        val questionList: ArrayList<QuestionData> = arrayListOf()
+
         questionList.apply {
             add(QuestionData("코딩", "이미지 첨부", "반복문(for문)", "조건이 왜 위와 같이 나오는지 모르겠어요!"))
             add(QuestionData("수학", "이미지 첨부", "확률과 통계", "이 문제가 왜 독립시행인지 이해가 안 돼요"))
@@ -83,31 +101,25 @@ class HomeMentorFragment : Fragment() {
         viewBinding.recyclerViewQuestion.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
 
-        questionAdapter.setItemClickListener(object : QuestionDataRVAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
-                var questionFragment = HomeQuestionFragment.newInstance(questionList, position)
-                mContext.supportFragmentManager.beginTransaction().replace(
-                    mContext.viewBinding.containerFragment.id, questionFragment
-                ).commit()
-            }
-        })
+        //멘토를 구하고 있어요!
+        val menteeList: ArrayList<MentorData> = arrayListOf()
 
-*/
-
-/*
-        viewBinding.btnMenteeAdd.setOnClickListener{
-            Log.d("왜않되", "1")
-            mContext!!.openFragment(6)
+        menteeList.apply {
+            add(MentorData("매주 화요일에 멘토링 원해요", "국어", "23.01", "23.03", "온라인", "서울 성북구"))
+            add(MentorData("코딩이 너무 어려워요", "코딩", "23.01", "23.03", "온라인", "서울 금천구"))
+            add(MentorData("다정하고 친절하신 선생님...", "수학", "23.01", "23.03", "온라인", "서울 은평구"))
+            add(MentorData("비문학 쉽게 풀고 싶어요", "국어", "23.01", "23.03", "온라인", "서울 종로구"))
+            add(MentorData("매주 목요일에 멘토링 원해요", "영어", "23.01", "23.03", "온라인", "서울 강남구"))
+            add(MentorData("매주 화요일에 멘토링 원해요", "국어", "23.01", "23.03", "온라인", "서울 성북구"))
+            add(MentorData("코딩이 너무 어려워요", "코딩", "23.01", "23.03", "온라인", "서울 금천구"))
+            add(MentorData("다정하고 친절하신 선생님...", "수학", "23.01", "23.03", "온라인", "서울 은평구"))
+            add(MentorData("비문학 쉽게 풀고 싶어요", "국어", "23.01", "23.03", "온라인", "서울 종로구"))
+            add(MentorData("매주 목요일에 멘토링 원해요", "영어", "23.01", "23.03", "온라인", "서울 강남구"))
         }
 
-        viewBinding.btnQuestionAdd.setOnClickListener {
-            Log.d("왜않되", "1")
-            mContext!!.openFragment(7)
-        }
-
-        viewBinding.btnMenteeInfo.setOnClickListener {
-            mContext!!.openFragment(8)
-        }
-*/
+        mentorAdapter = MentorDataRVAdapter(menteeList)
+        viewBinding.recyclerViewMentor.adapter = mentorAdapter
+        viewBinding.recyclerViewMentor.layoutManager =
+            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
     }
 }

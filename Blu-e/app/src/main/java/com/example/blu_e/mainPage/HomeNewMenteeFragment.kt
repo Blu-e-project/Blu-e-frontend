@@ -11,7 +11,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.blu_e.MainActivity
 import com.example.blu_e.R
 import com.example.blu_e.customercenter.FaqDetailFragment
-import com.example.blu_e.data.customercenter.FaqData
+import com.example.blu_e.data.FaqData
 import com.example.blu_e.data.MenteeData
 import com.example.blu_e.databinding.FragmentHomeNewMenteeBinding
 

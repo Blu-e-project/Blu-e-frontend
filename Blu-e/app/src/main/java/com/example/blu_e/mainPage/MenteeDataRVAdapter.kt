@@ -1,45 +1,48 @@
 package com.example.blu_e.mainPage
 
+import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.data.MenteeData
 import com.example.blu_e.databinding.RecyclerviewMenteeCardBinding
 
-class MenteeDataRVAdapter(private val items: ArrayList<MenteeData>) : RecyclerView.Adapter<MenteeDataRVAdapter.ViewHolder>() {
-    //각 항목에 필요한 기능 구현, ViewHolder 반환
-    inner class ViewHolder(private val viewBinding: RecyclerviewMenteeCardBinding):
-        RecyclerView.ViewHolder(viewBinding.root) {
+class MenteeDataRVAdapter(private val dataList: ArrayList<MenteeData> = arrayListOf()):
+    RecyclerView.Adapter<MenteeDataRVAdapter.DataViewHolder>() {
+    inner class DataViewHolder(private val viewBinding: RecyclerviewMenteeCardBinding) : RecyclerView.ViewHolder(viewBinding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
 
+        //viewHolder가 어떤걸 표시할 때 호출 시켜주는함수 data class를 인자값으로, 뷰 설정
         fun bind(data: MenteeData) {
-            viewBinding.menteeName.text = data.name
+            viewBinding.menteeCardTitle.text = data.title
+            viewBinding.menteeCardDesiredSubject.text = data.subject
+            viewBinding.menteeCardDesiredStartPeriod.text = data.periodStart
+            viewBinding.menteeCardDesiredEndPeriod.text = data.periodEnd
+            viewBinding.menteeCardMethod.text = data.mentoringMethod
+            viewBinding.menteeCardArea.text = data.area
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenteeDataRVAdapter.ViewHolder {
-        val viewBinding = RecyclerviewMenteeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
+        val viewBinding = RecyclerviewMenteeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false) //attachToParent 부모에 붙이겠니?? true하면 오류, layoutInflater를 바로 가져올 수 없어서 부모의 context정보를 이용
+        //main에 viewbinding과 하는 짓 같음  layoutInflate를 바로 가져올 수 없어서 부모의 context정보 이용
 
-        return ViewHolder(viewBinding)
+        return DataViewHolder(viewBinding)
     }
 
-    //항목 뷰에 데이터 연결
-    override fun onBindViewHolder(holder: MenteeDataRVAdapter.ViewHolder, position: Int) {
-        val model = items[position]
-        holder.bind(model)
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+        holder.bind(dataList[position])
     }
 
-    //아이템 개수
-    override fun getItemCount(): Int {
-        return items.size
+    override fun getItemCount(): Int = dataList.size
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
-    interface ItemClickListener {
-        fun onClick(view: View, position: Int)
-    }
-
-    private lateinit var itemClickListener: ItemClickListener
-    fun setItemClickListener(itemClickListener: ItemClickListener) {
-        this.itemClickListener = itemClickListener
-    }
 }
+

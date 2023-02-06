@@ -4,7 +4,11 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.example.blu_e.LoginResponse
 import com.example.blu_e.R
 import com.example.blu_e.data.RetroInterface
@@ -29,10 +33,18 @@ class MentorInfoActivity : AppCompatActivity() {
             var intent = Intent(this, MentorSignUpActivity::class.java)
             startActivity(intent)
         }
+
         //닉네임 중복확인
         viewBinding.checkNicknameBtn.setOnClickListener {
             val nick = viewBinding.nickname.text.toString()
 
+        }
+        //갤러리 사진 선택
+        viewBinding.profileBtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            Log.d("이미지", "성공")
+            activityResult.launch(intent)
         }
         viewBinding.signUpBtn.setOnClickListener {
             //비번과 비번확인이 같은지 확인
@@ -90,6 +102,20 @@ class MentorInfoActivity : AppCompatActivity() {
             else{
                 
             }
+        }
+    }
+
+    private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) {
+
+        if(it.resultCode == RESULT_OK && it.data != null){
+            //값 담기
+            val uri = it.data!!.data
+            Log.d("이미지", "${uri}")
+            //화면에 보여주기
+            Glide.with(this)
+                .load(uri)
+                .into(viewBinding.profile)
         }
     }
 }

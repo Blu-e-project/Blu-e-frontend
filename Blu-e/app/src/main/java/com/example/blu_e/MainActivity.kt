@@ -14,15 +14,13 @@ import com.example.blu_e.customercenter.CenterFragment
 import com.example.blu_e.customercenter.FaqDetailFragment
 import com.example.blu_e.customercenter.QuestionFormFragment
 import com.example.blu_e.databinding.ActivityMainBinding
-import com.example.blu_e.mainPage.HomeNewMenteeFragment
-import com.example.blu_e.mainPage.HomeRecruitMentorFragment
+import com.example.blu_e.mainPage.*
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
 class MainActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMainBinding
     var profileImageBase64: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .replace(viewBinding.containerFragment.id, HomeFragment())
+            .replace(viewBinding.containerFragment.id, HomeMentorFragment())
             .commitAllowingStateLoss()
 
         viewBinding.navBottom.run {
@@ -39,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.menu_home -> {
                         supportFragmentManager
                             .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, HomeFragment())
+                            .replace(viewBinding.containerFragment.id, HomeMentorFragment())
                             .commitAllowingStateLoss()
                     }
                     R.id.menu_group -> {
@@ -79,12 +77,10 @@ class MainActivity : AppCompatActivity() {
             else {
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(viewBinding.containerFragment.id, HomeFragment())
+                    .replace(viewBinding.containerFragment.id, HomeMentorFragment())
                     .commitAllowingStateLoss()
             }
-
         }
-
     }
 
     //Fragment 화면 전환
@@ -98,9 +94,14 @@ class MainActivity : AppCompatActivity() {
             5 -> transaction.replace(viewBinding.containerFragment.id, MyPageFragment())
 
             //main page
-            6 -> transaction.replace(viewBinding.containerFragment.id, HomeNewMenteeFragment())
-            7 -> transaction.replace(viewBinding.containerFragment.id, HomeRecruitMentorFragment())
-            //8 -> transaction.replace(viewBinding.containerFragment.id, RecruitMentorFragment())
+            6 -> transaction.replace(viewBinding.containerFragment.id, HomeNewMenteeFragment()) //새로운 멘티가 있어요
+            7 -> transaction.replace(viewBinding.containerFragment.id, HomeRecruitMentorFragment()) //멘토를 구하고 있어요
+            //8 -> transaction.replace(viewBinding.containerFragment.id, RecruitMenteeFragment()) //멘티 구인글
+            9 -> transaction.replace(viewBinding.containerFragment.id, HomeNewMentorFragment()) //새로운 멘토가 있어요
+            10 -> transaction.replace(viewBinding.containerFragment.id, HomeRecruitMenteeFragment()) //멘티를 구하고 있어요
+            11 -> transaction.replace(viewBinding.containerFragment.id, HomeQuestionFragment()) //궁금한 문제가 있어요
+            //12 -> transaction.replace(viewBinding.containerFragment.id, ) //궁금한 문제가 있어요_문제 등록하기
+            //13 -> transaction.replace(viewBinding.containerFragment.id, ) //멘토 구인글
         }
         transaction.addToBackStack(null);
         transaction.commit()

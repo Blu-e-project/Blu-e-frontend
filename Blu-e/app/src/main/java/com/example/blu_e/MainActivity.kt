@@ -102,6 +102,8 @@ class MainActivity : AppCompatActivity() {
             11 -> transaction.replace(viewBinding.containerFragment.id, HomeQuestionFragment()) //궁금한 문제가 있어요
             //12 -> transaction.replace(viewBinding.containerFragment.id, ) //궁금한 문제가 있어요_문제 등록하기
             //13 -> transaction.replace(viewBinding.containerFragment.id, ) //멘토 구인글
+            14 -> transaction.replace(viewBinding.containerFragment.id, HomeMentorFragment()) //멘토 홈
+            15 -> transaction.replace(viewBinding.containerFragment.id, HomeMenteeFragment()) //멘티 홈
         }
         transaction.addToBackStack(null);
         transaction.commit()

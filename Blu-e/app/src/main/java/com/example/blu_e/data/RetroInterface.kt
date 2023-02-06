@@ -7,9 +7,7 @@ import com.example.blu_e.SignupResponse
 import com.example.blu_e.data.accusation.Report
 import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
-import com.example.blu_e.data.mentoring.PickMemberComment
 import com.example.blu_e.data.mentoring.Matching
-import com.example.blu_e.data.mentoring.PickComment
 import com.example.blu_e.data.mentoring.PickCommentResponse
 import com.example.blu_e.data.mentoring.PickResponse
 import com.google.gson.Gson
@@ -197,6 +195,10 @@ interface RetroInterface {
     //22 멘티 구인글 부분 조회(조회수 많은 순 5개)
     @GET("/main/hot-mentees")
     fun findHotMentees(@Header("blu-e-access-token") token: String): Call<FindHotMenteeResponse>
+
+    //29 궁금한 문제 삭제
+    @DELETE("/problems/{problemId}")
+    fun deleteProblem(@Path("problemId") problemId: Int): Call<DeleteProblemResponse>
 
     //30 멘토 구인글 전체 조회(최신순)
     @GET("/mentoring/find-mentors")

@@ -55,7 +55,7 @@ class MyPageFragment : Fragment() {
         adapter.setItemClickListener (object : ListInMyPageAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 val transaction = mContext.supportFragmentManager.beginTransaction()
-                val intent = Intent(mContext, MentoringHistoryActivity::class.java)
+                val intent = Intent(mContext, MentorHistoryActivity::class.java)
                 when(position) {
                     0 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorChangeInfoFragment()).commit() //"멘토 정보 수정"
                     1 -> startActivity(intent)

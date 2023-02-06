@@ -27,7 +27,11 @@ import java.time.format.DateTimeFormatter
 
 class MenteeInfoActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeInfoBinding
+<<<<<<< HEAD
 //        private val api = RetroInterface.create()
+=======
+    //    private val api = RetroInterface.create()
+>>>>>>> a5938d28d64693e753b99512faf2ddd5e7a159e8
     @RequiresApi(Build.VERSION_CODES.O)
 
     override fun onCreate(savedInstanceState: Bundle?) {

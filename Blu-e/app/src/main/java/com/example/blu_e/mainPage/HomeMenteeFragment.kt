@@ -10,16 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.customercenter.FaqDetailFragment
-import com.example.blu_e.customercenter.QuestionDetailFragment
-import com.example.blu_e.customercenter.QuestionDetailFragment.Companion.newInstance
-import com.example.blu_e.data.*
+import com.example.blu_e.data.mainPage.MenteeData
+import com.example.blu_e.data.mainPage.NewMentorData
 import com.example.blu_e.databinding.FragmentHomeMenteeBinding
-import com.example.blu_e.databinding.FragmentHomeMentorBinding
-import com.example.blu_e.databinding.FragmentHomeRecruitMentorBinding
 
 class HomeMenteeFragment : Fragment() {
     private lateinit var mContext: MainActivity

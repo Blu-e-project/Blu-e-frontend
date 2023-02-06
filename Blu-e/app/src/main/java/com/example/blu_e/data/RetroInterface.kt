@@ -5,32 +5,41 @@ import com.example.blu_e.LoginResponse
 import com.example.blu_e.MainApplication
 import com.example.blu_e.SignupResponse
 import com.example.blu_e.data.accusation.Report
-import com.example.blu_e.data.customercenter.Answer
-import com.example.blu_e.data.customercenter.Question
 import com.example.blu_e.data.customercenter.QuestionResponse
+import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.data.mentoring.PickMemberComment
+import com.example.blu_e.data.mentoring.Matching
+import com.example.blu_e.data.mentoring.PickComment
+import com.example.blu_e.data.mentoring.PickCommentResponse
+import com.example.blu_e.data.mentoring.PickResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+<<<<<<< HEAD
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.w3c.dom.Text
+=======
+>>>>>>> a5938d28d64693e753b99512faf2ddd5e7a159e8
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import retrofit2.http.Body
 import retrofit2.http.DELETE
-import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+<<<<<<< HEAD
 import retrofit2.http.*
 import java.io.IOException
+=======
+>>>>>>> a5938d28d64693e753b99512faf2ddd5e7a159e8
 import java.time.LocalDate
+import retrofit2.http.GET as GET
 
 interface RetroInterface {
     //작성한 QnA 조회
@@ -49,23 +58,29 @@ interface RetroInterface {
     @POST("/service/accusations/writing")
     fun reportMember(@Header("blu-e-access-token") token: String, @Body report: Report) : Call<Report>
 
-    //request mentoring comments read
-    @GET
-    fun requestAllComments(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int): Call<ArrayList<PickMemberComment>>
+    //특정 멘토 구인글 조회
+    @GET("/mentoring/mentors/{pickId}")
+    fun requestAPostOfMento(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickResponse>
 
-    //request mentoring comments create
-    @POST
-    fun commentCreate(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Body pickMemberComment: PickMemberComment): Call<PickMemberComment>
+    //멘토 구하는 글의 댓글 조회
+    @GET("/mentoring/mentors/{pickId}/comments")
+    fun requestComments(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickCommentResponse>
+
+    //멘토 구하는 글에 댓글 생성
+    @POST("/mentoring/mentors/{pickId}/comments")
+    fun commentWriting(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int, @Field("contents") contents: String): Call<PickCommentResponse>
+
+    //+ 수락 버튼 클릭 시 -> 매칭 테이블에 insert하는 부분?
     @POST
     fun requestMatching(@Query("pickMenteeId") pickMenteeId: Int, @Query("pickMentorId") pickMentorId: Int): Call<Matching>
 
-    //request mentoring comments update
-    @PUT
-    fun commentUpdate(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Body pickMemberComment: PickMemberComment): Call<PickMemberComment>
+    //멘토 구하는 글의 댓글 수정 (하려면 폼 필요)
+    @PATCH("/mentoring/mentors/{pickId}/comments/{pickCommentId}")
+    fun commentUpdate(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int, @Field("contents") contents: String): Call<PickCommentResponse>
 
-    //request mentoring comments delete
-    @DELETE
-    fun commentDelete(@Query("userId") userId: Int, @Query("pickMemberId") pickMemberId: Int, @Query("pickMemberComment") pickMemberComment: Int): Call<PickMemberComment>
+    //멘토 구하는 글의 댓글 삭제
+    @DELETE("/problems/{problemId}/solutions/{solutionId}")
+    fun commentDelete(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<PickCommentResponse>
 
     companion object {
         private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //
@@ -143,13 +158,51 @@ interface RetroInterface {
     fun verifyCode(@Field("phoneNumber") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<SignupResponse>
 
     //---------------------------------------구만이 코드----------------------------------------------
-    //멘토 메인화면
-    //새로운 멘티가 있어요!
+    //8 멘토 전체 조회(최근 가입한 순)
+    @GET("/main/mentors")
+    fun findMentors(@Header("blu-e-access-token") token: String): Call<FindMentorsResponse>
 
-    //멘토를 구하고 있어요!
+    //9 멘티 전체 조회(최근 가입한 순)
+    @GET("/main/mentees")
+    fun findMentees(@Header("blu-e-access-token") token: String): Call<FindMenteesResponse>
 
-    //궁금한 문제가 있어요!
+    //10 특정 멘토 정보 조회
+    @GET("/main/mentors/{userId}")
+    fun findMentorID(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int): Call<FindMentorIdResponse>
 
-    //궁금한 문제가 있어요!_세부
-    //멘티 구인글
+    //11 특정 멘티 정보 조회
+    @GET("/main/mentees/{userId}")
+    fun findMenteeID(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int): Call<FindMenteeIdResponse>
+
+    //12 멘토 부분 조회(최신 5명)
+    @GET("/main/new-mentors")
+    fun findFiveMentor(@Header("blu-e-access-token") token:String): Call<FindFiveMentorResponse>
+
+    //13 멘티 부분 조회(최신 5명)
+    @GET("/main/new-mentees")
+    fun findFiveMentee(@Header("blu-e-access-token") token:String): Call<FindFiveMenteeResponse>
+
+    //15 문제 전체 조회(최신순)
+    @GET("/problems")
+    fun findProblems(@Header("blu-e-access-token") token: String): Call<AllProblemsResponse>
+
+    //16 특정 문제 조회
+    @GET("/problems/{problemId}")
+    fun findProblemId(@Header("blu-e-access-token") token: String, @Path("problemId") problemId: Int): Call<FindProblemResponse>
+
+    //21 멘토 구인글 부분 조회(조회수 많은 순 5개)
+    @GET("/main/hot-mentors")
+    fun findHotMentors(@Header("blu-e-access-token") token: String): Call<FindHotMentorResponse>
+
+    //22 멘티 구인글 부분 조회(조회수 많은 순 5개)
+    @GET("/main/hot-mentees")
+    fun findHotMentees(@Header("blu-e-access-token") token: String): Call<FindHotMenteeResponse>
+
+    //30 멘토 구인글 전체 조회(최신순)
+    @GET("/mentoring/find-mentors")
+    fun findRecruitMentors(@Header("blu-e-access-token") token: String): Call<FindRecruitMentorResponse>
+
+    //31 멘티 구인글 전체 조회(최신순)
+    @GET("/mentoring/find-mentees")
+    fun findRecruitMentee(@Header("blu-e-access-token") token: String): Call<FindRecruitMenteeResponse>
 }

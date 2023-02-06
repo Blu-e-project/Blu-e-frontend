@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.blu_e.LoginResponse
 import com.example.blu_e.MainActivity
+import com.example.blu_e.MainApplication
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ActivityLoginBinding
 import retrofit2.Call
@@ -19,12 +20,12 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityLoginBinding
-    //private val api = RetroInterface.create()
+  //  private val api = RetroInterface.create()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-
+        var jwt: String?
         
         //로그인 기능만 구현함 실패시 ui 수정 필요
         viewBinding.loginBtn.setOnClickListener {
@@ -42,9 +43,12 @@ class LoginActivity : AppCompatActivity() {
 //                    val responseData = response.body()
 //                    if (responseData != null) {
 //                        //성공하면
-//                        if(responseData.code == 1000)
+//                        if(responseData.code == 1000) {
+//                            jwt = responseData.result[0].jwt
+//                            MainApplication.prefs.setString("blu-e-access-token", jwt!!)
 //                            startActivity(intent)
-//                        //비밀번호를 입력해주세요
+//                        }
+//                        //비밀번호를 입력해주세요x
 //                        else if (responseData.code == 2017){
 //                            viewBinding.pwMsg.text = responseData.message
 //                            viewBinding.userPw.backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))

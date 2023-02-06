@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.example.blu_e.LoginResponse
 import com.example.blu_e.R
+import com.example.blu_e.SignupResponse
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ActivityMenteeInfoBinding
 import retrofit2.Call
@@ -26,7 +27,7 @@ import java.time.format.DateTimeFormatter
 
 class MenteeInfoActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeInfoBinding
-    //    private val api = RetroInterface.create()
+//        private val api = RetroInterface.create()
     @RequiresApi(Build.VERSION_CODES.O)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,11 +40,6 @@ class MenteeInfoActivity : AppCompatActivity() {
         viewBinding.backToCenterD.setOnClickListener {
             var intent = Intent(this, MenteeSignUpActivity::class.java)
             startActivity(intent)
-        }
-        //닉네임 중복확인
-        viewBinding.checkNicknameBtn.setOnClickListener {
-            val nick = viewBinding.nickname.text.toString()
-
         }
         //갤러리 사진 선택
         viewBinding.profileBtn.setOnClickListener {
@@ -58,29 +54,30 @@ class MenteeInfoActivity : AppCompatActivity() {
                     //체크했는지 안했는지 확인
                     if (viewBinding.agreeCb.isChecked) {
                         //Log.d("체크", "성공")
-//                    val id = viewBinding.userId.text.toString()
-//                    val password = viewBinding.userPw.text.toString()
-//                    //본인인증에서 번호 가져옴
-//                    val phone = "0101"
-//                    val name = viewBinding.name.text.toString()
-//                    val nickname = viewBinding.nickname.toString()
-//                    //string ->LocalDate로 바꿔야함
-//                    val birthStr = viewBinding.birth.text.toString()
-//                    val birth = LocalDate.parse(birthStr, DateTimeFormatter.ISO_DATE)
-//                    val education = viewBinding.education.text.toString()
-//                    val grade = viewBinding.year.text.toString().toInt()
-//                    val address = viewBinding.addr.text.toString()
-//                    val introduce = viewBinding.introduceMent.text.toString()
-//                    val role = 2
-//                    val createAt = LocalDate.now()
-//                    val updateAt = LocalDate.now()
-//                    val status = 1
-//                    //val userImg = viewBinding.
-//                    api.signup(id, password,phone, name,nickname,birth,education,null, grade,address, introduce,role,createAt,updateAt,status, null)
-//                        .enqueue(object : Callback<LoginResponse> {
+                    val id = viewBinding.userId.text.toString()
+                    val password = viewBinding.userPw.text.toString()
+                    //본인인증에서 번호 가져옴
+                    val phone = "0101"
+                    val name = viewBinding.name.text.toString()
+                    val nickname = viewBinding.nickname.toString()
+                    //string ->LocalDate로 바꿔야함
+                    val birthStr = viewBinding.birth.text.toString()
+                    val birth = LocalDate.parse(birthStr, DateTimeFormatter.ISO_DATE)
+                    val education = viewBinding.education.text.toString()
+                    val grade = viewBinding.year.text.toString().toInt()
+                    val address = viewBinding.addr.text.toString()
+                    val introduce = viewBinding.introduceMent.text.toString()
+                    val role = 2
+                    val createAt = LocalDate.now()
+                    val updateAt = LocalDate.now()
+                    val status = 1
+                        val userId = 1
+                    //val userImg = viewBinding.
+//                    api.signUp(userId, id, password,phone, name,nickname,birth,education,null, grade,address, introduce,role,createAt,updateAt,status, null)
+//                        .enqueue(object : Callback<SignupResponse> {
 //                            override fun onResponse(
-//                                call: Call<LoginResponse>,
-//                                response: Response<LoginResponse>
+//                                call: Call<SignupResponse>,
+//                                response: Response<SignupResponse>
 //                            ) {
 //                                val responseData = response.body()
 //                                if (responseData != null) {
@@ -97,7 +94,7 @@ class MenteeInfoActivity : AppCompatActivity() {
 //                                }
 //                            }
 //
-//                            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+//                            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
 //                                TODO("Not yet implemented")
 //                            }
 //                        })

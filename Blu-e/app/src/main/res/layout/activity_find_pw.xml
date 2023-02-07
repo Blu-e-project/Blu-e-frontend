@@ -40,68 +40,42 @@
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toEndOf="@id/backToCenter_d"
         app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/id_tv"
-        app:layout_constraintTop_toBottomOf="@id/view"
-        android:layout_marginTop="39dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="아이디"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:lineHeight="23sp"
-        android:textColor="#006BCE"
 
-        app:layout_constraintStart_toStartOf="@id/id"/>
-
-    <EditText
-        android:id="@+id/id"
-        android:width="320dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_tv"
-        android:layout_marginTop="32dp"
-        android:layout_width="wrap_content"
-        android:textSize="16sp"
-        android:lineHeight="18sp"
-        android:textColor="#6B000000"
-        android:backgroundTint="#006BCE"
-        android:layout_height="wrap_content"
-        android:hint="아이디 입력"
-        />
     <TextView
-        android:id="@id/certificate_ment"
+        android:id="@+id/certificate_ment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
         android:text="휴대폰 번호 인증"
-        app:layout_constraintStart_toStartOf="@+id/id"
-        app:layout_constraintTop_toBottomOf="@id/id"
-        android:layout_marginTop="45dp"
         android:textColor="#006BCE"
         android:textSize="20sp"
-        android:lineHeight="23sp"
+        android:lineHeight="23dp"
         android:textStyle="bold"
-        />
+        app:layout_constraintStart_toStartOf="@+id/verify_num"
+        app:layout_constraintBottom_toTopOf="@+id/phone_number"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
     <EditText
         android:id="@+id/phone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="37dp"
         android:width="218dp"
         android:hint="휴대폰 번호 입력"
         android:lineHeight="18sp"
         android:textColorHint="#6B000000"
         android:textSize="16sp"
         android:backgroundTint="#006BCE"
-        app:layout_constraintStart_toStartOf="@id/id"
-        app:layout_constraintTop_toBottomOf="@id/certificate_ment" />
+        app:layout_constraintStart_toStartOf="@id/verify_num"
+        app:layout_constraintTop_toBottomOf="@+id/certificate_ment" />
     <Button
+        android:id="@+id/sms_btn"
         android:layout_width="99dp"
         android:layout_height="40dp"
         android:width="99dp"
         android:height="40dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="26dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/certificate_ment"
         app:layout_constraintStart_toEndOf="@+id/phone_number"
@@ -112,11 +86,12 @@
         android:lineHeight="22sp"
         android:background="@drawable/rounded_blue_edge"
         />
+
     <EditText
-        android:id="@+id/certificate_num"
+        android:id="@+id/verify_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="45dp"
         android:width="320dp"
         android:hint="인증 번호 입력"
         android:lineHeight="18sp"
@@ -128,6 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/phone_number" />
 
     <Button
+        android:id="@+id/reset_pw_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="320dp"
@@ -135,7 +111,7 @@
         android:layout_marginTop="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/certificate_num"
+        app:layout_constraintTop_toBottomOf="@id/verify_num"
         android:textStyle="bold"
         android:text="비밀번호 재설정"
         android:textColor="@color/white"

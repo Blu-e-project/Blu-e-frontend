@@ -34,20 +34,12 @@ class MentorInfoActivity : AppCompatActivity() {
             var intent = Intent(this, MentorSignUpActivity::class.java)
             startActivity(intent)
         }
-<<<<<<< HEAD
         //갤러리 사진 선택
         viewBinding.profileBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             Log.d("이미지", "성공")
             activityResult.launch(intent)
-=======
-
-        //닉네임 중복확인
-        viewBinding.checkNicknameBtn.setOnClickListener {
-            val nick = viewBinding.nickname.text.toString()
-
->>>>>>> a5938d28d64693e753b99512faf2ddd5e7a159e8
         }
         //갤러리 사진 선택
         viewBinding.profileBtn.setOnClickListener {
@@ -64,7 +56,7 @@ class MentorInfoActivity : AppCompatActivity() {
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
 //                    //본인인증에서 번호 가져옴
-                    val phone = "0101"
+                    val phone = intent.getStringExtra("phoneNum")
                     val name = viewBinding.name.text.toString()
                     val nickname = viewBinding.nickname.toString()
                     //string ->LocalDate로 바꿔야함

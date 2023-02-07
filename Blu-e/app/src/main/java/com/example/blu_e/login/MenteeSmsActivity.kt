@@ -54,6 +54,7 @@ class MenteeSmsActivity : AppCompatActivity() {
 //                            if(responseData.code == 1000){
 //                                //성공
                                  var intent = Intent(this, MenteeInfoActivity::class.java)
+                                intent.putExtra("phoneNum", phoneNum)
                                  startActivity(intent)
 //                            }
 //                            else if(responseData.code == 2019){

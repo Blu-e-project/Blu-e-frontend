@@ -8,10 +8,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.blu_e.MainActivity
@@ -51,32 +53,37 @@ class AccusationFragment : Fragment() {
             selectGallery()
         }
         viewBinding.btnAdd.setOnClickListener {
-            val builder = AlertDialog.Builder(mContext)
-            builder
-                .setTitle("신고")
-                .setMessage("신고 글 등록이 완료되었습니다. ")
-                .setPositiveButton("확인",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        report = Report(0).apply {
-                            userId = 0
-                            targetId = 0
-                            title = ""
-                            contents = ""
-                            image = mContext.profileImageBase64.toString()
-                            createdAt = Timestamp(0)
-                        }
-                        /*api.reportMember(0, report).enqueue(object: Callback<ResponseData> {
-                            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
-                                //성공시
-                            }
+            val title: String = viewBinding.accusTitle.text.toString()
+            val contents: String = viewBinding.accusContent.text.toString()
+            val image = mContext.profileImageBase64.toString()
 
-                            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
-                                //실패시
-                            }
-                        })*/
-                        mContext!!.openFragment(5)
-                    })
-            builder.show()
+            /*api.reportMember(0, title, contents, image).enqueue(object: Callback<ResponseData> {
+                override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+                    val body = response.body()?: return
+                    if(body != null) {
+                        if(body.code == 1000) {
+                            Log.d("신고 글 등록하기: ", body.message)
+
+                            val builder = AlertDialog.Builder(mContext)
+                            builder
+                                .setTitle("신고")
+                                .setMessage("신고 글 등록이 완료되었습니다. ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(5)
+                                    })
+                            builder.show()
+                        } else if(body.code == 2400 || body.code == 2401 || body.code == 2402 || body.code == 2403 || body.code == 2404) {
+                            Log.d("신고 글 등록하기: ", body.message)
+                            Toast.makeText(mContext, body.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                    Log.d("신고 글 등록하기: ", "실패")
+                }
+            })*/
         }
     }
 

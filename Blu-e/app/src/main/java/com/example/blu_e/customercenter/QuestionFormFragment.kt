@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.blu_e.MainActivity
 import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.RetroInterface
@@ -48,37 +49,38 @@ class QuestionFormFragment : Fragment() {
 
 
         viewBinding.btnSave.setOnClickListener {
-            val userId: Int = 1
             val title: String = viewBinding.title.text.toString()
             val contents: String = viewBinding.content.text.toString()
             val createdAt = Timestamp(System.currentTimeMillis())
 
-            val builder = AlertDialog.Builder(mContext)
-            builder
-                .setTitle("Q&A 등록")
-                .setMessage("Q&A 등록이 완료 되었습니다.")
-                .setPositiveButton("확인",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        /*api.questionWriting("", userId, title, contents).enqueue(object: Callback<ResponseData> {
-                            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
-                                val body = response.body() ?: return
-                                if(body.code == 1000) {
-                                    Log.d("질문 등록하기", "성공")
-                                }
-                                else {
-                                    Log.d("질문 등록하기", "실패")
-                                }
-                            }
-                            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
-                            }
-                        })*/
-                        mContext!!.openFragment(2)
-                    })
-                .setNegativeButton("취소",
-                    DialogInterface.OnClickListener { dialog, id ->
+            /*api.questionWriting("", title, contents).enqueue(object: Callback<ResponseData> {
+                override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+                    val body = response.body() ?: return
+                    if(body != null) {
+                        if(body.code == 1000) {
+                            Log.d("질문 등록 하기", body.message)
+                            val builder = AlertDialog.Builder(mContext)
+                            builder
+                                .setTitle("Q&A 등록")
+                                .setMessage("Q&A 등록이 완료 되었습니다.")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
 
-                    })
-            builder.show()
+                                    })
+                            builder.show()
+                            mContext!!.openFragment(2)
+                        } else if (body.code == 2300 || body.code == 2304 || body.code == 2301 || body.code == 2305) {
+                            Log.d("질문 등록하기", "실패")
+                            Toast.makeText(mContext, body.message, Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Log.d("질문 등록하기(바디없음)", "실패")
+                    }
+                }
+                override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                    Log.d("질문 등록하기", "실패")
+                }
+            })*/
         }
     }
 }

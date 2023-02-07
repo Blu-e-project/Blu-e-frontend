@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,7 +38,7 @@ class RequestMentoringActivity : AppCompatActivity()  {
     private var pickId: Int = 0
     private var matchingStatus: Int = 1 //모집중 default
     private lateinit var postOfContents: Pick
-//    private val api = RetroInterface.create()
+    private val api = RetroInterface.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,10 +76,11 @@ class RequestMentoringActivity : AppCompatActivity()  {
                     //멘티 구하는 글의 삭제
                     /*api.deleteAPostOfMentee("", 0).enqueue(object: Callback<ResponseData> {
                         override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
-                            val body = response.body()
-                            if (body!!.code == 1000) {
-                                Log.d("멘티 구인글메뉴", "삭제 성공")
-                                //바깥 화면으로 이동하는 코드
+                            val body = response.body()?: return
+                            if(body != null) {
+                                if (body.code == 1000) {
+                                    Log.d("멘티 구인글메뉴", "삭제 성공 -> 바깥 화면 이동하는 코드 추가해야 함.")
+                                }
                             }
                         }
                         override fun onFailure(call: Call<ResponseData>, t: Throwable) {
@@ -88,10 +90,12 @@ class RequestMentoringActivity : AppCompatActivity()  {
                     //멘토 구하는 글의 삭제
                     /*api.deleteAPostOfMentor("", 0).enqueue(object: Callback<ResponseData> {
                         override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
-                            val body = response.body()
-                            if (body!!.code == 1000) {
-                                Log.d("멘토 구인글메뉴", "삭제 성공")
-                                //바깥 화면으로 이동하는 코드
+                            val body = response.body()?: return
+                            if(body != null) {
+                                if (body.code == 1000) {
+                                    Log.d("멘토 구인글메뉴", body.message)
+                                    //바깥 화면으로 이동하는 코드
+                                }
                             }
                         }
                         override fun onFailure(call: Call<ResponseData>, t: Throwable) {
@@ -144,24 +148,146 @@ class RequestMentoringActivity : AppCompatActivity()  {
         //<로그인 유저가 멘토면 -> 글쓴 사람은 반드시 멘티> //(글쓴이(티)/댓쓴이(토)/일반회원(잠재적 댓쓴이)(토))
 
                 //로그인 유저가 멘티면 //+ pickId
-               /* api.requestAPostOfMentee("", 1).enqueue(object: Callback<PickResponse> {
+                /*api.requestAPostOfMentee("", 1).enqueue(object: Callback<PickResponse> {
                     @RequiresApi(Build.VERSION_CODES.O)
                     override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
-                        val body = response.body()
+                        val body = response.body()?: return
+                        if (body != null) {
+                            if(body.code == 1000) {
+                                Log.d("멘티 구인글 불러오기","성공")
+                                val infoPost: ArrayList<Pick> = body.result
+                                postOfContents = infoPost.get(0)
+                                //+ val infoPostUser: User = User(infoPost.userId)
+                                viewBinding.tv.text = "멘티님"
+                                viewBinding.careerTv.text = "멘티 수준: "
+                                viewBinding.career.text = infoPost.get(0).menteeLevel
+
+                                //로그인한 회원이 글의 주인인지 파악 필요(내가 쓴 글 보기) : 글점3개
+                                //User vs. infoPostUser
+                                //+ 글쓴이(멘토)라면
+                                viewBinding.requestMemberPostDeleteIcon.visibility = View.VISIBLE
+                                //+ 댓쓴이(멘티)라면 //+ 일반회원(멘티)라면
+                                viewBinding.requestMemberPostDeleteIcon.visibility = View.GONE
+
+                                //+ viewBinding.image.setImageURI() //InfoUser에서 userImage get
+                                viewBinding.nickTv.text = "" //+ InfoUser에서 nickname get
+                                viewBinding.textView4.text = infoPost.get(0).title
+                                viewBinding.recruitTv.text = infoPost.get(0).contents
+                                viewBinding.create.text = convertTimeToDate(infoPost.get(0).createdAt)
+                                viewBinding.update.text = convertTimeToDate(infoPost.get(0).updatedAt)
+                                //매칭 상태
+                                if(infoPost.get(0).status == 0) {//모집 완료
+                                    viewBinding.matchedStatus.visibility = View.VISIBLE
+                                    viewBinding.matchingStatus.visibility = View.GONE
+                                    matchingStatus = 0
+                                } else {//모집 중
+                                    viewBinding.matchedStatus.visibility = View.GONE
+                                    viewBinding.matchingStatus.visibility = View.VISIBLE
+                                    matchingStatus = 1
+                                }
+                                //+ 희망지역
+                                val startDate: Date = infoPost.get(0).periodStart
+                                val endDate: Date = infoPost.get(0).periodEnd
+
+                                val calendar = Calendar.getInstance()
+                                calendar.time = startDate
+                                val startDate2: LocalDate = LocalDate.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE))
+                                calendar.time = endDate
+                                val endDate2: LocalDate = LocalDate.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE))
+                                val betweenDays: Long =  ChronoUnit.DAYS.between(startDate2, endDate2) //Month로 바꿀 수도 있음.
+                                Log.d("멘토링 기간", betweenDays.toString())
+                                viewBinding.period.text = "$betweenDays 일"
+
+                                viewBinding.subject.text = infoPost.get(0).subject
+                                viewBinding.mentoring.text = infoPost.get(0).mentoringMethod
+
+                                viewBinding.start.text = startDate.toString()
+                                viewBinding.end.text = endDate.toString()
+
+                                viewBinding.gender.text = infoPost.get(0).wishGender
+                                viewBinding.countReaded.text = infoPost.get(0).viewCount.toString()
+                            }
+                            else {
+                                Log.d("멘티 구인글 불러오기","실패")
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<PickResponse>, t: Throwable) {
+                        Log.d("멘티 구인글 불러오기","실패")
+                    }
+                })*/
+
+                //retrofit (get 댓글)
+             /*api.requestMenteeComments("", pickId).enqueue(object: Callback<PickCommentResponse> {
+                 override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
+                    val body = response.body()?: return
+                     if(body != null) {
+                         if(body.code == 1000) {
+                             val receivedCommentList: ArrayList<PickComment>? = body.result
+                             if(matchingStatus == 1) { //모집중
+                                 //+글쓴이(멘토)라면
+                                 adapter.updateCompletdTv(0)
+                                 adapter.updateAcceptBtnv(1)
+                                 adapter.updateCommentMenuv(0)
+                                 disappearCommentForm()
+                                 //+댓쓴이(멘티)라면 //+adapter에서 한번 더 체크 (댓쓴이가 로그인유저인지)
+                                 adapter.updateCompletdTv(0)
+                                 adapter.updateAcceptBtnv(0)
+                                 adapter.updateCommentMenuv(1)
+                                 disappearCommentForm()
+
+                                 //+일반회원(멘티)라면
+                                 adapter.updateCompletdTv(0)
+                                 adapter.updateAcceptBtnv(0)
+                                 adapter.updateCommentMenuv(0)
+                                 appearCommentForm()
+                             }
+                             else { //모집완료
+                                 adapter.updateCompletdTv(1)
+                                 adapter.updateAcceptBtnv(0)
+                                 adapter.updateCommentMenuv(0)
+                             }
+                             if (receivedCommentList != null) {
+                                 commentList.addAll(receivedCommentList)
+                             }
+                             adapter = RequestMentoringCommentAdapter(receivedCommentList, this@RequestMentoringActivity)
+                             viewBinding.recyclerViewComment.layoutManager = LinearLayoutManager(this@RequestMentoringActivity)
+                             viewBinding.recyclerViewComment.adapter = adapter
+                         }
+                         else{
+                             Log.d("멘티 댓글 불러오기","실패")
+                         }
+                     }
+                 }
+                 override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
+                     Log.d("멘티 댓글 불러오기","실패")
+                 }
+             })*/
+            //+ 매칭중 아닐 때 (매칭 완료) -> 댓글 매칭된 사람 하나만 보임.
+
+            //로그인 유저가 멘토면
+            //<로그인 유저가 멘토면 -> 글쓴 사람은 반드시 멘티> //(글쓴이(티)/댓쓴이(토)/일반회원(잠재적 댓쓴이)(토))
+            /*api.requestAPostOfMentor("", 1).enqueue(object: Callback<PickResponse> {
+                @RequiresApi(Build.VERSION_CODES.O)
+                override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
+                    val body = response.body()?: return
+                    if(body != null) {
+
                         if(body!!.code == 1000) {
-                            Log.d("멘티 구인글 불러오기","성공")
+                            Log.d("멘토 구인글 불러오기","성공")
                             val infoPost: ArrayList<Pick> = body.result
                             postOfContents = infoPost.get(0)
                             //+ val infoPostUser: User = User(infoPost.userId)
-                            viewBinding.tv.text = "멘티님"
-                            viewBinding.careerTv.text = "멘티 수준: "
-                            viewBinding.career.text = infoPost.get(0).menteeLevel
+                            viewBinding.tv.text = "멘토님"
+                            viewBinding.careerTv.text = "멘토 경력: "
+                            viewBinding.career.text = infoPost.get(0).mentorCareer
 
                             //로그인한 회원이 글의 주인인지 파악 필요(내가 쓴 글 보기) : 글점3개
                             //User vs. infoPostUser
-                            //+ 글쓴이(멘토)라면
+                            //+ 글쓴이(멘티)라면
                             viewBinding.requestMemberPostDeleteIcon.visibility = View.VISIBLE
-                            //+ 댓쓴이(멘티)라면 //+ 일반회원(멘티)라면
+                            //+ 댓쓴이(멘토)라면 //+ 일반회원(멘토)라면
                             viewBinding.requestMemberPostDeleteIcon.visibility = View.GONE
 
                             //+ viewBinding.image.setImageURI() //InfoUser에서 userImage get
@@ -203,169 +329,56 @@ class RequestMentoringActivity : AppCompatActivity()  {
                             viewBinding.countReaded.text = infoPost.get(0).viewCount.toString()
                         }
                         else {
-                            Log.d("멘티 구인글 불러오기","실패")
+                            Log.d("멘토 구인글 불러오기","실패")
                         }
-                    }
-
-                    override fun onFailure(call: Call<PickResponse>, t: Throwable) {
-                        Log.d("멘티 구인글 불러오기","실패")
-                    }
-                })
-
-                //retrofit (get 댓글)
-             api.requestMenteeComments("", pickId).enqueue(object: Callback<PickCommentResponse> {
-                 override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
-                    val body = response.body()?: return
-                    if(body.code == 1000) {
-                        val receivedCommentList: ArrayList<PickComment>? = body.result
-                        if(matchingStatus == 1) { //모집중
-                            //+글쓴이(멘토)라면
-                            adapter.updateCompletdTv(0)
-                            adapter.updateAcceptBtnv(1)
-                            adapter.updateCommentMenuv(0)
-                            disappearCommentForm()
-                            //+댓쓴이(멘티)라면 //+adapter에서 한번 더 체크 (댓쓴이가 로그인유저인지)
-                            adapter.updateCompletdTv(0)
-                            adapter.updateAcceptBtnv(0)
-                            adapter.updateCommentMenuv(1)
-                            disappearCommentForm()
-
-                            //+일반회원(멘티)라면
-                            adapter.updateCompletdTv(0)
-                            adapter.updateAcceptBtnv(0)
-                            adapter.updateCommentMenuv(0)
-                            appearCommentForm()
-                        }
-                        else { //모집완료
-                            adapter.updateCompletdTv(1)
-                            adapter.updateAcceptBtnv(0)
-                            adapter.updateCommentMenuv(0)
-                        }
-                        if (receivedCommentList != null) {
-                            commentList.addAll(receivedCommentList)
-                        }
-                        adapter = RequestMentoringCommentAdapter(receivedCommentList, this@RequestMentoringActivity)
-                        viewBinding.recyclerViewComment.layoutManager = LinearLayoutManager(this@RequestMentoringActivity)
-                        viewBinding.recyclerViewComment.adapter = adapter
-                    }
-                    else{
-                      Log.d("멘티 댓글 불러오기","실패")
-                    }
-                 }
-                 override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
-                     Log.d("멘티 댓글 불러오기","실패")
-                 }
-             })
-            //+ 매칭중 아닐 때 (매칭 완료) -> 댓글 매칭된 사람 하나만 보임.
-
-            //로그인 유저가 멘토면
-            //<로그인 유저가 멘토면 -> 글쓴 사람은 반드시 멘티> //(글쓴이(티)/댓쓴이(토)/일반회원(잠재적 댓쓴이)(토))
-            api.requestAPostOfMentor("", 1).enqueue(object: Callback<PickResponse> {
-                @RequiresApi(Build.VERSION_CODES.O)
-                override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
-                    val body = response.body()
-                    if(body!!.code == 1000) {
-                        Log.d("멘토 구인글 불러오기","성공")
-                        val infoPost: ArrayList<Pick> = body.result
-                        postOfContents = infoPost.get(0)
-                        //+ val infoPostUser: User = User(infoPost.userId)
-                        viewBinding.tv.text = "멘토님"
-                        viewBinding.careerTv.text = "멘토 경력: "
-                        viewBinding.career.text = infoPost.get(0).mentorCareer
-
-                        //로그인한 회원이 글의 주인인지 파악 필요(내가 쓴 글 보기) : 글점3개
-                        //User vs. infoPostUser
-                        //+ 글쓴이(멘티)라면
-                        viewBinding.requestMemberPostDeleteIcon.visibility = View.VISIBLE
-                        //+ 댓쓴이(멘토)라면 //+ 일반회원(멘토)라면
-                        viewBinding.requestMemberPostDeleteIcon.visibility = View.GONE
-
-                        //+ viewBinding.image.setImageURI() //InfoUser에서 userImage get
-                        viewBinding.nickTv.text = "" //+ InfoUser에서 nickname get
-                        viewBinding.textView4.text = infoPost.get(0).title
-                        viewBinding.recruitTv.text = infoPost.get(0).contents
-                        viewBinding.create.text = convertTimeToDate(infoPost.get(0).createdAt)
-                        viewBinding.update.text = convertTimeToDate(infoPost.get(0).updatedAt)
-                        //매칭 상태
-                        if(infoPost.get(0).status == 0) {//모집 완료
-                            viewBinding.matchedStatus.visibility = View.VISIBLE
-                            viewBinding.matchingStatus.visibility = View.GONE
-                            matchingStatus = 0
-                        } else {//모집 중
-                            viewBinding.matchedStatus.visibility = View.GONE
-                            viewBinding.matchingStatus.visibility = View.VISIBLE
-                            matchingStatus = 1
-                        }
-                        //+ 희망지역
-                        val startDate: Date = infoPost.get(0).periodStart
-                        val endDate: Date = infoPost.get(0).periodEnd
-
-                        val calendar = Calendar.getInstance()
-                        calendar.time = startDate
-                        val startDate2: LocalDate = LocalDate.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE))
-                        calendar.time = endDate
-                        val endDate2: LocalDate = LocalDate.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE))
-                        val betweenDays: Long =  ChronoUnit.DAYS.between(startDate2, endDate2) //Month로 바꿀 수도 있음.
-                        Log.d("멘토링 기간", betweenDays.toString())
-                        viewBinding.period.text = "$betweenDays 일"
-
-                        viewBinding.subject.text = infoPost.get(0).subject
-                        viewBinding.mentoring.text = infoPost.get(0).mentoringMethod
-
-                        viewBinding.start.text = startDate.toString()
-                        viewBinding.end.text = endDate.toString()
-
-                        viewBinding.gender.text = infoPost.get(0).wishGender
-                        viewBinding.countReaded.text = infoPost.get(0).viewCount.toString()
-                    }
-                    else {
-                        Log.d("멘토 구인글 불러오기","실패")
                     }
                 }
 
                 override fun onFailure(call: Call<PickResponse>, t: Throwable) {
                     Log.d("멘토 구인글 불러오기","실패")
                 }
-            })
+            })*/
 
             //retrofit (get 댓글)
-            api.requestMentorComments("", pickId).enqueue(object: Callback<PickCommentResponse> {
+            /*api.requestMentorComments("", pickId).enqueue(object: Callback<PickCommentResponse> {
                 override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
                     val body = response.body()?: return
-                    if(body.code == 1000) {
-                        val receivedCommentList: ArrayList<PickComment>? = body.result
-                        if(matchingStatus == 1) { //모집중
-                            //+글쓴이(멘티)라면
-                            adapter.updateCompletdTv(0)
-                            adapter.updateAcceptBtnv(1)
-                            adapter.updateCommentMenuv(0)
-                            disappearCommentForm()
-                            //+댓쓴이(멘토)라면 //+adapter에서 한번 더 체크 (댓쓴이가 로그인유저인지)
-                            adapter.updateCompletdTv(0)
-                            adapter.updateAcceptBtnv(0)
-                            adapter.updateCommentMenuv(1)
-                            disappearCommentForm()
+                    if(body != null) {
+                        if(body.code == 1000) {
+                            val receivedCommentList: ArrayList<PickComment>? = body.result
+                            if(matchingStatus == 1) { //모집중
+                                //+글쓴이(멘티)라면
+                                adapter.updateCompletdTv(0)
+                                adapter.updateAcceptBtnv(1)
+                                adapter.updateCommentMenuv(0)
+                                disappearCommentForm()
+                                //+댓쓴이(멘토)라면 //+adapter에서 한번 더 체크 (댓쓴이가 로그인유저인지)
+                                adapter.updateCompletdTv(0)
+                                adapter.updateAcceptBtnv(0)
+                                adapter.updateCommentMenuv(1)
+                                disappearCommentForm()
 
-                            //+일반회원(멘토)라면
-                            adapter.updateCompletdTv(0)
-                            adapter.updateAcceptBtnv(0)
-                            adapter.updateCommentMenuv(0)
-                            appearCommentForm()
+                                //+일반회원(멘토)라면
+                                adapter.updateCompletdTv(0)
+                                adapter.updateAcceptBtnv(0)
+                                adapter.updateCommentMenuv(0)
+                                appearCommentForm()
+                            }
+                            else { //모집완료
+                                adapter.updateCompletdTv(1)
+                                adapter.updateAcceptBtnv(0)
+                                adapter.updateCommentMenuv(0)
+                            }
+                            if (receivedCommentList != null) {
+                                commentList.addAll(receivedCommentList)
+                            }
+                            adapter = RequestMentoringCommentAdapter(receivedCommentList, this@RequestMentoringActivity)
+                            viewBinding.recyclerViewComment.layoutManager = LinearLayoutManager(this@RequestMentoringActivity)
+                            viewBinding.recyclerViewComment.adapter = adapter
                         }
-                        else { //모집완료
-                            adapter.updateCompletdTv(1)
-                            adapter.updateAcceptBtnv(0)
-                            adapter.updateCommentMenuv(0)
+                        else{
+                            Log.d("멘토 댓글 불러오기","실패")
                         }
-                        if (receivedCommentList != null) {
-                            commentList.addAll(receivedCommentList)
-                        }
-                        adapter = RequestMentoringCommentAdapter(receivedCommentList, this@RequestMentoringActivity)
-                        viewBinding.recyclerViewComment.layoutManager = LinearLayoutManager(this@RequestMentoringActivity)
-                        viewBinding.recyclerViewComment.adapter = adapter
-                    }
-                    else{
-                        Log.d("멘토 댓글 불러오기","실패")
                     }
                 }
                 override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
@@ -385,9 +398,15 @@ class RequestMentoringActivity : AppCompatActivity()  {
         /*api.commentWritingAsMentee("", pickId, commentContent).enqueue(object: Callback<ResponseData> {
             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                 val body = response.body()?: return
-                val message: String = body.message
-                Log.d("멘티 구인글의 댓글 등록하기", message)
-                adapter.notifyItemInserted(commentList.size)
+                if(body != null) {
+                    if(body.code == 1000) {
+                        Log.d("멘티 구인글의 댓글 등록하기", body.message)
+                        adapter.notifyItemInserted(commentList.size)
+                    } else if (body.code == 2700 || body.code == 2701 || body.code == 2702) {
+                        Log.d("멘티 구인글의 댓글 등록하기 실패: ", body.message)
+                        Toast.makeText(this@RequestMentoringActivity, body.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                 Log.d("멘티 구인글의 댓글 등록하기","실패")
@@ -397,9 +416,15 @@ class RequestMentoringActivity : AppCompatActivity()  {
         /*api.commentWritingAsMentor("", pickId, commentContent).enqueue(object: Callback<ResponseData> {
             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                 val body = response.body()?: return
-                val message: String = body.message
-                Log.d("멘토 구인글의 댓글 등록하기", message)
-                adapter.notifyItemInserted(commentList.size)
+                if(body != null) {
+                    if(body.code == 1000) {
+                        Log.d("멘토 구인글의 댓글 등록하기", body.message)
+                        adapter.notifyItemInserted(commentList.size)
+                    } else if (body.code == 2700 || body.code == 2701 || body.code == 2702 || body.code == 2703) {
+                        Log.d("멘토 구인글의 댓글 등록하기 실패: ", body.message)
+                        Toast.makeText(this@RequestMentoringActivity, body.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                 Log.d("멘토 구인글의 댓글 등록하기","실패")

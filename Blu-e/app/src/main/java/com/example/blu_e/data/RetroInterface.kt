@@ -34,19 +34,19 @@ import retrofit2.http.GET as GET
 interface RetroInterface {
     //작성한 QnA 조회
     @GET("/service/questions/{userId}")
-    fun requestMyQuestions(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int): Call<QuestionResponse>
+    fun requestMyQuestions(@Header("blu-e-access-token") token: String): Call<QuestionResponse>
 
     //Question 작성
-    @POST("/service/questions/{userId}/writing")
-    fun questionWriting(@Header("blu-e-access-token") token: String, @Query("userId") userId: Int, @Field("title") title: String, @Field("contents") contents: String): Call<ResponseData>
+    @POST("/service/questions/writing")
+    fun questionWriting(@Header("blu-e-access-token") token: String, @Field("title") title: String, @Field("contents") contents: String): Call<ResponseData>
 
     //Question 삭제
-    @DELETE("/service/questions/{userId}/writing")
-    fun questionDelete(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int, @Query("questionId") questionId: Int): Call<ResponseData>
+    @DELETE("/service/questions/writing")
+    fun questionDelete(@Header("blu-e-access-token") token: String, @Query("questionId") questionId: Int): Call<ResponseData>
 
     //회원 신고
     @POST("/service/accusations/writing")
-    fun reportMember(@Header("blu-e-access-token") token: String, @Field("targetId") targetId: Int, @Field("title") title: String, @Field("contents") contents: String) : Call<ResponseData>
+    fun reportMember(@Header("blu-e-access-token") token: String, @Field("targetId") targetId: Int, @Field("title") title: String, @Field("contents") contents: String, @Field("image") image: String) : Call<ResponseData>
 
     //특정 멘토 구인글 조회
     @GET("/mentoring/mentors/{pickId}")

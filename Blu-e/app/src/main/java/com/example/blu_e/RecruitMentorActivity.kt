@@ -81,13 +81,26 @@ class RecruitMentorActivity : AppCompatActivity() {
                 /*api.updateAPostOfMentor("", 0, title, contents, subject,area,mentoringMethod,mentorCareer,periodStart,periodEnd,wishGender)
                    .enqueue(object: Callback<ResponseData> {
                        override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
-                           val responseData = response.body()
-                           if (responseData!=null) {
-                               if(responseData.code == 1000){
+                           val body = response.body()?: return
+                           if (body != null) {
+                               if(body.code == 1000){
                                    Log.d("멘토 구인글 업데이트 하기", "성공")
+
+                                   val builder = AlertDialog.Builder(this@RecruitMentorActivity)
+                                       .setTitle("멘토 구인글")
+                                       .setMessage("멘토 구인 글 수정이 완료 되었습니다")
+                                       .setPositiveButton("확인",
+                                           DialogInterface.OnClickListener{ dialog, which ->
+                                               //어느화면으로 이동할지
+                                           })
+                                   builder.show()
                                }
-                               else{
-                                   Log.d("멘토 구인글 업데이트 하기", "실패")
+                               else if(body.code == 2600 || body.code == 2601 || body.code == 2602 || body.code == 2603 ||
+                                   body.code == 2604 || body.code == 2605 || body.code == 2606 || body.code == 2607 ||
+                                   body.code == 2608 || body.code == 2610 || body.code == 2611 || body.code == 2612 ||
+                                   body.code == 2613 || body.code == 2614 || body.code == 2615 || body.code == 2616){
+                                   Log.d("멘토 구인글 업데이트 하기 실패: ", body.message)
+                                   Toast.makeText(this@RecruitMentorActivity, body.message, Toast.LENGTH_SHORT).show()
                                }
                            }
                        }
@@ -95,16 +108,6 @@ class RecruitMentorActivity : AppCompatActivity() {
                            Log.d("멘토 구인글 업데이트 하기", "실패")
                        }
                })*/
-
-                val builder = AlertDialog.Builder(this)
-                    .setTitle("멘토 구인글")
-                    .setMessage("멘토 구인 글 수정이 완료 되었습니다")
-                    .setPositiveButton("확인",
-                        DialogInterface.OnClickListener{ dialog, which ->
-                            Toast.makeText(this, "확인", Toast.LENGTH_SHORT).show()
-                            //어느화면으로 이동할지
-                        })
-                builder.show()
             }
         }
     }

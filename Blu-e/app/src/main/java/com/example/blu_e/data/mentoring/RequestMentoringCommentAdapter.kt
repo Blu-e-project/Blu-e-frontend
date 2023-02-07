@@ -111,7 +111,13 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 //성공시
                                 val body = response.body()?: return
-                                Log.d("댓글 삭제", body.message)
+                                if(body != null) {
+                                    if(body.code == 1000) {
+                                        Log.d("댓글 삭제", body.message)
+                                    } else {
+                                        Log.d("댓글 삭제 실패: ", body.message)
+                                    }
+                                }
                             }
 
                             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
@@ -123,7 +129,13 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 //성공시
                                 val body = response.body()?: return
-                                Log.d("댓글 삭제", body.message)
+                                if(body != null) {
+                                    if(body.code == 1000) {
+                                        Log.d("댓글 삭제", body.message)
+                                    } else {
+                                        Log.d("댓글 삭제 실패: ", body.message)
+                                    }
+                                }
                             }
 
                             override fun onFailure(call: Call<ResponseData>, t: Throwable) {

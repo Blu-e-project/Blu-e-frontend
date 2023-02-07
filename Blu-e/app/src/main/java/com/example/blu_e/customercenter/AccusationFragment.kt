@@ -15,8 +15,12 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.blu_e.MainActivity
+import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.accusation.Report
 import com.example.blu_e.databinding.FragmentAccusationBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.sql.Timestamp
 
 class AccusationFragment : Fragment() {
@@ -61,12 +65,12 @@ class AccusationFragment : Fragment() {
                             image = mContext.profileImageBase64.toString()
                             createdAt = Timestamp(0)
                         }
-                        /*api.reportMember(0, report).enqueue(object: Callback<Report> {
-                            override fun onResponse(call: Call<Report>, response: Response<Report>) {
+                        /*api.reportMember(0, report).enqueue(object: Callback<ResponseData> {
+                            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 //성공시
                             }
 
-                            override fun onFailure(call: Call<Report>, t: Throwable) {
+                            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                                 //실패시
                             }
                         })*/

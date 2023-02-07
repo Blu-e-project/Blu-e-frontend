@@ -15,6 +15,7 @@ import com.example.blu_e.ProfileActivity
 import com.example.blu_e.R
 import com.example.blu_e.RecruitMenteeActivity
 import com.example.blu_e.RecruitMentorActivity
+import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mentoring.*
 import com.example.blu_e.databinding.ActivityRequestMentoringBinding
@@ -72,28 +73,28 @@ class RequestMentoringActivity : AppCompatActivity()  {
             pop.setOnMenuItemClickListener {
                 if(it.itemId == R.id.deleteMenu) {
                     //멘티 구하는 글의 삭제
-                    /*api.deleteAPostOfMentee("", 0).enqueue(object: Callback<PickResponse> {
-                        override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
+                    /*api.deleteAPostOfMentee("", 0).enqueue(object: Callback<ResponseData> {
+                        override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                             val body = response.body()
                             if (body!!.code == 1000) {
                                 Log.d("멘티 구인글메뉴", "삭제 성공")
                                 //바깥 화면으로 이동하는 코드
                             }
                         }
-                        override fun onFailure(call: Call<PickResponse>, t: Throwable) {
+                        override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                             Log.d("멘티 구인글메뉴","삭제 실패")
                         }
                     })*/
                     //멘토 구하는 글의 삭제
-                    /*api.deleteAPostOfMentor("", 0).enqueue(object: Callback<PickResponse> {
-                        override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
+                    /*api.deleteAPostOfMentor("", 0).enqueue(object: Callback<ResponseData> {
+                        override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                             val body = response.body()
                             if (body!!.code == 1000) {
                                 Log.d("멘토 구인글메뉴", "삭제 성공")
                                 //바깥 화면으로 이동하는 코드
                             }
                         }
-                        override fun onFailure(call: Call<PickResponse>, t: Throwable) {
+                        override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                             Log.d("멘토 구인글 메뉴","삭제 실패")
                         }
                     })*/
@@ -381,26 +382,26 @@ class RequestMentoringActivity : AppCompatActivity()  {
 //        val getTime = sdf.format(date)
         val commentContent = viewBinding.chatEditText.text.toString()
         //+ 로그인 유저가 멘티 회원임.
-        /*api.commentWritingAsMentee("", pickId, commentContent).enqueue(object: Callback<PickCommentResponse> {
-            override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
+        /*api.commentWritingAsMentee("", pickId, commentContent).enqueue(object: Callback<ResponseData> {
+            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                 val body = response.body()?: return
                 val message: String = body.message
                 Log.d("멘티 구인글의 댓글 등록하기", message)
                 adapter.notifyItemInserted(commentList.size)
             }
-            override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                 Log.d("멘티 구인글의 댓글 등록하기","실패")
             }
         })*/
         //+ 로그인 유저가 멘토회원임.
-        /*api.commentWritingAsMentor("", pickId, commentContent).enqueue(object: Callback<PickCommentResponse> {
-            override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
+        /*api.commentWritingAsMentor("", pickId, commentContent).enqueue(object: Callback<ResponseData> {
+            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                 val body = response.body()?: return
                 val message: String = body.message
                 Log.d("멘토 구인글의 댓글 등록하기", message)
                 adapter.notifyItemInserted(commentList.size)
             }
-            override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                 Log.d("멘토 구인글의 댓글 등록하기","실패")
             }
         })*/

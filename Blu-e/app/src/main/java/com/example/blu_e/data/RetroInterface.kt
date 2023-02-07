@@ -38,15 +38,15 @@ interface RetroInterface {
 
     //Question 작성
     @POST("/service/questions/{userId}/writing")
-    fun questionWriting(@Header("blu-e-access-token") token: String, @Query("userId") userId: Int, @Field("title") title: String, @Field("contents") contents: String): Call<QuestionResponse>
+    fun questionWriting(@Header("blu-e-access-token") token: String, @Query("userId") userId: Int, @Field("title") title: String, @Field("contents") contents: String): Call<ResponseData>
 
     //Question 삭제
     @DELETE("/service/questions/{userId}/writing")
-    fun questionDelete(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int, @Query("questionId") questionId: Int): Call<QuestionResponse>
+    fun questionDelete(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int, @Query("questionId") questionId: Int): Call<ResponseData>
 
     //회원 신고
     @POST("/service/accusations/writing")
-    fun reportMember(@Header("blu-e-access-token") token: String, @Body report: Report) : Call<Report>
+    fun reportMember(@Header("blu-e-access-token") token: String, @Field("targetId") targetId: Int, @Field("title") title: String, @Field("contents") contents: String) : Call<ResponseData>
 
     //특정 멘토 구인글 조회
     @GET("/mentoring/mentors/{pickId}")
@@ -60,19 +60,19 @@ interface RetroInterface {
     fun updateAPostOfMentor(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int,
                            @Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject: String, @Field("area") area: String,
                            @Field("mentoringMethod") mentoringMethod: String, @Field("mentorCareer") mentorCareer: String,
-                           @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd: String, @Field("wishGender") wishGender: String): Call<PickResponse>
+                           @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd: String, @Field("wishGender") wishGender: String): Call<ResponseData>
     //멘티 구하는 글 수정 (생성 폼 사용해서)
     @PATCH("/mentoring/mentees/{pickId}")
     fun updateAPostOfMentee(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int,
                            @Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject: String, @Field("area") area: String,
                            @Field("mentoringMethod") mentoringMethod: String, @Field("mentorCareer") mentorCareer: String,
-                           @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd: String, @Field("wishGender") wishGender: String): Call<PickResponse>
+                           @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd: String, @Field("wishGender") wishGender: String): Call<ResponseData>
     //멘토 구하는 글 삭제
     @DELETE("/mentoring/mentors/{pickId}")
-    fun deleteAPostOfMentor(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickResponse>
+    fun deleteAPostOfMentor(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<ResponseData>
     //멘티 구하는 글 삭제
     @DELETE("/mentoring/mentees/{pickId}")
-    fun deleteAPostOfMentee(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickResponse>
+    fun deleteAPostOfMentee(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<ResponseData>
 
     //멘토 구하는 글의 댓글 조회
     @GET("/mentoring/mentors/{pickId}/comments")
@@ -83,28 +83,28 @@ interface RetroInterface {
 
     //멘토 구하는 글에 댓글 생성
     @POST("/mentoring/mentors/{pickId}/comments")
-    fun commentWritingAsMentee(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int, @Field("contents") contents: String): Call<PickCommentResponse>
+    fun commentWritingAsMentee(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
     //멘티 구하는 글에 댓글 생성
     @POST("/mentoring/mentees/{pickId}/comments")
-    fun commentWritingAsMentor(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int, @Field("contents") contents: String): Call<PickCommentResponse>
+    fun commentWritingAsMentor(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
 
     //매칭 수락 버튼
     @POST("/mentoring/mentors/{pickId}/comments/{pickCommentId}/matching")
-    fun requestMatching(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int,  @Path("pickCommentId") pickCommentId: Int): Call<PickCommentResponse>
+    fun requestMatching(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int,  @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 
-    //멘토 구하는 글의 댓글 수정 (하려면 폼 필요)
+    //멘토 구하는 글의 댓글 수정 (하려면 폼 필요) - x
     @PATCH("/mentoring/mentors/{pickId}/comments/{pickCommentId}")
-    fun commentUpdateAsMentee(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int, @Field("contents") contents: String): Call<PickCommentResponse>
-    //멘티 구하는 글의 댓글 수정 (하려면 폼 필요)
+    fun commentUpdateAsMentee(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int, @Field("contents") contents: String): Call<ResponseData>
+    //멘티 구하는 글의 댓글 수정 (하려면 폼 필요) - x
     @PATCH("/mentoring/mentees/{pickId}/comments/{pickCommentId}")
-    fun commentUpdateAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int, @Field("contents") contents: String): Call<PickCommentResponse>
+    fun commentUpdateAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int, @Field("contents") contents: String): Call<ResponseData>
 
     //멘토 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentors/{pickId}/comments/{pickCommentId}")
-    fun commentDeleteAsMentee(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<PickCommentResponse>
+    fun commentDeleteAsMentee(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
     //멘티 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentees/{pickId}/comments/{pickCommentId}")
-    fun commentDeleteAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<PickCommentResponse>
+    fun commentDeleteAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 
     companion object {
         private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //

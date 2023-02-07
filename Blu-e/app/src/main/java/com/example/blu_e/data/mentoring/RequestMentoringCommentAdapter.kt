@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.blu_e.ProfileActivity
 import com.example.blu_e.R
+import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ItemRequestMentoringCommentBinding
 import retrofit2.Call
@@ -87,12 +88,12 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
 
                 //****여기가 관건.. 매칭 안 된 사람들 댓글 수락, 매칭 UI 없애기 -> listener(commentListData[position]) or 새로고침****
                 //매칭 됐다고 서버에 알리기 (댓글 다 삭제해 줄 예정)
-                /*api.requestMatching("", 0,0).enqueue(object: Callback<PickCommentResponse>{
-                    override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
+                /*api.requestMatching("", 0,0).enqueue(object: Callback<ResponseData>{
+                    override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                         val body = response.body()?: return
                         Log.d("수락 요청 결과", body.message)
                     }
-                    override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
+                    override fun onFailure(call: Call<ResponseData>, t: Throwable) {
 
                     }
                 })*/
@@ -106,26 +107,26 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 pop.setOnMenuItemClickListener {
                     if(it.itemId == R.id.deleteMenu) {
                         Log.d("댓글메뉴확인", "삭제될겁니다.")
-                        /*api.commentDeleteAsMentee(2, 2).enqueue(object: Callback<PickCommentResponse> {
-                            override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
+                        /*api.commentDeleteAsMentee(2, 2).enqueue(object: Callback<ResponseData> {
+                            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 //성공시
                                 val body = response.body()?: return
                                 Log.d("댓글 삭제", body.message)
                             }
 
-                            override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
+                            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                                 //실패시
                                 Log.d("댓글 삭제", "실패")
                             }
                         })*/
-                        /*api.commentDeleteAsMentor(2, 2).enqueue(object: Callback<PickCommentResponse> {
-                            override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
+                        /*api.commentDeleteAsMentor(2, 2).enqueue(object: Callback<ResponseData> {
+                            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 //성공시
                                 val body = response.body()?: return
                                 Log.d("댓글 삭제", body.message)
                             }
 
-                            override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
+                            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                                 //실패시
                                 Log.d("댓글 삭제", "실패")
                             }

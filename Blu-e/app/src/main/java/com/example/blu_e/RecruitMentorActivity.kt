@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mentoring.Pick
 import com.example.blu_e.data.mentoring.PickResponse
@@ -77,9 +78,9 @@ class RecruitMentorActivity : AppCompatActivity() {
                 builder.show()
             }
             else if(isItFromUpdate == 1) {
-               /* api.updateAPostOfMentor("", 0, title, contents, subject,area,mentoringMethod,mentorCareer,periodStart,periodEnd,wishGender)
-                   .enqueue(object: Callback<PickResponse> {
-                       override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
+                /*api.updateAPostOfMentor("", 0, title, contents, subject,area,mentoringMethod,mentorCareer,periodStart,periodEnd,wishGender)
+                   .enqueue(object: Callback<ResponseData> {
+                       override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                            val responseData = response.body()
                            if (responseData!=null) {
                                if(responseData.code == 1000){
@@ -90,7 +91,7 @@ class RecruitMentorActivity : AppCompatActivity() {
                                }
                            }
                        }
-                       override fun onFailure(call: Call<PickResponse>, t: Throwable) {
+                       override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                            Log.d("멘토 구인글 업데이트 하기", "실패")
                        }
                })*/

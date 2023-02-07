@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.blu_e.MainActivity
+import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.customercenter.Question
 import com.example.blu_e.data.customercenter.QuestionResponse
@@ -58,8 +59,8 @@ class QuestionFormFragment : Fragment() {
                 .setMessage("Q&A 등록이 완료 되었습니다.")
                 .setPositiveButton("확인",
                     DialogInterface.OnClickListener { dialog, id ->
-                        /*api.questionWriting("", userId, title, contents).enqueue(object: Callback<QuestionResponse> {
-                            override fun onResponse(call: Call<QuestionResponse>, response: Response<QuestionResponse>) {
+                        /*api.questionWriting("", userId, title, contents).enqueue(object: Callback<ResponseData> {
+                            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 val body = response.body() ?: return
                                 if(body.code == 1000) {
                                     Log.d("질문 등록하기", "성공")
@@ -68,7 +69,7 @@ class QuestionFormFragment : Fragment() {
                                     Log.d("질문 등록하기", "실패")
                                 }
                             }
-                            override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
+                            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                             }
                         })*/
                         mContext!!.openFragment(2)

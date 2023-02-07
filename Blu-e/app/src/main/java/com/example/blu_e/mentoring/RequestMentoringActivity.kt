@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.ProfileActivity
 import com.example.blu_e.R
+import com.example.blu_e.RecruitMenteeActivity
+import com.example.blu_e.RecruitMentorActivity
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mentoring.*
 import com.example.blu_e.databinding.ActivityRequestMentoringBinding
@@ -33,6 +35,7 @@ class RequestMentoringActivity : AppCompatActivity()  {
     private lateinit var commentList: ArrayList<PickComment>
     private var pickId: Int = 0
     private var matchingStatus: Int = 1 //모집중 default
+    private lateinit var postOfContents: Pick
 //    private val api = RetroInterface.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,20 +99,17 @@ class RequestMentoringActivity : AppCompatActivity()  {
                     })*/
                 }
                 else if(it.itemId == R.id.updateMenu) {
-                    /*
                     //수정 폼으로 화면 넘어가는 코드..
-                    //아래는 새로 생긴 수정 폼에서 작성
-                    api.updateAPostOfMentor("", 0).enqueue(object: Callback<PickResponse> {
-                        override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
-                            val body = response.body()
-                            if (body!!.code == 1000) {
-                                Log.d("글메뉴", "수정 성공")
-                            }
-                        }
-                        override fun onFailure(call: Call<PickResponse>, t: Throwable) {
-                            Log.d("글메뉴","수정 실패")
-                        }
-                    })*/
+                    //+ 멘티구인글이라면
+                    var intent: Intent = Intent(this, RecruitMenteeActivity::class.java)
+                    intent.putExtra("fromUpdate", 1)
+                    intent.putExtra("contents", postOfContents)
+                    //+ 멘토구인글이라면
+                    intent = Intent(this, RecruitMentorActivity::class.java)
+                    intent.putExtra("fromUpdate", 1)
+                    intent.putExtra("contents", postOfContents)
+
+                    startActivity(intent)
                 }
                 false
             }
@@ -143,13 +143,14 @@ class RequestMentoringActivity : AppCompatActivity()  {
         //<로그인 유저가 멘토면 -> 글쓴 사람은 반드시 멘티> //(글쓴이(티)/댓쓴이(토)/일반회원(잠재적 댓쓴이)(토))
 
                 //로그인 유저가 멘티면 //+ pickId
-                /*api.requestAPostOfMentee("", 1).enqueue(object: Callback<PickResponse> {
+               /* api.requestAPostOfMentee("", 1).enqueue(object: Callback<PickResponse> {
                     @RequiresApi(Build.VERSION_CODES.O)
                     override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
                         val body = response.body()
                         if(body!!.code == 1000) {
                             Log.d("멘티 구인글 불러오기","성공")
                             val infoPost: ArrayList<Pick> = body.result
+                            postOfContents = infoPost.get(0)
                             //+ val infoPostUser: User = User(infoPost.userId)
                             viewBinding.tv.text = "멘티님"
                             viewBinding.careerTv.text = "멘티 수준: "
@@ -265,6 +266,7 @@ class RequestMentoringActivity : AppCompatActivity()  {
                     if(body!!.code == 1000) {
                         Log.d("멘토 구인글 불러오기","성공")
                         val infoPost: ArrayList<Pick> = body.result
+                        postOfContents = infoPost.get(0)
                         //+ val infoPostUser: User = User(infoPost.userId)
                         viewBinding.tv.text = "멘토님"
                         viewBinding.careerTv.text = "멘토 경력: "

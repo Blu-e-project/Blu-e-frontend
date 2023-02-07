@@ -2,8 +2,9 @@ package com.example.blu_e.data.mentoring
 
 import java.sql.Date
 import java.sql.Timestamp
+import java.io.Serializable
 
-data class Pick(val pickId: Int, val userId: Int, val title: String, val contents: String?, val status: Int,
-                val area: String, val mentoringMethod: String, val menteeLevel: String, val mentorCareer: String,
-                val subject: String, val periodStart: Date, val periodEnd: Date, val wishGender: String,
-                val role: Int, var viewCount: Int, val createdAt: Timestamp, val updatedAt: Timestamp)
+data class Pick(val pickId: Int, val userId: Int, var title: String, var contents: String?, var status: Int,
+                var area: String, var mentoringMethod: String, var menteeLevel: String, var mentorCareer: String,
+                var subject: String, var periodStart: Date, var periodEnd: Date, var wishGender: String,
+                var role: Int, var viewCount: Int, var createdAt: Timestamp, var updatedAt: Timestamp): Serializable

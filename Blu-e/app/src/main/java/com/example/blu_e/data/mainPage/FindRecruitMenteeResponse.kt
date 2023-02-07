@@ -5,13 +5,14 @@ data class FindRecruitMenteeResponse (
     val code: Int,
     val message: String,
     val result: List<FindRecruitMenteeItem>
-)
+) {
+    data class FindRecruitMenteeItem (
+        val pickId: Int,
+        val title: String,
+        val subject: String,
+        val period: String,
+        val mentoringMethod: String,
+        val wishGender: String
+    )
+}
 
-data class FindRecruitMenteeItem (
-    val pickId: Int,
-    val title: String,
-    val subject: String,
-    val period: String,
-    val mentoringMethod: String,
-    val wishGender: String
-        )

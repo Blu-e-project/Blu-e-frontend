@@ -5,13 +5,13 @@ data class FindHotMentorResponse (
     val code: Int,
     val message: String,
     val result: List<FindHotMentorItem>
-)
-
-data class FindHotMentorItem(
-    val pickId: Int,
-    val title: String,
-    val subject: String,
-    val period: String,
-    val mentoringMethod: String,
-    val wishGender: String
-)
+) {
+    data class FindHotMentorItem(
+        val pickId: Int,
+        val title: String,
+        val subject: String,
+        val period: String,
+        val mentoringMethod: String,
+        val wishGender: String
+    )
+}

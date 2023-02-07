@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.blu_e.MainActivity
+import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.customercenter.Question
 import com.example.blu_e.data.customercenter.QuestionResponse
@@ -68,19 +69,24 @@ class QuestionDetailFragment : Fragment() {
                 .setMessage("질문을 삭제하시겠습니까?")
                 .setPositiveButton("예",
                     DialogInterface.OnClickListener { dialog, id ->
-                        /*api.questionDelete("", userId, receviedQuestionId).enqueue(object: Callback<QuestionResponse> {
-                            override fun onResponse(call: Call<QuestionResponse>, response: Response<QuestionResponse>) {
+                        /*api.questionDelete("", receviedQuestionId).enqueue(object: Callback<ResponseData> {
+                            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 val body = response.body() ?: return
-                                if(body.code == 1000) {
-                                    Log.d("질문 삭제하기", "성공")
-                                }
-                                else {
-                                    Log.d("질문 삭제하기", "실패")
+                                if(body != null) {
+                                    if(body.code == 1000) {
+                                        Log.d("질문 삭제하기", body.message)
+                                    }
+                                    else {
+                                        Log.d("질문 삭제하기", "실패")
+                                    }
+                                } else {
+                                    Log.d("질문 삭제하기(바디없음)", "실패")
                                 }
                             }
-                            override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
+                            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                                Log.d("질문 삭제하기", "실패")
                             }
-                        })      */
+                        })*/
                     })
                 .setNegativeButton("아니오",
                     DialogInterface.OnClickListener { dialog, id ->

@@ -7,9 +7,7 @@ data class FindMenteeIdResponse (
         val code: Int,
         val message: String,
         val result: List<FindMenteeIdItems>
-)
-
-data class FindMenteeIdItems(
+) { data class FindMenteeIdItems(
         val name: String,
         val nickname: String,
         val birth: Date,
@@ -18,4 +16,5 @@ data class FindMenteeIdItems(
         val address: String,
         val introduce: String,
         val userImg: String
-)
+        )
+}

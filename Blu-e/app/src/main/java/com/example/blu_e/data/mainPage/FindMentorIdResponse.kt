@@ -7,15 +7,15 @@ data class FindMentorIdResponse (
     val code: Int,
     val message: String,
     val result: List<FindMentorIdItems>
-)
-
-data class FindMentorIdItems(
-    val name: String,
-    val nickname: String,
-    val birth: Date,
-    val education: String,
-    val department: String,
-    val address: String,
-    val introduce: String,
-    val userImg: String
-    )
+) {
+    data class FindMentorIdItems(
+        val name: String,
+        val nickname: String,
+        val birth: Date,
+        val education: String,
+        val department: String,
+        val address: String,
+        val introduce: String,
+        val userImg: String
+        )
+}

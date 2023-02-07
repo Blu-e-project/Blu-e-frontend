@@ -5,10 +5,12 @@ data class FindMentorsResponse(
     val code: Int,
     val message: String,
     val result: List<FindMentorsItem>
-)
+) {
+    data class FindMentorsItem (
+        var userId: Int,
+        var nickname: String,
+        var userImg: String
+    )
+}
 
-data class FindMentorsItem (
-    var userId: Int,
-    var nickname: String,
-    var userImg: String
-)
+

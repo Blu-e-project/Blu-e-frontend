@@ -15,7 +15,7 @@
             android:id="@+id/backHome"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rectangle_50"
+            android:background="@drawable/button_back"
             android:src="@drawable/vector" />
 
         <!-- 새로운 멘토가 있어요! -->

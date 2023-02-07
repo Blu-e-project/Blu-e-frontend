@@ -5,15 +5,15 @@ data class AllProblemsResponse(
     val code: Int,
     val message: String,
     val result: List<Items>
-)
-
-data class Items (
-    var problemId: Int,
-    var nickname: String,
-    var subject: String,
-    var unit: String,
-    var problem: String,
-    var contents: String,
-    var image: String
-)
+) {
+    data class Items(
+        var problemId: Int,
+        var nickname: String,
+        var subject: String,
+        var unit: String,
+        var problem: String,
+        var contents: String,
+        var image: String
+    )
+}
 

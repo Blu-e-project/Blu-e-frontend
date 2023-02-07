@@ -36,7 +36,7 @@ class MyPageFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         settingTitleList = ArrayList<ListInMyPageData>()
         var titleExample: ListInMyPageData
-        for (i in 0..5) {
+        for (i in 0..8) {
             titleExample = ListInMyPageData(i)
             settingTitleList.add(i, titleExample)
         }
@@ -46,7 +46,10 @@ class MyPageFragment : Fragment() {
         settingTitleList.get(2).settingTitle = "회원 신고"
         settingTitleList.get(3).settingTitle = "리뷰"
         settingTitleList.get(4).settingTitle = "내가 쓴 글/ 댓글 단 글"
-        settingTitleList.get(5).settingTitle = "버전"
+        settingTitleList.get(5).settingTitle = "내가 쓴 리뷰"
+        settingTitleList.get(6).settingTitle = "버전"
+        settingTitleList.get(7).settingTitle = "로그아웃"
+        settingTitleList.get(8).settingTitle = "비밀번호 변경"
 
         adapter = ListInMyPageAdapter(settingTitleList)
         viewBinding.recyclerViewMypageSetting.adapter = adapter
@@ -56,13 +59,18 @@ class MyPageFragment : Fragment() {
             override fun onClick(view: View, position: Int) {
                 val transaction = mContext.supportFragmentManager.beginTransaction()
                 val intent = Intent(mContext, MentorHistoryActivity::class.java)
+                val intent2 = Intent(mContext,MentorReviewListActivity::class.java)
                 when(position) {
                     0 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorChangeInfoFragment()).commit() //"멘토 정보 수정"
                     1 -> startActivity(intent)
                     2 -> transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit() //"멘티 신고"
-                    3 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorReviewFragment()).commit() //"멘티 리뷰"
+                    3 -> startActivity(intent2)
                     4 -> "내가 쓴 글/ 댓글 단 글"
-//                    5 -> "버전"
+                    5 -> "내가 쓴 리뷰"
+                    6 -> "버전"
+                    7 -> "로그아웃"
+                    8 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorPasswdChangeFragment()).commit()
+
                 }
             }
         })

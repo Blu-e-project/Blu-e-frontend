@@ -7,13 +7,15 @@ data class FindProblemResponse (
     val code: Int,
     val message: String,
     val result: List<FindProblemItems>
-)
+) {
+    data class FindProblemItems(
+        val nickname: String,
+        val subject: String,
+        val unit: String,
+        val problem: String,
+        val contents: String,
+        val image: String
+    )
+}
 
-data class FindProblemItems(
-    val nickname: String,
-    val subject: String,
-    val unit: String,
-    val problem: String,
-    val contents: String,
-    val image: String
-)
+

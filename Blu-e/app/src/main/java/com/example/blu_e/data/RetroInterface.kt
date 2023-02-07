@@ -1,9 +1,6 @@
 package com.example.blu_e.data
 
-import com.example.blu_e.CreateRecruitResponse
-import com.example.blu_e.LoginResponse
-import com.example.blu_e.MainApplication
-import com.example.blu_e.SignupResponse
+import com.example.blu_e.*
 import com.example.blu_e.data.accusation.Report
 import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
@@ -27,6 +24,10 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
+<<<<<<< HEAD
+import retrofit2.http.*
+=======
+>>>>>>> c5e5ada5c6c12c2a50248c98bfa5f0ae1a742b13
 import java.io.IOException
 import java.time.LocalDate
 import retrofit2.http.GET as GET
@@ -138,12 +139,12 @@ interface RetroInterface {
         }
     }
     //이 뒤는 이현 코드입니다!!!!!!!
-    //회원 로그인
+    //2. 회원 로그인
     @FormUrlEncoded
     @POST("/users/login")
     fun login(@Field("id") id:String, @Field("password") pw:String): Call<LoginResponse>
 
-    //회원 가입
+    //1. 회원 가입
     @POST("/users/signup")
     fun signUp(@Field("userId") userId: Int, @Field("id") id: String,@Field("password") password:String, @Field("phoneNum") phoneNum: String,
                @Field("name") name : String, @Field("nickname") nickname: String,
@@ -151,19 +152,21 @@ interface RetroInterface {
                @Field("department") department:String?, @Field("grade") grade: Int?,
                @Field("address") address: String?, @Field("introduce") introduce: String?, @Field("role")role:Int,
                @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: Text?) :Call<SignupResponse>
+    //6. 아이디 찾기
+    @GET("users/id")
+    fun findId(@Field("phoneNum") phoneNum: String): Call<FindIdResponse>
 
-    //비밀번호 변경
-//    @FormUrlEncoded
-//    @PUT("/users/password")
-//    fun pwUpdate(@Query("password") password: String, @Body user:User): Call<User>
-    //멘토 구인글 작성
+    //7. 비밀번호 변경
+    @PATCH("/users/password")
+    fun resetPw(@Field("id") id: String, @Field("phoneNum") phoneNum: String, @Field("password") password: String, @Field("password_check") password_check:String): Call<SignupResponse>
+    //34. 멘토 구인글 생성
     @FormUrlEncoded
     @POST("/mentoring/mentors")
     fun recruitMentor(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
                       @Field("area") area: String, @Field("mentoringMethod") mentoringMethod:String,
                       @Field("mentorCareer") mentorCareer: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
                       @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
-
+    //37. 멘토 구인글 생성
     @FormUrlEncoded
     @POST("/mentoring/mentees")
     fun recruitMentee(@Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject:String,
@@ -171,12 +174,12 @@ interface RetroInterface {
                       @Field("menteeLevel") menteeLevel: String, @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd:String,
                       @Field("wishGender") wishGender: String): Call<CreateRecruitResponse>
 
-    //본인 인증을 위한 전화번호 보내기
+    //50. 본인 인증을 위한 전화번호 보내기
     @FormUrlEncoded
     @POST("/users/send")
     fun sendPhoneNum(@Field("phoneNum") phoneNum: String): Call<SignupResponse>
 
-    //인증번호 보내기
+    //51. 인증번호 보내기
     @FormUrlEncoded
     @POST("/users/verify")
     fun verifyCode(@Field("phoneNumber") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<SignupResponse>

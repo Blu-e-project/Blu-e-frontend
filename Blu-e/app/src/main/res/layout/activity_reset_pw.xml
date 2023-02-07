@@ -42,11 +42,40 @@
       app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-      android:id="@+id/input_pw"
+      android:id="@+id/id_tv"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:layout_constraintTop_toBottomOf="@id/view"
       android:layout_marginTop="44dp"
+      app:layout_constraintStart_toStartOf="@id/new_pw1"
+      android:text="아이디"
+      android:textSize="20sp"
+      android:lineHeight="23sp"
+      android:textColor="#006BCE"
+      android:textStyle="bold"
+      />
+  <EditText
+      android:id="@+id/id"
+      android:inputType="textPassword"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:width="320dp"
+      android:textSize="16sp"
+      android:lineHeight="18sp"
+      android:backgroundTint="#006BCE"
+      android:textColor="#6B000000"
+
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/id_tv"
+      android:layout_marginTop="32dp"
+      android:hint="아이디 입력"/>
+  <TextView
+      android:id="@+id/input_pw"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toBottomOf="@id/view"
+      android:layout_marginTop="170dp"
       app:layout_constraintStart_toStartOf="@id/new_pw1"
       android:text="비밀번호 입력"
       android:textSize="20sp"

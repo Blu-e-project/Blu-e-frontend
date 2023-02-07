@@ -27,11 +27,7 @@ import java.time.format.DateTimeFormatter
 
 class MenteeInfoActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeInfoBinding
-<<<<<<< HEAD
-//        private val api = RetroInterface.create()
-=======
     //    private val api = RetroInterface.create()
->>>>>>> a5938d28d64693e753b99512faf2ddd5e7a159e8
     @RequiresApi(Build.VERSION_CODES.O)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +57,7 @@ class MenteeInfoActivity : AppCompatActivity() {
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
                     //본인인증에서 번호 가져옴
-                    val phone = "0101"
+                    val phone = intent.getStringExtra("phoneNum")
                     val name = viewBinding.name.text.toString()
                     val nickname = viewBinding.nickname.toString()
                     //string ->LocalDate로 바꿔야함

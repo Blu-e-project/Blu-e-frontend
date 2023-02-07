@@ -80,33 +80,39 @@ class CenterFragment : Fragment() {
             mContext!!.openFragment(3)
         }
 
-       /* api.requestMyQuestions("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..", 1).enqueue(object: Callback<QuestionResponse> {
-            override fun onResponse(call: Call<QuestionResponse>, response: Response<QuestionResponse>) {
-                val body = response.body() ?: return
-                if(body.code == 1000) {
-                    Log.d("질문 목록 불러오기", "성공")
-                    qs = body.result
-                    adapter2 = QuestionAdapter(qs)
-                    viewBinding.recyclerViewQa.adapter = adapter2
-                    viewBinding.recyclerViewQa.layoutManager = LinearLayoutManager(mContext)
+        /*api.requestMyQuestions("").enqueue(object: Callback<QuestionResponse> {
+             override fun onResponse(call: Call<QuestionResponse>, response: Response<QuestionResponse>) {
+                 val body = response.body()?: return
+                 if (body != null) {
+                     if(body.code == 1000) {
+                         if(body.result != null) {
+                             Log.d("질문 목록 불러오기", "성공")
+                             qs = body.result
+                             adapter2 = QuestionAdapter(qs)
+                             viewBinding.recyclerViewQa.adapter = adapter2
+                             viewBinding.recyclerViewQa.layoutManager = LinearLayoutManager(mContext)
 
-                    adapter2.setItemClickListener(object: QuestionAdapter.ItemClickListener{
-                        override fun onClick(view: View, position: Int) {
-                            var detailFragment = QuestionDetailFragment.newInstance(qs, position)
-                            mContext.supportFragmentManager.beginTransaction().replace(
-                                mContext.viewBinding.containerFragment.id, detailFragment
-                            ).commit()
-                        }
-                    })
-                }
-                else {
-                    Log.d("질문 목록 불러오기", "실패")
-                }
-            }
-            override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
-                //실패시
-                Log.d("질문 목록 불러오기", "실패")
-            }
-        })*/
+                             adapter2.setItemClickListener(object: QuestionAdapter.ItemClickListener{
+                                 override fun onClick(view: View, position: Int) {
+                                     var detailFragment = QuestionDetailFragment.newInstance(qs, position)
+                                     mContext.supportFragmentManager.beginTransaction().replace(
+                                         mContext.viewBinding.containerFragment.id, detailFragment
+                                     ).commit()
+                                 }
+                             })
+                         } else {
+                             Log.d("질문 목록 불러오기", "아직 질문이 없습니다.")
+                         }
+                     }
+                 }
+                 else {
+                     Log.d("Response: ", "null")
+                 }
+             }
+             override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
+                 //실패시
+                 Log.d("질문 목록 불러오기", "실패")
+             }
+         })*/
     }
 }

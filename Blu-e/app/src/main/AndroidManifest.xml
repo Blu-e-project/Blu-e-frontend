@@ -19,6 +19,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MentorMyCommentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MenteeMyCommentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".login.MenteeSmsActivity"
             android:exported="false">
             <meta-data
@@ -55,13 +69,6 @@
         </activity>
         <activity
             android:name=".RecruitMentorActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".MyPostCommentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -171,19 +178,22 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".mentoring.curiousquestion.AskQuestionActivity"
+        <activity
+            android:name=".mentoring.curiousquestion.AskQuestionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".mentoring.curiousquestion.RegisterQuestionFormActivity"
+        <activity
+            android:name=".mentoring.curiousquestion.RegisterQuestionFormActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".MentorReviewListActivity"
+        <activity
+            android:name=".MentorReviewListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -70,26 +70,13 @@
                     android:textSize="10sp" />
 
                 <TextView
-                    android:id="@+id/mentorCardDesiredStartPeriod"
+                    android:id="@+id/mentorCardDesiredPeriod"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/black"
                     android:textSize="10sp" />
 
-                <TextView
-                    android:id="@+id/wave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="~" />
-
-                <TextView
-                    android:id="@+id/mentorCardDesiredEndPeriod"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:layout_marginLeft="5dp"/>
             </TableRow>
 
             <TableRow

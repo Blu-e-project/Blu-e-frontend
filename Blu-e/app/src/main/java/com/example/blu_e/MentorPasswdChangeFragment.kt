@@ -33,11 +33,11 @@ class MentorPasswdChangeFragment:Fragment() {
             mContext!!.openFragment(5)
         }
 
-        viewBinding.backToPageMentor.setOnClickListener {
+        viewBinding.btnChangePwd.setOnClickListener {
             val builder = AlertDialog.Builder(mContext)
             builder
-                .setTitle("닉네임 중복 확인")
-                .setMessage("사용가능한 닉네임입니다. ")
+                .setTitle("비밀번호 변경")
+                .setMessage("비밀번호 변경이 완료되었습니다. ")
                 .setPositiveButton("확인",
                     DialogInterface.OnClickListener { dialog, id ->
                         mContext!!.openFragment(5)

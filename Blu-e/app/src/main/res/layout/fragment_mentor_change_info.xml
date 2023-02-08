@@ -117,21 +117,6 @@
                     app:layout_constraintStart_toStartOf="@id/name_mentor"
                     app:layout_constraintTop_toTopOf="@+id/nickname_tv_mentor" />
 
-                <Button
-                    android:id="@+id/check_nickname_btn_mentor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="31dp"
-                    android:width="99dp"
-                    android:height="40dp"
-                    android:background="@drawable/rounded_blue_edge"
-                    android:lineHeight="22sp"
-                    android:text="중복 확인"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/nickname_mentor"
-                    app:layout_constraintTop_toBottomOf="@id/name_tv_mentor" />
-
                 <TextView
                     android:id="@+id/birth_tv_mentor"
                     android:layout_width="wrap_content"
@@ -187,23 +172,11 @@
                     app:layout_constraintStart_toStartOf="@id/name_mentor"
                     app:layout_constraintTop_toBottomOf="@id/birth_tv_mentor" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="28dp"
-                    android:background="@drawable/rounded_blue_edge"
-                    android:lineHeight="22sp"
-                    android:text="학교 검색"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/education_mentor"
-                    app:layout_constraintTop_toBottomOf="@id/birth_mentor" />
-
                 <EditText
                     android:id="@+id/major_mentor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="43dp"
+                    android:layout_marginTop="32dp"
                     android:width="236dp"
                     android:backgroundTint="#006BCE"
                     android:hint="학과 입력"
@@ -269,77 +242,20 @@
 
                     />
 
-                <TextView
-                    android:id="@+id/passwd_tv_mentor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
-                    android:lineHeight="23sp"
-                    android:text="비밀번호"
-                    android:textColor="#006BCE"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/name_tv_mentor"
-                    app:layout_constraintTop_toBottomOf="@id/introduce_tv_mentor" />
-
-                <EditText
-                    android:id="@+id/passwd_ment_mentor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="31dp"
-                    android:width="236dp"
-                    android:backgroundTint="#006BCE"
-                    android:hint="비밀번호입력"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@id/name_mentor"
-                    app:layout_constraintTop_toBottomOf="@id/introduce_ment_mentor"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
-                    android:lineHeight="23sp"
-                    android:text="비밀번호\n    확인"
-
-                    android:textColor="#006BCE"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/name_tv_mentor"
-                    app:layout_constraintTop_toBottomOf="@id/passwd_tv_mentor" />
-
-                <EditText
-                    android:id="@+id/passwdRe_ment_mentor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="31dp"
-                    android:width="236dp"
-                    android:backgroundTint="#006BCE"
-                    android:hint="비밀번호 재입력"
-                    android:lineHeight="18sp"
-                    android:textColor="#6B000000"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@id/name_mentor"
-                    app:layout_constraintTop_toBottomOf="@id/passwd_ment_mentor"
-
-                    />
-
                 <CheckBox
                     android:id="@+id/agree_cb_mentor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="61dp"
+                    android:layout_marginTop="24dp"
                     android:button="@null"
                     android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
                     android:lineHeight="14sp"
                     android:text="개인 정보 수집에 동의하시겠습니까?"
                     android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/passwdRe_ment_mentor" />
+                    app:layout_constraintTop_toBottomOf="@id/introduce_ment_mentor" />
 
                 <ImageView
                     android:id="@+id/image_edit_mentor"

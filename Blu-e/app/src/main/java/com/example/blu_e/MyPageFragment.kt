@@ -66,7 +66,7 @@ class MyPageFragment : Fragment() {
                     2 -> transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit() //"멘티 신고"
                     3 -> startActivity(intent2)
                     4 -> "내가 쓴 글/ 댓글 단 글"
-                    5 -> "내가 쓴 리뷰"
+                    5 -> startActivity(intent2)
                     6 -> "버전"
                     7 -> "로그아웃"
                     8 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorPasswdChangeFragment()).commit()

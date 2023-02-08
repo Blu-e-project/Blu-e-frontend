@@ -1,10 +1,9 @@
 package com.example.blu_e.data
 
+import android.widget.ImageView
 import com.example.blu_e.*
-import com.example.blu_e.data.accusation.Report
 import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
-import com.example.blu_e.data.mentoring.Matching
 import com.example.blu_e.data.mentoring.PickCommentResponse
 import com.example.blu_e.data.mentoring.PickResponse
 import com.google.gson.Gson
@@ -18,16 +17,11 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
-<<<<<<< HEAD
-import retrofit2.http.*
-=======
->>>>>>> c5e5ada5c6c12c2a50248c98bfa5f0ae1a742b13
 import java.io.IOException
 import java.time.LocalDate
 import retrofit2.http.GET as GET
@@ -146,12 +140,13 @@ interface RetroInterface {
 
     //1. 회원 가입
     @POST("/users/signup")
-    fun signUp(@Field("userId") userId: Int, @Field("id") id: String,@Field("password") password:String, @Field("phoneNum") phoneNum: String,
-               @Field("name") name : String, @Field("nickname") nickname: String,
+    fun signUp(@Field("userId") userId: Int, @Field("id") id: String, @Field("password") password:String, @Field("phoneNum") phoneNum: String,
+               @Field("name") name: String, @Field("nickname") nickname: String,
                @Field("birth") birth: LocalDate, @Field("education") education: String,
                @Field("department") department:String?, @Field("grade") grade: Int?,
-               @Field("address") address: String?, @Field("introduce") introduce: String?, @Field("role")role:Int,
-               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: Text?) :Call<SignupResponse>
+               @Field("address") address: String?, @Field("introduce") introduce: String?, @Field("role") role:Int,
+               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: Text?
+    ) :Call<SignupResponse>
     //6. 아이디 찾기
     @GET("users/id")
     fun findId(@Field("phoneNum") phoneNum: String): Call<FindIdResponse>

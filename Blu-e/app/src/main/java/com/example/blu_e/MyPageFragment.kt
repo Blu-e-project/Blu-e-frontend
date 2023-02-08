@@ -1,17 +1,21 @@
 package com.example.blu_e
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.customercenter.AccusationFragment
 import com.example.blu_e.data.ListInMyPageAdapter
 import com.example.blu_e.data.ListInMyPageData
 import com.example.blu_e.databinding.FragmentMyPageBinding
+import com.example.blu_e.login.LoginActivity
 
 class MyPageFragment : Fragment() {
     private lateinit var mContext: MainActivity
@@ -68,12 +72,35 @@ class MyPageFragment : Fragment() {
                     4 -> "내가 쓴 글/ 댓글 단 글"
                     5 -> startActivity(intent2)
                     6 -> "버전"
-                    7 -> "로그아웃"
+                    7 -> logoutDialog()
                     8 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorPasswdChangeFragment()).commit()
-
                 }
+
             }
         })
-    }
 
+    }
+    fun logoutDialog(){
+        val builder = AlertDialog.Builder(mContext)
+            .setTitle("로그아웃")
+            .setMessage("로그아웃하시겠습니까?")
+            .setPositiveButton("네",
+                DialogInterface.OnClickListener{ dialog, which ->
+                    Toast.makeText(mContext, "확인", Toast.LENGTH_SHORT).show()
+                    //
+//                    MainApplication.prefs.edit // 여기서 Shared Preference 를 remove 한다!
+//                    MainApplication.prefs.edit.remove("password")
+//                    MainApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) //스택 위에 것지우기
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(intent)
+                })
+            .setNegativeButton("아니요",
+                DialogInterface.OnClickListener{ dialog, which ->
+                    Toast.makeText(mContext, "확인", Toast.LENGTH_SHORT).show()
+                    //어느화면으로 이동할지
+                })
+        builder.show()
+    }
 }

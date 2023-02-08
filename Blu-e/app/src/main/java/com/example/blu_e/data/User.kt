@@ -5,8 +5,8 @@ import java.time.LocalDate
 
 data class User(
     val userId:Int,
-    val id: String = "test",
-    val password: String = "1234",
+    val id: String,
+    val password: String,
     val phoneNun:String,
     val name:String,
     val nickname: String,
@@ -19,6 +19,6 @@ data class User(
     val role: Int,
     val createdAt: Timestamp,
     val updatedAt: Timestamp,
-    val status: Int = 1,
+    val status: Int,
     val userImg: String
 )

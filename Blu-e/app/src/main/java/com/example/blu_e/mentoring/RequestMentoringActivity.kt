@@ -38,18 +38,18 @@ class RequestMentoringActivity : AppCompatActivity()  {
     private var pickId: Int = 0
     private var matchingStatus: Int = 1 //모집중 default
     private lateinit var postOfContents: Pick
-    private val api = RetroInterface.create()
+//    private val api = RetroInterface.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityRequestMentoringBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-       /* //댓글 데이터 임의로 넣음.
+        //댓글 데이터 임의로 넣음.
         commentList = ArrayList<PickComment>()
         var commentExample: PickComment
         for (i in 0..2) {
-            commentExample = PickComment(i)
+            commentExample = PickComment()
             commentList.add(i, commentExample)
         }
 //        commentExampleList.get(0).userId = 100
@@ -65,7 +65,9 @@ class RequestMentoringActivity : AppCompatActivity()  {
         Log.d("checkList", commentList.toString())
         adapter = RequestMentoringCommentAdapter(commentList, this)
         viewBinding.recyclerViewComment.layoutManager = LinearLayoutManager(this)
-        viewBinding.recyclerViewComment.adapter = adapter*/
+        viewBinding.recyclerViewComment.adapter = adapter
+
+//        viewBinding.recyclerViewComment.setHasFixedSize(false)
 
         //글 삭제, 수정 메뉴
         viewBinding.requestMemberPostDeleteIcon?.setOnClickListener {
@@ -125,6 +127,7 @@ class RequestMentoringActivity : AppCompatActivity()  {
         viewBinding.sendButton?.setOnClickListener {
             closeKeyboard()
             sendMessage()
+            viewBinding.chatEditText.text = null
             //+ 댓글 한번만 날려야해서 댓글창 View.GONE
         }
 
@@ -135,6 +138,11 @@ class RequestMentoringActivity : AppCompatActivity()  {
             var intent = Intent(this, ProfileActivity::class.java)
             //userId 보내기
             startActivity(intent)
+        }
+
+        //뒤로 가기
+        viewBinding.backToCenterD.setOnClickListener {
+            finish()
         }
     }
 

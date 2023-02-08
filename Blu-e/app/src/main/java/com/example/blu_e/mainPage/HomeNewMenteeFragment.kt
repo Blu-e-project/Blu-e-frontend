@@ -2,18 +2,28 @@ package com.example.blu_e.mainPage
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
+import com.example.blu_e.data.RetroInterface
+import com.example.blu_e.data.mainPage.FindMenteesResponse
+import com.example.blu_e.data.mainPage.FindMentorsResponse
 import com.example.blu_e.data.mainPage.NewMenteeData
 import com.example.blu_e.databinding.FragmentHomeNewMenteeBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeNewMenteeFragment : Fragment() {
     lateinit var viewBinding: FragmentHomeNewMenteeBinding
     private lateinit var mContext: MainActivity
+    private val api = RetroInterface.create() //retrofit 객체
+    private lateinit var qs: ArrayList<FindMenteesResponse.FindMenteeItem>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -61,5 +71,36 @@ class HomeNewMenteeFragment : Fragment() {
 
         viewBinding.recyclerViewNewMentee.adapter = menteeAdapter
         viewBinding.recyclerViewNewMentee.layoutManager = grid
+
+/*
+
+        api.findMentees("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object:
+            Callback<FindMenteesResponse> {
+             override fun onResponse(call: Call<FindMenteesResponse>, response: Response<FindMenteesResponse>) {
+                 val body = response.body() ?: return
+                 if(body.code == 1000) {
+                     Log.d("멘티 리스트 불러오기", "성공")
+                     qs = body.result as ArrayList<FindMenteesResponse.FindMenteeItem>
+                     adapter2 = NewMenteeDataRVAdapter(qs)
+                     viewBinding.recyclerViewNewMentee.adapter = adapter2
+                     viewBinding.recyclerViewNewMentee.layoutManager = LinearLayoutManager(mContext)
+                     adapter2.setItemClickListener(object: NewMenteeDataRVAdapter.ItemClickListener{
+                         override fun onClick(view: View, position: Int) {
+                             var detailFragment = QuestionDetailFragment.newInstance(qs, position)
+                             mContext.supportFragmentManager.beginTransaction().replace(
+                                 mContext.viewBinding.containerFragment.id, detailFragment
+                             ).commit()
+                         }
+                     })
+                 }
+                 else {
+                     Log.d("멘티 리스트 불러오기", "실패")
+                 }
+             }
+             override fun onFailure(call: Call<FindMenteesResponse>, t: Throwable) {
+                 //실패시
+                 Log.d("멘티 리스트 불러오기", "실패")
+             }
+         }) */
     }
 }

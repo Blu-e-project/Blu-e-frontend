@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
 import com.example.blu_e.data.*
-import com.example.blu_e.data.mainPage.FindFiveMenteeItems
 import com.example.blu_e.data.mainPage.FindFiveMenteeResponse
 import com.example.blu_e.data.mainPage.MentorData
 import com.example.blu_e.data.mainPage.NewMenteeData
@@ -129,32 +128,5 @@ class HomeMentorFragment : Fragment() {
         viewBinding.recyclerViewMentor.adapter = mentorAdapter
         viewBinding.recyclerViewMentor.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-    }
-
-    private fun loadData() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.github.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val retrofitService = retrofit.create(RetroInterface::class.java)
-        retrofitService.findFiveMentee("blu-e-access-token").enqueue(object : Callback<FindFiveMenteeResponse> {
-            override fun onResponse(call: Call<FindFiveMenteeResponse>, response: Response<FindFiveMenteeResponse>) {
-                if (response.isSuccessful) {
-                    val body = response.body()
-                    body?.let {
-                        setAdapter(it.result)
-                    }
-                }
-            }
-            override fun onFailure(call: Call<FindFiveMenteeResponse>, t: Throwable) {
-                t.message?.let { Log.d("this is error", it) }
-            }
-        })
-    }
-
-    private fun setAdapter(result: List<FindFiveMenteeItems>) {
-        //val sAdapter = RetrofitNewMenteeDataRVAdapter(result, this)
-        //recyclerViewHomeNewMentee.adapter = sAdapter
     }
 }

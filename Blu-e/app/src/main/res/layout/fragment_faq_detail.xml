@@ -33,7 +33,7 @@
         android:fontFamily="sans-serif"
         android:text="고객센터"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/centerView_f"
         app:layout_constraintEnd_toEndOf="@+id/centerView_f"
@@ -68,7 +68,7 @@
 
     <View
         android:id="@+id/view5"
-        android:layout_width="350dp"
+        android:layout_width="320dp"
         android:layout_height="1dp"
         android:layout_marginTop="132dp"
         android:background="@color/sky"
@@ -106,15 +106,17 @@
 
     <TextView
         android:id="@+id/tvInput_f"
-        android:layout_width="357dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="464dp"
+        android:layout_width="272dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="332dp"
         android:text="@string/question_guide2"
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btn_add3_f"
-        app:layout_constraintTop_toBottomOf="@+id/centerView_f" />
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
 
     <Button
         android:id="@+id/btn_add3_f"
@@ -130,7 +132,7 @@
         android:letterSpacing="0.01"
         android:lineSpacingExtra="10sp"
         android:text="Q&amp;A 등록하기"
-        android:textSize="21sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"

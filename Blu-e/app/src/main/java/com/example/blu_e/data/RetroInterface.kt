@@ -272,9 +272,10 @@ interface RetroInterface {
 
     //-----------------------------------------------------주영-----------------------------------------
     //27 내 정보 수정
+    @FormUrlEncoded
     @PATCH("/mypages/user")
-    fun changeMyinfoMentor(@Header("blu-e-access-token")token: String,@Path("name")name: String,@Path("nickname")nickname: String,
-                           @Path("birth")birth: String, @Path("education")education: String, @Path("address")address: String, @Path("introduce")introduce: String): Call<ResponseData>
+    fun changeMyinfoMentor(@Header("blu-e-access-token")token: String,@Field("name")name: String,@Field("nickname")nickname: String,
+                           @Field("birth")birth: String, @Field("education")education: String, @Field("address")address: String, @Field("introduce")introduce: String): Call<ResponseData>
 
     //28 비밀번호 수정
     @FormUrlEncoded
@@ -282,16 +283,18 @@ interface RetroInterface {
     fun changePasswdMentor(@Header("blu-e-access-token") token: String, @Field("password")password: String,@Field("password2")password2:String): Call<ResponseData>
 
     //51 멘티->멘토 리뷰 작성
+    @FormUrlEncoded
     @POST("/mentor-reviews")
-    fun toMentorReview(@Header("blu-e-access-token") token: String, @Path("nickname")nickname: String, @Path("subject")subject: String,@Path("contents")contents: String):Call<ResponseData>
+    fun toMentorReview(@Header("blu-e-access-token") token: String, @Field("nickname")nickname: String, @Field("subject")subject: String,@Field("contents")contents: String):Call<ResponseData>
 
     //52 멘토->멘티 리뷰 작성
+    @FormUrlEncoded
     @POST("/mentor-reviews")
-    fun toMenteeReview(@Header("blu-e-access-token") token: String, @Path("nickname")nickname: String, @Path("subject")subject: String,@Path("contents")contents: String):Call<ResponseData>
+    fun toMenteeReview(@Header("blu-e-access-token") token: String, @Field("nickname")nickname: String, @Field("subject")subject: String,@Field("contents")contents: String):Call<ResponseData>
 
     //53 특정 멘티에 대한 리뷰 조회
     @POST("/main/mentees/{userId}/review")
-    fun MenteeReviewList(@Header("blu-e-access-token")token: String):Call<ResponseReviewList>
+    fun MenteeReviewList(@Header("blu-e-access-token")token: String,@Path("userId")userId: Int):Call<ResponseReviewList>
 
     //54 내가 쓴 리뷰 조회
     @GET("/reviews/myReview")
@@ -302,12 +305,13 @@ interface RetroInterface {
     fun aboutMeReview(@Header("blu-e-access-token")token: String):Call<ResponseReviewList>
 
     //56 리뷰 수정
+    @FormUrlEncoded
     @PATCH("/reviews/{reviewId}")
-    fun changeReview(@Header("blu-e-access-token")token: String,@Path("contents")contents: String):Call<ResponseData>
+    fun changeReview(@Header("blu-e-access-token")token: String,@Path("reviewId")reviewId:Int, @Field("contents")contents: String):Call<ResponseData>
 
     //57 리뷰 삭제
     @DELETE("/reviews/{reviewId}")
-    fun deleteReview(@Header("blu-e-access-token")token: String):Call<ResponseData>
+    fun deleteReview(@Header("blu-e-access-token")token: String,@Path("reviewId")reviewId:Int):Call<ResponseData>
 
     //65 멘토링 내역 조회
     @GET("/myPage/myMentoring")
@@ -315,5 +319,5 @@ interface RetroInterface {
 
     //66 특정 멘토에 대한 리뷰 조회
     @GET("/main/mentors/{userId}/review")
-    fun MentorReviewList(@Header("blu-e-access-token")token: String):Call<ResponseReviewList>
+    fun MentorReviewList(@Header("blu-e-access-token")token: String,@Path("userId")userId:Int):Call<ResponseReviewList>
 }

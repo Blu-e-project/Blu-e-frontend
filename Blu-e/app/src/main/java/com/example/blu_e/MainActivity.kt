@@ -104,6 +104,9 @@ class MainActivity : AppCompatActivity() {
             //13 -> transaction.replace(viewBinding.containerFragment.id, ) //멘토 구인글
             14 -> transaction.replace(viewBinding.containerFragment.id, HomeMentorFragment()) //멘토 홈
             15 -> transaction.replace(viewBinding.containerFragment.id, HomeMenteeFragment()) //멘티 홈
+
+            //mypage 내 이동
+            16 -> transaction.replace(viewBinding.containerFragment.id, MentorPasswdChangeFragment()) //비밀번호 변경
         }
         transaction.addToBackStack(null);
         transaction.commit()

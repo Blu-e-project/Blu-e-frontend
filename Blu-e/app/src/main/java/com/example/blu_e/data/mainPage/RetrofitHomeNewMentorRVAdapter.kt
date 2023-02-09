@@ -1,5 +1,6 @@
 package com.example.blu_e.data.mainPage
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,8 +27,12 @@ class RetrofitHomeNewMentorRVAdapter(private val items: ArrayList<FindMentorsRes
 
     //항목 뷰에 데이터 연결
     override fun onBindViewHolder(holder: RetrofitHomeNewMentorRVAdapter.ViewHolder, position: Int) {
-        val model = items[position]
+        val model = items!![position]
         holder.bind(model)
+        holder.itemView.setOnClickListener {
+            Log.d("selected", position.toString())
+            itemClickListener.onClick(it, position)
+        }
     }
 
     //아이템 개수

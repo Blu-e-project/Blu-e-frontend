@@ -217,6 +217,7 @@ interface RetroInterface {
     //64. 내가 댓글 단 멘티 구인글 조회 API
     @GET("/myPage/myMenteeComPick")
     fun myMenteeComPick(@Header("blu-e-access-token") token: String) : Call<MyMenteePickResponse>
+
     //---------------------------------------구만이 코드----------------------------------------------
     //8 멘토 전체 조회(최근 가입한 순) NewMentor
     @GET("/main/mentors")
@@ -269,6 +270,9 @@ interface RetroInterface {
     //31 멘티 구인글 전체 조회(최신순) RecruitMentee
     @GET("/mentoring/find-mentees")
     fun findRecruitMentee(@Header("blu-e-access-token") token: String): Call<FindRecruitMenteeResponse>
+
+    //문제 부분 조회(최신 5개)
+    @GET("/problems/main")
 
     //-----------------------------------------------------주영-----------------------------------------
     //27 내 정보 수정

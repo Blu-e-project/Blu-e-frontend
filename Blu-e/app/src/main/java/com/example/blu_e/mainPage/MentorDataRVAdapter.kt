@@ -61,8 +61,7 @@ class MentorDataRVAdapter(private val dataList: ArrayList<MentorData> = arrayLis
         fun bind(data: MentorData) { //viewHolder가 어떤걸 표시할 때 호출 시켜주는함수 data class를 인자값으로, 뷰 설정
             viewBinding.mentorCardTitle.text = data.title
             viewBinding.mentorCardDesiredSubject.text = data.subject
-//            viewBinding.mentorCardDesiredStartPeriod.text = data.periodStart
-//            viewBinding.mentorCardDesiredEndPeriod.text = data.periodEnd
+            viewBinding.mentorCardDesiredPeriod.text = data.periodStart
             viewBinding.mentorCardMethod.text = data.mentoringMethod
             viewBinding.mentorCardGender.text = data.mentorGender
         }

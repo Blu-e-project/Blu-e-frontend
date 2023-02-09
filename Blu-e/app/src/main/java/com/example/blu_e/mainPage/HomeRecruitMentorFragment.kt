@@ -1,6 +1,7 @@
 package com.example.blu_e.mainPage
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,13 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
+import com.example.blu_e.MainApplication
 import com.example.blu_e.data.RetroInterface
-import com.example.blu_e.data.mainPage.FindRecruitMenteeResponse
-import com.example.blu_e.data.mainPage.FindRecruitMentorResponse
-import com.example.blu_e.data.mainPage.MentorData
-import com.example.blu_e.data.mainPage.RetrofitRecruitMentorRVAdapter
+import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeRecruitMentorBinding
+import com.example.blu_e.mentoring.ProfileActivity
+import com.example.blu_e.mentoring.RequestMentoringActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,8 +24,21 @@ import retrofit2.Response
 class HomeRecruitMentorFragment : Fragment() {
     lateinit var viewBinding: FragmentHomeRecruitMentorBinding
     private lateinit var mContext: MainActivity
-    //private val api = RetroInterface.create() //retrofit 객체
 
+    private val api = RetroInterface.create() //retrofit 객체
+
+    private lateinit var mentorList: ArrayList<FindRecruitMentorResponse.FindRecruitMentorItem>
+    private lateinit var adapter2: RetrofitRecruitMentorRVAdapter
+
+    companion object {
+        fun newInstance(list: ArrayList<FindHotMentorResponse.FindHotMentorItem>, id: Int) =
+            HomeRecruitMentorFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable("list", list)
+                putInt("id", id)
+            }
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -36,7 +51,7 @@ class HomeRecruitMentorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = FragmentHomeRecruitMentorBinding.inflate(layoutInflater)
-        //loadData()
+        loadData()
         return viewBinding.root
     }
 
@@ -66,9 +81,9 @@ class HomeRecruitMentorFragment : Fragment() {
         viewBinding.recyclerViewMentor.adapter = mentorAdapter
         viewBinding.recyclerViewMentor.layoutManager = grid
     }
-/*
+
     private fun loadData() {
-        api.findMentors("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object :
+        api.findRecruitMentors (MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
             Callback<FindRecruitMentorResponse> {
             override fun onResponse(
                 call: Call<FindRecruitMentorResponse>,
@@ -78,28 +93,23 @@ class HomeRecruitMentorFragment : Fragment() {
                     val body = response.body() ?: return
                     if (body.code == 1000) {
                         Log.d("목록 불러오기", "성공")
-                        val list = body.result as ArrayList<FindRecruitMentorResponse.FindRecruitMentorItem>
+                        mentorList = body.result as ArrayList<FindRecruitMentorResponse.FindRecruitMentorItem>
+                        adapter2 = RetrofitRecruitMentorRVAdapter(mentorList)
 
-                        val mentorAdapter = RetrofitRecruitMentorRVAdapter(list)
-                        val grid = GridLayoutManager(mContext, 2)
+                        viewBinding.recyclerViewMentor.adapter = adapter2
+                        viewBinding.recyclerViewMentor.layoutManager = GridLayoutManager(mContext, 2)
 
-                        viewBinding.recyclerViewMentor.adapter = mentorAdapter
-                        viewBinding.recyclerViewMentor.layoutManager = grid
-
-                        mentorAdapter.setItemClickListener(object: RetrofitRecruitMentorRVAdapter.ItemClickListener{
-                            override fun onClick(view: View, position: Int) {
-
-                            }
-                        })
+                        val intent = Intent(mContext, RequestMentoringActivity::class.java)
+                        intent.putExtra("userId", "userId")
                     }
                 }
                 else {
                     Log.d("새로운 멘토 리스트", "실패")
                 }
             }
-            override fun onFailure(call: Call<FindRecruitMenteeResponse>, t: Throwable) {
+            override fun onFailure(call: Call<FindRecruitMentorResponse>, t: Throwable) {
                 Log.e("새로운 멘토 리스트", "failure")
             }
         })
-    }*/
+    }
 }

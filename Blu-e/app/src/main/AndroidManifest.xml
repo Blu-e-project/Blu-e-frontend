@@ -82,7 +82,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ProfileActivity"
+            android:name=".mentoring.ProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -179,14 +179,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".mentoring.curiousquestion.AskQuestionActivity"
+            android:name=".mentoring.AskQuestionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".mentoring.curiousquestion.RegisterQuestionFormActivity"
+            android:name=".mentoring.RegisterQuestionFormActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

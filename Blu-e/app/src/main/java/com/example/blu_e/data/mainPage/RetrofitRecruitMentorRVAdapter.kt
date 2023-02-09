@@ -1,5 +1,6 @@
 package com.example.blu_e.data.mainPage
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ class RetrofitRecruitMentorRVAdapter(private val items: ArrayList<FindRecruitMen
         fun bind(data: FindRecruitMenteeResponse.FindRecruitMenteeItem) {
             viewBinding.mentorCardTitle.text = data.title
             viewBinding.mentorCardDesiredSubject.text = data.subject
-            viewBinding.mentorCardDesiredStartPeriod.text = data.period
+            viewBinding.mentorCardDesiredPeriod.text = data.period
             viewBinding.mentorCardMethod.text = data.mentoringMethod
             viewBinding.mentorCardGender.text = data.wishGender
         }
@@ -31,9 +32,11 @@ class RetrofitRecruitMentorRVAdapter(private val items: ArrayList<FindRecruitMen
 
     //항목 뷰에 데이터 연결
     override fun onBindViewHolder(holder: RetrofitRecruitMentorRVAdapter.ViewHolder, position: Int) {
-        holder.bind(items[position])
-        holder.itemView.setOnClickListener{
-
+        val model = items!![position]
+        holder.bind(model)
+        holder.itemView.setOnClickListener {
+            Log.d("selected", position.toString())
+            itemClickListener.onClick(it, position)
         }
     }
 

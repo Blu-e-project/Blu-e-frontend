@@ -1,9 +1,11 @@
 package com.example.blu_e.data.mainPage
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.blu_e.data.customercenter.QuestionAdapter
 import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
 import com.example.blu_e.mainPage.NewMenteeDataRVAdapter
 
@@ -27,7 +29,12 @@ class RetrofitHomeNewMenteeRVAdapter(private val items: ArrayList<FindFiveMentee
 
     //항목 뷰에 데이터 연결
     override fun onBindViewHolder(holder: RetrofitHomeNewMenteeRVAdapter.ViewHolder, position: Int) {
-        holder.bind(items[position])
+        val model = items!![position]
+        holder.bind(model)
+        holder.itemView.setOnClickListener {
+            Log.d("selected", position.toString())
+            itemClickListener.onClick(it, position)
+        }
     }
 
     //아이템 개수

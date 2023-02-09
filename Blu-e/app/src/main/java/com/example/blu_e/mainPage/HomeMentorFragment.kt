@@ -14,10 +14,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
 import com.example.blu_e.RecruitMenteeActivity
-import com.example.blu_e.data.QuestionData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeMentorBinding
+import com.example.blu_e.mainPage.HomeNewMenteeFragment.Companion.newInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +30,14 @@ class HomeMentorFragment : Fragment() {
     private lateinit var mentorAdapter: MentorDataRVAdapter //멘토를 구하고 있어요!
 
     private val api = RetroInterface.create() //retrofit 객체
+
+    //새로운 멘티가 있어요!
+    private lateinit var menteeList: ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+    private lateinit var adapter2: RetrofitHomeNewMenteeRVAdapter
+
+    //멘토를 구하고 있어요!
+    private lateinit var mentorList: ArrayList<FindHotMentorResponse.FindHotMentorItem>
+    private lateinit var adapter3: RetrofitHomeRecruitMentorRVAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -54,7 +62,7 @@ class HomeMentorFragment : Fragment() {
 
         //새로운 멘티가 있어요!
         viewBinding.btnMenteeAdd.setOnClickListener {
-            mContext!!.openFragment(6)
+
         }
         //궁금한 문제가 있어요!
         viewBinding.btnQuestionAdd.setOnClickListener {
@@ -140,12 +148,20 @@ class HomeMentorFragment : Fragment() {
                     val body = response.body() ?: return
                     if (body.code == 1000) {
                         Log.d("목록 불러오기", "성공")
-                        var menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+                        menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+                        adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
+                        viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
+                        viewBinding.recyclerViewHomeNewMentee.layoutManager = LinearLayoutManager(mContext)
+                        adapter2.notifyItemChanged(menteeList.size)
 
-                       var menteeAdapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
-                        viewBinding.recyclerViewHomeNewMentee.adapter = menteeAdapter2
-                        viewBinding.recyclerViewHomeNewMentee.layoutManager =
-                            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+                        adapter2.setItemClickListener(object: RetrofitHomeNewMenteeRVAdapter.ItemClickListener{
+                            override fun onClick(view: View, position: Int) {
+                                var detailFragment = HomeNewMenteeFragment.newInstance(menteeList, position)
+                                mContext.supportFragmentManager.beginTransaction().replace(
+                                    mContext.viewBinding.containerFragment.id, detailFragment
+                                ).commit()
+                            }
+                        })
                     }
                 }
                 else {
@@ -169,12 +185,21 @@ class HomeMentorFragment : Fragment() {
                     val body = response.body() ?: return
                     if (body.code == 1000) {
                         Log.d("목록 불러오기", "성공")
-                        var mentorList = body.result as ArrayList<FindHotMentorResponse.FindHotMentorItem>
-
-                        var mentorAdapter2 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
-                        viewBinding.recyclerViewMentor.adapter = mentorAdapter2
+                        mentorList = body.result as ArrayList<FindHotMentorResponse.FindHotMentorItem>
+                        adapter3 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
+                        viewBinding.recyclerViewMentor.adapter = adapter3
                         viewBinding.recyclerViewMentor.layoutManager =
                             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+                        adapter3.notifyItemChanged(mentorList.size)
+
+                        adapter3.setItemClickListener(object: RetrofitHomeRecruitMentorRVAdapter.ItemClickListener{
+                            override fun onClick(view: View, position: Int) {
+                                var detailFragment = HomeRecruitMentorFragment.newInstance(mentorList, position)
+                                mContext.supportFragmentManager.beginTransaction().replace(
+                                    mContext.viewBinding.containerFragment.id, detailFragment
+                                ).commit()
+                            }
+                        })
                     }
                 }
                 else {

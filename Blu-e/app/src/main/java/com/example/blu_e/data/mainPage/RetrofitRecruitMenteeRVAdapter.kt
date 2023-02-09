@@ -1,5 +1,6 @@
 package com.example.blu_e.data.mainPage
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,11 +31,14 @@ class RetrofitRecruitMenteeRVAdapter(private val items: ArrayList<FindRecruitMen
 
     //항목 뷰에 데이터 연결
     override fun onBindViewHolder(holder: RetrofitRecruitMenteeRVAdapter.ViewHolder, position: Int) {
-        holder.bind(items[position])
-        holder.itemView.setOnClickListener{
-
+        val model = items!![position]
+        holder.bind(model)
+        holder.itemView.setOnClickListener {
+            Log.d("selected", position.toString())
+            itemClickListener.onClick(it, position)
         }
     }
+
 
     //아이템 개수
     override fun getItemCount(): Int = items.size

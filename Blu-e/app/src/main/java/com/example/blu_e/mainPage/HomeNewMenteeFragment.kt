@@ -2,18 +2,13 @@ package com.example.blu_e.mainPage
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.data.RetroInterface
-import com.example.blu_e.data.mainPage.FindMenteesResponse
-import com.example.blu_e.data.mainPage.FindMentorsResponse
-import com.example.blu_e.data.mainPage.NewMenteeData
-import com.example.blu_e.data.mainPage.RetrofitHomeNewMenteeRVAdapter
+import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeNewMenteeBinding
 import com.example.blu_e.login.SignUpActivity
 import retrofit2.Call
@@ -25,6 +20,15 @@ class HomeNewMenteeFragment : Fragment() {
     private lateinit var mContext: MainActivity
     //private val api = RetroInterface.create() //retrofit 객체
     //private lateinit var qs: ArrayList<FindMenteesResponse.FindMenteeItem>
+
+    companion object {
+        fun newInstance(list: ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>, id: Int) = HomeNewMenteeFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable("list", list)
+                putInt("id", id)
+            }
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

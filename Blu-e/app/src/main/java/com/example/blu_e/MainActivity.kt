@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import com.example.blu_e.customercenter.AccusationFragment
 import com.example.blu_e.customercenter.CenterFragment
 import com.example.blu_e.customercenter.FaqDetailFragment
@@ -110,24 +111,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     //갤러리 사진 선택 후 Base64 인코딩
-    val imageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            result -> if(result.resultCode == Activity.RESULT_OK) {
-        val imageUri = result.data?.data ?: return@registerForActivityResult
-        val ins: InputStream? = imageUri?.let {
-            contentResolver.openInputStream(it)
+    val imageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val imageUri = result.data?.data ?: return@registerForActivityResult
+            val ins: InputStream? = imageUri?.let {
+                contentResolver.openInputStream(it)
+            }
+            val img: Bitmap = BitmapFactory.decodeStream(ins)
+            ins?.close()
+            val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
+            val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+            val outStream = ByteArrayOutputStream()
+            val res: Resources = resources
+            profileImageBase64 = android.util.Base64.encodeToString(byteArray, Base64.NO_WRAP)
+            if (profileImageBase64 != null) {
+                Toast.makeText(this, "이미지가 첨부되었습니다!", Toast.LENGTH_SHORT).show()
+            }
         }
-        val img: Bitmap = BitmapFactory.decodeStream(ins)
-        ins?.close()
-        val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
-        val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
-        val outStream = ByteArrayOutputStream()
-        val res: Resources = resources
-        profileImageBase64 = android.util.Base64.encodeToString(byteArray, Base64.NO_WRAP)
-        if(profileImageBase64 != null) {
-            Toast.makeText(this, "이미지가 첨부되었습니다!", Toast.LENGTH_SHORT).show()
-        }
-    }
     }
 }

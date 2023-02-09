@@ -10,10 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
 import com.example.blu_e.data.RetroInterface
-import com.example.blu_e.data.mainPage.FindRecruitMenteeResponse
-import com.example.blu_e.data.mainPage.FindRecruitMentorResponse
-import com.example.blu_e.data.mainPage.MentorData
-import com.example.blu_e.data.mainPage.RetrofitRecruitMentorRVAdapter
+import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeRecruitMentorBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,6 +21,15 @@ class HomeRecruitMentorFragment : Fragment() {
     private lateinit var mContext: MainActivity
     //private val api = RetroInterface.create() //retrofit 객체
 
+    companion object {
+        fun newInstance(list: ArrayList<FindHotMentorResponse.FindHotMentorItem>, id: Int) =
+            HomeRecruitMentorFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable("list", list)
+                putInt("id", id)
+            }
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

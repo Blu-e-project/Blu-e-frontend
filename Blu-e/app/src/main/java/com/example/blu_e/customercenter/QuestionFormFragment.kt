@@ -65,10 +65,9 @@ class QuestionFormFragment : Fragment() {
                                 .setMessage("Q&A 등록이 완료 되었습니다.")
                                 .setPositiveButton("확인",
                                     DialogInterface.OnClickListener { dialog, id ->
-
+                                        mContext!!.openFragment(2)
                                     })
                             builder.show()
-                            mContext!!.openFragment(2)
                         } else if (body.code == 2300 || body.code == 2304 || body.code == 2301 || body.code == 2305) {
                             Log.d("질문 등록하기", "실패")
                             Toast.makeText(mContext, body.message, Toast.LENGTH_SHORT).show()

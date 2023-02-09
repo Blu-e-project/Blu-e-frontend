@@ -148,7 +148,7 @@ class RequestMentoringActivity : AppCompatActivity()  {
 
     override fun onResume() {
         super.onResume()
-        adapter.notifyItemChanged(commentList.size)
+        //adapter.notifyItemChanged(commentList.size)
         //+ 조회수 올리는 기능!
 
         //Flow -> 맨 처음엔 로그인 유저 정보부터 불러오기

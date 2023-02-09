@@ -1,6 +1,7 @@
 package com.example.blu_e.customercenter
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,8 @@ import com.example.blu_e.MainActivity
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.customercenter.*
 import com.example.blu_e.databinding.FragmentCenterBinding
+import com.example.blu_e.mentoring.AskQuestionActivity
+import com.example.blu_e.mentoring.RequestMentoringActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -91,6 +94,7 @@ class CenterFragment : Fragment() {
                              adapter2 = QuestionAdapter(qs)
                              viewBinding.recyclerViewQa.adapter = adapter2
                              viewBinding.recyclerViewQa.layoutManager = LinearLayoutManager(mContext)
+                             adapter2.notifyItemChanged(qs.size)
 
                              adapter2.setItemClickListener(object: QuestionAdapter.ItemClickListener{
                                  override fun onClick(view: View, position: Int) {

@@ -28,8 +28,12 @@ import retrofit2.http.GET as GET
 
 interface RetroInterface {
     //작성한 QnA 조회
-    @GET("/service/questions/{userId}")
+    @GET("/service/questions")
     fun requestMyQuestions(@Header("blu-e-access-token") token: String): Call<QuestionResponse>
+
+    //특정 QnA 조회 -> 위에 통신 만으로 해결 가능해보임
+    //@GET("/service/questions")
+    //fun requestADetailQuestion(@Header("blu-e-access-token") token: String, @Query("questionId") questionId: Int): Call<QuestionResponse>
 
     //Question 작성
     @POST("/service/questions/writing")
@@ -100,6 +104,18 @@ interface RetroInterface {
     //멘티 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentees/{pickId}/comments/{pickCommentId}")
     fun commentDeleteAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
+
+    //궁금한 문제 작성
+
+    //특정 문제 조회
+
+    //문제 해답 작성
+
+    //문제 해답 조회
+
+    //문제 해답 수정
+
+    //문제 해답 제거
 
     companion object {
         private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //

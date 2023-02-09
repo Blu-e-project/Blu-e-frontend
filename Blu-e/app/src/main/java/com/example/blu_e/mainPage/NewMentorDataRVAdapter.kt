@@ -2,9 +2,11 @@ package com.example.blu_e.mainPage
 
 import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.example.blu_e.data.mainPage.FindMentorsResponse
 import com.example.blu_e.data.mainPage.NewMentorData
 import com.example.blu_e.databinding.RecyclerviewNewMentorCardBinding
 
@@ -35,4 +37,12 @@ class NewMentorDataRVAdapter(private val dataList: ArrayList<NewMentorData> = ar
         return position
     }
 
+    interface ItemClickListener {
+        fun onClick(view: View, position: Int)
+    }
+
+    private lateinit var itemClickListener: ItemClickListener
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
+    }
 }

@@ -1,31 +1,31 @@
-package com.example.blu_e.mainPage
+package com.example.blu_e.data.mainPage
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.blu_e.data.mainPage.NewMenteeData
 import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
+import com.example.blu_e.databinding.RecyclerviewNewMentorCardBinding
 
-class NewMenteeDataRVAdapter(private val items: ArrayList<NewMenteeData> = arrayListOf()) :
-    RecyclerView.Adapter<NewMenteeDataRVAdapter.ViewHolder>() {
+class RetrofitHomeNewMentorRVAdapter(private val items: ArrayList<FindMentorsResponse.FindMentorsItem> = arrayListOf()) :
+    RecyclerView.Adapter<RetrofitHomeNewMentorRVAdapter.ViewHolder>() {
     //각 항목에 필요한 기능 구현, ViewHolder 반환
-    inner class ViewHolder(private val viewBinding: RecyclerviewNewMenteeCardBinding):
+    inner class ViewHolder(private val viewBinding: RecyclerviewNewMentorCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun bind(data: NewMenteeData) {
-            viewBinding.pickMenteeId.text = data.pickMenteeId
+        fun bind(data: FindMentorsResponse.FindMentorsItem) {
+            viewBinding.pickMentorId.text = data.nickname
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewMenteeDataRVAdapter.ViewHolder {
-        val viewBinding = RecyclerviewNewMenteeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RetrofitHomeNewMentorRVAdapter.ViewHolder {
+        val viewBinding = RecyclerviewNewMentorCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(viewBinding)
     }
 
     //항목 뷰에 데이터 연결
-    override fun onBindViewHolder(holder: NewMenteeDataRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RetrofitHomeNewMentorRVAdapter.ViewHolder, position: Int) {
         val model = items[position]
         holder.bind(model)
     }

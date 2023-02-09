@@ -13,6 +13,7 @@ import com.example.blu_e.MainActivity
 import com.example.blu_e.MainApplication
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ActivityLoginBinding
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,27 +41,29 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     val responseData = response.body()
-                    if (responseData != null) {
                         //성공하면
+                    if (responseData != null) {
                         if(responseData.code == 1000) {
                             Log.d("login", "성공")
-                            jwt = responseData.result[0].jwt
+                            jwt = responseData.result.jwt
+                            Log.d("login", "${jwt}")
                             MainApplication.prefs.setString("blu-e-access-token", jwt!!)
                             startActivity(intent)
                         }
                         //비밀번호를 입력해주세요x
-                        else if (responseData.code == 2017){
+                        if (responseData.code == 2017){
                             viewBinding.pwMsg.text = responseData.message
                             viewBinding.userPw.backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
                         }
-                        else if (responseData.code == 3002){
+                        if (responseData.code == 3002){
                             viewBinding.idMsg.text = "아이디가 존재하지 않습니다."
                             viewBinding.userId.backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
                         }
-                        else if (responseData.code == 3003){
+                        if (responseData.code == 3003){
                             viewBinding.idMsg.text = "일치하는 회원 정보가 없습니다"
                             viewBinding.userPw.backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
                         }
+                    }
                         //에러 메세지 1초만 띄우기
             Handler().postDelayed(Runnable {
                 viewBinding.pwMsg.text = ""
@@ -69,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
                 viewBinding.userPw.backgroundTintList = ColorStateList.valueOf(Color.rgb(0,107,206))
             }, 1000)
                     }
-                }
+
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     Log.e("error", t.toString())

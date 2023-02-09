@@ -116,19 +116,22 @@ class RecruitMentorActivity : AppCompatActivity() {
         super.onResume()
         if(isItFromUpdate == 1) {
             //기존 값 넣어두기
-            viewBinding.title.setText(originalPostContents!!.title)
-            viewBinding.content.setText(originalPostContents!!.contents)
-            viewBinding.subject.setText(originalPostContents!!.subject)
+            if(originalPostContents != null) {
+                viewBinding.title.setText(originalPostContents!!.title)
+                viewBinding.content.setText(originalPostContents!!.contents)
+                viewBinding.subject.setText(originalPostContents!!.subject)
 //                viewBinding.region.setText(originalPostContents.re)
-            viewBinding.mentoringMethod.setText(originalPostContents!!.mentoringMethod)
-            viewBinding.mentorCareer.setText(originalPostContents!!.mentorCareer)
+                viewBinding.mentoringMethod.setText(originalPostContents!!.mentoringMethod)
+                viewBinding.mentorCareer.setText(originalPostContents!!.mentorCareer)
 
-            val sdf = SimpleDateFormat("yyyy-MM-dd")
-            val startTime = sdf.format(originalPostContents!!.periodStart)
-            viewBinding.startPerioid.setText(startTime)
-            val endTime = sdf.format(originalPostContents!!.periodEnd)
-            viewBinding.endPerioid.setText(endTime)
-            viewBinding.gender.setText(originalPostContents!!.wishGender)
+                val sdf = SimpleDateFormat("yyyy-MM-dd")
+                val startTime = sdf.format(originalPostContents!!.periodStart)
+                viewBinding.startPerioid.setText(startTime)
+                val endTime = sdf.format(originalPostContents!!.periodEnd)
+                viewBinding.endPerioid.setText(endTime)
+                viewBinding.gender.setText(originalPostContents!!.wishGender)
+            }
+
         }
     }
 }

@@ -16,7 +16,7 @@ class RetrofitRecruitMentorRVAdapter(private val items: ArrayList<FindRecruitMen
         fun bind(data: FindRecruitMenteeResponse.FindRecruitMenteeItem) {
             viewBinding.mentorCardTitle.text = data.title
             viewBinding.mentorCardDesiredSubject.text = data.subject
-            viewBinding.mentorCardDesiredStartPeriod.text = data.period
+            viewBinding.mentorCardDesiredPeriod.text = data.period
             viewBinding.mentorCardMethod.text = data.mentoringMethod
             viewBinding.mentorCardGender.text = data.wishGender
         }

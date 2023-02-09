@@ -17,6 +17,7 @@ class RetrofitHomeNewMenteeRVAdapter(private val items: ArrayList<FindFiveMentee
 
         fun bind(data: FindFiveMenteeResponse.FindFiveMenteeItems) {
             viewBinding.pickMenteeId.text = data.nickname
+
         }
     }
 

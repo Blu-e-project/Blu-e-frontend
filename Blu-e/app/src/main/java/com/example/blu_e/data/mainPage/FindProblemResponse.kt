@@ -6,7 +6,7 @@ data class FindProblemResponse (
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: List<FindProblemItems>
+    val result: FindProblemItems
 ) {
     data class FindProblemItems(
         val nickname: String,

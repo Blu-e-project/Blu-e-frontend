@@ -78,7 +78,7 @@ class HomeQuestionFragment : Fragment() {
     }
 
     private fun loadData() {
-        api.findProblems (MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
+        api.findProblems ().enqueue(object :
             Callback<AllProblemsResponse> {
             override fun onResponse(
                 call: Call<AllProblemsResponse>,

@@ -4,7 +4,7 @@ data class FindMenteesResponse (
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: List<FindMenteeItem>
+    val result: FindMenteeItem
 ) {
     data class FindMenteeItem(
         val userId: Int,

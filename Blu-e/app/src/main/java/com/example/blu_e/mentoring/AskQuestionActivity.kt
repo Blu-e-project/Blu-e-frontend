@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.blu_e.ProfileActivity
 import com.example.blu_e.R
 import com.example.blu_e.data.mentoring.PickComment
 import com.example.blu_e.data.mentoring.RequestMentoringCommentAdapter

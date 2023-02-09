@@ -29,7 +29,7 @@ class HomeMentorFragment : Fragment() {
     private lateinit var menteeAdapter: NewMenteeDataRVAdapter //새로운 멘티가 있어요!
     private lateinit var mentorAdapter: MentorDataRVAdapter //멘토를 구하고 있어요!
 
-    //private val api = RetroInterface.create() //retrofit 객체
+    private val api = RetroInterface.create() //retrofit 객체
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -43,8 +43,8 @@ class HomeMentorFragment : Fragment() {
     ): View? {
         viewBinding = FragmentHomeMentorBinding.inflate(layoutInflater)
         Log.e("홈", "들어왔나?")
-        //loadData1()
-        //loadData3()
+        loadData1()
+        loadData3()
 
         return viewBinding.root
     }
@@ -70,7 +70,7 @@ class HomeMentorFragment : Fragment() {
             startActivity(intent)
         }
     }
-
+/*
     override fun onResume() {
         super.onResume()
 
@@ -127,9 +127,8 @@ class HomeMentorFragment : Fragment() {
         viewBinding.recyclerViewMentor.adapter = mentorAdapter
         viewBinding.recyclerViewMentor.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-    }
+    }*/
 
-/*
     private fun loadData1() { //새로운 멘티가 있어요
         api.findFiveMentee ("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object :
             Callback<FindFiveMenteeResponse> {
@@ -186,5 +185,5 @@ class HomeMentorFragment : Fragment() {
                 Log.e("새로운 멘티 리스트", "failure")
             }
         })
-    }*/
+    }
 }

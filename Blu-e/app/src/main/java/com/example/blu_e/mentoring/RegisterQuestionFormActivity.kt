@@ -1,4 +1,4 @@
-package com.example.blu_e.mentoring.curiousquestion
+package com.example.blu_e.mentoring
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

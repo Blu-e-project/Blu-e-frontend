@@ -1,26 +1,37 @@
 package com.example.blu_e.login
 
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.example.blu_e.LoginResponse
 import com.example.blu_e.R
+import com.example.blu_e.SignupResponse
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ActivityMentorInfoBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class MentorInfoActivity : AppCompatActivity() {
-    //private val api = RetroInterface.create()
+//    private val api = RetroInterface.create()
+    lateinit var uri: Uri
+    lateinit var profileImageBase64: String
     lateinit var viewBinding: ActivityMentorInfoBinding
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +44,12 @@ class MentorInfoActivity : AppCompatActivity() {
             var intent = Intent(this, MentorSignUpActivity::class.java)
             startActivity(intent)
         }
-
-        //닉네임 중복확인
-        viewBinding.checkNicknameBtn.setOnClickListener {
-            val nick = viewBinding.nickname.text.toString()
-
+        //갤러리 사진 선택
+        viewBinding.profileBtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            Log.d("이미지", "성공")
+            activityResult.launch(intent)
         }
         //갤러리 사진 선택
         viewBinding.profileBtn.setOnClickListener {
@@ -51,30 +63,31 @@ class MentorInfoActivity : AppCompatActivity() {
             if(viewBinding.userPw.text == viewBinding.checkPw.text) {
                 //체크했는지 안했는지 확인
                 if (viewBinding.agreeCb.isChecked) {
-//                    val id = viewBinding.userId.text.toString()
-//                    val password = viewBinding.userPw.text.toString()
+                    val id = viewBinding.userId.text.toString()
+                    val password = viewBinding.userPw.text.toString()
 //                    //본인인증에서 번호 가져옴
-//                    val phone = "0101"
-//                    val name = viewBinding.name.text.toString()
-//                    val nickname = viewBinding.nickname.toString()
-//                    //string ->LocalDate로 바꿔야함
-//                    val birthStr = viewBinding.birth.text.toString()
-//                    val birth = LocalDate.parse(birthStr, DateTimeFormatter.ISO_DATE)
-//                    val education = viewBinding.education.text.toString()
-//                    val department = viewBinding.major.text.toString()
-//                    val grade: Int? = null
-//                    val address = viewBinding.addr.text.toString()
-//                    val introduce = viewBinding.introduceMent.text.toString()
-//                    val role = 1
-//                    val createAt = LocalDate.now()
-//                    val updateAt = LocalDate.now()
-//                    val status = 1
+                    val phone = intent.getStringExtra("phoneNum")
+                    val name = viewBinding.name.text.toString()
+                    val nickname = viewBinding.nickname.toString()
+                    //string ->LocalDate로 바꿔야함
+                    val birthStr = viewBinding.birth.text.toString()
+                    val birth = LocalDate.parse(birthStr, DateTimeFormatter.ISO_DATE)
+                    val education = viewBinding.education.text.toString()
+                    val department = viewBinding.major.text.toString()
+                    val grade: Int? = null
+                    val address = viewBinding.addr.text.toString()
+                    val introduce = viewBinding.introduceMent.text.toString()
+                    val role = 1
+                    val createAt = LocalDate.now()
+                    val updateAt = LocalDate.now()
+                    val status = 1
+                    val userId = 1
 //                    //val userImg = viewBinding.
-//                    api.signup(id, password,phone, name,nickname,birth,education,department, grade,address, introduce,role,createAt,updateAt,status, null)
-//                        .enqueue(object :Callback<LoginResponse>{
+//                    api.signUp(userId, id, password,phone, name,nickname,birth,education,department, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
+//                        .enqueue(object :Callback<SignupResponse>{
 //                            override fun onResponse(
-//                                call: Call<LoginResponse>,
-//                                response: Response<LoginResponse>
+//                                call: Call<SignupResponse>,
+//                                response: Response<SignupResponse>
 //                            ) {
 //                                val responseData = response.body()
 //                                if (responseData != null) {
@@ -91,7 +104,7 @@ class MentorInfoActivity : AppCompatActivity() {
 //                                }
 //                            }
 //
-//                            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+//                            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
 //                                TODO("Not yet implemented")
 //                            }
 //                        })
@@ -110,12 +123,27 @@ class MentorInfoActivity : AppCompatActivity() {
 
         if(it.resultCode == RESULT_OK && it.data != null){
             //값 담기
-            val uri = it.data!!.data
+            uri = it.data!!.data!!
             Log.d("이미지", "${uri}")
             //화면에 보여주기
             Glide.with(this)
                 .load(uri)
                 .into(viewBinding.profile)
-        }
+            val ins: InputStream? = uri?.let {
+                contentResolver.openInputStream(uri)
+            }
+            val img: Bitmap = BitmapFactory.decodeStream(ins)
+            ins?.close()
+            val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
+            val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+            val outStream = ByteArrayOutputStream()
+            val res: Resources = resources
+            profileImageBase64 = Base64.encodeToString(byteArray, Base64.NO_WRAP)
+            if(profileImageBase64 != null) {
+                Toast.makeText(this, "이미지가 첨부되었습니다!", Toast.LENGTH_SHORT).show()
+            }
     }
+}
 }

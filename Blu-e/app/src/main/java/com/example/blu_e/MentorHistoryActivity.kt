@@ -1,5 +1,7 @@
 package com.example.blu_e
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +10,7 @@ import com.example.blu_e.data.MentorHistoryDataRVAdapter
 import com.example.blu_e.databinding.ActivityMentorHistoryBinding
 
 class MentorHistoryActivity : AppCompatActivity() {
+    private lateinit var mContext: MainActivity
     lateinit var viewBinding: ActivityMentorHistoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,9 @@ class MentorHistoryActivity : AppCompatActivity() {
         viewBinding.rvData.adapter = dataRVAdapter
         viewBinding.rvData.layoutManager = LinearLayoutManager(this)
 
+        viewBinding.backToCenterD.setOnClickListener {
+            finish()
+        }
 
     }
 }

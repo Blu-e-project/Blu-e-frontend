@@ -1,6 +1,7 @@
 package com.example.blu_e.customercenter
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,8 @@ import com.example.blu_e.MainActivity
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.customercenter.*
 import com.example.blu_e.databinding.FragmentCenterBinding
+import com.example.blu_e.mentoring.AskQuestionActivity
+import com.example.blu_e.mentoring.RequestMentoringActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -80,33 +83,40 @@ class CenterFragment : Fragment() {
             mContext!!.openFragment(3)
         }
 
-       /* api.requestMyQuestions("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..", 1).enqueue(object: Callback<QuestionResponse> {
-            override fun onResponse(call: Call<QuestionResponse>, response: Response<QuestionResponse>) {
-                val body = response.body() ?: return
-                if(body.code == 1000) {
-                    Log.d("질문 목록 불러오기", "성공")
-                    qs = body.result
-                    adapter2 = QuestionAdapter(qs)
-                    viewBinding.recyclerViewQa.adapter = adapter2
-                    viewBinding.recyclerViewQa.layoutManager = LinearLayoutManager(mContext)
+        /*api.requestMyQuestions("").enqueue(object: Callback<QuestionResponse> {
+             override fun onResponse(call: Call<QuestionResponse>, response: Response<QuestionResponse>) {
+                 val body = response.body()?: return
+                 if (body != null) {
+                     if(body.code == 1000) {
+                         if(body.result != null) {
+                             Log.d("질문 목록 불러오기", "성공")
+                             qs = body.result
+                             adapter2 = QuestionAdapter(qs)
+                             viewBinding.recyclerViewQa.adapter = adapter2
+                             viewBinding.recyclerViewQa.layoutManager = LinearLayoutManager(mContext)
+                             adapter2.notifyItemChanged(qs.size)
 
-                    adapter2.setItemClickListener(object: QuestionAdapter.ItemClickListener{
-                        override fun onClick(view: View, position: Int) {
-                            var detailFragment = QuestionDetailFragment.newInstance(qs, position)
-                            mContext.supportFragmentManager.beginTransaction().replace(
-                                mContext.viewBinding.containerFragment.id, detailFragment
-                            ).commit()
-                        }
-                    })
-                }
-                else {
-                    Log.d("질문 목록 불러오기", "실패")
-                }
-            }
-            override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
-                //실패시
-                Log.d("질문 목록 불러오기", "실패")
-            }
-        })*/
+                             adapter2.setItemClickListener(object: QuestionAdapter.ItemClickListener{
+                                 override fun onClick(view: View, position: Int) {
+                                     var detailFragment = QuestionDetailFragment.newInstance(qs, position)
+                                     mContext.supportFragmentManager.beginTransaction().replace(
+                                         mContext.viewBinding.containerFragment.id, detailFragment
+                                     ).commit()
+                                 }
+                             })
+                         } else {
+                             Log.d("질문 목록 불러오기", "아직 질문이 없습니다.")
+                         }
+                     }
+                 }
+                 else {
+                     Log.d("Response: ", "null")
+                 }
+             }
+             override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
+                 //실패시
+                 Log.d("질문 목록 불러오기", "실패")
+             }
+         })*/
     }
 }

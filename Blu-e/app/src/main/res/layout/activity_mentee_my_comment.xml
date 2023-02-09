@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyPostCommentActivity">
+    tools:context=".MenteeMyCommentActivity">
     <View
         android:id="@+id/mentoringTitleView"
         android:layout_width="match_parent"
@@ -60,7 +60,10 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/ment_tv1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/recyclerview_mentor_card"
+        />
     <TextView
         android:id="@+id/ment_tv2"
         android:layout_width="wrap_content"
@@ -82,7 +85,10 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/ment_tv2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/recyclerview_mentor_card"
+        />
     <TextView
         android:id="@+id/ment_tv3"
         android:layout_width="wrap_content"
@@ -104,6 +110,9 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/ment_tv3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/recyclerview_question_card"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,8 +13,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
+import com.example.blu_e.MainApplication
 import com.example.blu_e.RecruitMenteeActivity
-import com.example.blu_e.data.QuestionData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeMentorBinding
@@ -30,6 +30,14 @@ class HomeMentorFragment : Fragment() {
     private lateinit var mentorAdapter: MentorDataRVAdapter //멘토를 구하고 있어요!
 
     private val api = RetroInterface.create() //retrofit 객체
+
+    //새로운 멘티가 있어요!
+    private lateinit var menteeList: ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+    private lateinit var adapter2: RetrofitHomeNewMenteeRVAdapter
+
+    //멘토를 구하고 있어요!
+    private lateinit var mentorList: ArrayList<FindHotMentorResponse.FindHotMentorItem>
+    private lateinit var adapter3: RetrofitHomeRecruitMentorRVAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -70,7 +78,9 @@ class HomeMentorFragment : Fragment() {
             startActivity(intent)
         }
     }
-/*
+
+    //더미 데이터
+    /*
     override fun onResume() {
         super.onResume()
 
@@ -130,7 +140,7 @@ class HomeMentorFragment : Fragment() {
     }*/
 
     private fun loadData1() { //새로운 멘티가 있어요
-        api.findFiveMentee ("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object :
+        api.findFiveMentee (MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
             Callback<FindFiveMenteeResponse> {
             override fun onResponse(
                 call: Call<FindFiveMenteeResponse>,
@@ -140,12 +150,30 @@ class HomeMentorFragment : Fragment() {
                     val body = response.body() ?: return
                     if (body.code == 1000) {
                         Log.d("목록 불러오기", "성공")
+<<<<<<< HEAD
                         var menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
 
                         var menteeAdapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
                         viewBinding.recyclerViewHomeNewMentee.adapter = menteeAdapter2
                         viewBinding.recyclerViewHomeNewMentee.layoutManager =
                             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+=======
+                        menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+                        adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
+                        viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
+                        viewBinding.recyclerViewHomeNewMentee.layoutManager = LinearLayoutManager(mContext)
+                        adapter2.notifyItemChanged(menteeList.size)
+                        /*
+                        adapter2.setItemClickListener(object: RetrofitHomeNewMenteeRVAdapter.ItemClickListener{
+                            override fun onClick(view: View, position: Int) {
+                                var detailFragment = HomeNewMenteeFragment.newInstance(menteeList, position)
+                                mContext.supportFragmentManager.beginTransaction().replace(
+                                    mContext.viewBinding.containerFragment.id, detailFragment
+                                ).commit()
+                            }
+                        })
+                        */
+>>>>>>> 56e3c4506fc117ca225d6861dae9113f1db46d5f
                     }
                 }
                 else {
@@ -159,7 +187,7 @@ class HomeMentorFragment : Fragment() {
     }
 
     private fun loadData3() { //멘토를 구하고 있어요
-        api.findHotMentors  ("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object :
+        api.findHotMentors  (MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
             Callback<FindHotMentorResponse> {
             override fun onResponse(
                 call: Call<FindHotMentorResponse>,
@@ -169,20 +197,30 @@ class HomeMentorFragment : Fragment() {
                     val body = response.body() ?: return
                     if (body.code == 1000) {
                         Log.d("목록 불러오기", "성공")
-                        var mentorList = body.result as ArrayList<FindHotMentorResponse.FindHotMentorItem>
+                        mentorList = body.result as ArrayList<FindHotMentorResponse.FindHotMentorItem>
+                        adapter3 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
 
-                        var mentorAdapter2 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
-                        viewBinding.recyclerViewMentor.adapter = mentorAdapter2
+                        viewBinding.recyclerViewMentor.adapter = adapter3
                         viewBinding.recyclerViewMentor.layoutManager =
                             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+                        adapter3.notifyItemChanged(mentorList.size)
+
+                        adapter3.setItemClickListener(object: RetrofitHomeRecruitMentorRVAdapter.ItemClickListener{
+                            override fun onClick(view: View, position: Int) {
+                                var detailFragment = HomeRecruitMentorFragment.newInstance(mentorList, position)
+                                mContext.supportFragmentManager.beginTransaction().replace(
+                                    mContext.viewBinding.containerFragment.id, detailFragment
+                                ).commit()
+                            }
+                        })
                     }
                 }
                 else {
-                    Log.d("새로운 멘티 리스트", "실패")
+                    Log.d("멘토 리스트", "실패")
                 }
             }
             override fun onFailure(call: Call<FindHotMentorResponse>, t: Throwable) {
-                Log.e("새로운 멘티 리스트", "failure")
+                Log.e("멘토 리스트", "failure")
             }
         })
     }

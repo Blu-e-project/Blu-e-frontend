@@ -1,6 +1,7 @@
 package com.example.blu_e.mainPage
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
+import com.example.blu_e.MainApplication
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mainPage.FindMentorsResponse
 import com.example.blu_e.data.mainPage.NewMentorData
@@ -76,15 +78,15 @@ class HomeNewMentorFragment : Fragment() {
         mentorAdapter.setItemClickListener(object : NewMentorDataRVAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 var mentorFragment = ProfileActivity.newInstance(list, position)
-                *//*mContext.supportFragmentManager.beginTransaction().replace(
-                    mContext.viewBinding.containerFragment.id, mentorFragment
+                mContext.supportFragmentManager.beginTransaction().replace(
+                mContext.viewBinding.containerFragment.id, mentorFragment
                 ).commit()
-            *//*}
+            }
         })
     }*/
 
     private fun loadData() {
-        api.findMentors("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object :
+        api.findMentors(MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
             Callback<FindMentorsResponse> {
             override fun onResponse(
                 call: Call<FindMentorsResponse>,
@@ -102,11 +104,8 @@ class HomeNewMentorFragment : Fragment() {
                         viewBinding.recyclerViewNewMentor.adapter = menteeAdapter
                         viewBinding.recyclerViewNewMentor.layoutManager = grid
 
-                        menteeAdapter.setItemClickListener(object: RetrofitNewMentorRVAdapter.ItemClickListener{
-                            override fun onClick(view: View, position: Int) {
-
-                            }
-                        })
+                        val intent = Intent(mContext, ProfileActivity::class.java)
+                        intent.putExtra("userId", "userId")
                     }
                 }
                 else {

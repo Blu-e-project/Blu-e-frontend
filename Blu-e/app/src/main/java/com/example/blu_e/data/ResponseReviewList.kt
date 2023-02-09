@@ -8,8 +8,7 @@ data class ResponseReviewList(
 ) data class reviewItem(
     var reviewId:Int,
     var matchingId:Int,
-    var targetId:Int,
-    var nickname:String,
     var userImg:String,
+    var nickname:String,
     var contents:String
 )

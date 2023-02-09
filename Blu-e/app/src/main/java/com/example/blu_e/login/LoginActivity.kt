@@ -12,6 +12,8 @@ import com.example.blu_e.LoginResponse
 import com.example.blu_e.MainActivity
 import com.example.blu_e.MainApplication
 import com.example.blu_e.data.RetroInterface
+import com.example.blu_e.data.mainPage.FindMenteeIdResponse
+import com.example.blu_e.data.mainPage.FindMentorIdResponse
 import com.example.blu_e.databinding.ActivityLoginBinding
 import org.json.JSONObject
 import retrofit2.Call
@@ -48,6 +50,54 @@ class LoginActivity : AppCompatActivity() {
                             jwt = responseData.result.jwt
                             Log.d("login", "${jwt}")
                             MainApplication.prefs.setString("blu-e-access-token", jwt!!)
+                           val userId = responseData.result.userId
+                            MainApplication.prefs.setString("userId", userId.toString())
+                            //멘티에 아이디가 있으면 꺼냄
+                            api.findMenteeID(jwt!!, userId).enqueue(object: Callback<FindMenteeIdResponse>{
+                                override fun onResponse(
+                                    call: Call<FindMenteeIdResponse>,
+                                    response: Response<FindMenteeIdResponse>
+                                ) {
+                                    //멘티 user정보에 user가 있으면?
+                                    val menteeResponseData = response.body()
+                                    if (menteeResponseData != null) {
+                                        if(menteeResponseData.code == 1000){
+                                            MainApplication.prefs.setString("role", "2")
+                                        }
+                                    }
+                                }
+
+                                override fun onFailure(
+                                    call: Call<FindMenteeIdResponse>,
+                                    t: Throwable
+                                ) {
+                                    TODO("Not yet implemented")
+                                }
+
+                            })
+
+                            api.findMentorID(jwt!!, userId).enqueue(object: Callback<FindMentorIdResponse>{
+                                override fun onResponse(
+                                    call: Call<FindMentorIdResponse>,
+                                    response: Response<FindMentorIdResponse>
+                                ) {
+                                    val mentorResponseData = response.body()
+                                    if (mentorResponseData != null) {
+                                        if(mentorResponseData.code == 1000){
+                                            MainApplication.prefs.setString("role", "1")
+                                        }
+                                    }
+                                }
+
+                                override fun onFailure(
+                                    call: Call<FindMentorIdResponse>,
+                                    t: Throwable
+                                ) {
+                                    TODO("Not yet implemented")
+                                }
+
+                            })
+                            Log.d("사용자 역할 정보", "${MainApplication.prefs.getString("role","")}")
                             startActivity(intent)
                         }
                         //비밀번호를 입력해주세요x
@@ -61,6 +111,10 @@ class LoginActivity : AppCompatActivity() {
                         }
                         if (responseData.code == 3003){
                             viewBinding.idMsg.text = "일치하는 회원 정보가 없습니다"
+                            viewBinding.userPw.backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
+                        }
+                        if (responseData.code == 3004){
+                            viewBinding.idMsg.text = "비활성화 된 계정입니다. 고객센터에 문의해주세요."
                             viewBinding.userPw.backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
                         }
                     }

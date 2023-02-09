@@ -144,7 +144,7 @@ class HomeMentorFragment : Fragment() {
     }*/
 
     private fun loadData1() { //새로운 멘티가 있어요
-        api.findFiveMentee().enqueue(object :
+        api.findFiveMentee ().enqueue(object :
             Callback<FindFiveMenteeResponse> {
             override fun onResponse(
                 call: Call<FindFiveMenteeResponse>,

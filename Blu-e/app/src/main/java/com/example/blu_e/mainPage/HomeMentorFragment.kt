@@ -142,7 +142,7 @@ class HomeMentorFragment : Fragment() {
                         Log.d("목록 불러오기", "성공")
                         var menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
 
-                       var menteeAdapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
+                        var menteeAdapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
                         viewBinding.recyclerViewHomeNewMentee.adapter = menteeAdapter2
                         viewBinding.recyclerViewHomeNewMentee.layoutManager =
                             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)

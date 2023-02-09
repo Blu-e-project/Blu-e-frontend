@@ -2,12 +2,17 @@ package com.example.blu_e
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.DialogInterface
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.data.ResponseData
@@ -37,10 +42,11 @@ class MentorPasswdChangeFragment:Fragment() {
         viewBinding = FragmentMentorChangePasswdBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 //뒤로가기
-        viewBinding.backToPageMentor.setOnClickListener{
+        viewBinding.backToPageMentor.setOnClickListener {
             mContext!!.openFragment(5)
         }
 //비밀번호 변경
@@ -48,7 +54,11 @@ class MentorPasswdChangeFragment:Fragment() {
             var password = viewBinding.passwdMentor.text.toString()
             var password2 = viewBinding.passwdReMentor.text.toString()
             val builder = AlertDialog.Builder(mContext)
-            api.changePasswdMentor("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..", password, password2).enqueue(object :
+            api.changePasswdMentor(
+                "eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..",
+                password,
+                password2
+            ).enqueue(object :
                 Callback<ResponseData> {
                 override fun onResponse(
                     call: Call<ResponseData>,
@@ -103,6 +113,7 @@ class MentorPasswdChangeFragment:Fragment() {
                         }
                     }
                 }
+
                 override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                     Log.e("비밀번호 수정", "failure")
                 }
@@ -111,4 +122,9 @@ class MentorPasswdChangeFragment:Fragment() {
         }
     }
 
+    private fun hideKeyBoard() {
+        val imm =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
+    }
 }

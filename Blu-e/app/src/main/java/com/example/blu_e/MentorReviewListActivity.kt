@@ -5,14 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.data.MentorReviewListData
 import com.example.blu_e.data.MentorReviewListRVAdatper
-import com.example.blu_e.databinding.ActivityMentorReviewListBinding
+import com.example.blu_e.databinding.ActivityMentorMyReviewBinding
 
 class MentorReviewListActivity:AppCompatActivity() {
     private lateinit var mContext: MainActivity
-    lateinit var viewBinding: ActivityMentorReviewListBinding
+    lateinit var viewBinding: ActivityMentorMyReviewBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivityMentorReviewListBinding.inflate(layoutInflater)
+        viewBinding = ActivityMentorMyReviewBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
         val dataList: ArrayList<MentorReviewListData> = arrayListOf()

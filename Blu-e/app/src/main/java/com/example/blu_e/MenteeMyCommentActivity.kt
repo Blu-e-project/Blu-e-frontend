@@ -4,9 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.blu_e.data.RecruitMenteeData
-import com.example.blu_e.data.RecruitMenteeRVAdapter
-import com.example.blu_e.data.RecruitMentorData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ActivityMenteeMyCommentBinding
 import retrofit2.Call
@@ -15,7 +12,7 @@ import retrofit2.Response
 
 class MenteeMyCommentActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeMyCommentBinding
-//    private val api = RetroInterface.create()
+    private val api = RetroInterface.create()
     lateinit var tokenStr: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,110 +22,110 @@ class MenteeMyCommentActivity : AppCompatActivity() {
         tokenStr = MainApplication.prefs.getString("blu-e-access-token","")
 
 
-//        //내기 댓글 단 멘티 구인글 조회
-//        api.myMenteeComPick(tokenStr).enqueue(object : Callback<MyMenteePickResponse>{
-//            override fun onResponse(
-//                call: Call<MyMenteePickResponse>,
-//                response: Response<MyMenteePickResponse>
-//            ) {
-//                val responseData = response.body()
-//                responseData?.let {
-//                    setMenteePickAdapter(it.MenteePickResult as ArrayList<MyMenteePickItem>)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MyMenteePickResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//        //내가 쓴 멘티 구인글
-//        api.myMenteePick(tokenStr).enqueue(object : Callback<MyMenteePickResponse>{
-//            override fun onResponse(
-//                call: Call<MyMenteePickResponse>,
-//                response: Response<MyMenteePickResponse>
-//            ) {
-//                val responseData = response.body()
-//                responseData?.let {
-//                    setMenteePickAdapter(it.MenteePickResult as ArrayList<MyMenteePickItem>)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MyMenteePickResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//        //내가 댓글 단 멘토 구인글 조회
-//        api.myMentorComPick(tokenStr).enqueue(object : Callback<MyMentorPickResponse>{
-//            override fun onResponse(
-//                call: Call<MyMentorPickResponse>,
-//                response: Response<MyMentorPickResponse>
-//            ) {
-//                val responseData = response.body()
-//                responseData?.let {
-//                    setMentorPickAdapter(it.MentorPickResult as ArrayList<MyMentorPickItem>)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MyMentorPickResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//
-//        //내가 쓴 멘토 구인글
-//        api.myMentorPick(tokenStr).enqueue(object : Callback<MyMentorPickResponse>{
-//            override fun onResponse(
-//                call: Call<MyMentorPickResponse>,
-//                response: Response<MyMentorPickResponse>
-//            ) {
-//                val responseData = response.body()
-//                responseData?.let {
-//                    setMentorPickAdapter(it.MentorPickResult as ArrayList<MyMentorPickItem>)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MyMentorPickResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//
-//
-//        //내가 쓴 질문
-//        api.problemByMe(tokenStr).enqueue(object : Callback<ProbByMeResponse>{
-//            override fun onResponse(
-//                call: Call<ProbByMeResponse>,
-//                response: Response<ProbByMeResponse>
-//            ) {
-//                val responseData = response.body()
-//                responseData?.let {
-//                    setAdapter(it.result as ArrayList<ProbByMeItem>)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ProbByMeResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
-//            }
-//        })
-//        //내가 답한 질문
-//        api.problemSolByMe(tokenStr).enqueue(object : Callback<ProbSolByMeResponse>{
-//            override fun onResponse(
-//                call: Call<ProbSolByMeResponse>,
-//                response: Response<ProbSolByMeResponse>
-//            ) {
-//                val responseData = response.body()
-//                responseData?.let {
-//                    setSolAdapter(it.solResult as ArrayList<ProbSolByMeItem>)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ProbSolByMeResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
+        //내기 댓글 단 멘티 구인글 조회
+        api.myMenteeComPick(tokenStr).enqueue(object : Callback<MyMenteePickResponse>{
+            override fun onResponse(
+                call: Call<MyMenteePickResponse>,
+                response: Response<MyMenteePickResponse>
+            ) {
+                val responseData = response.body()
+                responseData?.let {
+                    setMenteePickAdapter(it.MenteePickResult as ArrayList<MyMenteePickItem>)
+                }
+            }
+
+            override fun onFailure(call: Call<MyMenteePickResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        //내가 쓴 멘티 구인글
+        api.myMenteePick(tokenStr).enqueue(object : Callback<MyMenteePickResponse>{
+            override fun onResponse(
+                call: Call<MyMenteePickResponse>,
+                response: Response<MyMenteePickResponse>
+            ) {
+                val responseData = response.body()
+                responseData?.let {
+                    setMenteePickAdapter(it.MenteePickResult as ArrayList<MyMenteePickItem>)
+                }
+            }
+
+            override fun onFailure(call: Call<MyMenteePickResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        //내가 댓글 단 멘토 구인글 조회
+        api.myMentorComPick(tokenStr).enqueue(object : Callback<MyMentorPickResponse>{
+            override fun onResponse(
+                call: Call<MyMentorPickResponse>,
+                response: Response<MyMentorPickResponse>
+            ) {
+                val responseData = response.body()
+                responseData?.let {
+                    setMentorPickAdapter(it.MentorPickResult as ArrayList<MyMentorPickItem>)
+                }
+            }
+
+            override fun onFailure(call: Call<MyMentorPickResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        //내가 쓴 멘토 구인글
+        api.myMentorPick(tokenStr).enqueue(object : Callback<MyMentorPickResponse>{
+            override fun onResponse(
+                call: Call<MyMentorPickResponse>,
+                response: Response<MyMentorPickResponse>
+            ) {
+                val responseData = response.body()
+                responseData?.let {
+                    setMentorPickAdapter(it.MentorPickResult as ArrayList<MyMentorPickItem>)
+                }
+            }
+
+            override fun onFailure(call: Call<MyMentorPickResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+        //내가 쓴 질문
+        api.problemByMe(tokenStr).enqueue(object : Callback<ProbByMeResponse>{
+            override fun onResponse(
+                call: Call<ProbByMeResponse>,
+                response: Response<ProbByMeResponse>
+            ) {
+                val responseData = response.body()
+                responseData?.let {
+                    setAdapter(it.result as ArrayList<ProbByMeItem>)
+                }
+            }
+
+            override fun onFailure(call: Call<ProbByMeResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+        //내가 답한 질문
+        api.problemSolByMe(tokenStr).enqueue(object : Callback<ProbSolByMeResponse>{
+            override fun onResponse(
+                call: Call<ProbSolByMeResponse>,
+                response: Response<ProbSolByMeResponse>
+            ) {
+                val responseData = response.body()
+                responseData?.let {
+                    setSolAdapter(it.solResult as ArrayList<ProbSolByMeItem>)
+                }
+            }
+
+            override fun onFailure(call: Call<ProbSolByMeResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
     }
     private fun setAdapter(resultList: ArrayList<ProbByMeItem>){

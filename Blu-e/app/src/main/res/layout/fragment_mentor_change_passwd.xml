@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/View_mentor_changePasswd" />
 
     <EditText
-        android:id="@+id/passwd_ment_mentor"
+        android:id="@+id/passwd_mentor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/passwd_tv_mentor" />
 
     <EditText
-        android:id="@+id/passwdRe_ment_mentor"
+        android:id="@+id/passwdRe_mentor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -92,8 +92,8 @@
         android:textColor="#6B000000"
 
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/passwd_ment_mentor"
-        app:layout_constraintTop_toBottomOf="@+id/passwd_ment_mentor" />
+        app:layout_constraintStart_toStartOf="@+id/passwd_mentor"
+        app:layout_constraintTop_toBottomOf="@+id/passwd_mentor" />
 
     <Button
         android:id="@+id/btn_changePwd"

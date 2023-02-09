@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.blu_e.SignupResponse
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ActivityMenteeInfoBinding
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +32,8 @@ import java.util.Base64.getUrlEncoder
 
 class MenteeInfoActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeInfoBinding
-//        private val api = RetroInterface.create()
+        private val api = RetroInterface.create()
+    lateinit var byteArray: Text
     @RequiresApi(Build.VERSION_CODES.O)
     lateinit var uri: Uri
     lateinit var profileImageBase64: String
@@ -76,33 +78,33 @@ class MenteeInfoActivity : AppCompatActivity() {
                     val role = 2
                     val createAt = LocalDate.now()
                     val updateAt = LocalDate.now()
-                    val status = 1
-                        val userId = 1
-//                    api.signUp(userId, id, password,phone, name,nickname,birth,education,null, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
-//                        .enqueue(object : Callback<SignupResponse> {
-//                            override fun onResponse(
-//                                call: Call<SignupResponse>,
-//                                response: Response<SignupResponse>
-//                            ) {
-//                                val responseData = response.body()
-//                                if (responseData != null) {
-//                                    if(responseData.code == 1000){
-//
-//                                    } else{
-//                                        val msg = when(responseData.code) {
-//                                            2001 -> "아이디를 입력해주세요"
-//                                            2002 -> "아이드는 35자리로 이하로 입력해주세요."
-//                                            2003 -> "비밀번호를 입력하세요"
-//                                            else -> {}
-//                                        }
-//                                    }
-//                                }
-//                            }
-//
-//                            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-//                                TODO("Not yet implemented")
-//                            }
-//                        })
+                    val status = 2
+                    api.signUp(id, password,phone, name,nickname,birth,education,null, grade,address, introduce,role,createAt,updateAt,status, byteArray)
+                        .enqueue(object : Callback<SignupResponse> {
+                            override fun onResponse(
+                                call: Call<SignupResponse>,
+                                response: Response<SignupResponse>
+                            ) {
+                                val responseData = response.body()
+                                if (responseData != null) {
+                                    if(responseData.code == 1000){
+                                       var intent = Intent(this@MenteeInfoActivity, MenteeSignUpSuccessActivity::class.java)
+                                       startActivity(intent)
+                                    } else{
+                                        val msg = when(responseData.code) {
+                                            2001 -> "아이디를 입력해주세요"
+                                            2002 -> "아이드는 35자리로 이하로 입력해주세요."
+                                            2003 -> "비밀번호를 입력하세요"
+                                            else -> {}
+                                        }
+                                    }
+                                }
+                            }
+
+                            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
+                                TODO("Not yet implemented")
+                            }
+                        })
 
                     }
                 }

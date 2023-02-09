@@ -32,7 +32,7 @@ class FindIdActivity : AppCompatActivity() {
         var verifySuccess = false
         phoneNum = viewBinding.phoneNumber.text.toString()
         viewBinding.sendBtn.setOnClickListener {
-            api.sendPhoneNum(phoneNum!!).enqueue(object :Callback<SignupResponse>{
+            api.sendPhoneNum(phoneNum).enqueue(object :Callback<SignupResponse>{
                 override fun onResponse(
                     call: Call<SignupResponse>,
                     response: Response<SignupResponse>

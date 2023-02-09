@@ -2,6 +2,7 @@ package com.example.blu_e.mainPage
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +12,12 @@ import com.example.blu_e.MainActivity
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mainPage.FindMentorsResponse
 import com.example.blu_e.data.mainPage.NewMentorData
+import com.example.blu_e.data.mainPage.RetrofitNewMentorRVAdapter
 import com.example.blu_e.databinding.FragmentHomeNewMentorBinding
 import com.example.blu_e.mentoring.ProfileActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeNewMentorFragment : Fragment() {
     lateinit var viewBinding: FragmentHomeNewMentorBinding
@@ -44,7 +49,7 @@ class HomeNewMentorFragment : Fragment() {
         //loadData()
         return viewBinding.root
     }
-
+/*
     override fun onResume() {
         super.onResume()
 
@@ -71,16 +76,16 @@ class HomeNewMentorFragment : Fragment() {
         mentorAdapter.setItemClickListener(object : NewMentorDataRVAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 var mentorFragment = ProfileActivity.newInstance(list, position)
-                /*mContext.supportFragmentManager.beginTransaction().replace(
+                *//*mContext.supportFragmentManager.beginTransaction().replace(
                     mContext.viewBinding.containerFragment.id, mentorFragment
                 ).commit()
-            */}
+            *//*}
         })
-    }
+    }*/
 
-/*
     private fun loadData() {
-        api.findMentors("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object : Callback<FindMentorsResponse> {
+        api.findMentors("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object :
+            Callback<FindMentorsResponse> {
             override fun onResponse(
                 call: Call<FindMentorsResponse>,
                 response: Response<FindMentorsResponse>
@@ -113,5 +118,4 @@ class HomeNewMentorFragment : Fragment() {
             }
         })
     }
-    */
 }

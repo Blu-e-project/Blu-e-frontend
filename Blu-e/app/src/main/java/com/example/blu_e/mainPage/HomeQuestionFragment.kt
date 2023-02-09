@@ -2,6 +2,7 @@ package com.example.blu_e.mainPage
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +10,21 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
 import com.example.blu_e.data.QuestionData
+import com.example.blu_e.data.RetroInterface
+import com.example.blu_e.data.mainPage.AllProblemsResponse
+import com.example.blu_e.data.mainPage.FindMentorsResponse
+import com.example.blu_e.data.mainPage.RetrofitProblemRVAdapter
 import com.example.blu_e.databinding.FragmentHomeQuestionBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeQuestionFragment : Fragment() {
     lateinit var viewBinding: FragmentHomeQuestionBinding
     private lateinit var mContext: MainActivity
+
+    //private val api = RetroInterface.create() //retrofit 객체
+    //private lateinit var list: ArrayList<AllProblemsResponse.Items>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -26,7 +37,7 @@ class HomeQuestionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = FragmentHomeQuestionBinding.inflate(layoutInflater)
-
+        //loadData()
         return viewBinding.root
     }
 
@@ -62,4 +73,35 @@ class HomeQuestionFragment : Fragment() {
         viewBinding.recyclerViewQuestion.adapter = questionAdapter
         viewBinding.recyclerViewQuestion.layoutManager = grid
     }
+/*
+    private fun loadData() {
+        api.findProblems("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object :
+            Callback<AllProblemsResponse> {
+            override fun onResponse(
+                call: Call<AllProblemsResponse>,
+                response: Response<AllProblemsResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val body = response.body() ?: return
+                    if (body.code == 1000) {
+                        Log.d("목록 불러오기", "성공")
+                        list = body.result as ArrayList<AllProblemsResponse.Items>
+
+                        val questionAdapter = RetrofitProblemRVAdapter(list)
+                        val grid = GridLayoutManager(mContext, 2)
+
+                        viewBinding.recyclerViewQuestion.adapter = questionAdapter
+                        viewBinding.recyclerViewQuestion.layoutManager = grid
+                    }
+                }
+                else {
+                    Log.d("새로운 멘토 리스트", "실패")
+                }
+            }
+            override fun onFailure(call: Call<AllProblemsResponse>, t: Throwable) {
+                Log.e("새로운 멘토 리스트", "failure")
+            }
+        })
+    }
+    */
 }

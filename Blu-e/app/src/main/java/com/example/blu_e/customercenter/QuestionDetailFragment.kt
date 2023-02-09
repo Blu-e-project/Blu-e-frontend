@@ -75,6 +75,7 @@ class QuestionDetailFragment : Fragment() {
                                 if(body != null) {
                                     if(body.code == 1000) {
                                         Log.d("질문 삭제하기", body.message)
+                                        mContext!!.openFragment(3)
                                     }
                                     else {
                                         Log.d("질문 삭제하기", "실패")
@@ -102,5 +103,6 @@ class QuestionDetailFragment : Fragment() {
         question = receivedFaqList[receviedQuestionId]
         viewBinding.showTitle.text = question.title
         viewBinding.showContent.text = question.contents
+        viewBinding.showAnswer.text = question.answer
     }
 }

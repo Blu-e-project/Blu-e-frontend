@@ -27,8 +27,12 @@ import retrofit2.http.GET as GET
 
 interface RetroInterface {
     //작성한 QnA 조회
-    @GET("/service/questions/{userId}")
+    @GET("/service/questions")
     fun requestMyQuestions(@Header("blu-e-access-token") token: String): Call<QuestionResponse>
+
+    //특정 QnA 조회 -> 위에 통신 만으로 해결 가능해보임
+    //@GET("/service/questions")
+    //fun requestADetailQuestion(@Header("blu-e-access-token") token: String, @Query("questionId") questionId: Int): Call<QuestionResponse>
 
     //Question 작성
     @POST("/service/questions/writing")
@@ -99,6 +103,18 @@ interface RetroInterface {
     //멘티 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentees/{pickId}/comments/{pickCommentId}")
     fun commentDeleteAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
+
+    //궁금한 문제 작성
+
+    //특정 문제 조회
+
+    //문제 해답 작성
+
+    //문제 해답 조회
+
+    //문제 해답 수정
+
+    //문제 해답 제거
 
     companion object {
         private const val BASE_URL = "http://43.201.51.75:5000/" //"http://본인 컴퓨터 IP 주소:포트번호" //
@@ -202,11 +218,11 @@ interface RetroInterface {
     @GET("/myPage/myMenteeComPick")
     fun myMenteeComPick(@Header("blu-e-access-token") token: String) : Call<MyMenteePickResponse>
     //---------------------------------------구만이 코드----------------------------------------------
-    //8 멘토 전체 조회(최근 가입한 순)
+    //8 멘토 전체 조회(최근 가입한 순) NewMentor
     @GET("/main/mentors")
     fun findMentors(@Header("blu-e-access-token") token: String): Call<FindMentorsResponse>
 
-    //9 멘티 전체 조회(최근 가입한 순)
+    //9 멘티 전체 조회(최근 가입한 순) NewMentee
     @GET("/main/mentees")
     fun findMentees(@Header("blu-e-access-token") token: String): Call<FindMenteesResponse>
 
@@ -218,15 +234,15 @@ interface RetroInterface {
     @GET("/main/mentees/{userId}")
     fun findMenteeID(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int): Call<FindMenteeIdResponse>
 
-    //12 멘토 부분 조회(최신 5명)
+    //12 멘토 부분 조회(최신 5명) HomeMentor
     @GET("/main/new-mentors")
     fun findFiveMentor(@Header("blu-e-access-token") token:String): Call<FindFiveMentorResponse>
 
-    //13 멘티 부분 조회(최신 5명)
+    //13 멘티 부분 조회(최신 5명) HomeMentee
     @GET("/main/new-mentees")
     fun findFiveMentee(@Header("blu-e-access-token") token:String): Call<FindFiveMenteeResponse>
 
-    //15 문제 전체 조회(최신순)
+    //15 문제 전체 조회(최신순) HomeQuestion
     @GET("/problems")
     fun findProblems(@Header("blu-e-access-token") token: String): Call<AllProblemsResponse>
 
@@ -234,11 +250,11 @@ interface RetroInterface {
     @GET("/problems/{problemId}")
     fun findProblemId(@Header("blu-e-access-token") token: String, @Path("problemId") problemId: Int): Call<FindProblemResponse>
 
-    //21 멘토 구인글 부분 조회(조회수 많은 순 5개)
+    //21 멘토 구인글 부분 조회(조회수 많은 순 5개) HomeMentor
     @GET("/main/hot-mentors")
     fun findHotMentors(@Header("blu-e-access-token") token: String): Call<FindHotMentorResponse>
 
-    //22 멘티 구인글 부분 조회(조회수 많은 순 5개)
+    //22 멘티 구인글 부분 조회(조회수 많은 순 5개) HomeMentee
     @GET("/main/hot-mentees")
     fun findHotMentees(@Header("blu-e-access-token") token: String): Call<FindHotMenteeResponse>
 
@@ -246,11 +262,57 @@ interface RetroInterface {
     @DELETE("/problems/{problemId}")
     fun deleteProblem(@Path("problemId") problemId: Int): Call<DeleteProblemResponse>
 
-    //30 멘토 구인글 전체 조회(최신순)
+    //30 멘토 구인글 전체 조회(최신순) RecruitMentor
     @GET("/mentoring/find-mentors")
     fun findRecruitMentors(@Header("blu-e-access-token") token: String): Call<FindRecruitMentorResponse>
 
-    //31 멘티 구인글 전체 조회(최신순)
+    //31 멘티 구인글 전체 조회(최신순) RecruitMentee
     @GET("/mentoring/find-mentees")
     fun findRecruitMentee(@Header("blu-e-access-token") token: String): Call<FindRecruitMenteeResponse>
+
+    //-----------------------------------------------------주영-----------------------------------------
+    //27 내 정보 수정
+    @PATCH("/mypages/user")
+    fun changeMyinfoMentor(@Header("blu-e-access-token")token: String,@Path("name")name: String,@Path("nickname")nickname: String,
+                           @Path("birth")birth: String, @Path("education")education: String, @Path("address")address: String, @Path("introduce")introduce: String): Call<ResponseData>
+
+    //28 비밀번호 수정
+    @PATCH("/mypages/password")
+    fun changePasswdMentor(@Header("blu-e-access-token") token: String, @Path("password")password: String,@Path("password2")password2:String): Call<ResponseData>
+
+    //51 멘티->멘토 리뷰 작성
+    @POST("/mentor-reviews")
+    fun toMentorReview(@Header("blu-e-access-token") token: String, @Path("nickname")nickname: String, @Path("subject")subject: String,@Path("contents")contents: String):Call<ResponseData>
+
+    //52 멘토->멘티 리뷰 작성
+    @POST("/mentor-reviews")
+    fun toMenteeReview(@Header("blu-e-access-token") token: String, @Path("nickname")nickname: String, @Path("subject")subject: String,@Path("contents")contents: String):Call<ResponseData>
+
+    //53 특정 멘티에 대한 리뷰 조회
+    @POST("/main/mentees/{userId}/review")
+    fun MenteeReviewList(@Header("blu-e-access-token")token: String):Call<ResponseReviewList>
+
+    //54 내가 쓴 리뷰 조회
+    @GET("/reviews/myReview")
+    fun myReviewList(@Header("blu-e-access-token")token: String):Call<ResponseReviewList>
+
+    //55 나에 대한 리뷰 조회
+    @GET("/reviews/aboutMeReview")
+    fun aboutMeReview(@Header("blu-e-access-token")token: String):Call<ResponseReviewList>
+
+    //56 리뷰 수정
+    @PATCH("/reviews/{reviewId}")
+    fun changeReview(@Header("blu-e-access-token")token: String,@Path("contents")contents: String):Call<ResponseData>
+
+    //57 리뷰 삭제
+    @DELETE("/reviews/{reviewId}")
+    fun deleteReview(@Header("blu-e-access-token")token: String):Call<ResponseData>
+
+    //65 멘토링 내역 조회
+    @GET("/myPage/myMentoring")
+    fun myMentoring(@Header("blu-e-access-token")token: String):Call<ResponseMentoring>
+
+    //66 특정 멘토에 대한 리뷰 조회
+    @GET("/main/mentors/{userId}/review")
+    fun MentorReviewList(@Header("blu-e-access-token")token: String):Call<ResponseReviewList>
 }

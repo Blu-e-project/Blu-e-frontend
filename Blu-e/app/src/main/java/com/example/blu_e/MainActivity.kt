@@ -1,12 +1,16 @@
 package com.example.blu_e
 
 import android.app.Activity
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -108,6 +112,7 @@ class MainActivity : AppCompatActivity() {
 
             //mypage 내 이동
             16 -> transaction.replace(viewBinding.containerFragment.id, MentorPasswdChangeFragment()) //비밀번호 변경
+            17->transaction.replace(viewBinding.containerFragment.id, MentorChangeInfoFragment()) //내 정보 수정
         }
         transaction.addToBackStack(null);
         transaction.commit()
@@ -133,5 +138,15 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "이미지가 첨부되었습니다!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
+        if(currentFocus is EditText) {
+            currentFocus!!.clearFocus()
+        }
+
+        return super.dispatchTouchEvent(ev)
     }
 }

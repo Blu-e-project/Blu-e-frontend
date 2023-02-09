@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MentorReviewListActivity">
+    tools:context=".MentorMyReviewActivity">
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:lineHeight="22sp"
-        android:text="멘토링 내역"
+        android:text="내가 쓴 리뷰"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"

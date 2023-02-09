@@ -83,9 +83,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_qa"
-        android:layout_width="320dp"
-        android:layout_height="183dp"
-        android:layout_marginStart="44dp"
+        android:layout_width="322dp"
+        android:layout_height="127dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/view3" />
 
@@ -93,7 +94,7 @@
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
+        android:layout_marginTop="12dp"
         android:width="320dp"
         android:height="40dp"
         android:background="@drawable/shape_round"
@@ -105,9 +106,10 @@
         android:text="Q&amp;A 등록하기"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView_qa"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_qa">
 
     </Button>
 

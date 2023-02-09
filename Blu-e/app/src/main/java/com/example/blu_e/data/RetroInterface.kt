@@ -28,67 +28,72 @@ import retrofit2.http.GET as GET
 interface RetroInterface {
     //작성한 QnA 조회
     @GET("/service/questions")
-    fun requestMyQuestions(@Header("blu-e-access-token") token: String): Call<QuestionResponse>
+    fun requestMyQuestions(): Call<QuestionResponse>
 
     //특정 QnA 조회 -> 위에 통신 만으로 해결 가능해보임
     //@GET("/service/questions")
-    //fun requestADetailQuestion(@Header("blu-e-access-token") token: String, @Query("questionId") questionId: Int): Call<QuestionResponse>
+    //fun requestADetailQuestion(@Query("questionId") questionId: Int): Call<QuestionResponse>
 
     //Question 작성
+    @FormUrlEncoded
     @POST("/service/questions/writing")
-    fun questionWriting(@Header("blu-e-access-token") token: String, @Field("title") title: String, @Field("contents") contents: String): Call<ResponseData>
+    fun questionWriting(@Field("title") title: String, @Field("contents") contents: String): Call<ResponseData>
 
     //Question 삭제
     @DELETE("/service/questions/writing")
-    fun questionDelete(@Header("blu-e-access-token") token: String, @Query("questionId") questionId: Int): Call<ResponseData>
+    fun questionDelete(@Query("questionId") questionId: Int): Call<ResponseData>
 
     //회원 신고
+    @FormUrlEncoded
     @POST("/service/accusations/writing")
-    fun reportMember(@Header("blu-e-access-token") token: String, @Field("targetId") targetId: Int, @Field("title") title: String, @Field("contents") contents: String, @Field("image") image: String) : Call<ResponseData>
+    fun reportMember(@Field("targetId") targetId: Int, @Field("title") title: String, @Field("contents") contents: String, @Field("image") image: String) : Call<ResponseData>
 
     //특정 멘토 구인글 조회
     @GET("/mentoring/mentors/{pickId}")
-    fun requestAPostOfMentor(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickResponse>
+    fun requestAPostOfMentor(@Path("pickId") pickId: Int): Call<PickResponse>
     //특정 멘티 구인글 조회
     @GET("/mentoring/mentees/{pickId}")
-    fun requestAPostOfMentee(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickResponse>
+    fun requestAPostOfMentee(@Path("pickId") pickId: Int): Call<PickResponse>
 
     //멘토 구하는 글 수정 (생성 폼 사용해서)
     @PATCH("/mentoring/mentors/{pickId}")
-    fun updateAPostOfMentor(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int,
+    fun updateAPostOfMentor(@Path("pickId") pickId: Int,
                            @Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject: String, @Field("area") area: String,
                            @Field("mentoringMethod") mentoringMethod: String, @Field("mentorCareer") mentorCareer: String,
                            @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd: String, @Field("wishGender") wishGender: String): Call<ResponseData>
     //멘티 구하는 글 수정 (생성 폼 사용해서)
     @PATCH("/mentoring/mentees/{pickId}")
-    fun updateAPostOfMentee(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int,
+    fun updateAPostOfMentee(@Path("pickId") pickId: Int,
                            @Field("title") title: String, @Field("contents") contents: String, @Field("subject") subject: String, @Field("area") area: String,
                            @Field("mentoringMethod") mentoringMethod: String, @Field("mentorCareer") mentorCareer: String,
                            @Field("periodStart") periodStart: String, @Field("periodEnd") periodEnd: String, @Field("wishGender") wishGender: String): Call<ResponseData>
     //멘토 구하는 글 삭제
     @DELETE("/mentoring/mentors/{pickId}")
-    fun deleteAPostOfMentor(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<ResponseData>
+    fun deleteAPostOfMentor(@Path("pickId") pickId: Int): Call<ResponseData>
     //멘티 구하는 글 삭제
     @DELETE("/mentoring/mentees/{pickId}")
-    fun deleteAPostOfMentee(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<ResponseData>
+    fun deleteAPostOfMentee(@Path("pickId") pickId: Int): Call<ResponseData>
 
     //멘토 구하는 글의 댓글 조회
     @GET("/mentoring/mentors/{pickId}/comments")
-    fun requestMenteeComments(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickCommentResponse>
+    fun requestMenteeComments(@Path("pickId") pickId: Int): Call<PickCommentResponse>
     //멘티 구하는 글의 댓글 조회
     @GET("/mentoring/mentees/{pickId}/comments")
-    fun requestMentorComments(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int): Call<PickCommentResponse>
+    fun requestMentorComments(@Path("pickId") pickId: Int): Call<PickCommentResponse>
 
     //멘토 구하는 글에 댓글 생성
+    @FormUrlEncoded
     @POST("/mentoring/mentors/{pickId}/comments")
-    fun commentWritingAsMentee(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
+    fun commentWritingAsMentee(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
     //멘티 구하는 글에 댓글 생성
+    @FormUrlEncoded
     @POST("/mentoring/mentees/{pickId}/comments")
-    fun commentWritingAsMentor(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
+    fun commentWritingAsMentor(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
 
     //매칭 수락 버튼
+    @FormUrlEncoded
     @POST("/mentoring/mentors/{pickId}/comments/{pickCommentId}/matching")
-    fun requestMatching(@Header("blu-e-access-token") token: String, @Path("pickId") pickId: Int,  @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
+    fun requestMatching(@Path("pickId") pickId: Int,  @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 
     //멘토 구하는 글의 댓글 수정 (하려면 폼 필요) - x
     @PATCH("/mentoring/mentors/{pickId}/comments/{pickCommentId}")

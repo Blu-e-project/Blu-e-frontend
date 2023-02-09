@@ -63,19 +63,20 @@ class QuestionDetailFragment : Fragment() {
 
         viewBinding.questionDeleteIcon.setOnClickListener {
             val userId: Int = 1
+            Log.d("받는 id", receviedQuestionId.toString())
             val builder = AlertDialog.Builder(mContext)
             builder
                 .setTitle("Q&A 삭제")
                 .setMessage("질문을 삭제하시겠습니까?")
                 .setPositiveButton("예",
                     DialogInterface.OnClickListener { dialog, id ->
-                        /*api.questionDelete("", receviedQuestionId).enqueue(object: Callback<ResponseData> {
+                        /*api.questionDelete(receviedQuestionId).enqueue(object: Callback<ResponseData> {
                             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 val body = response.body() ?: return
                                 if(body != null) {
                                     if(body.code == 1000) {
                                         Log.d("질문 삭제하기", body.message)
-                                        mContext!!.openFragment(3)
+                                        mContext!!.openFragment(2)
                                     }
                                     else {
                                         Log.d("질문 삭제하기", "실패")

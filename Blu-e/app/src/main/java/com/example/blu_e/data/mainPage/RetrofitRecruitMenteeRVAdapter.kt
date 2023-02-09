@@ -39,7 +39,6 @@ class RetrofitRecruitMenteeRVAdapter(private val items: ArrayList<FindRecruitMen
         }
     }
 
-
     //아이템 개수
     override fun getItemCount(): Int = items.size
 

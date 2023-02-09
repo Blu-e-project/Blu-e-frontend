@@ -13,11 +13,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
+import com.example.blu_e.MainApplication
 import com.example.blu_e.RecruitMenteeActivity
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeMentorBinding
-import com.example.blu_e.mainPage.HomeNewMenteeFragment.Companion.newInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,7 +62,7 @@ class HomeMentorFragment : Fragment() {
 
         //새로운 멘티가 있어요!
         viewBinding.btnMenteeAdd.setOnClickListener {
-
+            mContext!!.openFragment(6)
         }
         //궁금한 문제가 있어요!
         viewBinding.btnQuestionAdd.setOnClickListener {
@@ -78,7 +78,9 @@ class HomeMentorFragment : Fragment() {
             startActivity(intent)
         }
     }
-/*
+
+    //더미 데이터
+    /*
     override fun onResume() {
         super.onResume()
 
@@ -138,7 +140,7 @@ class HomeMentorFragment : Fragment() {
     }*/
 
     private fun loadData1() { //새로운 멘티가 있어요
-        api.findFiveMentee ("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object :
+        api.findFiveMentee (MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
             Callback<FindFiveMenteeResponse> {
             override fun onResponse(
                 call: Call<FindFiveMenteeResponse>,
@@ -153,7 +155,7 @@ class HomeMentorFragment : Fragment() {
                         viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
                         viewBinding.recyclerViewHomeNewMentee.layoutManager = LinearLayoutManager(mContext)
                         adapter2.notifyItemChanged(menteeList.size)
-
+                        /*
                         adapter2.setItemClickListener(object: RetrofitHomeNewMenteeRVAdapter.ItemClickListener{
                             override fun onClick(view: View, position: Int) {
                                 var detailFragment = HomeNewMenteeFragment.newInstance(menteeList, position)
@@ -162,6 +164,7 @@ class HomeMentorFragment : Fragment() {
                                 ).commit()
                             }
                         })
+                        */
                     }
                 }
                 else {
@@ -175,7 +178,7 @@ class HomeMentorFragment : Fragment() {
     }
 
     private fun loadData3() { //멘토를 구하고 있어요
-        api.findHotMentors  ("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object :
+        api.findHotMentors  (MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
             Callback<FindHotMentorResponse> {
             override fun onResponse(
                 call: Call<FindHotMentorResponse>,
@@ -187,6 +190,7 @@ class HomeMentorFragment : Fragment() {
                         Log.d("목록 불러오기", "성공")
                         mentorList = body.result as ArrayList<FindHotMentorResponse.FindHotMentorItem>
                         adapter3 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
+
                         viewBinding.recyclerViewMentor.adapter = adapter3
                         viewBinding.recyclerViewMentor.layoutManager =
                             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
@@ -203,11 +207,11 @@ class HomeMentorFragment : Fragment() {
                     }
                 }
                 else {
-                    Log.d("새로운 멘티 리스트", "실패")
+                    Log.d("멘토 리스트", "실패")
                 }
             }
             override fun onFailure(call: Call<FindHotMentorResponse>, t: Throwable) {
-                Log.e("새로운 멘티 리스트", "failure")
+                Log.e("멘토 리스트", "failure")
             }
         })
     }

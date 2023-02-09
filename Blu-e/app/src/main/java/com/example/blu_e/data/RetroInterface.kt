@@ -1,6 +1,5 @@
 package com.example.blu_e.data
 
-import android.widget.ImageView
 import com.example.blu_e.*
 import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
@@ -118,7 +117,7 @@ interface RetroInterface {
     //문제 해답 제거
 
     companion object {
-        private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //
+        private const val BASE_URL = "http://43.201.51.75:5000/" //"http://본인 컴퓨터 IP 주소:포트번호" //
 
         fun create(): RetroInterface {
             val gson : Gson = GsonBuilder().setLenient().create()
@@ -156,12 +155,12 @@ interface RetroInterface {
 
     //1. 회원 가입
     @POST("/users/signup")
-    fun signUp(@Field("userId") userId: Int, @Field("id") id: String, @Field("password") password:String, @Field("phoneNum") phoneNum: String,
+    fun signUp(@Field("id") id: String, @Field("password") password:String, @Field("phoneNum") phoneNum: String,
                @Field("name") name: String, @Field("nickname") nickname: String,
                @Field("birth") birth: LocalDate, @Field("education") education: String,
                @Field("department") department:String?, @Field("grade") grade: Int?,
                @Field("address") address: String?, @Field("introduce") introduce: String?, @Field("role") role:Int,
-               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: Text?
+               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: Text
     ) :Call<SignupResponse>
     //6. 아이디 찾기
     @GET("users/id")
@@ -218,6 +217,7 @@ interface RetroInterface {
     //64. 내가 댓글 단 멘티 구인글 조회 API
     @GET("/myPage/myMenteeComPick")
     fun myMenteeComPick(@Header("blu-e-access-token") token: String) : Call<MyMenteePickResponse>
+
     //---------------------------------------구만이 코드----------------------------------------------
     //8 멘토 전체 조회(최근 가입한 순) NewMentor
     @GET("/main/mentors")
@@ -270,6 +270,9 @@ interface RetroInterface {
     //31 멘티 구인글 전체 조회(최신순) RecruitMentee
     @GET("/mentoring/find-mentees")
     fun findRecruitMentee(@Header("blu-e-access-token") token: String): Call<FindRecruitMenteeResponse>
+
+    //문제 부분 조회(최신 5개)
+    @GET("/problems/main")
 
     //-----------------------------------------------------주영-----------------------------------------
     //27 내 정보 수정

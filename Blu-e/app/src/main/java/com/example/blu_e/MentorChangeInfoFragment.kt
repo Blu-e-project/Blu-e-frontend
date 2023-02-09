@@ -25,11 +25,17 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.blu_e.data.ResponseData
+import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.FragmentMentorChangeInfoBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
 class MentorChangeInfoFragment : Fragment() {
+    private val api = RetroInterface.create() //retrofit 객체
     private lateinit var mContext: MainActivity
     private lateinit var viewBinding: FragmentMentorChangeInfoBinding
 
@@ -48,7 +54,7 @@ class MentorChangeInfoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+//뒤로가기
         viewBinding.backToCenterAMentor.setOnClickListener {
             mContext!!.openFragment(5)
         }
@@ -63,6 +69,186 @@ class MentorChangeInfoFragment : Fragment() {
             intent.type = "image/*"
             Log.d("이미지", "성공")
             activityResult.launch(intent)
+        }
+        //정보 수정 데이터 보내고 response 받아오기
+        viewBinding.btnAddMentor.setOnClickListener {
+            var name = viewBinding.nameMentor.text.toString()
+            var nickname = viewBinding.nicknameMentor.text.toString()
+            var birth= viewBinding.birthMentor.text.toString()
+            var education= viewBinding.educationMentor.text.toString()
+            var address= viewBinding.addrMentor.text.toString()
+            var introduce= viewBinding.introduceMentor.text.toString()
+
+            val builder = AlertDialog.Builder(mContext)
+            api.changeMyinfoMentor("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..", name, nickname, birth,
+            education,address,introduce).enqueue(object :
+                Callback<ResponseData> {
+                override fun onResponse(
+                    call: Call<ResponseData>,
+                    response: Response<ResponseData>
+                ) {
+                    if (response.isSuccessful) {
+                        val body = response.body() ?: return
+                        if (body.code == 1000) {
+                            Log.d("정보 수정", "성공")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("정보 수정이 완료되었습니다. ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(5)
+                                    })
+                            builder.show()
+                        } else if (body.code == 2501) {
+                            Log.d("정보 수정", "이름 미입력")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("이름을 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        } else if (body.code == 2507) {
+                            Log.d("정보 수정", "이름 너무길어")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("이름을 7자 이내로 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                        else if (body.code == 2502) {
+                            Log.d("정보 수정", "닉네임 미입력")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("닉네임을 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        } else if (body.code == 2508) {
+                            Log.d("정보 수정", "닉네임 너무길어")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("닉네임을 7자 이내로 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                        else if (body.code == 2503) {
+                            Log.d("정보 수정", "생일 미입력")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("생일을 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                        else if (body.code == 2504) {
+                            Log.d("정보 수정", "학력 미입력")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("학력을 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                        else if (body.code == 2509) {
+                            Log.d("정보 수정", "학력 너무길어")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("학력을 20자 이내로 입력해주세요")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                        else if (body.code == 2505) {
+                            Log.d("정보 수정", "실거주지 미입력")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("실거주지를 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                        else if (body.code == 2510) {
+                            Log.d("정보 수정", "실거주지 너무길어")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("실거주지는 50자 이내로 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                        else if (body.code == 2506) {
+                            Log.d("정보 수정", "자기소개 미입력")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("자기소개를 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                        else if (body.code == 2511) {
+                            Log.d("정보 수정", "자기소개 너무길어")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("자기소개는 100자리 이하로 입력해주세요 ")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                        else if (body.code == 3500) {
+                            Log.d("정보 수정", " 닉네임 중복")
+                            //알림창 띄우면 뒤로가기
+                            builder
+                                .setTitle("정보 수정")
+                                .setMessage("중복된 닉네임입니다")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        mContext!!.openFragment(17)
+                                    })
+                            builder.show()
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                    Log.e("정보 수정", "failure")
+                }
+
+            })
         }
 
     }

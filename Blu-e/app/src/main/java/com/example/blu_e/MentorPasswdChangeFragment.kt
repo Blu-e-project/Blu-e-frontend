@@ -104,7 +104,7 @@ class MentorPasswdChangeFragment:Fragment() {
                     }
                 }
                 override fun onFailure(call: Call<ResponseData>, t: Throwable) {
-                    Log.e("새로운 멘티 리스트", "failure")
+                    Log.e("비밀번호 수정", "failure")
                 }
 
             })

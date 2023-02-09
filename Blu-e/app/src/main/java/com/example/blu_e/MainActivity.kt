@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity() {
 
             //mypage 내 이동
             16 -> transaction.replace(viewBinding.containerFragment.id, MentorPasswdChangeFragment()) //비밀번호 변경
+            17->transaction.replace(viewBinding.containerFragment.id, MentorChangeInfoFragment()) //내 정보 수정
         }
         transaction.addToBackStack(null);
         transaction.commit()

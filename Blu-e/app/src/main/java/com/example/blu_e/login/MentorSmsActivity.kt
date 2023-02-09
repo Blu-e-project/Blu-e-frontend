@@ -59,11 +59,13 @@ class MentorSmsActivity : AppCompatActivity() {
 //                        if (responseData != null) {
 //                            if(responseData.code == 1000){
 //                                //성공
+
            var intent = Intent(this, MentorInfoActivity::class.java)
+           intent.putExtra("phoneNum", phoneNum)
            startActivity(intent)
 //                            }
-//                            else if(responseData.code == 2019){
-//                                //인증 문자 발송에 실패했습니다.
+//                            else if(responseData.code == 2020){
+//                                //휴대폰 인증에 실패
 //                            }
 //                        }
 //                    }

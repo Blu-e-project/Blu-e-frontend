@@ -63,7 +63,7 @@ class MyPageFragment : Fragment() {
             override fun onClick(view: View, position: Int) {
                 val transaction = mContext.supportFragmentManager.beginTransaction()
                 val intent = Intent(mContext, MentorHistoryActivity::class.java)
-                val intent2 = Intent(mContext,MentorReviewListActivity::class.java)
+                val intent2 = Intent(mContext,MentorMyReviewActivity::class.java)
                 when(position) {
                     0 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorChangeInfoFragment()).commit() //"멘토 정보 수정"
                     1 -> startActivity(intent)

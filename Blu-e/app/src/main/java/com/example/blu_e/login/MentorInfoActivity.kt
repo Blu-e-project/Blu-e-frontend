@@ -15,11 +15,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
-import com.example.blu_e.LoginResponse
-import com.example.blu_e.R
 import com.example.blu_e.SignupResponse
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ActivityMentorInfoBinding
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,9 +28,9 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class MentorInfoActivity : AppCompatActivity() {
-//    private val api = RetroInterface.create()
+    private val api = RetroInterface.create()
     lateinit var uri: Uri
-    lateinit var profileImageBase64: String
+    lateinit var byteArray: Text
     lateinit var viewBinding: ActivityMentorInfoBinding
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +65,7 @@ class MentorInfoActivity : AppCompatActivity() {
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
 //                    //본인인증에서 번호 가져옴
-                    val phone = intent.getStringExtra("phoneNum")
+                    val phone = intent.getStringExtra("phoneNum").toString()
                     val name = viewBinding.name.text.toString()
                     val nickname = viewBinding.nickname.toString()
                     //string ->LocalDate로 바꿔야함
@@ -81,33 +80,34 @@ class MentorInfoActivity : AppCompatActivity() {
                     val createAt = LocalDate.now()
                     val updateAt = LocalDate.now()
                     val status = 1
-                    val userId = 1
 //                    //val userImg = viewBinding.
-//                    api.signUp(userId, id, password,phone, name,nickname,birth,education,department, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
-//                        .enqueue(object :Callback<SignupResponse>{
-//                            override fun onResponse(
-//                                call: Call<SignupResponse>,
-//                                response: Response<SignupResponse>
-//                            ) {
-//                                val responseData = response.body()
-//                                if (responseData != null) {
-//                                    if(responseData.code == 1000){
-//
-//                                    } else{
-//                                        val msg = when(responseData.code) {
-//                                            2001 -> "아이디를 입력해주세요"
-//                                            2002 -> "아이드는 35자리로 이하로 입력해주세요."
-//                                            2003 -> "비밀번호를 입력하세요"
-//                                            else -> {}
-//                                        }
-//                                    }
-//                                }
-//                            }
-//
-//                            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-//                                TODO("Not yet implemented")
-//                            }
-//                        })
+                    api.signUp(id, password,phone, name,nickname,birth,education,department, grade,address, introduce,role,createAt,updateAt,status, byteArray)
+                        .enqueue(object :Callback<SignupResponse>{
+                            override fun onResponse(
+                                call: Call<SignupResponse>,
+                                response: Response<SignupResponse>
+                            ) {
+                                val responseData = response.body()
+                                if (responseData != null) {
+                                    if(responseData.code == 1000){
+                                //성공
+                                      var mintent = Intent(this@MentorInfoActivity, MentorSignUpSuccessActivity::class.java)
+                                        startActivity(mintent)
+                                    } else{
+                                        val msg = when(responseData.code) {
+                                            2001 -> "아이디를 입력해주세요"
+                                            2002 -> "아이드는 35자리로 이하로 입력해주세요."
+                                            2003 -> "비밀번호를 입력하세요"
+                                            else -> {}
+                                        }
+                                    }
+                                }
+                            }
+
+                            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
+                                TODO("Not yet implemented")
+                            }
+                        })
 
                 }
             }
@@ -140,7 +140,7 @@ class MentorInfoActivity : AppCompatActivity() {
             val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
             val outStream = ByteArrayOutputStream()
             val res: Resources = resources
-            profileImageBase64 = Base64.encodeToString(byteArray, Base64.NO_WRAP)
+            val profileImageBase64 = Base64.encodeToString(byteArray, Base64.NO_WRAP)
             if(profileImageBase64 != null) {
                 Toast.makeText(this, "이미지가 첨부되었습니다!", Toast.LENGTH_SHORT).show()
             }

@@ -1,6 +1,5 @@
 package com.example.blu_e.data
 
-import android.widget.ImageView
 import com.example.blu_e.*
 import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
@@ -102,7 +101,7 @@ interface RetroInterface {
     fun commentDeleteAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 
     companion object {
-        private const val BASE_URL = "http://" //"http://본인 컴퓨터 IP 주소:포트번호" //
+        private const val BASE_URL = "http://43.201.51.75:5000/" //"http://본인 컴퓨터 IP 주소:포트번호" //
 
         fun create(): RetroInterface {
             val gson : Gson = GsonBuilder().setLenient().create()
@@ -140,12 +139,12 @@ interface RetroInterface {
 
     //1. 회원 가입
     @POST("/users/signup")
-    fun signUp(@Field("userId") userId: Int, @Field("id") id: String, @Field("password") password:String, @Field("phoneNum") phoneNum: String,
+    fun signUp(@Field("id") id: String, @Field("password") password:String, @Field("phoneNum") phoneNum: String,
                @Field("name") name: String, @Field("nickname") nickname: String,
                @Field("birth") birth: LocalDate, @Field("education") education: String,
                @Field("department") department:String?, @Field("grade") grade: Int?,
                @Field("address") address: String?, @Field("introduce") introduce: String?, @Field("role") role:Int,
-               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: Text?
+               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: Text
     ) :Call<SignupResponse>
     //6. 아이디 찾기
     @GET("users/id")

@@ -18,7 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ResetPwActivity : AppCompatActivity() {
-//    private val api = RetroInterface.create()
+    private val api = RetroInterface.create()
     lateinit var viewBinding: ActivityResetPwBinding
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,29 +34,41 @@ class ResetPwActivity : AppCompatActivity() {
             var pw2 = viewBinding.newPw2.text.toString()
             val phoneNum = intent.getStringExtra("phoneNum").toString()
                 //새 비밀번호 데이터에 전달
-////                api.resetPw(id, phoneNum, pw1,pw2).enqueue(object : Callback<SignupResponse>{
-////                    override fun onResponse(
-////                        call: Call<SignupResponse>,
-////                        response: Response<SignupResponse>
-////                    ) {
-////                        //알림창 띄움 확인 누르면 로그인화면으로
-////                        val builder = AlertDialog.Builder(this@ResetPwActivity)
-////                            .setTitle("비밀번호 재설정")
-////                            .setMessage("비밀번호 재설정이 완료 되었습니다.")
-////                            .setPositiveButton("확인",
-////                                DialogInterface.OnClickListener{ dialog, which ->
-////                                    Toast.makeText(this@ResetPwActivity, "확인", Toast.LENGTH_SHORT).show()
-////                                    var intent = Intent(this@ResetPwActivity, LoginActivity::class.java)
-////                                    startActivity(intent)
-////                                })
-//                        builder.show()
-//                    }
-//
-//                    override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-//                        TODO("Not yet implemented")
-//                    }
-//
-//                })
+                api.resetPw(id, phoneNum, pw1,pw2).enqueue(object : Callback<SignupResponse>{
+                    override fun onResponse(
+                        call: Call<SignupResponse>,
+                        response: Response<SignupResponse>
+                    ) {
+                        val responseData = response.body()
+                        if (responseData != null) {
+                            if(responseData.code == 1000) {
+                                //알림창 띄움 확인 누르면 로그인화면으로
+                                val builder = AlertDialog.Builder(this@ResetPwActivity)
+                                    .setTitle("비밀번호 재설정")
+                                    .setMessage("비밀번호 재설정이 완료 되었습니다.")
+                                    .setPositiveButton("확인",
+                                        DialogInterface.OnClickListener { dialog, which ->
+                                            Toast.makeText(
+                                                this@ResetPwActivity,
+                                                "확인",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            var intent = Intent(
+                                                this@ResetPwActivity,
+                                                LoginActivity::class.java
+                                            )
+                                            startActivity(intent)
+                                        })
+                                builder.show()
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
 
         }
     }

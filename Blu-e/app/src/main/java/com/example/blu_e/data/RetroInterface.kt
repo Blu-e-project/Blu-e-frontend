@@ -122,11 +122,11 @@ interface RetroInterface {
     fun verifyCode(@Field("phoneNumber") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<LoginResponse>
 
     //---------------------------------------구만이 코드----------------------------------------------
-    //8 멘토 전체 조회(최근 가입한 순)
+    //8 멘토 전체 조회(최근 가입한 순) NewMentor
     @GET("/main/mentors")
     fun findMentors(@Header("blu-e-access-token") token: String): Call<FindMentorsResponse>
 
-    //9 멘티 전체 조회(최근 가입한 순)
+    //9 멘티 전체 조회(최근 가입한 순) NewMentee
     @GET("/main/mentees")
     fun findMentees(@Header("blu-e-access-token") token: String): Call<FindMenteesResponse>
 
@@ -138,15 +138,15 @@ interface RetroInterface {
     @GET("/main/mentees/{userId}")
     fun findMenteeID(@Header("blu-e-access-token") token: String, @Path("userId") userId: Int): Call<FindMenteeIdResponse>
 
-    //12 멘토 부분 조회(최신 5명)
+    //12 멘토 부분 조회(최신 5명) HomeMentor
     @GET("/main/new-mentors")
     fun findFiveMentor(@Header("blu-e-access-token") token:String): Call<FindFiveMentorResponse>
 
-    //13 멘티 부분 조회(최신 5명)
+    //13 멘티 부분 조회(최신 5명) HomeMentee
     @GET("/main/new-mentees")
     fun findFiveMentee(@Header("blu-e-access-token") token:String): Call<FindFiveMenteeResponse>
 
-    //15 문제 전체 조회(최신순)
+    //15 문제 전체 조회(최신순) HomeQuestion
     @GET("/problems")
     fun findProblems(@Header("blu-e-access-token") token: String): Call<AllProblemsResponse>
 
@@ -154,11 +154,11 @@ interface RetroInterface {
     @GET("/problems/{problemId}")
     fun findProblemId(@Header("blu-e-access-token") token: String, @Path("problemId") problemId: Int): Call<FindProblemResponse>
 
-    //21 멘토 구인글 부분 조회(조회수 많은 순 5개)
+    //21 멘토 구인글 부분 조회(조회수 많은 순 5개) HomeMentor
     @GET("/main/hot-mentors")
     fun findHotMentors(@Header("blu-e-access-token") token: String): Call<FindHotMentorResponse>
 
-    //22 멘티 구인글 부분 조회(조회수 많은 순 5개)
+    //22 멘티 구인글 부분 조회(조회수 많은 순 5개) HomeMentee
     @GET("/main/hot-mentees")
     fun findHotMentees(@Header("blu-e-access-token") token: String): Call<FindHotMenteeResponse>
 
@@ -166,11 +166,11 @@ interface RetroInterface {
     @DELETE("/problems/{problemId}")
     fun deleteProblem(@Path("problemId") problemId: Int): Call<DeleteProblemResponse>
 
-    //30 멘토 구인글 전체 조회(최신순)
+    //30 멘토 구인글 전체 조회(최신순) RecruitMentor
     @GET("/mentoring/find-mentors")
     fun findRecruitMentors(@Header("blu-e-access-token") token: String): Call<FindRecruitMentorResponse>
 
-    //31 멘티 구인글 전체 조회(최신순)
+    //31 멘티 구인글 전체 조회(최신순) RecruitMentee
     @GET("/mentoring/find-mentees")
     fun findRecruitMentee(@Header("blu-e-access-token") token: String): Call<FindRecruitMenteeResponse>
 }

@@ -9,14 +9,9 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.blu_e.ProfileActivity
 import com.example.blu_e.R
-import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ItemRequestMentoringCommentBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
+import com.example.blu_e.mentoring.ProfileActivity
 
 class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickComment>?, private val context: Context): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
 //    private val api = RetroInterface.create()

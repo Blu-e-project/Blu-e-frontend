@@ -1,33 +1,36 @@
-package com.example.blu_e.mainPage
+package com.example.blu_e.data.mainPage
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.blu_e.data.mainPage.NewMenteeData
 import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
+import com.example.blu_e.mainPage.NewMenteeDataRVAdapter
 
-class NewMenteeDataRVAdapter(private val items: ArrayList<NewMenteeData> = arrayListOf()) :
-    RecyclerView.Adapter<NewMenteeDataRVAdapter.ViewHolder>() {
+class RetrofitNewMenteeRVAdapter(private val items: ArrayList<FindMenteesResponse.FindMenteeItem> = arrayListOf()) :
+    RecyclerView.Adapter<RetrofitNewMenteeRVAdapter.ViewHolder>() {
     //각 항목에 필요한 기능 구현, ViewHolder 반환
     inner class ViewHolder(private val viewBinding: RecyclerviewNewMenteeCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun bind(data: NewMenteeData) {
-            viewBinding.pickMenteeId.text = data.pickMenteeId
+        fun bind(data: FindMenteesResponse.FindMenteeItem) {
+            viewBinding.pickMenteeId.text = data.nickname
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewMenteeDataRVAdapter.ViewHolder {
+    //뷰홀더 생성
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RetrofitNewMenteeRVAdapter.ViewHolder {
         val viewBinding = RecyclerviewNewMenteeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(viewBinding)
     }
 
     //항목 뷰에 데이터 연결
-    override fun onBindViewHolder(holder: NewMenteeDataRVAdapter.ViewHolder, position: Int) {
-        val model = items[position]
-        holder.bind(model)
+    override fun onBindViewHolder(holder: RetrofitNewMenteeRVAdapter.ViewHolder, position: Int) {
+        holder.bind(items[position])
+        holder.itemView.setOnClickListener{
+
+        }
     }
 
     //아이템 개수

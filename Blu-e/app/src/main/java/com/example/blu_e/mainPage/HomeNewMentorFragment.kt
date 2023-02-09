@@ -8,12 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.blu_e.MainActivity
+import com.example.blu_e.data.RetroInterface
+import com.example.blu_e.data.mainPage.FindMentorsResponse
 import com.example.blu_e.data.mainPage.NewMentorData
 import com.example.blu_e.databinding.FragmentHomeNewMentorBinding
+import com.example.blu_e.mentoring.ProfileActivity
 
 class HomeNewMentorFragment : Fragment() {
     lateinit var viewBinding: FragmentHomeNewMentorBinding
     private lateinit var mContext: MainActivity
+
+    private val api = RetroInterface.create() //retrofit 객체
+    private lateinit var list: ArrayList<FindMentorsResponse.FindMentorsItem>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -35,7 +41,7 @@ class HomeNewMentorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = FragmentHomeNewMentorBinding.inflate(layoutInflater)
-
+        //loadData()
         return viewBinding.root
     }
 
@@ -61,5 +67,51 @@ class HomeNewMentorFragment : Fragment() {
 
         viewBinding.recyclerViewNewMentor.adapter = mentorAdapter
         viewBinding.recyclerViewNewMentor.layoutManager = grid
+
+        mentorAdapter.setItemClickListener(object : NewMentorDataRVAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                var mentorFragment = ProfileActivity.newInstance(list, position)
+                /*mContext.supportFragmentManager.beginTransaction().replace(
+                    mContext.viewBinding.containerFragment.id, mentorFragment
+                ).commit()
+            */}
+        })
     }
+
+/*
+    private fun loadData() {
+        api.findMentors("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..").enqueue(object : Callback<FindMentorsResponse> {
+            override fun onResponse(
+                call: Call<FindMentorsResponse>,
+                response: Response<FindMentorsResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val body = response.body() ?: return
+                    if (body.code == 1000) {
+                        Log.d("목록 불러오기", "성공")
+                        list = body.result as ArrayList<FindMentorsResponse.FindMentorsItem>
+
+                        val menteeAdapter = RetrofitNewMentorRVAdapter(list)
+                        val grid = GridLayoutManager(mContext, 5)
+
+                        viewBinding.recyclerViewNewMentor.adapter = menteeAdapter
+                        viewBinding.recyclerViewNewMentor.layoutManager = grid
+
+                        menteeAdapter.setItemClickListener(object: RetrofitNewMentorRVAdapter.ItemClickListener{
+                            override fun onClick(view: View, position: Int) {
+
+                            }
+                        })
+                    }
+                }
+                else {
+                    Log.d("새로운 멘토 리스트", "실패")
+                }
+            }
+            override fun onFailure(call: Call<FindMentorsResponse>, t: Throwable) {
+                Log.e("새로운 멘토 리스트", "failure")
+            }
+        })
+    }
+    */
 }

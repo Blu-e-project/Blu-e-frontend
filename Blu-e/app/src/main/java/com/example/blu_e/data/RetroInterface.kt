@@ -277,8 +277,9 @@ interface RetroInterface {
                            @Path("birth")birth: String, @Path("education")education: String, @Path("address")address: String, @Path("introduce")introduce: String): Call<ResponseData>
 
     //28 비밀번호 수정
+    @FormUrlEncoded
     @PATCH("/mypages/password")
-    fun changePasswdMentor(@Header("blu-e-access-token") token: String, @Path("password")password: String,@Path("password2")password2:String): Call<ResponseData>
+    fun changePasswdMentor(@Header("blu-e-access-token") token: String, @Field("password")password: String,@Field("password2")password2:String): Call<ResponseData>
 
     //51 멘티->멘토 리뷰 작성
     @POST("/mentor-reviews")

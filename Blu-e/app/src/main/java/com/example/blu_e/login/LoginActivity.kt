@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
                            val userId = responseData.result.userId
                             MainApplication.prefs.setString("userId", userId.toString())
                             //멘티에 아이디가 있으면 꺼냄
-                            api.findMenteeID(jwt!!, userId).enqueue(object: Callback<FindMenteeIdResponse>{
+                            api.findMenteeID(userId).enqueue(object: Callback<FindMenteeIdResponse>{
                                 override fun onResponse(
                                     call: Call<FindMenteeIdResponse>,
                                     response: Response<FindMenteeIdResponse>
@@ -76,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
 
                             })
 
-                            api.findMentorID(jwt!!, userId).enqueue(object: Callback<FindMentorIdResponse>{
+                            api.findMentorID(userId).enqueue(object: Callback<FindMentorIdResponse>{
                                 override fun onResponse(
                                     call: Call<FindMentorIdResponse>,
                                     response: Response<FindMentorIdResponse>

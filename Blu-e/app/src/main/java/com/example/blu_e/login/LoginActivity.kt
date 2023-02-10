@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
                                     call: Call<FindMenteeIdResponse>,
                                     t: Throwable
                                 ) {
-                                    TODO("Not yet implemented")
+
                                 }
 
                             })
@@ -92,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
                                     call: Call<FindMentorIdResponse>,
                                     t: Throwable
                                 ) {
-                                    TODO("Not yet implemented")
+
                                 }
 
                             })

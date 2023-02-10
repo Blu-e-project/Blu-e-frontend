@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,11 +88,17 @@ class MyPageFragment : Fragment() {
             .setMessage("로그아웃하시겠습니까?")
             .setPositiveButton("네",
                 DialogInterface.OnClickListener{ dialog, which ->
-                    Toast.makeText(mContext, "확인", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mContext, "로그아웃", Toast.LENGTH_SHORT).show()
                     //
 //                    MainApplication.prefs.edit // 여기서 Shared Preference 를 remove 한다!
-//                    MainApplication.prefs.edit.remove("password")
-//                    MainApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
+                    MainApplication.prefs.remove("blu-e-access-token")
+                    MainApplication.prefs.remove("userId")
+                    MainApplication.prefs.remove("role")
+                    MainApplication.prefs.commit() // SP 삭제되는 것을 확인
+
+//                    Log.d("로그아웃", "${ MainApplication.prefs.getString("blu-e-access-token", "")}")
+//                    Log.d("로그아웃", "${ MainApplication.prefs.getString("userId", "")}")
+//                    Log.d("로그아웃", "${ MainApplication.prefs.getString("role", "")}")
                     val intent = Intent(activity, LoginActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) //스택 위에 것지우기
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -99,8 +106,8 @@ class MyPageFragment : Fragment() {
                 })
             .setNegativeButton("아니요",
                 DialogInterface.OnClickListener{ dialog, which ->
-                    Toast.makeText(mContext, "확인", Toast.LENGTH_SHORT).show()
-                    //어느화면으로 이동할지
+//                    Toast.makeText(mContext, "확인", Toast.LENGTH_SHORT).show()
+//                    //어느화면으로 이동할지
                 })
         builder.show()
     }

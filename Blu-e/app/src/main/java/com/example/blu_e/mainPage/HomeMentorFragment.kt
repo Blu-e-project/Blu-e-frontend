@@ -153,7 +153,19 @@ class HomeMentorFragment : Fragment() {
                 if (response.isSuccessful) {
                     val body = response.body() ?: return
                     if (body.code == 1000) {
+<<<<<<< HEAD
+                        Log.d("목록 불러오기", "성공")
+//<<<<<<< HEAD
+//                        var menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+//
+//                        var menteeAdapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
+//                        viewBinding.recyclerViewHomeNewMentee.adapter = menteeAdapter2
+//                        viewBinding.recyclerViewHomeNewMentee.layoutManager =
+//                            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+//=======
+=======
                         Log.d("loadData1 목록 불러오기", "성공")
+>>>>>>> 780a561f256e4c82eb889bea4174feed4d8fb1e7
                         menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
                         adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
 
@@ -170,6 +182,11 @@ class HomeMentorFragment : Fragment() {
                                 ).commit()
                             }
                         })
+<<<<<<< HEAD
+                        */
+//>>>>>>> 56e3c4506fc117ca225d6861dae9113f1db46d5f
+=======
+>>>>>>> 780a561f256e4c82eb889bea4174feed4d8fb1e7
                     }
                 }
                 else {

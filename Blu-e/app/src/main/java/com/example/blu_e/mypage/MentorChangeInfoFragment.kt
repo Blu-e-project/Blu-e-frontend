@@ -1,38 +1,25 @@
-package com.example.blu_e
-
-import android.Manifest
-import android.app.Activity
+package com.example.blu_e.mypage
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.blu_e.MainActivity
 import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.FragmentMentorChangeInfoBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
 
 class MentorChangeInfoFragment : Fragment() {
     private val api = RetroInterface.create() //retrofit 객체
@@ -64,12 +51,14 @@ class MentorChangeInfoFragment : Fragment() {
         //}
 
         //갤러리 사진 선택
-        viewBinding.imageEditBtnMentor.setOnClickListener {
+        /*viewBinding.imageEditBtnMentor.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             Log.d("이미지", "성공")
             activityResult.launch(intent)
-        }
+        }*/
+
+         */
         //정보 수정 데이터 보내고 response 받아오기
         viewBinding.btnAddMentor.setOnClickListener {
             var name = viewBinding.nameMentor.text.toString()
@@ -78,10 +67,17 @@ class MentorChangeInfoFragment : Fragment() {
             var education= viewBinding.educationMentor.text.toString()
             var address= viewBinding.addrMentor.text.toString()
             var introduce= viewBinding.introduceMentor.text.toString()
+            Log.d("정보 수정", "변수에 담기 성공")
 
             val builder = AlertDialog.Builder(mContext)
-            api.changeMyinfoMentor("eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..", name, nickname, birth,
-            education,address,introduce).enqueue(object :
+            api.changeMyinfoMentor(
+                name,
+                nickname,
+                birth,
+            education,
+                address,
+                introduce
+            ).enqueue(object :
                 Callback<ResponseData> {
                 override fun onResponse(
                     call: Call<ResponseData>,
@@ -254,7 +250,7 @@ class MentorChangeInfoFragment : Fragment() {
     }
 
     //갤러리 이미지 불러오기
-    private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(
+    /*private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
 
@@ -267,7 +263,7 @@ class MentorChangeInfoFragment : Fragment() {
                 .load(uri)
                 .into(viewBinding.imageMentor)
         }
-    }
+    }*/
 }
     /*
     //갤러리 이미지 불러오기 권한 묻기

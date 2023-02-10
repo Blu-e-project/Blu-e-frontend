@@ -15,7 +15,6 @@ import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mainPage.FindMenteeIdResponse
 import com.example.blu_e.data.mainPage.FindMentorIdResponse
 import com.example.blu_e.databinding.ActivityLoginBinding
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

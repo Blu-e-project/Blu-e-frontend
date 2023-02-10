@@ -60,7 +60,8 @@ class MenteeInfoActivity : AppCompatActivity() {
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
                     //본인인증에서 번호 가져옴
-                    val phone = intent.getStringExtra("phoneNum").toString()
+//                    val phone = intent.getStringExtra("phoneNum").toString()
+                        val phone = "01043214321"
                     val name = viewBinding.name.text.toString()
                     val nickname = viewBinding.nickname.text.toString()
                     //string ->LocalDate로 바꿔야함
@@ -76,7 +77,7 @@ class MenteeInfoActivity : AppCompatActivity() {
                     val role = 2
                     val createAt = LocalDate.now()
                     val updateAt = LocalDate.now()
-                    val status = 2
+                    val status = 1
                     api.signUp(id, password,phone, name,nickname,birthDate,education,null, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
                         .enqueue(object : Callback<SignupResponse> {
                             override fun onResponse(

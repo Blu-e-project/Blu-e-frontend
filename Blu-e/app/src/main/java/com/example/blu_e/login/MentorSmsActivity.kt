@@ -27,7 +27,6 @@ class MentorSmsActivity : AppCompatActivity() {
         var phoneNum: String?
         viewBinding.smsBtn.setOnClickListener {
             phoneNum = viewBinding.phoneNumber.text.toString()
-//            MainApplication.prefs.setString("blu-e-access-token", "")
             Log.d("번호", "${phoneNum}")
             api.sendPhoneNum(phoneNum!!).enqueue(object : Callback<SignupResponse>{
                 override fun onResponse(
@@ -72,7 +71,7 @@ class MentorSmsActivity : AppCompatActivity() {
                                 startActivity(intent)
                             }
                             else if(responseData.code == 2019){
-                                //인증 문자 발송에 실패했습니다.
+                                //인증 문자 발송에 실패했습니다. 다이얼로그
                             }
                         }
                     }

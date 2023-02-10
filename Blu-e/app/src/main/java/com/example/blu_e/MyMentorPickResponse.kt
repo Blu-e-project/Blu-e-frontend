@@ -7,13 +7,13 @@ data class MyMentorPickResponse(
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val MentorPickResult: List<MyMentorPickItem>
+    val MentorPickResult: List<MyMentorPickItem>?
 )
 data class MyMentorPickItem(
-    val pickId: Int,
-    val area: String,
-    val subject: String,
-    val period: String,
-    val mentoringMethod: String,
-    val wishGender: String
+    val pickId: Int?,
+    val area: String?,
+    val subject: String?,
+    val period: String?,
+    val mentoringMethod: String?,
+    val wishGender: String?
 )

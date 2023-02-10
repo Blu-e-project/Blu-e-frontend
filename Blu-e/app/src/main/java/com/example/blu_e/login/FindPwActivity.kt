@@ -70,7 +70,8 @@ class FindPwActivity : AppCompatActivity() {
                         if (responseData != null) {
                             if (responseData.code == 1000) {
                                 //인증 성공
-                                var intent = Intent(this@FindPwActivity, ResetPwActivity::class.java)
+                                var intent =
+                                    Intent(this@FindPwActivity, ResetPwActivity::class.java)
                                 intent.putExtra("phoneNum", phoneNum)
                                 startActivity(intent)
                             } else if (responseData.code == 2020) {

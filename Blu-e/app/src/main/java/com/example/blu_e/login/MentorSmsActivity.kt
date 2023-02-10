@@ -17,6 +17,7 @@ import retrofit2.Response
 class MentorSmsActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMentorSmsBinding
     private val api = RetroInterface.create()
+    lateinit var phoneNum: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMentorSmsBinding.inflate(layoutInflater)
@@ -24,11 +25,11 @@ class MentorSmsActivity : AppCompatActivity() {
 
         //인증번호 요청
         var phoneNumSuccess = false
-        var phoneNum: String?
+
         viewBinding.smsBtn.setOnClickListener {
             phoneNum = viewBinding.phoneNumber.text.toString()
             Log.d("번호", "${phoneNum}")
-            api.sendPhoneNum(phoneNum!!).enqueue(object : Callback<SignupResponse>{
+            api.sendPhoneNum(phoneNum).enqueue(object : Callback<SignupResponse>{
                 override fun onResponse(
                     call: Call<SignupResponse>,
                     response: Response<SignupResponse>
@@ -56,8 +57,7 @@ class MentorSmsActivity : AppCompatActivity() {
         viewBinding.mentorInfoBtn.setOnClickListener {
             if(phoneNumSuccess){
                 val verifyCode = viewBinding.verifyNum.text.toString()
-                phoneNum = viewBinding.phoneNumber.text.toString()
-                api.verifyCode(phoneNum!!, verifyCode).enqueue(object: Callback<SignupResponse>{
+                api.verifyCode(phoneNum, verifyCode).enqueue(object: Callback<SignupResponse>{
                     override fun onResponse(
                         call: Call<SignupResponse>,
                         response: Response<SignupResponse>
@@ -66,8 +66,8 @@ class MentorSmsActivity : AppCompatActivity() {
                         if (responseData != null) {
                             if(responseData.code == 1000){
                                 //성공
-                                var intent = Intent(this@MentorSmsActivity, MenteeInfoActivity::class.java)
-                                intent.putExtra("phoneNum", phoneNum)
+                                var intent = Intent(this@MentorSmsActivity, MentorInfoActivity::class.java)
+                                intent.putExtra("metorPhoneNum", phoneNum)
                                 startActivity(intent)
                             }
                             else if(responseData.code == 2019){

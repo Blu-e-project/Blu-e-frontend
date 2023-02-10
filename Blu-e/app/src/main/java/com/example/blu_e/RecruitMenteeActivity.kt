@@ -2,6 +2,7 @@ package com.example.blu_e
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,7 +19,7 @@ import java.text.SimpleDateFormat
 
 class RecruitMenteeActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityRecruitMenteeBinding
-//    private val api = RetroInterface.create()
+        private val api = RetroInterface.create()
     private var originalPostContents: Pick? = null
     private var isItFromUpdate: Int = 0
 
@@ -27,8 +28,14 @@ class RecruitMenteeActivity : AppCompatActivity() {
         viewBinding = ActivityRecruitMenteeBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        originalPostContents = intent.getSerializableExtra("contents") as Pick
+        originalPostContents = intent.getSerializableExtra("contents") as Pick?
         isItFromUpdate = intent.getIntExtra("fromUpdate", 0)
+
+        //이전화면으로
+        viewBinding.backToCenter.setOnClickListener {
+            val intent = Intent(this@RecruitMenteeActivity, MainActivity:: class.java)
+            startActivity(intent)
+        }
 
         viewBinding.createRecruitBtn.setOnClickListener {
             val title = viewBinding.title.text.toString()
@@ -43,37 +50,46 @@ class RecruitMenteeActivity : AppCompatActivity() {
 
 //            Log.d("msg", "${title}")
             if(isItFromUpdate == 0) {
-                //api.recruitMentor(title, contents, subject,area,mentoringMethod,menteeLevel,periodStart,periodEnd,wishGender)
-//                .enqueue(object :Callback<CreateRecruitResponse>{
-//                    override fun onResponse(call: Call<CreateRecruitResponse>, response: Response<CreateRecruitResponse>
-//                    ) {
-//                        val responseData = response.body()
-//                        if (responseData!=null){
-//                            //create성공
-//                            if(responseData.code == 1000){
-//
-//                            }
-//                            else{
-//                                //아니면 message 띄우기
-//                            }
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<CreateRecruitResponse>, t: Throwable) {
-//                        TODO("Not yet implemented")
-//                    }
-//
-//                })
+                api.recruitMentee(title, contents, subject,area,mentoringMethod,menteeLevel,periodStart,periodEnd,wishGender)
+                .enqueue(object :Callback<CreateRecruitResponse>{
+                    override fun onResponse(call: Call<CreateRecruitResponse>, response: Response<CreateRecruitResponse>
+                    ) {
+                        val responseData = response.body()
+                        if (responseData!=null){
+                            //create성공
+                            if(responseData.code == 1000){
+                                val builder = AlertDialog.Builder(this@RecruitMenteeActivity)
+                                    .setTitle("멘티 구인글")
+                                    .setMessage("멘티 구인 글 등록이 완료 되었습니다")
+                                    .setPositiveButton("확인",
+                                        DialogInterface.OnClickListener{ dialog, which ->
+                                            Toast.makeText(this@RecruitMenteeActivity, "확인", Toast.LENGTH_SHORT).show()
+                                            val intent = Intent(this@RecruitMenteeActivity, MainActivity:: class.java)
+                                            startActivity(intent)
+                                        //어느화면으로 이동할지
+                                        })
+                                builder.show()
+                            }
+                            else{
+                                var msg =responseData.message.toString()
+                                val builder = AlertDialog.Builder(this@RecruitMenteeActivity)
+                                    .setTitle("멘티 구인글")
+                                    .setMessage(msg)
+                                    .setPositiveButton("확인",
+                                        DialogInterface.OnClickListener{ dialog, which ->
+                                            Toast.makeText(this@RecruitMenteeActivity, "확인", Toast.LENGTH_SHORT).show()
+                                            //어느화면으로 이동할지
+                                        })
+                                builder.show()
+                            }
+                        }
+                    }
 
-                val builder = AlertDialog.Builder(this)
-                    .setTitle("멘티 구인글")
-                    .setMessage("멘티 구인 글 등록이 완료 되었습니다")
-                    .setPositiveButton("확인",
-                        DialogInterface.OnClickListener{ dialog, which ->
-                            Toast.makeText(this, "확인", Toast.LENGTH_SHORT).show()
-                            //어느화면으로 이동할지
-                        })
-                builder.show()
+                    override fun onFailure(call: Call<CreateRecruitResponse>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
             }
             else if (isItFromUpdate == 1) {
                 /*api.updateAPostOfMentee("", 0, title, contents, subject,area,mentoringMethod,menteeLevel,periodStart,periodEnd,wishGender)

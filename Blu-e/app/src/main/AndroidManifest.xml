@@ -75,7 +75,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MentorHistoryActivity"
+            android:name=".mypage.MentorHistoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -118,7 +118,12 @@
         </activity>
         <activity
             android:name=".login.LoginActivity"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -160,12 +165,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -193,7 +193,13 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MentorMyReviewActivity"
+            android:name=".mypage.MentorMyReviewActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity android:name=".mypage.MentorAboutMeReviewActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

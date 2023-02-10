@@ -1,15 +1,19 @@
-package com.example.blu_e.data
+package com.example.blu_e.data.mypage
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.blu_e.MainActivity
 import com.example.blu_e.databinding.ItemMentorMyReviewBinding
-import com.example.blu_e.databinding.MentoringHistoryItemBinding
 
 class MentorReviewListRVAdatper(private  val dataList: ArrayList<MentorReviewListData> = arrayListOf()): RecyclerView.Adapter<MentorReviewListRVAdatper.DataViewHolder>() {
     inner class DataViewHolder(private  val viewBinding: ItemMentorMyReviewBinding): RecyclerView.ViewHolder(viewBinding.root) {
         fun bind(data: MentorReviewListData){
-            viewBinding.nicknameMenteeReviewList.text = data.menteeId
+            viewBinding.nicknameMenteeReviewList.text = data.nickname
             viewBinding.menteeReviewText.text = data.contents
         }
     }
@@ -21,6 +25,10 @@ class MentorReviewListRVAdatper(private  val dataList: ArrayList<MentorReviewLis
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(dataList[position])
+        holder.itemView.setOnClickListener {
+            Log.d("selected", position.toString())
+            itemClickListener.onClick(it, position)
+        }
     }
 
     override fun getItemCount(): Int = dataList.size
@@ -28,4 +36,13 @@ class MentorReviewListRVAdatper(private  val dataList: ArrayList<MentorReviewLis
     override fun getItemViewType(position: Int): Int {
         return position
     }
+    //item 클릭시 리뷰 수정/삭제
+    interface ItemClickListener {
+        fun onClick(view: View, position: Int)
+    }
+    private lateinit var itemClickListener: ItemClickListener
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
+    }
+
 }

@@ -5,6 +5,7 @@ import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.data.mentoring.PickCommentResponse
 import com.example.blu_e.data.mentoring.PickResponse
+import com.example.blu_e.data.mypage.ResponseReviewList
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
@@ -18,7 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import retrofit2.http.DELETE
 import retrofit2.http.POST
-import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 import java.io.IOException
@@ -28,7 +28,7 @@ import retrofit2.http.GET as GET
 interface RetroInterface {
     //작성한 QnA 조회
     @GET("/service/questions")
-    fun requestMyQuestions(@Header("blu-e-access-token") token: String): Call<QuestionResponse>
+    fun requestMyQuestions(): Call<QuestionResponse>
 
     //특정 QnA 조회 -> 위에 통신 만으로 해결 가능해보임
     //@GET("/service/questions")
@@ -278,50 +278,50 @@ interface RetroInterface {
     //27 내 정보 수정
     @FormUrlEncoded
     @PATCH("/mypages/user")
-    fun changeMyinfoMentor(@Header("blu-e-access-token")token: String,@Field("name")name: String,@Field("nickname")nickname: String,
+    fun changeMyinfoMentor(@Field("name")name: String,@Field("nickname")nickname: String,
                            @Field("birth")birth: String, @Field("education")education: String, @Field("address")address: String, @Field("introduce")introduce: String): Call<ResponseData>
 
     //28 비밀번호 수정
     @FormUrlEncoded
     @PATCH("/mypages/password")
-    fun changePasswdMentor(@Header("blu-e-access-token") token: String, @Field("password")password: String,@Field("password2")password2:String): Call<ResponseData>
+    fun changePasswdMentor(@Field("password")password: String,@Field("password2")password2:String): Call<ResponseData>
 
     //51 멘티->멘토 리뷰 작성
     @FormUrlEncoded
     @POST("/mentor-reviews")
-    fun toMentorReview(@Header("blu-e-access-token") token: String, @Field("nickname")nickname: String, @Field("subject")subject: String,@Field("contents")contents: String):Call<ResponseData>
+    fun toMentorReview(@Field("nickname")nickname: String, @Field("subject")subject: String,@Field("contents")contents: String):Call<ResponseData>
 
     //52 멘토->멘티 리뷰 작성
     @FormUrlEncoded
     @POST("/mentor-reviews")
-    fun toMenteeReview(@Header("blu-e-access-token") token: String, @Field("nickname")nickname: String, @Field("subject")subject: String,@Field("contents")contents: String):Call<ResponseData>
+    fun toMenteeReview(@Field("nickname")nickname: String, @Field("subject")subject: String,@Field("contents")contents: String):Call<ResponseData>
 
     //53 특정 멘티에 대한 리뷰 조회
     @POST("/main/mentees/{userId}/review")
-    fun MenteeReviewList(@Header("blu-e-access-token")token: String,@Path("userId")userId: Int):Call<ResponseReviewList>
+    fun MenteeReviewList(@Path("userId")userId: Int):Call<ResponseReviewList>
 
     //54 내가 쓴 리뷰 조회
     @GET("/reviews/myReview")
-    fun myReviewList(@Header("blu-e-access-token")token: String):Call<ResponseReviewList>
+    fun myReviewList():Call<ResponseReviewList>
 
     //55 나에 대한 리뷰 조회
     @GET("/reviews/aboutMeReview")
-    fun aboutMeReview(@Header("blu-e-access-token")token: String):Call<ResponseReviewList>
+    fun aboutMeReview():Call<ResponseReviewList>
 
     //56 리뷰 수정
     @FormUrlEncoded
     @PATCH("/reviews/{reviewId}")
-    fun changeReview(@Header("blu-e-access-token")token: String,@Path("reviewId")reviewId:Int, @Field("contents")contents: String):Call<ResponseData>
+    fun changeReview(@Path("reviewId")reviewId:Int, @Field("contents")contents: String):Call<ResponseData>
 
     //57 리뷰 삭제
     @DELETE("/reviews/{reviewId}")
-    fun deleteReview(@Header("blu-e-access-token")token: String,@Path("reviewId")reviewId:Int):Call<ResponseData>
+    fun deleteReview(@Path("reviewId")reviewId:Int):Call<ResponseData>
 
     //65 멘토링 내역 조회
     @GET("/myPage/myMentoring")
-    fun myMentoring(@Header("blu-e-access-token")token: String):Call<ResponseMentoring>
+    fun myMentoring():Call<ResponseMentoring>
 
     //66 특정 멘토에 대한 리뷰 조회
     @GET("/main/mentors/{userId}/review")
-    fun MentorReviewList(@Header("blu-e-access-token")token: String,@Path("userId")userId:Int):Call<ResponseReviewList>
+    fun MentorReviewList(@Path("userId")userId:Int):Call<ResponseReviewList>
 }

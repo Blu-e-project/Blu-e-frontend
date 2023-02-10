@@ -1,4 +1,4 @@
-package com.example.blu_e.data
+package com.example.blu_e.data.mypage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.example.blu_e
+package com.example.blu_e.mypage
 
 import android.app.AlertDialog
 import android.content.Context
@@ -8,15 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.blu_e.data.accusation.Report
-import com.example.blu_e.databinding.FragmentReviewMentorBinding
-import java.sql.Timestamp
+import com.example.blu_e.MainActivity
+import com.example.blu_e.databinding.FragmentMenteeChangeInfoBinding
 
-class MentorReviewFragment : Fragment() {
-    private lateinit var mContext: MainActivity //mainactivity에서 넘어가게 하려고
-    private lateinit var viewBinding: FragmentReviewMentorBinding
+class MenteeChangeInfoFragment : Fragment() {
+    private lateinit var mContext: MainActivity
+    private lateinit var viewBinding: FragmentMenteeChangeInfoBinding
 
-    override fun onAttach(context: Context) { //mainactivity
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context as MainActivity
     }
@@ -25,22 +24,22 @@ class MentorReviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewBinding = FragmentReviewMentorBinding.inflate(inflater, container, false)
+        viewBinding = FragmentMenteeChangeInfoBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewBinding.backToCenterAMentor.setOnClickListener{
+        viewBinding.backToCenterAMentee.setOnClickListener{
             mContext!!.openFragment(5)
         }
 
-        viewBinding.btnAddMentor.setOnClickListener {
+        viewBinding.checkNicknameBtnMentee.setOnClickListener {
             val builder = AlertDialog.Builder(mContext)
             builder
-                .setTitle("리뷰 작성")
-                .setMessage("리뷰등록이 완료되었습니다. ")
+                .setTitle("닉네임 중복 확인")
+                .setMessage("사용가능한 닉네임입니다. ")
                 .setPositiveButton("확인",
                     DialogInterface.OnClickListener { dialog, id ->
                         mContext!!.openFragment(5)

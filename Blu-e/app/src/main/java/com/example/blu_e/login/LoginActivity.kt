@@ -15,7 +15,6 @@ import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mainPage.FindMenteeIdResponse
 import com.example.blu_e.data.mainPage.FindMentorIdResponse
 import com.example.blu_e.databinding.ActivityLoginBinding
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -97,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
 
                             })
-                            Log.d("사용자 역할 정보", "${MainApplication.prefs.getString("role","")}")
+//                            Log.d("사용자 역할 정보", "${MainApplication.prefs.getString("role","")}")
                             startActivity(intent)
                         }
                         //비밀번호를 입력해주세요x

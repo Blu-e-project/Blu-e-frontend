@@ -197,7 +197,7 @@ interface RetroInterface {
     //51. 인증번호 보내기
     @FormUrlEncoded
     @POST("/users/verify")
-    fun verifyCode(@Field("phoneNumber") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<SignupResponse>
+    fun verifyCode(@Field("phoneNum") phoneNum: String, @Field("verifyCode")verifyCode: String): Call<SignupResponse>
 
     //58. 내가 질문한 문제 조회 API
     @GET("/problemByMe")

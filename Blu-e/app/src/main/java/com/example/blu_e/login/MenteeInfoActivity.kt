@@ -76,7 +76,7 @@ class MenteeInfoActivity : AppCompatActivity() {
                     val role = 2
                     val createAt = LocalDate.now()
                     val updateAt = LocalDate.now()
-                    val status = 2
+                    val status = 1
                     api.signUp(id, password,phone, name,nickname,birthDate,education,null, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
                         .enqueue(object : Callback<SignupResponse> {
                             override fun onResponse(

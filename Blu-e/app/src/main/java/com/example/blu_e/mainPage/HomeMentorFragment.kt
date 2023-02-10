@@ -16,6 +16,7 @@ import com.example.blu_e.MainActivity
 import com.example.blu_e.MainApplication
 import com.example.blu_e.RecruitMenteeActivity
 import com.example.blu_e.customercenter.FaqDetailFragment.Companion.newInstance
+import com.example.blu_e.data.QuestionData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeMentorBinding
@@ -52,6 +53,10 @@ class HomeMentorFragment : Fragment() {
     ): View? {
         viewBinding = FragmentHomeMentorBinding.inflate(layoutInflater)
         Log.e("홈", "들어왔나?")
+
+        loadData1()
+        loadData3()
+
         return viewBinding.root
     }
 
@@ -77,12 +82,6 @@ class HomeMentorFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        loadData1()
-        loadData3()
-        Log.e("홈", "흠..")
-    }
     //더미 데이터
     /*
     override fun onResume() {
@@ -130,11 +129,6 @@ class HomeMentorFragment : Fragment() {
             add(MentorData("다정하고 친절하신 선생님...", "수학", "23.01", "23.03", "온라인", "서울 은평구"))
             add(MentorData("비문학 쉽게 풀고 싶어요", "국어", "23.01", "23.03", "온라인", "서울 종로구"))
             add(MentorData("매주 목요일에 멘토링 원해요", "영어", "23.01", "23.03", "온라인", "서울 강남구"))
-            add(MentorData("매주 화요일에 멘토링 원해요", "국어", "23.01", "23.03", "온라인", "서울 성북구"))
-            add(MentorData("코딩이 너무 어려워요", "코딩", "23.01", "23.03", "온라인", "서울 금천구"))
-            add(MentorData("다정하고 친절하신 선생님...", "수학", "23.01", "23.03", "온라인", "서울 은평구"))
-            add(MentorData("비문학 쉽게 풀고 싶어요", "국어", "23.01", "23.03", "온라인", "서울 종로구"))
-            add(MentorData("매주 목요일에 멘토링 원해요", "영어", "23.01", "23.03", "온라인", "서울 강남구"))
         }
 
         mentorAdapter = MentorDataRVAdapter(menteeList)
@@ -150,32 +144,24 @@ class HomeMentorFragment : Fragment() {
                 call: Call<FindFiveMenteeResponse>,
                 response: Response<FindFiveMenteeResponse>
             ) {
-                if (response.isSuccessful) {
-                    val body = response.body() ?: return
+                val body = response.body() ?: return
+                if (body != null) {
                     if (body.code == 1000) {
-//<<<<<<< HEAD
-//                        Log.d("목록 불러오기", "성공")
-////<<<<<<< HEAD
-////                        var menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
-////
-////                        var menteeAdapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
-////                        viewBinding.recyclerViewHomeNewMentee.adapter = menteeAdapter2
-////                        viewBinding.recyclerViewHomeNewMentee.layoutManager =
-////                            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-////=======
-//=======
                         Log.d("loadData1 목록 불러오기", "성공")
-                        menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+                        menteeList =
+                            body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
                         adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
 
                         viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
-                        viewBinding.recyclerViewHomeNewMentee.layoutManager = LinearLayoutManager(mContext)
+                        viewBinding.recyclerViewHomeNewMentee.layoutManager =
+                            LinearLayoutManager(mContext)
                         adapter2.notifyItemChanged(menteeList.size)
 
-
-                        adapter2.setItemClickListener(object: RetrofitHomeNewMenteeRVAdapter.ItemClickListener{
+                        adapter2.setItemClickListener(object :
+                            RetrofitHomeNewMenteeRVAdapter.ItemClickListener {
                             override fun onClick(view: View, position: Int) {
-                                var detailFragment = HomeNewMenteeFragment.newInstance(menteeList, position)
+                                var detailFragment =
+                                    HomeNewMenteeFragment.newInstance(menteeList, position)
                                 mContext.supportFragmentManager.beginTransaction().replace(
                                     mContext.viewBinding.containerFragment.id, detailFragment
                                 ).commit()
@@ -184,11 +170,11 @@ class HomeMentorFragment : Fragment() {
                     }
                 }
                 else {
-                    Log.d("새로운 멘티 리스트", "실패")
+                    Log.d("loadData1 목록 ", "실패")
                 }
             }
             override fun onFailure(call: Call<FindFiveMenteeResponse>, t: Throwable) {
-                Log.e("새로운 멘티 리스트", "failure")
+                Log.e("loadData1 목록 ", "failure")
             }
         })
     }
@@ -208,8 +194,10 @@ class HomeMentorFragment : Fragment() {
                         adapter3 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
 
                         viewBinding.recyclerViewMentor.adapter = adapter3
-                        viewBinding.recyclerViewMentor.layoutManager =
-                            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+
+                        val layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+                        viewBinding.recyclerViewMentor.layoutManager = layoutManager
+
                         adapter3.notifyItemChanged(mentorList.size)
 
                         adapter3.setItemClickListener(object: RetrofitHomeRecruitMentorRVAdapter.ItemClickListener{
@@ -223,11 +211,11 @@ class HomeMentorFragment : Fragment() {
                     }
                 }
                 else {
-                    Log.d("멘토 리스트", "실패")
+                    Log.d("loadData3 목록 불러오기", "실패")
                 }
             }
             override fun onFailure(call: Call<FindHotMentorResponse>, t: Throwable) {
-                Log.e("멘토 리스트", "failure")
+                Log.e("loadData3 목록 불러오기", "failure")
             }
         })
     }

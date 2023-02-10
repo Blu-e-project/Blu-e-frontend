@@ -22,7 +22,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
 
 
         //내기 댓글 단 멘티 구인글 조회
-        api.myMenteeComPick(tokenStr).enqueue(object : Callback<MyMenteePickResponse> {
+        api.myMenteeComPick().enqueue(object : Callback<MyMenteePickResponse> {
             override fun onResponse(
                 call: Call<MyMenteePickResponse>,
                 response: Response<MyMenteePickResponse>
@@ -39,7 +39,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
 
         })
         //내가 쓴 멘티 구인글
-        api.myMenteePick(tokenStr).enqueue(object : Callback<MyMenteePickResponse> {
+        api.myMenteePick().enqueue(object : Callback<MyMenteePickResponse> {
             override fun onResponse(
                 call: Call<MyMenteePickResponse>,
                 response: Response<MyMenteePickResponse>
@@ -56,7 +56,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
 
         })
         //내가 댓글 단 멘토 구인글 조회
-        api.myMentorComPick(tokenStr).enqueue(object : Callback<MyMentorPickResponse> {
+        api.myMentorComPick().enqueue(object : Callback<MyMentorPickResponse> {
             override fun onResponse(
                 call: Call<MyMentorPickResponse>,
                 response: Response<MyMentorPickResponse>
@@ -74,7 +74,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
         })
 
         //내가 쓴 멘토 구인글
-        api.myMentorPick(tokenStr).enqueue(object : Callback<MyMentorPickResponse> {
+        api.myMentorPick().enqueue(object : Callback<MyMentorPickResponse> {
             override fun onResponse(
                 call: Call<MyMentorPickResponse>,
                 response: Response<MyMentorPickResponse>
@@ -93,7 +93,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
 //
 //
 //        //내가 쓴 질문
-        api.problemByMe(tokenStr).enqueue(object : Callback<ProbByMeResponse> {
+        api.problemByMe().enqueue(object : Callback<ProbByMeResponse> {
             override fun onResponse(
                 call: Call<ProbByMeResponse>,
                 response: Response<ProbByMeResponse>
@@ -109,7 +109,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
             }
         })
         //내가 답한 질문
-        api.problemSolByMe(tokenStr).enqueue(object : Callback<ProbSolByMeResponse> {
+        api.problemSolByMe().enqueue(object : Callback<ProbSolByMeResponse> {
             override fun onResponse(
                 call: Call<ProbSolByMeResponse>,
                 response: Response<ProbSolByMeResponse>

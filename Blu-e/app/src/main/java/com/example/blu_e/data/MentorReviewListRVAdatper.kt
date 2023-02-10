@@ -9,11 +9,7 @@ import com.example.blu_e.databinding.MentoringHistoryItemBinding
 class MentorReviewListRVAdatper(private  val dataList: ArrayList<MentorReviewListData> = arrayListOf()): RecyclerView.Adapter<MentorReviewListRVAdatper.DataViewHolder>() {
     inner class DataViewHolder(private  val viewBinding: ItemMentorMyReviewBinding): RecyclerView.ViewHolder(viewBinding.root) {
         fun bind(data: MentorReviewListData){
-<<<<<<< HEAD
 //            viewBinding.nicknameMenteeReviewList.text = data.menteeId
-=======
-            //viewBinding.nicknameMenteeReviewList.text = data.menteeId
->>>>>>> 780a561f256e4c82eb889bea4174feed4d8fb1e7
             viewBinding.menteeReviewText.text = data.contents
         }
     }

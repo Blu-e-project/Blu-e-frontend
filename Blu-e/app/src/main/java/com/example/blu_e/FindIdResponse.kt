@@ -7,5 +7,5 @@ data class FindIdResponse(
     val result: Item
 )
 data class Item(
-    val id:String
+    val id: String
 )

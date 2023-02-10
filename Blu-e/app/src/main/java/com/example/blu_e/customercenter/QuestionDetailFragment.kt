@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.blu_e.MainActivity
+import com.example.blu_e.MainApplication
 import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.customercenter.Question
@@ -24,18 +25,18 @@ class QuestionDetailFragment : Fragment() {
     private var centerFragment: CenterFragment = CenterFragment()
     private lateinit var viewBinding: FragmentQuestionDetailBinding
     private lateinit var question: Question
-//    private val api = RetroInterface.create()
+    private val api = RetroInterface.create()
 
     companion object {
-        fun newInstance(faqList: ArrayList<Question>, faqId: Int) = QuestionDetailFragment().apply {
+        fun newInstance(faqList: ArrayList<Question>, position: Int) = QuestionDetailFragment().apply {
             arguments = Bundle().apply {
                 putSerializable("list", faqList)
-                putInt("questionId", faqId)
+                putInt("position", position)
             }
         }
     }
-    val receivedFaqList by lazy { requireArguments().getSerializable("list") as ArrayList<Question>}
-    val receviedQuestionId by lazy { requireArguments().getInt("questionId")}
+    val receivedList by lazy { requireArguments().getSerializable("list") as ArrayList<Question>}
+    val receivedPosition by lazy { requireArguments().getInt("position")}
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -63,19 +64,21 @@ class QuestionDetailFragment : Fragment() {
 
         viewBinding.questionDeleteIcon.setOnClickListener {
             val userId: Int = 1
-            Log.d("받는 id", receviedQuestionId.toString())
+            var questionId: Int = receivedList.get(receivedPosition).questionId
+            Log.d("받는 id", receivedList.get(receivedPosition).questionId.toString())
             val builder = AlertDialog.Builder(mContext)
             builder
                 .setTitle("Q&A 삭제")
                 .setMessage("질문을 삭제하시겠습니까?")
                 .setPositiveButton("예",
                     DialogInterface.OnClickListener { dialog, id ->
-                        /*api.questionDelete(receviedQuestionId).enqueue(object: Callback<ResponseData> {
+                        api.questionDelete(questionId).enqueue(object: Callback<ResponseData> {
                             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 val body = response.body() ?: return
                                 if(body != null) {
                                     if(body.code == 1000) {
                                         Log.d("질문 삭제하기", body.message)
+                                        Log.d("questionId........!!!!", questionId.toString())
                                         mContext!!.openFragment(2)
                                     }
                                     else {
@@ -88,7 +91,7 @@ class QuestionDetailFragment : Fragment() {
                             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                                 Log.d("질문 삭제하기", "실패")
                             }
-                        })*/
+                        })
                     })
                 .setNegativeButton("아니오",
                     DialogInterface.OnClickListener { dialog, id ->
@@ -100,8 +103,7 @@ class QuestionDetailFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        Log.d("질문", receviedQuestionId.toString())
-        question = receivedFaqList[receviedQuestionId]
+        question = receivedList[receivedPosition]
         viewBinding.showTitle.text = question.title
         viewBinding.showContent.text = question.contents
         viewBinding.showAnswer.text = question.answer

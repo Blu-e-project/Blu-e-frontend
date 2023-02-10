@@ -4,7 +4,7 @@ data class FindIdResponse(
     val isSuccess: String,
     val code: Int,
     val message: String,
-    val result:List<Item>
+    val result: Item
 )
 data class Item(
     val id:String

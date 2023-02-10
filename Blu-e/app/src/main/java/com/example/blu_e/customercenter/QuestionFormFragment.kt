@@ -23,7 +23,7 @@ import java.sql.Timestamp
 
 class QuestionFormFragment : Fragment() {
     private lateinit var mContext: MainActivity
-//    private val api = RetroInterface.create()
+    private val api = RetroInterface.create()
     private lateinit var viewBinding: FragmentQuestionFormBinding
 
     override fun onAttach(context: Context) {
@@ -53,7 +53,7 @@ class QuestionFormFragment : Fragment() {
             val contents: String = viewBinding.content.text.toString()
             val createdAt = Timestamp(System.currentTimeMillis())
 
-            /*api.questionWriting("", title, contents).enqueue(object: Callback<ResponseData> {
+            api.questionWriting(title, contents).enqueue(object: Callback<ResponseData> {
                 override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                     val body = response.body() ?: return
                     if(body != null) {
@@ -68,7 +68,16 @@ class QuestionFormFragment : Fragment() {
                                         mContext!!.openFragment(2)
                                     })
                             builder.show()
-                        } else if (body.code == 2300 || body.code == 2304 || body.code == 2301 || body.code == 2305) {
+                        } else if (body.code == 2300) {
+                            Log.d("질문 등록하기", "실패")
+                            Toast.makeText(mContext, body.message, Toast.LENGTH_SHORT).show()
+                        } else if (body.code == 2304) {
+                            Log.d("질문 등록하기", "실패")
+                            Toast.makeText(mContext, body.message, Toast.LENGTH_SHORT).show()
+                        } else if (body.code == 2301) {
+                            Log.d("질문 등록하기", "실패")
+                            Toast.makeText(mContext, body.message, Toast.LENGTH_SHORT).show()
+                        } else if (body.code == 2305) {
                             Log.d("질문 등록하기", "실패")
                             Toast.makeText(mContext, body.message, Toast.LENGTH_SHORT).show()
                         }
@@ -79,7 +88,7 @@ class QuestionFormFragment : Fragment() {
                 override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                     Log.d("질문 등록하기", "실패")
                 }
-            })*/
+            })
         }
     }
 }

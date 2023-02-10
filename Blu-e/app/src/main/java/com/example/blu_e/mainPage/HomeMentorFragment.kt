@@ -53,8 +53,6 @@ class HomeMentorFragment : Fragment() {
     ): View? {
         viewBinding = FragmentHomeMentorBinding.inflate(layoutInflater)
         Log.e("홈", "들어왔나?")
-        loadData1()
-        loadData3()
         return viewBinding.root
     }
 
@@ -80,7 +78,14 @@ class HomeMentorFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadData1()
+        loadData3()
+        Log.e("홈", "흠..")
+    }
     //더미 데이터
+    /*
     override fun onResume() {
         super.onResume()
 
@@ -132,7 +137,7 @@ class HomeMentorFragment : Fragment() {
         viewBinding.recyclerViewMentor.adapter = mentorAdapter
         viewBinding.recyclerViewMentor.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-    }
+    }*/
 
     private fun loadData1() { //새로운 멘티가 있어요
         api.findFiveMentee ().enqueue(object :
@@ -145,37 +150,36 @@ class HomeMentorFragment : Fragment() {
                 if (body != null) {
                     if (body.code == 1000) {
                         if (body.result != null) {
-                                Log.d("loadData1 목록 불러오기", "성공")
-                                menteeList =
-                                    body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
-                                adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
+                            Log.d("loadData1 목록 불러오기", "성공")
+                            menteeList =
+                                body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+                            adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
 
-                                viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
-                                viewBinding.recyclerViewHomeNewMentee.layoutManager =
-                                    LinearLayoutManager(mContext)
-                                adapter2.notifyItemChanged(menteeList.size)
+                            viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
+                            viewBinding.recyclerViewHomeNewMentee.layoutManager =
+                                LinearLayoutManager(mContext)
+                            adapter2.notifyItemChanged(menteeList.size)
 
-                                adapter2.setItemClickListener(object :
-                                    RetrofitHomeNewMenteeRVAdapter.ItemClickListener {
-                                    override fun onClick(view: View, position: Int) {
-                                        var detailFragment =
-                                            HomeNewMenteeFragment.newInstance(menteeList, position)
-                                        mContext.supportFragmentManager.beginTransaction().replace(
-                                            mContext.viewBinding.containerFragment.id,
-                                            detailFragment
-                                        ).commit()
-                                    }
-                                })
-                            } else {
-                                Log.d("loadData1 목록 불러오기", "아직 멘티가 없습니다.")
-                            }
-                    } else {
-                        Log.d("Response: ", "null")
+
+                            adapter2.setItemClickListener(object :
+                                RetrofitHomeNewMenteeRVAdapter.ItemClickListener {
+                                override fun onClick(view: View, position: Int) {
+                                    var detailFragment =
+                                        HomeNewMenteeFragment.newInstance(menteeList, position)
+                                    mContext.supportFragmentManager.beginTransaction().replace(
+                                        mContext.viewBinding.containerFragment.id, detailFragment
+                                    ).commit()
+                                }
+                            })
+                        }
                     }
+                }
+                else {
+                    Log.d("새로운 멘티 리스트", "실패")
                 }
             }
             override fun onFailure(call: Call<FindFiveMenteeResponse>, t: Throwable) {
-                Log.e("멘토 리스트", "failure")
+                Log.e("새로운 멘티 리스트", "failure")
             }
         })
     }

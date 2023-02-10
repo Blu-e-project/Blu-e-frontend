@@ -21,6 +21,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 import java.io.IOException
+import java.sql.Date
 import java.time.LocalDate
 import retrofit2.http.GET as GET
 
@@ -288,7 +289,7 @@ interface RetroInterface {
     @FormUrlEncoded
     @PATCH("/mypages/user")
     fun changeMyinfoMentor(@Field("name")name: String,@Field("nickname")nickname: String,
-                           @Field("birth")birth: String, @Field("education")education: String, @Field("address")address: String, @Field("introduce")introduce: String): Call<ResponseData>
+                           @Field("birth") birth: LocalDate, @Field("education")education: String, @Field("address")address: String, @Field("introduce")introduce: String): Call<ResponseData>
 
     //28 비밀번호 수정
     @FormUrlEncoded

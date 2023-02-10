@@ -1,25 +1,18 @@
-package com.example.blu_e
+package com.example.blu_e.mypage
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.DialogInterface
-import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.blu_e.MainActivity
 import com.example.blu_e.data.ResponseData
 import com.example.blu_e.data.RetroInterface
-import com.example.blu_e.data.mainPage.FindFiveMenteeResponse
-import com.example.blu_e.data.mainPage.RetrofitHomeNewMenteeRVAdapter
-import com.example.blu_e.databinding.FragmentMentorChangeInfoBinding
 import com.example.blu_e.databinding.FragmentMentorChangePasswdBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -55,7 +48,6 @@ class MentorPasswdChangeFragment:Fragment() {
             var password2 = viewBinding.passwdReMentor.text.toString()
             val builder = AlertDialog.Builder(mContext)
             api.changePasswdMentor(
-                "eUItOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6M..",
                 password,
                 password2
             ).enqueue(object :

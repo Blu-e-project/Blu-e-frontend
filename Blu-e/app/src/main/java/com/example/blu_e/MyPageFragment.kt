@@ -17,6 +17,7 @@ import com.example.blu_e.data.ListInMyPageAdapter
 import com.example.blu_e.data.ListInMyPageData
 import com.example.blu_e.databinding.FragmentMyPageBinding
 import com.example.blu_e.login.LoginActivity
+import com.example.blu_e.mypage.*
 
 class MyPageFragment : Fragment() {
     private lateinit var mContext: MainActivity
@@ -64,14 +65,17 @@ class MyPageFragment : Fragment() {
             override fun onClick(view: View, position: Int) {
                 val transaction = mContext.supportFragmentManager.beginTransaction()
                 val intent = Intent(mContext, MentorHistoryActivity::class.java)
-                val intent2 = Intent(mContext,MentorMyReviewActivity::class.java)
-                val intent3 = Intent(mContext,MentorMyCommentActivity::class.java)
+                val intent2 = Intent(mContext,MentorAboutMeReviewActivity::class.java)
+                val intent3 = Intent(mContext, MentorMyReviewActivity::class.java)
+                val intent4 = Intent(mContext,MentorMyCommentActivity::class.java)
                 when(position) {
                     0 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorChangeInfoFragment()).commit() //"멘토 정보 수정"
                     1 -> startActivity(intent)
                     2 -> transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit() //"멘티 신고"
                     3 -> startActivity(intent2)
-                    4 -> startActivity(intent3)
+                    4 -> startActivity(intent4)
+                    5 -> startActivity(intent3)
+                    4 -> startActivity(intent4)
                     5 -> startActivity(intent2)
                     6 -> "버전"
                     7 -> logoutDialog()

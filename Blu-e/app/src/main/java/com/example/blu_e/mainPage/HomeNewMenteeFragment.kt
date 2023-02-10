@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
 import com.example.blu_e.MainApplication
+import com.example.blu_e.customercenter.FaqDetailFragment
 import com.example.blu_e.data.RetroInterface
+import com.example.blu_e.data.customercenter.FaqData
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeNewMenteeBinding
 import com.example.blu_e.login.SignUpActivity
@@ -28,6 +30,15 @@ class HomeNewMenteeFragment : Fragment() {
 
     private lateinit var mentorList: ArrayList<FindMenteesResponse.FindMenteeItem>
     private lateinit var adapter: RetrofitNewMenteeRVAdapter
+
+    companion object {
+        fun newInstance(list: ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>, id: Int) = HomeNewMenteeFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable("list", list)
+                putInt("id", id)
+            }
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -73,7 +84,7 @@ class HomeNewMenteeFragment : Fragment() {
     }
 
     private fun loadData() {
-        api.findMentees(MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object : Callback<FindMenteesResponse> {
+        api.findMentees().enqueue(object : Callback<FindMenteesResponse> {
             override fun onResponse(
                 call: Call<FindMenteesResponse>,
                 response: Response<FindMenteesResponse>

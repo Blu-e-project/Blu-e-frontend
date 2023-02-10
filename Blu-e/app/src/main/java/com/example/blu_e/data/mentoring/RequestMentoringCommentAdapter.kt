@@ -9,15 +9,19 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.blu_e.MainApplication
 import com.example.blu_e.R
 import com.example.blu_e.databinding.ItemRequestMentoringCommentBinding
 import com.example.blu_e.mentoring.ProfileActivity
+import com.example.blu_e.mentoring.RequestMentoringActivity
 
 class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickComment>?, private val context: Context): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
 //    private val api = RetroInterface.create()
     private var acceptCheck = 1
     private var completedCheck = 0
     private var menuCheck = 1
+    private var userId = MainApplication.prefs.getString("userId", "")
+    private var requestMentoring: RequestMentoringActivity = RequestMentoringActivity()
 
     fun updateAcceptBtnv(n: Int) {
         acceptCheck = n
@@ -41,18 +45,22 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
 
         fun bind(commentItem: PickComment) {
             val url = ""
-//          commentItem.userId?   .userImg
             Glide.with(context)
-                .load(R.drawable.ic_baseline_person_24)
+                .load(commentItem.userImg)
                 .circleCrop()
-//                .fallback(R.drawable.ic_baseline_person_24)
                 .into(memberPicture)
 //            memberNickName.text = User(commentItem.userId)   .nickname
-
-            memberNickName.text = "블루님"
+            memberNickName.text = commentItem.nickname
             showWrittenDate.text = commentItem.createdAt.toString()
             commentContent.text = commentItem.contents
 
+            //댓쓴이와 유저 비교
+            if (commentItem.pickCommentId == userId.toInt()) {
+                menuCheck = 1
+                requestMentoring.disappearCommentForm()
+            } else {
+                menuCheck = 0
+            }
             if(acceptCheck == 1) { accpetButton.visibility = View.VISIBLE } else { accpetButton.visibility = View.GONE }
             if(completedCheck == 1) { completedText.visibility = View.VISIBLE } else { completedText.visibility = View.GONE }
             if(menuCheck == 1) { changeCommentMenu.visibility = View.VISIBLE } else { changeCommentMenu.visibility = View.GONE }

@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide
 import com.example.blu_e.SignupResponse
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ActivityMentorInfoBinding
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +29,7 @@ import java.time.format.DateTimeFormatter
 class MentorInfoActivity : AppCompatActivity() {
     private val api = RetroInterface.create()
     lateinit var uri: Uri
-    lateinit var byteArray: Text
+    lateinit var profileImageBase64: String
     lateinit var viewBinding: ActivityMentorInfoBinding
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,27 +49,28 @@ class MentorInfoActivity : AppCompatActivity() {
             Log.d("이미지", "성공")
             activityResult.launch(intent)
         }
-        //갤러리 사진 선택
-        viewBinding.profileBtn.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            Log.d("이미지", "성공")
-            activityResult.launch(intent)
-        }
         viewBinding.signUpBtn.setOnClickListener {
             //비번과 비번확인이 같은지 확인
-            if(viewBinding.userPw.text == viewBinding.checkPw.text) {
+            if(viewBinding.userPw.text.toString() == viewBinding.checkPw.text.toString()) {
+                Log.d("회원가입", "비번 확인")
                 //체크했는지 안했는지 확인
                 if (viewBinding.agreeCb.isChecked) {
+                    Log.d("회원가입", "동의")
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
 //                    //본인인증에서 번호 가져옴
-                    val phone = intent.getStringExtra("phoneNum").toString()
+                    val phone = intent.getStringExtra("mentorPhoneNum").toString()
+                    Log.d("번호", "${phone}")
                     val name = viewBinding.name.text.toString()
-                    val nickname = viewBinding.nickname.toString()
+                    val nickname = viewBinding.nickname.text.toString()
                     //string ->LocalDate로 바꿔야함
                     val birthStr = viewBinding.birth.text.toString()
-                    val birth = LocalDate.parse(birthStr, DateTimeFormatter.ISO_DATE)
+                    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                    val birth = LocalDate.parse(birthStr, formatter).atStartOfDay()
+                    val birthDate = birth.toLocalDate()
+
+                    Log.d("회원가입","${birth}")
+                    Log.d("회원가입","${birthDate}")
                     val education = viewBinding.education.text.toString()
                     val department = viewBinding.major.text.toString()
                     val grade: Int? = null
@@ -80,8 +80,8 @@ class MentorInfoActivity : AppCompatActivity() {
                     val createAt = LocalDate.now()
                     val updateAt = LocalDate.now()
                     val status = 1
-//                    //val userImg = viewBinding.
-                    api.signUp(id, password,phone, name,nickname,birth,education,department, grade,address, introduce,role,createAt,updateAt,status, byteArray)
+
+                    api.signUp(id, password,phone, name,nickname,birthDate,education,department, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
                         .enqueue(object :Callback<SignupResponse>{
                             override fun onResponse(
                                 call: Call<SignupResponse>,
@@ -90,8 +90,8 @@ class MentorInfoActivity : AppCompatActivity() {
                                 val responseData = response.body()
                                 if (responseData != null) {
                                     if(responseData.code == 1000){
-                                //성공
-                                      var mintent = Intent(this@MentorInfoActivity, MentorSignUpSuccessActivity::class.java)
+                                        //성공
+                                        var mintent = Intent(this@MentorInfoActivity, MentorSignUpSuccessActivity::class.java)
                                         startActivity(mintent)
                                     } else{
                                         val msg = when(responseData.code) {
@@ -108,12 +108,10 @@ class MentorInfoActivity : AppCompatActivity() {
                                 TODO("Not yet implemented")
                             }
                         })
-
                 }
             }
-            //비번과 비번확인이 같지 않으면
             else{
-                
+
             }
         }
     }
@@ -140,7 +138,7 @@ class MentorInfoActivity : AppCompatActivity() {
             val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
             val outStream = ByteArrayOutputStream()
             val res: Resources = resources
-            val profileImageBase64 = Base64.encodeToString(byteArray, Base64.NO_WRAP)
+            profileImageBase64 = Base64.encodeToString(byteArray, Base64.NO_WRAP)
             if(profileImageBase64 != null) {
                 Toast.makeText(this, "이미지가 첨부되었습니다!", Toast.LENGTH_SHORT).show()
             }

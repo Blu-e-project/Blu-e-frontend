@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             10 -> transaction.replace(viewBinding.containerFragment.id, HomeRecruitMenteeFragment()) //멘티를 구하고 있어요
             11 -> transaction.replace(viewBinding.containerFragment.id, HomeQuestionFragment()) //궁금한 문제가 있어요
             //12 -> transaction.replace(viewBinding.containerFragment.id, ) //궁금한 문제가 있어요_문제 등록하기
-            //13 -> transaction.replace(viewBinding.containerFragment.id, ) //멘토 구인글
+            //13 -> transaction.replace(viewBinding.containerFragment.id, MentorMy) //멘토 구인글
             14 -> transaction.replace(viewBinding.containerFragment.id, HomeMentorFragment()) //멘토 홈
             15 -> transaction.replace(viewBinding.containerFragment.id, HomeMenteeFragment()) //멘티 홈
 

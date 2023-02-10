@@ -26,7 +26,7 @@ class CenterFragment : Fragment() {
     private lateinit var qs: ArrayList<Question>
     private lateinit var adapter: FaqAdapter
     private lateinit var adapter2: QuestionAdapter
-//    private val api = RetroInterface.create()
+    private val api = RetroInterface.create()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -83,7 +83,7 @@ class CenterFragment : Fragment() {
             mContext!!.openFragment(3)
         }
 
-        /*api.requestMyQuestions("").enqueue(object: Callback<QuestionResponse> {
+        api.requestMyQuestions().enqueue(object: Callback<QuestionResponse> {
              override fun onResponse(call: Call<QuestionResponse>, response: Response<QuestionResponse>) {
                  val body = response.body()?: return
                  if (body != null) {
@@ -117,6 +117,6 @@ class CenterFragment : Fragment() {
                  //실패시
                  Log.d("질문 목록 불러오기", "실패")
              }
-         })*/
+         })
     }
 }

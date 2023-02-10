@@ -24,16 +24,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
-import java.net.URI
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Base64.getEncoder
-import java.util.Base64.getUrlEncoder
 
 class MenteeInfoActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeInfoBinding
         private val api = RetroInterface.create()
-    lateinit var byteArray: Text
     @RequiresApi(Build.VERSION_CODES.O)
     lateinit var uri: Uri
     lateinit var profileImageBase64: String
@@ -43,7 +39,6 @@ class MenteeInfoActivity : AppCompatActivity() {
         viewBinding = ActivityMenteeInfoBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        val uri : String
         //뒤로가기(멘티 회원가입 페이지로)
         viewBinding.backToCenterD.setOnClickListener {
             var intent = Intent(this, MenteeSignUpActivity::class.java)
@@ -65,12 +60,15 @@ class MenteeInfoActivity : AppCompatActivity() {
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
                     //본인인증에서 번호 가져옴
-                    val phone = intent.getStringExtra("phoneNum").toString()
+                    val phone = intent.getStringExtra("menteePhoneNum").toString()
                     val name = viewBinding.name.text.toString()
-                    val nickname = viewBinding.nickname.toString()
+                    val nickname = viewBinding.nickname.text.toString()
                     //string ->LocalDate로 바꿔야함
                     val birthStr = viewBinding.birth.text.toString()
-                    val birth = LocalDate.parse(birthStr, DateTimeFormatter.ISO_DATE)
+                        //string ->LocalDate로 바꿔야함
+                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                        val birth = LocalDate.parse(birthStr, formatter).atStartOfDay()
+                        val birthDate = birth.toLocalDate()
                     val education = viewBinding.education.text.toString()
                     val grade = viewBinding.year.text.toString().toInt()
                     val address = viewBinding.addr.text.toString()
@@ -78,8 +76,8 @@ class MenteeInfoActivity : AppCompatActivity() {
                     val role = 2
                     val createAt = LocalDate.now()
                     val updateAt = LocalDate.now()
-                    val status = 2
-                    api.signUp(id, password,phone, name,nickname,birth,education,null, grade,address, introduce,role,createAt,updateAt,status, byteArray)
+                    val status = 1
+                    api.signUp(id, password,phone, name,nickname,birthDate,education,null, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
                         .enqueue(object : Callback<SignupResponse> {
                             override fun onResponse(
                                 call: Call<SignupResponse>,

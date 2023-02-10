@@ -22,31 +22,43 @@ class MentorMyCommentActivity : AppCompatActivity() {
 
 
         //내기 댓글 단 멘티 구인글 조회
-        api.myMenteeComPick(tokenStr).enqueue(object : Callback<MyMenteePickResponse> {
+        api.myMenteeComPick().enqueue(object : Callback<MyMenteePickResponse> {
             override fun onResponse(
                 call: Call<MyMenteePickResponse>,
                 response: Response<MyMenteePickResponse>
             ) {
-                val responseData = response.body()
-                responseData?.let {
-                    setMenteePickAdapter(it.MenteePickResult as ArrayList<MyMenteePickItem>)
+                if(response.isSuccessful) {
+                    val responseData = response.body()
+                    responseData?.let {
+                        (it.MenteePickResult as ArrayList<MyMenteePickItem>?)?.let { it1 ->
+                            setMenteePickAdapter(
+                                it1
+                            )
+                        }
+                    }
                 }
             }
 
             override fun onFailure(call: Call<MyMenteePickResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                
             }
 
         })
         //내가 쓴 멘티 구인글
-        api.myMenteePick(tokenStr).enqueue(object : Callback<MyMenteePickResponse> {
+        api.myMenteePick().enqueue(object : Callback<MyMenteePickResponse> {
             override fun onResponse(
                 call: Call<MyMenteePickResponse>,
                 response: Response<MyMenteePickResponse>
             ) {
-                val responseData = response.body()
-                responseData?.let {
-                    setMenteePickAdapter(it.MenteePickResult as ArrayList<MyMenteePickItem>)
+                if(response.isSuccessful) {
+                    val responseData = response.body()
+                    responseData?.let {
+                        (it.MenteePickResult as ArrayList<MyMenteePickItem>?)?.let { it1 ->
+                            setMenteePickAdapter(
+                                it1
+                            )
+                        }
+                    }
                 }
             }
 
@@ -56,72 +68,92 @@ class MentorMyCommentActivity : AppCompatActivity() {
 
         })
         //내가 댓글 단 멘토 구인글 조회
-        api.myMentorComPick(tokenStr).enqueue(object : Callback<MyMentorPickResponse> {
+        api.myMentorComPick().enqueue(object : Callback<MyMentorPickResponse> {
             override fun onResponse(
                 call: Call<MyMentorPickResponse>,
                 response: Response<MyMentorPickResponse>
             ) {
-                val responseData = response.body()
-                responseData?.let {
-                    setMentorPickAdapter(it.MentorPickResult as ArrayList<MyMentorPickItem>)
+                if(response.isSuccessful) {
+                    val responseData = response.body()
+                    responseData?.let {
+                        (it.MentorPickResult as ArrayList<MyMentorPickItem>?)?.let { it1 ->
+                            setMentorPickAdapter(
+                                it1
+                            )
+                        }
+                    }
                 }
             }
 
             override fun onFailure(call: Call<MyMentorPickResponse>, t: Throwable) {
-                TODO("Not yet implemented")
             }
 
         })
 
         //내가 쓴 멘토 구인글
-        api.myMentorPick(tokenStr).enqueue(object : Callback<MyMentorPickResponse> {
+        api.myMentorPick().enqueue(object : Callback<MyMentorPickResponse> {
             override fun onResponse(
                 call: Call<MyMentorPickResponse>,
                 response: Response<MyMentorPickResponse>
             ) {
-                val responseData = response.body()
-                responseData?.let {
-                    setMentorPickAdapter(it.MentorPickResult as ArrayList<MyMentorPickItem>)
+
+                if(response.isSuccessful) {
+                    val responseData = response.body()
+                    responseData?.let {
+                        (it.MentorPickResult as ArrayList<MyMentorPickItem>?)?.let { it1 ->
+                            setMentorPickAdapter(
+                                it1
+                            )
+                        }
+                    }
                 }
             }
 
             override fun onFailure(call: Call<MyMentorPickResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
 
         })
 //
 //
 //        //내가 쓴 질문
-        api.problemByMe(tokenStr).enqueue(object : Callback<ProbByMeResponse> {
+        api.problemByMe().enqueue(object : Callback<ProbByMeResponse> {
             override fun onResponse(
                 call: Call<ProbByMeResponse>,
                 response: Response<ProbByMeResponse>
             ) {
-                val responseData = response.body()
-                responseData?.let {
-                    setAdapter(it.result as ArrayList<ProbByMeItem>)
+                if(response.isSuccessful) {
+                    val responseData = response.body()
+                    responseData?.let {
+                        (it.result as ArrayList<ProbByMeItem>?)?.let { it1 -> setAdapter(it1) }
+                    }
                 }
             }
 
             override fun onFailure(call: Call<ProbByMeResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
         })
         //내가 답한 질문
-        api.problemSolByMe(tokenStr).enqueue(object : Callback<ProbSolByMeResponse> {
+        api.problemSolByMe().enqueue(object : Callback<ProbSolByMeResponse> {
             override fun onResponse(
                 call: Call<ProbSolByMeResponse>,
                 response: Response<ProbSolByMeResponse>
             ) {
-                val responseData = response.body()
-                responseData?.let {
-                    setSolAdapter(it.solResult as ArrayList<ProbSolByMeItem>)
+
+                if(response.isSuccessful) {
+                    val responseData = response.body()
+                    responseData?.let {
+                        (it.solResult as ArrayList<ProbSolByMeItem>?)?.let { it1 ->
+                            setSolAdapter(
+                                it1
+                            )
+                        }
+                    }
                 }
             }
 
             override fun onFailure(call: Call<ProbSolByMeResponse>, t: Throwable) {
-                TODO("Not yet implemented")
             }
 
         })
@@ -134,6 +166,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
         viewBinding.rv.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         viewBinding.rv.setHasFixedSize(false)
+        probAdapter.notifyItemChanged(resultList.size)
     }
 
     private fun setSolAdapter(resultList: ArrayList<ProbSolByMeItem>) {
@@ -142,6 +175,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
         viewBinding.rv.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         viewBinding.rv.setHasFixedSize(false)
+        probSolAdapter.notifyItemChanged(resultList.size)
     }
 
     private fun setMentorPickAdapter(resultList: ArrayList<MyMentorPickItem>) {
@@ -150,6 +184,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
         viewBinding.rvMentor.layoutManager =
             GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false)
         viewBinding.rvMentor.setHasFixedSize(false)
+        mentorPickAdapter.notifyItemChanged(resultList.size)
 
     }
 
@@ -159,6 +194,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
         viewBinding.rvMentee.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         viewBinding.rvMentee.setHasFixedSize(false)
+        menteePickAdapter.notifyItemChanged(resultList.size)
 
     }
 }

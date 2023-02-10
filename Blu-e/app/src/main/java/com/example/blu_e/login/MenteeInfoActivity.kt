@@ -60,7 +60,7 @@ class MenteeInfoActivity : AppCompatActivity() {
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
                     //본인인증에서 번호 가져옴
-                    val phone = intent.getStringExtra("phoneNum").toString()
+                    val phone = intent.getStringExtra("menteePhoneNum").toString()
                     val name = viewBinding.name.text.toString()
                     val nickname = viewBinding.nickname.text.toString()
                     //string ->LocalDate로 바꿔야함

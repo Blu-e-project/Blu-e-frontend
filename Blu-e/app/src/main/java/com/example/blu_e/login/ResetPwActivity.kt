@@ -28,7 +28,6 @@ class ResetPwActivity : AppCompatActivity() {
 
         //비밀번호 재설정
         viewBinding.resetPwBtn.setOnClickListener {
-            //비밀번호와 비밀번호 확인이 같은지 체크
             var id = viewBinding.id.text.toString()
             var pw1 = viewBinding.newPw1.text.toString()
             var pw2 = viewBinding.newPw2.text.toString()

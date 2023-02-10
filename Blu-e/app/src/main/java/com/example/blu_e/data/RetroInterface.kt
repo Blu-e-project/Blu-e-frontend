@@ -168,10 +168,12 @@ interface RetroInterface {
                @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: String
     ) :Call<SignupResponse>
     //6. 아이디 찾기
+
     @GET("users/id")
-    fun findId(@Field("phoneNum") phoneNum: String): Call<FindIdResponse>
+    fun findId(@Path("phoneNum") phoneNum: String?): Call<FindIdResponse>
 
     //7. 비밀번호 변경
+    @FormUrlEncoded
     @PATCH("/users/password")
     fun resetPw(@Field("id") id: String, @Field("phoneNum") phoneNum: String, @Field("password") password: String, @Field("password_check") password_check:String): Call<SignupResponse>
     //34. 멘토 구인글 생성

@@ -59,7 +59,8 @@ class MentorInfoActivity : AppCompatActivity() {
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
 //                    //본인인증에서 번호 가져옴
-                    val phone = intent.getStringExtra("phoneNum").toString()
+                    val phone = intent.getStringExtra("mentorPhoneNum").toString()
+                    Log.d("번호", "${phone}")
                     val name = viewBinding.name.text.toString()
                     val nickname = viewBinding.nickname.text.toString()
                     //string ->LocalDate로 바꿔야함

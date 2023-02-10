@@ -4,7 +4,7 @@ class FindRecruitMentorResponse (
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: List<FindRecruitMentorItem>
+    val result: FindRecruitMentorItem
 ) {
     data class FindRecruitMentorItem(
         val pickId: Int,

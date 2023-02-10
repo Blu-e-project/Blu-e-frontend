@@ -4,7 +4,7 @@ data class FindFiveMentorResponse (
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: List<FindFiveMentorItems>
+    val result: FindFiveMentorItems
 ) {
     data class FindFiveMentorItems(
         val userId: String,

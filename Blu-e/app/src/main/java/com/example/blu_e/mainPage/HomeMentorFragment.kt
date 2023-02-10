@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
 import com.example.blu_e.MainApplication
 import com.example.blu_e.RecruitMenteeActivity
+import com.example.blu_e.customercenter.FaqDetailFragment.Companion.newInstance
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeMentorBinding
@@ -51,9 +52,6 @@ class HomeMentorFragment : Fragment() {
     ): View? {
         viewBinding = FragmentHomeMentorBinding.inflate(layoutInflater)
         Log.e("홈", "들어왔나?")
-        loadData1()
-        loadData3()
-
         return viewBinding.root
     }
 
@@ -79,6 +77,12 @@ class HomeMentorFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadData1()
+        loadData3()
+        Log.e("홈", "흠..")
+    }
     //더미 데이터
     /*
     override fun onResume() {
@@ -140,7 +144,7 @@ class HomeMentorFragment : Fragment() {
     }*/
 
     private fun loadData1() { //새로운 멘티가 있어요
-        api.findFiveMentee (MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
+        api.findFiveMentee ().enqueue(object :
             Callback<FindFiveMenteeResponse> {
             override fun onResponse(
                 call: Call<FindFiveMenteeResponse>,
@@ -149,6 +153,7 @@ class HomeMentorFragment : Fragment() {
                 if (response.isSuccessful) {
                     val body = response.body() ?: return
                     if (body.code == 1000) {
+<<<<<<< HEAD
                         Log.d("목록 불러오기", "성공")
 //<<<<<<< HEAD
 //                        var menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
@@ -158,12 +163,17 @@ class HomeMentorFragment : Fragment() {
 //                        viewBinding.recyclerViewHomeNewMentee.layoutManager =
 //                            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
 //=======
+=======
+                        Log.d("loadData1 목록 불러오기", "성공")
+>>>>>>> 780a561f256e4c82eb889bea4174feed4d8fb1e7
                         menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
                         adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
+
                         viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
                         viewBinding.recyclerViewHomeNewMentee.layoutManager = LinearLayoutManager(mContext)
                         adapter2.notifyItemChanged(menteeList.size)
-                        /*
+
+
                         adapter2.setItemClickListener(object: RetrofitHomeNewMenteeRVAdapter.ItemClickListener{
                             override fun onClick(view: View, position: Int) {
                                 var detailFragment = HomeNewMenteeFragment.newInstance(menteeList, position)
@@ -172,8 +182,11 @@ class HomeMentorFragment : Fragment() {
                                 ).commit()
                             }
                         })
+<<<<<<< HEAD
                         */
 //>>>>>>> 56e3c4506fc117ca225d6861dae9113f1db46d5f
+=======
+>>>>>>> 780a561f256e4c82eb889bea4174feed4d8fb1e7
                     }
                 }
                 else {
@@ -187,7 +200,7 @@ class HomeMentorFragment : Fragment() {
     }
 
     private fun loadData3() { //멘토를 구하고 있어요
-        api.findHotMentors  (MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
+        api.findHotMentors ().enqueue(object :
             Callback<FindHotMentorResponse> {
             override fun onResponse(
                 call: Call<FindHotMentorResponse>,
@@ -196,7 +209,7 @@ class HomeMentorFragment : Fragment() {
                 if (response.isSuccessful) {
                     val body = response.body() ?: return
                     if (body.code == 1000) {
-                        Log.d("목록 불러오기", "성공")
+                        Log.d("loadData3 목록 불러오기", "성공")
                         mentorList = body.result as ArrayList<FindHotMentorResponse.FindHotMentorItem>
                         adapter3 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
 

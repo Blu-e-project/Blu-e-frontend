@@ -77,7 +77,7 @@ class HomeRecruitMenteeFragment : Fragment() {
     }
 
     private fun loadData() {
-        api.findRecruitMentee (MainApplication.prefs.getString("blu-e-access-token", "")).enqueue(object :
+        api.findRecruitMentee ().enqueue(object :
             Callback<FindRecruitMenteeResponse> {
             override fun onResponse(
                 call: Call<FindRecruitMenteeResponse>,

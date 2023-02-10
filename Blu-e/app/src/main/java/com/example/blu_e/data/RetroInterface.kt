@@ -201,27 +201,27 @@ interface RetroInterface {
 
     //58. 내가 질문한 문제 조회 API
     @GET("/problemByMe")
-    fun problemByMe(@Header("blu-e-access-token") token: String): Call<ProbByMeResponse>
+    fun problemByMe(): Call<ProbByMeResponse>
 
     //59. 내가 답변한 질문글 조회 API
     @GET("/problemSolByMe")
-    fun problemSolByMe(@Header("blu-e-access-token") token: String): Call<ProbSolByMeResponse>
+    fun problemSolByMe(): Call<ProbSolByMeResponse>
 
     //61. 내가 작성한 멘토 구인글 조회 API
     @GET("/myPage/myMentorPick")
-    fun myMentorPick(@Header("blu-e-access-token") token: String) : Call<MyMentorPickResponse>
+    fun myMentorPick() : Call<MyMentorPickResponse>
 
     //63. 내가 댓글 단 멘토 구인글 조회 API
     @GET("/myPage/myMentorComPick")
-    fun myMentorComPick(@Header("blu-e-access-token") token: String) : Call<MyMentorPickResponse>
+    fun myMentorComPick() : Call<MyMentorPickResponse>
 
     //62. 내가 작성한 멘티 구인글 조회 API
     @GET("/myPage/myMenteePick")
-    fun myMenteePick(@Header("blu-e-access-token") token: String) : Call<MyMenteePickResponse>
+    fun myMenteePick() : Call<MyMenteePickResponse>
 
     //64. 내가 댓글 단 멘티 구인글 조회 API
     @GET("/myPage/myMenteeComPick")
-    fun myMenteeComPick(@Header("blu-e-access-token") token: String) : Call<MyMenteePickResponse>
+    fun myMenteeComPick() : Call<MyMenteePickResponse>
 
     //---------------------------------------구만이 코드----------------------------------------------
     //8 멘토 전체 조회(최근 가입한 순) NewMentor

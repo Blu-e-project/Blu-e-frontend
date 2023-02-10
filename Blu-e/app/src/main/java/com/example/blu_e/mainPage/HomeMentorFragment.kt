@@ -147,9 +147,25 @@ class HomeMentorFragment : Fragment() {
                 val body = response.body() ?: return
                 if (body != null) {
                     if (body.code == 1000) {
+<<<<<<< HEAD
                         Log.d("loadData1 목록 불러오기", "성공")
                         menteeList =
                             body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+=======
+//<<<<<<< HEAD
+//                        Log.d("목록 불러오기", "성공")
+////<<<<<<< HEAD
+////                        var menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+////
+////                        var menteeAdapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
+////                        viewBinding.recyclerViewHomeNewMentee.adapter = menteeAdapter2
+////                        viewBinding.recyclerViewHomeNewMentee.layoutManager =
+////                            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+////=======
+//=======
+                        Log.d("loadData1 목록 불러오기", "성공")
+                        menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+>>>>>>> f3dcd4402cbcac7c9ab6a10d0fb846ecab661a35
                         adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
 
                         viewBinding.recyclerViewHomeNewMentee.adapter = adapter2

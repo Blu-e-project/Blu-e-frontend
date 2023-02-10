@@ -1,12 +1,11 @@
-package com.example.blu_e
+package com.example.blu_e.mypage
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.blu_e.data.MentorHistoryData
-import com.example.blu_e.data.MentorHistoryDataRVAdapter
+import com.example.blu_e.MainActivity
+import com.example.blu_e.data.mypage.MentorHistoryData
+import com.example.blu_e.data.mypage.MentorHistoryDataRVAdapter
 import com.example.blu_e.databinding.ActivityMentorHistoryBinding
 
 class MentorHistoryActivity : AppCompatActivity() {

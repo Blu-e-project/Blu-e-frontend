@@ -3,6 +3,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -20,6 +22,8 @@ import com.example.blu_e.databinding.FragmentMentorChangeInfoBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class MentorChangeInfoFragment : Fragment() {
     private val api = RetroInterface.create() //retrofit 객체
@@ -39,6 +43,7 @@ class MentorChangeInfoFragment : Fragment() {
         return viewBinding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 //뒤로가기
@@ -63,7 +68,11 @@ class MentorChangeInfoFragment : Fragment() {
         viewBinding.btnAddMentor.setOnClickListener {
             var name = viewBinding.nameMentor.text.toString()
             var nickname = viewBinding.nicknameMentor.text.toString()
-            var birth= viewBinding.birthMentor.text.toString()
+            //string ->LocalDate로 바꿔야함
+            val birthStr = viewBinding.birthMentor.text.toString()
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val birth = LocalDate.parse(birthStr, formatter).atStartOfDay()
+            val birthDate = birth.toLocalDate()
             var education= viewBinding.educationMentor.text.toString()
             var address= viewBinding.addrMentor.text.toString()
             var introduce= viewBinding.introduceMentor.text.toString()
@@ -73,7 +82,7 @@ class MentorChangeInfoFragment : Fragment() {
             api.changeMyinfoMentor(
                 name,
                 nickname,
-                birth,
+                birthDate,
             education,
                 address,
                 introduce

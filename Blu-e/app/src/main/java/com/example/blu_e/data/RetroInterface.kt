@@ -11,14 +11,12 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import retrofit2.http.DELETE
 import retrofit2.http.POST
-import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 import java.io.IOException
@@ -154,13 +152,14 @@ interface RetroInterface {
     fun login(@Field("id") id:String, @Field("password") pw:String): Call<LoginResponse>
 
     //1. 회원 가입
+    @FormUrlEncoded
     @POST("/users/signup")
     fun signUp(@Field("id") id: String, @Field("password") password:String, @Field("phoneNum") phoneNum: String,
                @Field("name") name: String, @Field("nickname") nickname: String,
                @Field("birth") birth: LocalDate, @Field("education") education: String,
                @Field("department") department:String?, @Field("grade") grade: Int?,
                @Field("address") address: String?, @Field("introduce") introduce: String?, @Field("role") role:Int,
-               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: Text
+               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: String
     ) :Call<SignupResponse>
     //6. 아이디 찾기
     @GET("users/id")

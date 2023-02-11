@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MentorMyCommentActivity">
+    tools:context=".MyPostCommentActivity">
     <View
         android:id="@+id/mentoringTitleView"
         android:layout_width="match_parent"
@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:text="▷ 멘토를 구하고 있어요!"
         app:layout_constraintTop_toBottomOf="@id/rv_mentee"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"
@@ -129,7 +129,7 @@
         android:layout_height="wrap_content"
         android:text="▷ 궁금한 문제가 있어요!"
         app:layout_constraintTop_toBottomOf="@id/rv_mentor"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"

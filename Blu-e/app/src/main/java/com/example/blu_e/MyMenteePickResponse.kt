@@ -4,7 +4,7 @@ data class MyMenteePickResponse(
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val menteePickResult: ArrayList<MyMenteePickItem>?
+    val result: ArrayList<MyMenteePickItem>?
 )
 data class MyMenteePickItem(
     val pickId: Int,

@@ -10,8 +10,8 @@ class MyMenteePickRVAdapter(private val dataList: ArrayList<MyMenteePickItem> = 
 RecyclerView.Adapter<MyMenteePickRVAdapter.ViewHolder>(){
     inner class ViewHolder(private val viewBinding: RecyclerviewMentorCardBinding): RecyclerView.ViewHolder(viewBinding.root){
         fun bind(data:MyMenteePickItem){
-            viewBinding.mentorCardTitle.text = data.area
-            viewBinding.mentorCardDesiredSubject.text = data.subject
+            viewBinding.mentorCardTitle.text = data.area.toString()
+            viewBinding.mentorCardDesiredSubject.text = data.subject.toString()
             viewBinding.mentorCardDesiredPeriod.text = data.period.toString()
             viewBinding.mentorCardMethod.text = data.mentoringMethod.toString()
             viewBinding.mentorCardGender.text= data.wishGender.toString()

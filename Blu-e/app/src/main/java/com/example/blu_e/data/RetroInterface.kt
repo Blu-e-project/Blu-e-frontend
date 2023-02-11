@@ -209,7 +209,7 @@ interface RetroInterface {
 
     //59. 내가 답변한 질문글 조회 API
     @GET("/problemSolByMe")
-    fun problemSolByMe(): Call<ProbSolByMeResponse>
+    fun problemSolByMe(): Call<ProbByMeResponse>
 
     //61. 내가 작성한 멘토 구인글 조회 API
     @GET("/myPage/myMentorPick")

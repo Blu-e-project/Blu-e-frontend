@@ -33,15 +33,6 @@ class HomeNewMentorFragment : Fragment() {
         mContext = context as MainActivity
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        //새로운 멘티가 있어요!
-        viewBinding.backHome.setOnClickListener {
-            mContext!!.openFragment(15)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,9 +42,9 @@ class HomeNewMentorFragment : Fragment() {
         //loadData()
         return viewBinding.root
     }
-/*
-    override fun onResume() {
-        super.onResume()
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         val list: ArrayList<NewMentorData> = arrayListOf()
 
@@ -70,22 +61,21 @@ class HomeNewMentorFragment : Fragment() {
             add(NewMentorData("그리드"))
         }
         val mentorAdapter = NewMentorDataRVAdapter(list)
-        val grid = GridLayoutManager(mContext, 5)
-
         viewBinding.recyclerViewNewMentor.adapter = mentorAdapter
-        viewBinding.recyclerViewNewMentor.layoutManager = grid
+        viewBinding.recyclerViewNewMentor.layoutManager = GridLayoutManager(mContext, 5)
 
-        mentorAdapter.setItemClickListener(object : NewMentorDataRVAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
-                var mentorFragment = ProfileActivity.newInstance(list, position)
-                mContext.supportFragmentManager.beginTransaction().replace(
-                mContext.viewBinding.containerFragment.id, mentorFragment
-                ).commit()
-            }
-        })
-    }*/
+        val intent = Intent(mContext, ProfileActivity::class.java)
+        intent.putExtra("userId", "userId")
+    }
 
-    private fun loadData() {
+    override fun onResume() {
+        super.onResume()
+
+        //새로운 멘티가 있어요!
+        viewBinding.backHome.setOnClickListener {
+            mContext!!.openFragment(15)
+        }
+
         api.findMentors().enqueue(object :
             Callback<FindMentorsResponse> {
             override fun onResponse(
@@ -117,4 +107,6 @@ class HomeNewMentorFragment : Fragment() {
             }
         })
     }
+
+
 }

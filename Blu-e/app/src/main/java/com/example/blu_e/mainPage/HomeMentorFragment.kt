@@ -15,11 +15,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
 import com.example.blu_e.MainApplication
 import com.example.blu_e.RecruitMenteeActivity
+import com.example.blu_e.customercenter.FaqDetailFragment
 import com.example.blu_e.customercenter.FaqDetailFragment.Companion.newInstance
+import com.example.blu_e.customercenter.QuestionDetailFragment
 import com.example.blu_e.data.QuestionData
 import com.example.blu_e.data.RetroInterface
+import com.example.blu_e.data.customercenter.FaqData
+import com.example.blu_e.data.customercenter.Question
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeMentorBinding
+import com.example.blu_e.databinding.FragmentQuestionFormBinding
+import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,11 +40,11 @@ class HomeMentorFragment : Fragment() {
     private val api = RetroInterface.create() //retrofit 객체
 
     //새로운 멘티가 있어요!
-    private lateinit var menteeList: ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+    var menteeList: ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems> = arrayListOf()
     private lateinit var adapter2: RetrofitHomeNewMenteeRVAdapter
 
     //멘토를 구하고 있어요!
-    private lateinit var mentorList: ArrayList<FindHotMentorResponse.FindHotMentorItem>
+    var mentorList: ArrayList<FindHotMentorResponse.FindHotMentorItem> = arrayListOf()
     private lateinit var adapter3: RetrofitHomeRecruitMentorRVAdapter
 
     override fun onAttach(context: Context) {
@@ -51,9 +57,8 @@ class HomeMentorFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewBinding = FragmentHomeMentorBinding.inflate(layoutInflater)
+        viewBinding = FragmentHomeMentorBinding.inflate(inflater, container, false)
         Log.e("홈", "들어왔나?")
-
         loadData1()
         loadData3()
 
@@ -78,12 +83,12 @@ class HomeMentorFragment : Fragment() {
         //멘티를 구해요
         viewBinding.btnMenteeInfo.setOnClickListener {
             val intent = Intent(activity, RecruitMenteeActivity::class.java)
+            Log.e("멘티를 구해요", "들어가나염?")
             startActivity(intent)
         }
     }
 
     //더미 데이터
-    /*
     override fun onResume() {
         super.onResume()
 
@@ -135,21 +140,41 @@ class HomeMentorFragment : Fragment() {
         viewBinding.recyclerViewMentor.adapter = mentorAdapter
         viewBinding.recyclerViewMentor.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+
+/*    private lateinit var m: FindFiveMenteeResponse.FindFiveMenteeItems
+
+    val receivedFaqList by lazy { requireArguments().getSerializable("list") as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>}
+    val receviedQuestionId by lazy { requireArguments().getInt("id")}
+    private lateinit var viewBinding2: RecyclerviewNewMenteeCardBinding
+
+    override fun onResume() {
+        super.onResume()
+
+        Log.d("질문", receviedQuestionId.toString())
+        m = receivedFaqList[receviedQuestionId]
+        viewBinding2.pickMenteeId.text = m.nickname
     }*/
 
+    //Retrofit 함수
     private fun loadData1() { //새로운 멘티가 있어요
+
         api.findFiveMentee ().enqueue(object :
             Callback<FindFiveMenteeResponse> {
             override fun onResponse(
                 call: Call<FindFiveMenteeResponse>,
                 response: Response<FindFiveMenteeResponse>
             ) {
+                Log.d("loadData1 목록 불러오기", "성공1")
+
                 val body = response.body() ?: return
+                Log.d("loadData1 목록 불러오기", "성공1_2")
+
                 if (body != null) {
                     if (body.code == 1000) {
-                        Log.d("loadData1 목록 불러오기", "성공")
-                        menteeList =
-                            body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
+                        Log.d("loadData1 목록 불러오기", "성공2")
+                        menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
                         adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
 
                         viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
@@ -219,4 +244,5 @@ class HomeMentorFragment : Fragment() {
             }
         })
     }
+
 }

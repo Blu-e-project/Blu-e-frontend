@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         viewBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         var jwt: String?
-        
+
         //로그인 기능만 구현함 실패시 ui 수정 필요
         viewBinding.loginBtn.setOnClickListener {
             val id = viewBinding.userId.text.toString()
@@ -42,14 +42,14 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     val responseData = response.body()
-                        //성공하면
+                    //성공하면
                     if (responseData != null) {
                         if(responseData.code == 1000) {
                             Log.d("login", "성공")
                             jwt = responseData.result.jwt
                             Log.d("login", "${jwt}")
                             MainApplication.prefs.setString("blu-e-access-token", jwt!!)
-                           val userId = responseData.result.userId
+                            val userId = responseData.result.userId
                             MainApplication.prefs.setString("userId", userId.toString())
                             //멘티에 아이디가 있으면 꺼냄
                             api.findMenteeID(userId).enqueue(object: Callback<FindMenteeIdResponse>{
@@ -117,14 +117,14 @@ class LoginActivity : AppCompatActivity() {
                             viewBinding.userPw.backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
                         }
                     }
-                        //에러 메세지 1초만 띄우기
-            Handler().postDelayed(Runnable {
-                viewBinding.pwMsg.text = ""
-                viewBinding.idMsg.text = ""
-                viewBinding.userId.backgroundTintList = ColorStateList.valueOf(Color.rgb(0,107,206))
-                viewBinding.userPw.backgroundTintList = ColorStateList.valueOf(Color.rgb(0,107,206))
-            }, 1000)
-                    }
+                    //에러 메세지 1초만 띄우기
+                    Handler().postDelayed(Runnable {
+                        viewBinding.pwMsg.text = ""
+                        viewBinding.idMsg.text = ""
+                        viewBinding.userId.backgroundTintList = ColorStateList.valueOf(Color.rgb(0,107,206))
+                        viewBinding.userPw.backgroundTintList = ColorStateList.valueOf(Color.rgb(0,107,206))
+                    }, 1000)
+                }
 
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {

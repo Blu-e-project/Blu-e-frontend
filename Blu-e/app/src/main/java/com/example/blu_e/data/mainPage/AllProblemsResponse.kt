@@ -4,9 +4,10 @@ data class AllProblemsResponse(
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: Items
-) {
+    val result: ArrayList<Items>
+)
     data class Items(
+        var userId: Int,
         var problemId: Int,
         var nickname: String,
         var subject: String,
@@ -15,5 +16,5 @@ data class AllProblemsResponse(
         var contents: String,
         var image: String
     )
-}
+
 

@@ -7,26 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
 
-class RetrofitHomeNewMenteeRVAdapter(private val items: ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems> = arrayListOf()) :
+class RetrofitHomeNewMenteeRVAdapter(private val items: ArrayList<FindFiveMenteeItems> = arrayListOf()) :
     RecyclerView.Adapter<RetrofitHomeNewMenteeRVAdapter.ViewHolder>() {
-
-    //각각의 Item을 클릭했을 때 이벤트 정의하기
-    interface MyItemClickListener {
-        fun onItemClick(item: FindFiveMenteeResponse.FindFiveMenteeItems)
-    }
-
-    private lateinit var mItemClickListener: MyItemClickListener
-
-    fun setMyItemClickListener(itemClickListener: MyItemClickListener) {
-        mItemClickListener = itemClickListener
-    }
-
 
     //각 항목에 필요한 기능 구현, ViewHolder 반환
     inner class ViewHolder(private val viewBinding: RecyclerviewNewMenteeCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun bind(data: FindFiveMenteeResponse.FindFiveMenteeItems) {
+        fun bind(data: FindFiveMenteeItems) {
             viewBinding.pickMenteeId.text = data.nickname
         }
     }
@@ -41,12 +29,10 @@ class RetrofitHomeNewMenteeRVAdapter(private val items: ArrayList<FindFiveMentee
     //항목 뷰에 데이터 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // ViewHolder와 리스트의 아이템 중 하나를 서로 연결
-        val model = items!![position]
-        holder.bind(model)
-
+        holder.bind(items[position])
         holder.itemView.setOnClickListener {
             Log.d("selected", position.toString())
-            mItemClickListener.onItemClick(items[position])
+            itemClickListener.onClick(it, position)
         }
     }
 

@@ -6,32 +6,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewMenteeCardBinding
-import com.example.blu_e.databinding.RecyclerviewMentorCardBinding
+import com.example.blu_e.databinding.RecyclerviewQuestionCardBinding
 
-class RetrofitHomeRecruitMentorRVAdapter(private val items: ArrayList<FindHotMentorItem> = arrayListOf()) :
-    RecyclerView.Adapter<RetrofitHomeRecruitMentorRVAdapter.ViewHolder>() {
+class RetrofitHomeProblemRVAdapter(private val items: ArrayList<FindFiveProblemItems> = arrayListOf()) :
+    RecyclerView.Adapter<RetrofitHomeProblemRVAdapter.ViewHolder>() {
     //각 항목에 필요한 기능 구현, ViewHolder 반환
-    inner class ViewHolder(private val viewBinding: RecyclerviewMentorCardBinding):
+    inner class ViewHolder(private val viewBinding: RecyclerviewQuestionCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun bind(data: FindHotMentorItem) {
-            viewBinding.mentorCardTitle.text = data.title
-            viewBinding.mentorCardDesiredSubject.text = data.subject
-            viewBinding.mentorCardDesiredPeriod.text = data.period
-            viewBinding.mentorCardMethod.text = data.mentoringMethod
-            viewBinding.mentorCardGender.text = data.wishGender
+        fun bind(data: FindFiveProblemItems) {
+            viewBinding.questionCardSubject.text = data.subject
+            viewBinding.questionCardProblem.text = data.problem
+            viewBinding.questionCardUnit.text = data.unit
+            viewBinding.questionCardContents.text = data.contents
         }
     }
 
     //뷰홀더 생성
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RetrofitHomeRecruitMentorRVAdapter.ViewHolder {
-        val viewBinding = RecyclerviewMentorCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RetrofitHomeProblemRVAdapter.ViewHolder {
+        val viewBinding = RecyclerviewQuestionCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(viewBinding)
     }
 
     //항목 뷰에 데이터 연결
-    override fun onBindViewHolder(holder: RetrofitHomeRecruitMentorRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RetrofitHomeProblemRVAdapter.ViewHolder, position: Int) {
         val model = items!![position]
         holder.bind(model)
         holder.itemView.setOnClickListener {

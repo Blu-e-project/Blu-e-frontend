@@ -4,13 +4,13 @@ data class FindMentorsResponse(
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: FindMentorsItem
-) {
-    data class FindMentorsItem (
+    val result: ArrayList<FindMentorItem>
+)
+    data class FindMentorItem (
         var userId: Int,
         var nickname: String,
         var userImg: String
     )
-}
+
 
 

@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewMenteeCardBinding
 
-class RetrofitHomeRecruitMenteeRVAdapter(private val items: ArrayList<FindHotMenteeResponse.FindHotMenteeItem> = arrayListOf()) :
+class RetrofitHomeRecruitMenteeRVAdapter(private val items: ArrayList<FindHotMenteeItem> = arrayListOf()) :
     RecyclerView.Adapter<RetrofitHomeRecruitMenteeRVAdapter.ViewHolder>() {
     //각 항목에 필요한 기능 구현, ViewHolder 반환
     inner class ViewHolder(private val viewBinding: RecyclerviewMenteeCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun bind(data: FindHotMenteeResponse.FindHotMenteeItem) {
+        fun bind(data: FindHotMenteeItem) {
             viewBinding.menteeCardTitle.text = data.title
             viewBinding.menteeCardDesiredSubject.text = data.subject
             viewBinding.menteeCardDesiredStartPeriod.text = data.period

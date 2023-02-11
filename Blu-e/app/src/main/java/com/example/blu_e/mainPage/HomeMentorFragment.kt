@@ -3,6 +3,7 @@ package com.example.blu_e.mainPage
 //궁금한 문제가 있어요!
 //멘토를 구하고 있어요!
 //멘티를 구해요
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,20 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.blu_e.MainActivity
-import com.example.blu_e.MainApplication
-import com.example.blu_e.RecruitMenteeActivity
-import com.example.blu_e.customercenter.FaqDetailFragment
-import com.example.blu_e.customercenter.FaqDetailFragment.Companion.newInstance
-import com.example.blu_e.customercenter.QuestionDetailFragment
-import com.example.blu_e.data.QuestionData
+import com.example.blu_e.*
 import com.example.blu_e.data.RetroInterface
-import com.example.blu_e.data.customercenter.FaqData
-import com.example.blu_e.data.customercenter.Question
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeMentorBinding
-import com.example.blu_e.databinding.FragmentQuestionFormBinding
-import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,13 +30,9 @@ class HomeMentorFragment : Fragment() {
 
     private val api = RetroInterface.create() //retrofit 객체
 
-    //새로운 멘티가 있어요!
-    var menteeList: ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems> = arrayListOf()
-    private lateinit var adapter2: RetrofitHomeNewMenteeRVAdapter
-
-    //멘토를 구하고 있어요!
-    var mentorList: ArrayList<FindHotMentorResponse.FindHotMentorItem> = arrayListOf()
-    private lateinit var adapter3: RetrofitHomeRecruitMentorRVAdapter
+    var menteeList: ArrayList<FindFiveMenteeItems> = arrayListOf()
+    var problemList: ArrayList<FindFiveProblemItems> = arrayListOf()
+    var mentorList: ArrayList<FindHotMentorItem> = arrayListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -60,6 +47,7 @@ class HomeMentorFragment : Fragment() {
         viewBinding = FragmentHomeMentorBinding.inflate(inflater, container, false)
         Log.e("홈", "들어왔나?")
         loadData1()
+        loadData2()
         loadData3()
 
         return viewBinding.root
@@ -87,6 +75,7 @@ class HomeMentorFragment : Fragment() {
             startActivity(intent)
         }
     }
+/*
 
     //더미 데이터
     override fun onResume() {
@@ -141,108 +130,142 @@ class HomeMentorFragment : Fragment() {
         viewBinding.recyclerViewMentor.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
     }
+*/
 
-
-/*    private lateinit var m: FindFiveMenteeResponse.FindFiveMenteeItems
-
-    val receivedFaqList by lazy { requireArguments().getSerializable("list") as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>}
-    val receviedQuestionId by lazy { requireArguments().getInt("id")}
-    private lateinit var viewBinding2: RecyclerviewNewMenteeCardBinding
-
-    override fun onResume() {
-        super.onResume()
-
-        Log.d("질문", receviedQuestionId.toString())
-        m = receivedFaqList[receviedQuestionId]
-        viewBinding2.pickMenteeId.text = m.nickname
-    }*/
-
-    //Retrofit 함수
     private fun loadData1() { //새로운 멘티가 있어요
-
-        api.findFiveMentee ().enqueue(object :
-            Callback<FindFiveMenteeResponse> {
+        api.findFiveMentee().enqueue(object : Callback<FindFiveMenteeResponse> {
+            @SuppressLint("SuspiciousIndentation")
             override fun onResponse(
                 call: Call<FindFiveMenteeResponse>,
                 response: Response<FindFiveMenteeResponse>
             ) {
+                val responseData = response.body() ?: return
                 Log.d("loadData1 목록 불러오기", "성공1")
 
-                val body = response.body() ?: return
-                Log.d("loadData1 목록 불러오기", "성공1_2")
-
-                if (body != null) {
-                    if (body.code == 1000) {
+                if (responseData != null) {
+                    if (responseData.code == 1000) {
                         Log.d("loadData1 목록 불러오기", "성공2")
-                        menteeList = body.result as ArrayList<FindFiveMenteeResponse.FindFiveMenteeItems>
-                        adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
 
-                        viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
-                        viewBinding.recyclerViewHomeNewMentee.layoutManager =
-                            LinearLayoutManager(mContext)
-                        adapter2.notifyItemChanged(menteeList.size)
+                        if (responseData.result != null) {
+                            Log.d("loadData1 목록 불러오기", "성공3")
 
-                        adapter2.setItemClickListener(object :
-                            RetrofitHomeNewMenteeRVAdapter.ItemClickListener {
-                            override fun onClick(view: View, position: Int) {
-                                var detailFragment =
-                                    HomeNewMenteeFragment.newInstance(menteeList, position)
-                                mContext.supportFragmentManager.beginTransaction().replace(
-                                    mContext.viewBinding.containerFragment.id, detailFragment
-                                ).commit()
-                            }
-                        })
+                            menteeList?.addAll(responseData.result)
+                            Log.e("문제", "${menteeList}")
+                            menteeList?.let { newMenteeAdapter(it) }
+
+                            val adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
+
+                                adapter2.setItemClickListener(object: RetrofitHomeNewMenteeRVAdapter.ItemClickListener{
+                                override fun onClick(view: View, position: Int) {
+                                    var detailFragment = HomeNewMenteeFragment.newInstance(menteeList, position)
+                                    mContext.supportFragmentManager.beginTransaction().replace(
+                                        mContext.viewBinding.containerFragment.id, detailFragment
+                                    ).commit()
+                                }
+                            })
+                        }
+                        else {
+                            Log.d("문제", "내가 답한 질문이 없습니다.")
+                        }
                     }
-                }
-                else {
-                    Log.d("loadData1 목록 ", "실패")
                 }
             }
             override fun onFailure(call: Call<FindFiveMenteeResponse>, t: Throwable) {
-                Log.e("loadData1 목록 ", "failure")
+                Log.e("내가 답한 질문", "에러에러에러")
             }
         })
     }
 
-    private fun loadData3() { //멘토를 구하고 있어요
-        api.findHotMentors ().enqueue(object :
-            Callback<FindHotMentorResponse> {
+    private fun loadData2() { //궁금한 문제가 있어요!
+        api.findFiveProblem().enqueue(object : Callback<FindFiveProblemResponse> {
+            override fun onResponse(
+                call: Call<FindFiveProblemResponse>,
+                response: Response<FindFiveProblemResponse>
+            ) {
+                val responseData = response.body() ?: return
+                if (responseData != null) {
+                    if (responseData.code == 1000) {
+                        if (responseData.result != null) {
+                            problemList?.addAll(responseData.result)
+                            Log.e("멘토 구인글", "${problemList}")
+                            problemList?.let { problemAdapter(it) }
+
+                            val adapter2 = RetrofitHomeProblemRVAdapter(problemList)
+
+                            adapter2.setItemClickListener(object: RetrofitHomeProblemRVAdapter.ItemClickListener{
+                                override fun onClick(view: View, position: Int) {
+                                    var detailFragment = HomeQuestionFragment.newInstance(problemList, position)
+                                    mContext.supportFragmentManager.beginTransaction().replace(
+                                        mContext.viewBinding.containerFragment.id, detailFragment
+                                    ).commit()
+                                }
+                            })
+                        } else {
+                            Log.d("멘토 구인글", "멘토 구인글이 없어용")
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<FindFiveProblemResponse>, t: Throwable) {
+                Log.e("멘토 구인글", "에러에러에러")
+            }
+        })
+    }
+
+    private fun loadData3() { //새로운 멘티가 있어요
+        api.findHotMentors().enqueue(object : Callback<FindHotMentorResponse> {
             override fun onResponse(
                 call: Call<FindHotMentorResponse>,
                 response: Response<FindHotMentorResponse>
             ) {
-                if (response.isSuccessful) {
-                    val body = response.body() ?: return
-                    if (body.code == 1000) {
-                        Log.d("loadData3 목록 불러오기", "성공")
-                        mentorList = body.result as ArrayList<FindHotMentorResponse.FindHotMentorItem>
-                        adapter3 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
+                val responseData = response.body() ?: return
+                if (responseData != null) {
+                    if (responseData.code == 1000) {
+                        if (responseData.result != null) {
+                            mentorList?.addAll(responseData.result)
+                            Log.e("멘토 구인글", "${mentorList}")
+                            mentorList?.let { recruitMentorAdapter(it) }
 
-                        viewBinding.recyclerViewMentor.adapter = adapter3
+                            val adapter2 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
 
-                        val layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-                        viewBinding.recyclerViewMentor.layoutManager = layoutManager
-
-                        adapter3.notifyItemChanged(mentorList.size)
-
-                        adapter3.setItemClickListener(object: RetrofitHomeRecruitMentorRVAdapter.ItemClickListener{
-                            override fun onClick(view: View, position: Int) {
-                                var detailFragment = HomeRecruitMentorFragment.newInstance(mentorList, position)
-                                mContext.supportFragmentManager.beginTransaction().replace(
-                                    mContext.viewBinding.containerFragment.id, detailFragment
-                                ).commit()
-                            }
-                        })
+                            adapter2.setItemClickListener(object: RetrofitHomeRecruitMentorRVAdapter.ItemClickListener{
+                                override fun onClick(view: View, position: Int) {
+                                    var detailFragment = HomeRecruitMentorFragment.newInstance(mentorList, position)
+                                    mContext.supportFragmentManager.beginTransaction().replace(
+                                        mContext.viewBinding.containerFragment.id, detailFragment
+                                    ).commit()
+                                }
+                            })
+                        } else {
+                            Log.d("멘토 구인글", "멘토 구인글이 없어용")
+                        }
                     }
-                }
-                else {
-                    Log.d("loadData3 목록 불러오기", "실패")
                 }
             }
             override fun onFailure(call: Call<FindHotMentorResponse>, t: Throwable) {
-                Log.e("loadData3 목록 불러오기", "failure")
+                Log.e("멘토 구인글", "에러에러에러")
             }
         })
     }
 
+    private fun newMenteeAdapter(resultList: ArrayList<FindFiveMenteeItems>) {
+        val adapter = RetrofitHomeNewMenteeRVAdapter(resultList)
+        viewBinding.recyclerViewHomeNewMentee.adapter = adapter
+        viewBinding.recyclerViewHomeNewMentee.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        adapter.notifyItemChanged(resultList.size)
+    }
+
+    private fun problemAdapter(resultList: ArrayList<FindFiveProblemItems>) {
+        val adapter = RetrofitHomeProblemRVAdapter(resultList)
+        viewBinding.recyclerViewQuestion.adapter = adapter
+        viewBinding.recyclerViewQuestion.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        adapter.notifyItemChanged(resultList.size)
+    }
+
+    private fun recruitMentorAdapter(resultList: ArrayList<FindHotMentorItem>) {
+        val adapter = RetrofitHomeRecruitMentorRVAdapter(resultList)
+        viewBinding.recyclerViewMentor.adapter = adapter
+        viewBinding.recyclerViewMentor.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        adapter.notifyItemChanged(resultList.size)
+    }
 }

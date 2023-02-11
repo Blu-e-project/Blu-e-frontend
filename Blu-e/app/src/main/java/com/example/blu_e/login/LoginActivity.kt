@@ -60,11 +60,13 @@ class LoginActivity : AppCompatActivity() {
                                     //멘티 user정보에 user가 있으면?
                                     val menteeResponseData = response.body()
                                     if (menteeResponseData != null) {
+                                        Log.e("멘티임?", "${menteeResponseData}")
                                         if(menteeResponseData.code == 1000){
-                                            MainApplication.prefs.setString("role", "2")
-                                        }
-                                        else{
-                                            MainApplication.prefs.setString("role", "1")
+                                            if(menteeResponseData.result.role == 0)
+                                                MainApplication.prefs.setString("role", "1")
+                                            else{
+                                                MainApplication.prefs.setString("role", "2")
+                                            }
                                         }
                                     }
                                 }

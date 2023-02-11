@@ -6,7 +6,7 @@ data class ProbSolByMeResponse(
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val solResult: List<ProbSolByMeItem>
+    val solResult: List<ProbSolByMeItem>?
 )
 data class ProbSolByMeItem(
     val problemId: Int,

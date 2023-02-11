@@ -54,7 +54,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".IntroActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -75,7 +75,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MentorHistoryActivity"
+            android:name=".mypage.MentorHistoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -164,7 +164,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".IntroActivity"
+            android:name=".MainActivity"
             android:exported="false">
 
             <meta-data
@@ -193,7 +193,13 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MentorMyReviewActivity"
+            android:name=".mypage.MentorMyReviewActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity android:name=".mypage.MentorAboutMeReviewActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

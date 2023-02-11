@@ -97,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
 
                             })
-                            Log.d("사용자 역할 정보", "${MainApplication.prefs.getString("role","")}")
+//                            Log.d("사용자 역할 정보", "${MainApplication.prefs.getString("role","")}")
                             startActivity(intent)
                         }
                         //비밀번호를 입력해주세요x

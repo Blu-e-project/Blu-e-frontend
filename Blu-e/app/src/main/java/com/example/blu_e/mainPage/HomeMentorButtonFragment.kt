@@ -32,7 +32,7 @@ class HomeMentorButtonFragment: Fragment() {
             startActivity(intent)
         }
         viewBinding.btnRecruitMentor.setOnClickListener {
-            mContext.openFragment(7)
+            mContext.openFragment(13)
         }
     }
 

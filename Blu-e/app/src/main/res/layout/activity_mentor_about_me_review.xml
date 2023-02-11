@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></View>
     <ImageButton
-        android:id="@+id/backToMypage_aboutMe"
+        android:id="@+id/backToMypage"
         android:layout_width="10dp"
         android:layout_height="14dp"
         android:background="@android:color/transparent"
@@ -23,21 +23,21 @@
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
-        android:id="@+id/textView_MentorReviewList_aboutMe"
+        android:id="@+id/textView_mentor_aboutMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:lineHeight="22sp"
-        android:text="내가 쓴 리뷰"
+        android:text="리뷰"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintStart_toEndOf="@id/backToMypage_aboutMe"
+        app:layout_constraintStart_toEndOf="@id/backToMypage"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageView
-        android:id="@+id/image_metor_reviewList_aboutMe"
+        android:id="@+id/image_mentor_aboutMe"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/rounded_gray"
@@ -47,11 +47,11 @@
         app:layout_constraintTop_toBottomOf="@id/view"
         />
     <TextView
-        android:id="@+id/nickname_mentor_reviewList_aboutMe"
+        android:id="@+id/nickname_mentor_aboutMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="임금님"
-        app:layout_constraintStart_toEndOf="@id/image_metor_reviewList_aboutMe"
+        app:layout_constraintStart_toEndOf="@+id/image_mentor_aboutMe"
         app:layout_constraintTop_toBottomOf="@id/view"
         android:layout_marginTop="36dp"
         android:layout_marginLeft="30dp"
@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="멘토님"
-        app:layout_constraintStart_toEndOf="@id/nickname_mentor_reviewList_aboutMe"
+        app:layout_constraintStart_toEndOf="@id/nickname_mentor_aboutMe"
         app:layout_constraintTop_toBottomOf="@id/view"
         android:layout_marginTop="36dp"
         android:layout_marginLeft="8dp"
@@ -81,11 +81,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:width="360dp"
         android:height="1dp"
-        app:layout_constraintTop_toBottomOf="@id/nickname_mentor_reviewList_aboutMe"
+        app:layout_constraintTop_toBottomOf="@id/nickname_mentor_aboutMe"
         android:layout_marginTop="36dp"
         />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_data_mentee_list"
+        android:id="@+id/rv_data_mentee_list_fragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/hr"

@@ -63,22 +63,20 @@ class MyPageFragment : Fragment() {
         adapter.setItemClickListener (object : ListInMyPageAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 val transaction = mContext.supportFragmentManager.beginTransaction()
-                val intent = Intent(mContext, MentorHistoryActivity::class.java)
-                val intent2 = Intent(mContext,MentorAboutMeReviewActivity::class.java)
-                val intent3 = Intent(mContext, MentorMyReviewActivity::class.java)
+                val history = Intent(mContext, MentorHistoryActivity::class.java)
+                val aboutme = Intent(mContext,MentorAboutMeReviewActivity::class.java)
+                val myreview = Intent(mContext, MentorMyReviewActivity::class.java)
                 val intent4 = Intent(mContext,MentorMyCommentActivity::class.java)
                 when(position) {
                     0 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorChangeInfoFragment()).commit() //"멘토 정보 수정"
-                    1 -> startActivity(intent)
+                    1 -> startActivity(history) //멘토링 내역
                     2 -> transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit() //"멘티 신고"
-                    3 -> startActivity(intent2)
+                    3 -> startActivity(aboutme) //"나에 대한 리뷰"
                     4 -> startActivity(intent4)
-                    5 -> startActivity(intent3)
-                    4 -> startActivity(intent4)
-                    5 -> startActivity(intent2)
+                    5 -> startActivity(myreview) //내가 쓴 리뷰
                     6 -> "버전"
                     7 -> logoutDialog()
-                    8 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorPasswdChangeFragment()).commit()
+                    8 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorPasswdChangeFragment()).commit() //비밀번호 수정
                 }
 
             }

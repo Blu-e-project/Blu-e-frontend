@@ -48,13 +48,15 @@ class MentorMyReviewActivity:AppCompatActivity() {
                         if (body.result != null) {
                             Log.d("내가 쓴 리뷰 불러오기", "성공")
                             //데이터 불러오기
-                            /*rvlist = body.result
+                            rvlist = body.result
                             val dataRVAdapter = MentorReviewListRVAdatper(rvlist)
                             //dataRVAdapter.notifyItemInserted(2)
                             viewBinding.rvDataMenteeList.adapter = dataRVAdapter
-                            viewBinding.rvDataMenteeList.layoutManager = LinearLayoutManager(this@MentorMyReviewActivity)
+                            viewBinding.rvDataMenteeList.layoutManager =
+                                LinearLayoutManager(this@MentorMyReviewActivity)
                             dataRVAdapter.notifyItemChanged(rvlist.size)
-*/
+                        }
+
                             //item 클릭시 내가 쓴 리뷰 수정 또는 삭제
                             /*dataRVAdapter.setItemClickListener(object: MentorReviewListRVAdatper.ItemClickListener{
                                 override fun onClick(view: View, position: Int) {
@@ -108,13 +110,10 @@ class MentorMyReviewActivity:AppCompatActivity() {
                                             })
                                     builder.show()
 
-                                }
-                            }*/
-
-                        } else {
+                                }*/
+                        else {
                             Log.d("질문 목록 불러오기", "아직 질문이 없습니다.")
                         }
-
                     } else if (body.code == 2803) {
                         Log.d("내가 쓴 리뷰 불러오기", "사용자 ID 미입력")
                     }

@@ -59,16 +59,11 @@ class HomeQuestionFragment : Fragment() {
         val list: ArrayList<QuestionData> = arrayListOf()
 
         list.apply {
-            add(QuestionData("매주 화요일에 멘토링 원해요", "국어", "23.01", "23.03"))
-            add(QuestionData("코딩이 너무 어려워요", "코딩", "23.01", "23.03"))
-            add(QuestionData("다정하고 친절하신 선생님...", "수학", "23.01", "23.03"))
-            add(QuestionData("비문학 쉽게 풀고 싶어요", "국어", "23.01", "23.03"))
-            add(QuestionData("매주 목요일에 멘토링 원해요", "영어", "23.01", "23.03"))
-            add(QuestionData("매주 화요일에 멘토링 원해요", "국어", "23.01", "23.03"))
-            add(QuestionData("코딩이 너무 어려워요", "코딩", "23.01", "23.03"))
-            add(QuestionData("다정하고 친절하신 선생님...", "수학", "23.01", "23.03"))
-            add(QuestionData("비문학 쉽게 풀고 싶어요", "국어", "23.01", "23.03"))
-            add(QuestionData("매주 목요일에 멘토링 원해요", "영어", "23.01", "23.03"))
+            add(QuestionData("코딩", "이미지 첨부", "반복문(for문)", "조건이 왜 위와 같이 나오는지 모르겠어요!"))
+            add(QuestionData("수학", "이미지 첨부", "확률과 통계", "이 문제가 왜 독립시행인지 이해가 안 돼요"))
+            add(QuestionData("영어", "이미지 첨부", "to부정사", "모르겠어요.."))
+            add(QuestionData("수학", "이미지 첨부", "덧셈", "모르겠어요.."))
+            add(QuestionData("수학", "이미지 첨부", "미적분", "모르겠어요.."))
         }
         val questionAdapter = QuestionDataRVAdapter(list)
         val grid = GridLayoutManager(mContext, 2)

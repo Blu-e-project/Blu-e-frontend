@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewMentorCardBinding
 
-class MyMenteePickRVAdapter(private val dataList: ArrayList<MyMenteePickItem> = arrayListOf(), val context: Context):
+class MyMenteePickRVAdapter(private val dataList: ArrayList<MyMenteePickItem> = arrayListOf()):
 RecyclerView.Adapter<MyMenteePickRVAdapter.ViewHolder>(){
     inner class ViewHolder(private val viewBinding: RecyclerviewMentorCardBinding): RecyclerView.ViewHolder(viewBinding.root){
-        fun bind(data:MyMenteePickItem, context: Context){
-            viewBinding.mentorCardTitle.text = data.area
-            viewBinding.mentorCardDesiredSubject.text = data.subject
+        fun bind(data:MyMenteePickItem){
+            viewBinding.mentorCardTitle.text = data.area.toString()
+            viewBinding.mentorCardDesiredSubject.text = data.subject.toString()
             viewBinding.mentorCardDesiredPeriod.text = data.period.toString()
             viewBinding.mentorCardMethod.text = data.mentoringMethod.toString()
             viewBinding.mentorCardGender.text= data.wishGender.toString()
@@ -24,10 +24,10 @@ RecyclerView.Adapter<MyMenteePickRVAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(dataList[position], context)
+        holder.bind(dataList[position])
     }
 
     override fun getItemCount(): Int {
-        return dataList.count()
+        return dataList.size
     }
 }

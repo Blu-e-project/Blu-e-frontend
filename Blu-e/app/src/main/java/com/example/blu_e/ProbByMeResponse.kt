@@ -6,14 +6,14 @@ data class ProbByMeResponse(
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: List<ProbByMeItem>?
+    val result: ArrayList<ProbByMeItem>?
 )
 data class ProbByMeItem(
-    val problemId: Int?,
-    val nickname: String?,
-    val subject: String?,
-    val unit: String?,
-    val problem: String?,
-    val contents: String?,
-    val image: Text?
+    val problemId: Int,
+    val nickname: String,
+    val subject: String,
+    val unit: String,
+    val problem: String,
+    val contents: String,
+    val image: String?
 )

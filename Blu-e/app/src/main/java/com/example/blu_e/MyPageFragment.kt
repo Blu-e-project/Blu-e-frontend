@@ -63,20 +63,22 @@ class MyPageFragment : Fragment() {
         adapter.setItemClickListener (object : ListInMyPageAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 val transaction = mContext.supportFragmentManager.beginTransaction()
-                val history = Intent(mContext, MentorHistoryActivity::class.java)
-                val aboutme = Intent(mContext,MentorAboutMeReviewActivity::class.java)
-                val myreview = Intent(mContext, MentorMyReviewActivity::class.java)
-                val intent4 = Intent(mContext,MentorMyCommentActivity::class.java)
+                val intent = Intent(mContext, MentorHistoryActivity::class.java)
+                val intent2 = Intent(mContext,MentorAboutMeReviewActivity::class.java)
+                val intent3 = Intent(mContext, MentorMyReviewActivity::class.java)
+                val intent4 = Intent(mContext,MyPostCommentActivity::class.java)
                 when(position) {
                     0 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorChangeInfoFragment()).commit() //"멘토 정보 수정"
-                    1 -> startActivity(history) //멘토링 내역
+                    1 -> startActivity(intent)
                     2 -> transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit() //"멘티 신고"
-                    3 -> startActivity(aboutme) //"나에 대한 리뷰"
+                    3 -> startActivity(intent2)
                     4 -> startActivity(intent4)
-                    5 -> startActivity(myreview) //내가 쓴 리뷰
+                    5 -> startActivity(intent3)
+                    4 -> startActivity(intent4)
+                    5 -> startActivity(intent2)
                     6 -> "버전"
                     7 -> logoutDialog()
-                    8 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorPasswdChangeFragment()).commit() //비밀번호 수정
+                    8 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorPasswdChangeFragment()).commit()
                 }
 
             }
@@ -89,11 +91,17 @@ class MyPageFragment : Fragment() {
             .setMessage("로그아웃하시겠습니까?")
             .setPositiveButton("네",
                 DialogInterface.OnClickListener{ dialog, which ->
-                    Toast.makeText(mContext, "확인", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mContext, "로그아웃", Toast.LENGTH_SHORT).show()
                     //
 //                    MainApplication.prefs.edit // 여기서 Shared Preference 를 remove 한다!
-//                    MainApplication.prefs.edit.remove("password")
-//                    MainApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
+                    MainApplication.prefs.remove("blu-e-access-token")
+                    MainApplication.prefs.remove("userId")
+                    MainApplication.prefs.remove("role")
+                    MainApplication.prefs.commit() // SP 삭제되는 것을 확인
+
+//                    Log.d("로그아웃", "${ MainApplication.prefs.getString("blu-e-access-token", "")}")
+//                    Log.d("로그아웃", "${ MainApplication.prefs.getString("userId", "")}")
+//                    Log.d("로그아웃", "${ MainApplication.prefs.getString("role", "")}")
                     val intent = Intent(activity, LoginActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) //스택 위에 것지우기
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -101,8 +109,8 @@ class MyPageFragment : Fragment() {
                 })
             .setNegativeButton("아니요",
                 DialogInterface.OnClickListener{ dialog, which ->
-                    Toast.makeText(mContext, "확인", Toast.LENGTH_SHORT).show()
-                    //어느화면으로 이동할지
+//                    Toast.makeText(mContext, "확인", Toast.LENGTH_SHORT).show()
+//                    //어느화면으로 이동할지
                 })
         builder.show()
     }

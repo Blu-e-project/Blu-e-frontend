@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewbinding.ViewBinding
 import com.example.blu_e.MainActivity
-import com.example.blu_e.MentorMyCommentActivity
-import com.example.blu_e.RecruitMenteeActivity
+import com.example.blu_e.MyPostCommentActivity
+import com.example.blu_e.RecruitMentorActivity
 import com.example.blu_e.databinding.FragmentHomeMentorButtonBinding
-import com.example.blu_e.databinding.FragmentHomeNewMenteeBinding
 
 class HomeMentorButtonFragment: Fragment() {
     private lateinit var viewBinding: FragmentHomeMentorButtonBinding
@@ -28,11 +26,12 @@ class HomeMentorButtonFragment: Fragment() {
 
         //새로운 멘티가 있어요!
         viewBinding.btnMyWriting.setOnClickListener {
-            val intent = Intent(mContext, MentorMyCommentActivity::class.java)
+            val intent = Intent(mContext, MyPostCommentActivity::class.java)
             startActivity(intent)
         }
         viewBinding.btnRecruitMentor.setOnClickListener {
-            mContext.openFragment(7)
+            val intent = Intent(mContext, RecruitMentorActivity::class.java)
+            startActivity(intent)
         }
     }
 

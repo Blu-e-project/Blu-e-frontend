@@ -85,14 +85,13 @@ interface RetroInterface {
     //멘토 구하는 글에 댓글 생성
     @FormUrlEncoded
     @POST("/mentoring/mentors/{pickId}/comments")
-    fun commentWritingAsMentee(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
+    fun commentWritingInMentorPost(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
     //멘티 구하는 글에 댓글 생성
     @FormUrlEncoded
     @POST("/mentoring/mentees/{pickId}/comments")
-    fun commentWritingAsMentor(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
+    fun commentWritingInMenteePost(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
 
     //매칭 수락 버튼
-    @FormUrlEncoded
     @POST("/mentoring/mentors/{pickId}/comments/{pickCommentId}/matching")
     fun requestMatching(@Path("pickId") pickId: Int,  @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 
@@ -105,10 +104,10 @@ interface RetroInterface {
 
     //멘토 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentors/{pickId}/comments/{pickCommentId}")
-    fun commentDeleteAsMentee(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
+    fun commentDeleteInMentorPost(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
     //멘티 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentees/{pickId}/comments/{pickCommentId}")
-    fun commentDeleteAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
+    fun commentDeleteInMenteePost(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 
     //궁금한 문제 작성
 
@@ -168,12 +167,13 @@ interface RetroInterface {
                @Field("birth") birth: LocalDate, @Field("education") education: String,
                @Field("department") department:String?, @Field("grade") grade: Int?,
                @Field("address") address: String?, @Field("introduce") introduce: String?, @Field("role") role:Int,
-               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: String
+               @Field("createdAt") createdAt: LocalDate, @Field("updatedAt") updatedAt: LocalDate, @Field("status") status: Int, @Field("userImg") userImg: String?
     ) :Call<SignupResponse>
-    //6. 아이디 찾기
 
-    @GET("users/id")
-    fun findId(@Path("phoneNum") phoneNum: String?): Call<FindIdResponse>
+    //6. 아이디 찾기
+    @FormUrlEncoded
+    @POST("users/id")
+    fun findId(@Field("phoneNum") phoneNum: String): Call<FindIdResponse>
 
     //7. 비밀번호 변경
     @FormUrlEncoded
@@ -210,7 +210,7 @@ interface RetroInterface {
 
     //59. 내가 답변한 질문글 조회 API
     @GET("/problemSolByMe")
-    fun problemSolByMe(): Call<ProbSolByMeResponse>
+    fun problemSolByMe(): Call<ProbByMeResponse>
 
     //61. 내가 작성한 멘토 구인글 조회 API
     @GET("/myPage/myMentorPick")

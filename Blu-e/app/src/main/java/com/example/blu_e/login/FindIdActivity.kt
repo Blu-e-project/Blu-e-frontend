@@ -102,22 +102,19 @@ class FindIdActivity : AppCompatActivity() {
                                                     builder.show()
                                                 }
                                                 else if(responseData.code == 2018){
-
+                                                    val builder = AlertDialog.Builder(this@FindIdActivity)
+                                                        .setTitle("아이디 찾기")
+                                                        .setMessage("회원 정보와 일치하는 아이디를 찾을 수 없습니다.")
+                                                        .setPositiveButton("확인",
+                                                            DialogInterface.OnClickListener { dialog, which ->
+                                                                Toast.makeText(
+                                                                    this@FindIdActivity,
+                                                                    "확인",
+                                                                    Toast.LENGTH_SHORT
+                                                                ).show()
+                                                            })
+                                                    builder.show()
                                                 }
-                                            }
-                                            else{
-                                                val builder = AlertDialog.Builder(this@FindIdActivity)
-                                                    .setTitle("아이디 찾기")
-                                                    .setMessage("회원 정보와 일치하는 아이디를 찾을 수 없습니다.")
-                                                    .setPositiveButton("확인",
-                                                        DialogInterface.OnClickListener { dialog, which ->
-                                                            Toast.makeText(
-                                                                this@FindIdActivity,
-                                                                "확인",
-                                                                Toast.LENGTH_SHORT
-                                                            ).show()
-                                                        })
-                                                builder.show()
                                             }
                                         }
 

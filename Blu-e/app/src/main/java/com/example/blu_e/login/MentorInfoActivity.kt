@@ -29,7 +29,7 @@ import java.time.format.DateTimeFormatter
 class MentorInfoActivity : AppCompatActivity() {
     private val api = RetroInterface.create()
     lateinit var uri: Uri
-    lateinit var profileImageBase64: String
+    var profileImageBase64: String? = null
     lateinit var viewBinding: ActivityMentorInfoBinding
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +59,8 @@ class MentorInfoActivity : AppCompatActivity() {
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
 //                    //본인인증에서 번호 가져옴
-                    val phone = intent.getStringExtra("mentorPhoneNum").toString()
-                    Log.d("번호", "${phone}")
+                    val phone = intent.getStringExtra("mentorPhoneNum")
+                    Log.d("전번", "${phone}")
                     val name = viewBinding.name.text.toString()
                     val nickname = viewBinding.nickname.text.toString()
                     //string ->LocalDate로 바꿔야함
@@ -81,7 +81,7 @@ class MentorInfoActivity : AppCompatActivity() {
                     val updateAt = LocalDate.now()
                     val status = 1
 
-                    api.signUp(id, password,phone, name,nickname,birthDate,education,department, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
+                    api.signUp(id, password,phone!!, name,nickname,birthDate,education,department, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
                         .enqueue(object :Callback<SignupResponse>{
                             override fun onResponse(
                                 call: Call<SignupResponse>,
@@ -91,8 +91,8 @@ class MentorInfoActivity : AppCompatActivity() {
                                 if (responseData != null) {
                                     if(responseData.code == 1000){
                                         //성공
-                                        var mintent = Intent(this@MentorInfoActivity, MentorSignUpSuccessActivity::class.java)
-                                        startActivity(mintent)
+                                        val intent = Intent(this@MentorInfoActivity, MentorSignUpSuccessActivity::class.java)
+                                        startActivity(intent)
                                     } else{
                                         val msg = when(responseData.code) {
                                             2001 -> "아이디를 입력해주세요"
@@ -105,7 +105,7 @@ class MentorInfoActivity : AppCompatActivity() {
                             }
 
                             override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-                                TODO("Not yet implemented")
+
                             }
                         })
                 }

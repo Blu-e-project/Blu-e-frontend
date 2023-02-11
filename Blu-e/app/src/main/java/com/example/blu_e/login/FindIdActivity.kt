@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.blu_e.FindIdResponse
+import com.example.blu_e.MainActivity
 import com.example.blu_e.SignupResponse
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ActivityFindIdBinding
@@ -19,6 +20,8 @@ class FindIdActivity : AppCompatActivity() {
     lateinit var viewBinding : ActivityFindIdBinding
     private val api = RetroInterface.create()
     lateinit var phoneNum : String
+    var phoneNumSuccess = false
+    var verifySuccess = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityFindIdBinding.inflate(layoutInflater)
@@ -29,9 +32,8 @@ class FindIdActivity : AppCompatActivity() {
             var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+
         //인증코드 발송
-        var phoneNumSuccess = false
-        var verifySuccess = false
 
         viewBinding.sendBtn.setOnClickListener {
             phoneNum = viewBinding.phoneNumber.text.toString()
@@ -44,8 +46,8 @@ class FindIdActivity : AppCompatActivity() {
                     val responseData = response.body()
                     if (responseData != null) {
                         if(responseData.code == 1000){
-                            Log.d("번호", "성공")
                             phoneNumSuccess = true
+                            Log.d("번호", "성공")
                         }
                         else if(responseData.code == 2019){
                             //인증 문자 발송 실패
@@ -54,16 +56,16 @@ class FindIdActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+
                 }
 
             })
         }
 
         viewBinding.findIdBtn.setOnClickListener {
-            if(phoneNumSuccess) {
+            Log.d("phoneNumSuccess", "${phoneNumSuccess}")
+            if (phoneNumSuccess) {
                 val verifyEncode = viewBinding.certificateNum.text.toString()
-                Log.d("인증코드", "${verifyEncode}")
                 api.verifyCode(phoneNum, verifyEncode).enqueue(object : Callback<SignupResponse> {
                     override fun onResponse(
                         call: Call<SignupResponse>,
@@ -72,11 +74,62 @@ class FindIdActivity : AppCompatActivity() {
                         val responseData = response.body()
                         if (responseData != null) {
                             if (responseData.code == 1000) {
-                                //인증번호 성공
+                                //인증 성공
                                 verifySuccess = true
-                                Log.d("인증", "${verifySuccess}")
+                                Log.d("아이디", "${verifySuccess}")
+                                if (verifySuccess) {
+                                    api.findId(phoneNum).enqueue(object : Callback<FindIdResponse> {
+                                        override fun onResponse(
+                                            call: Call<FindIdResponse>,
+                                            response: Response<FindIdResponse>
+                                        ) {
+                                            val responseData = response.body()
+                                            if (responseData != null) {
+//                            Log.d("code", "${responseData.code}")
+                                                if (responseData.code == 1000) {
+                                                    val builder = AlertDialog.Builder(this@FindIdActivity)
+                                                        .setTitle("회원님의 아이디는\n${responseData.result[0].id}입니다.")
+                                                        .setPositiveButton("확인",
+                                                            DialogInterface.OnClickListener { dialog, which ->
+                                                                Toast.makeText(
+                                                                    this@FindIdActivity,
+                                                                    "확인",
+                                                                    Toast.LENGTH_SHORT
+                                                                ).show()
+                                                                val intent = Intent(this@FindIdActivity, LoginActivity:: class.java)
+                                                                startActivity(intent)
+                                                            })
+                                                    builder.show()
+                                                }
+                                                else if(responseData.code == 2018){
+                                                    val builder = AlertDialog.Builder(this@FindIdActivity)
+                                                        .setTitle("아이디 찾기")
+                                                        .setMessage("회원 정보와 일치하는 아이디를 찾을 수 없습니다.")
+                                                        .setPositiveButton("확인",
+                                                            DialogInterface.OnClickListener { dialog, which ->
+                                                                Toast.makeText(
+                                                                    this@FindIdActivity,
+                                                                    "확인",
+                                                                    Toast.LENGTH_SHORT
+                                                                ).show()
+                                                            })
+                                                    builder.show()
+                                                }
+                                            }
+                                        }
+
+                                        override fun onFailure(call: Call<FindIdResponse>, t: Throwable) {
+
+                                        }
+
+                                    })
+                                }
                             } else if (responseData.code == 2020) {
-                                //인증  실패
+                                Toast.makeText(
+                                    this@FindIdActivity,
+                                    responseData.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
@@ -84,39 +137,9 @@ class FindIdActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
                         TODO("Not yet implemented")
                     }
-
                 })
             }
-            if(verifySuccess){
-                   api.findId(phoneNum).enqueue(object : Callback<FindIdResponse>{
-                       override fun onResponse(
-                           call: Call<FindIdResponse>,
-                           response: Response<FindIdResponse>
-                       ) {
-                           val responseData = response.body()
-                           if (responseData != null) {
-                               if(responseData.code == 1000){
-                                   val id = responseData.result.id
-                                   val builder = AlertDialog.Builder(this@FindIdActivity)
-                                       .setTitle("회원님의 아이디는\n"+id+"입니다.")
-                                       .setPositiveButton("확인",
-                                           DialogInterface.OnClickListener{ dialog, which ->
-                                               Toast.makeText(this@FindIdActivity, "확인", Toast.LENGTH_SHORT).show()
-                                           })
-                                   builder.show()
-                               }
 
-                           }
-                       }
-
-                        override fun onFailure(call: Call<FindIdResponse>, t: Throwable) {
-                            TODO("Not yet implemented")
-                        }
-
-                   })
-
-            }
         }
-
     }
 }

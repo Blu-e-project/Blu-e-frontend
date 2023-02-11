@@ -14,4 +14,11 @@ class Prefs(context: Context) {
     fun setString(key: String, str: String){
         prefs.edit().putString(key, str).apply()
     }
+
+    fun remove(key: String){
+        prefs.edit().remove(key).apply()
+    }
+    fun commit(){
+        prefs.edit().commit()
+    }
 }

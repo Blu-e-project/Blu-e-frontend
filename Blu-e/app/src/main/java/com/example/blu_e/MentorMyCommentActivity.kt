@@ -31,11 +31,14 @@ class MentorMyCommentActivity : AppCompatActivity() {
                 val responseData = response.body()
                 if (responseData != null) {
                     if(responseData.code == 1000) {
-                        if(responseData.MenteePickResult != null){
-                            var teepick = responseData.MenteePickResult
-//                            setMenteePickAdapter(teepick)
+                        if(responseData.menteePickResult != null){
+                            var teepick = responseData.menteePickResult
+                            Log.e("전","${teepick}")
+                            setMenteePickAdapter(teepick)
+                            Log.e("후","${teepick}")
                         }
                         else{
+                            Log.e("전","${responseData.menteePickResult}")
                             Log.d("멘티", "댓글 단 구인글이 없습니다.")
                         }
                     }
@@ -53,20 +56,24 @@ class MentorMyCommentActivity : AppCompatActivity() {
                 call: Call<MyMenteePickResponse>,
                 response: Response<MyMenteePickResponse>
             ) {
-                if(response.isSuccessful) {
-                    val responseData = response.body()
-                    responseData?.let {
-                        (it.MenteePickResult as ArrayList<MyMenteePickItem>?)?.let { it1 ->
-                            setMenteePickAdapter(
-                                it1
-                            )
+                val responseData = response.body()
+                if (responseData != null) {
+                    if(responseData.code == 1000) {
+                        if(responseData.menteePickResult != null){
+
+                            var teepick = responseData.menteePickResult
+                            setMenteePickAdapter(teepick)
+                        }
+                        else{
+                            Log.e("전","${responseData.menteePickResult}")
+                            Log.d("멘티", "쓴 구인글이 없습니다.")
                         }
                     }
                 }
             }
 
             override fun onFailure(call: Call<MyMenteePickResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
 
         })
@@ -76,13 +83,16 @@ class MentorMyCommentActivity : AppCompatActivity() {
                 call: Call<MyMentorPickResponse>,
                 response: Response<MyMentorPickResponse>
             ) {
-                if(response.isSuccessful) {
-                    val responseData = response.body()
-                    responseData?.let {
-                        (it.MentorPickResult as ArrayList<MyMentorPickItem>?)?.let { it1 ->
-                            setMentorPickAdapter(
-                                it1
-                            )
+                val responseData = response.body()
+                if (responseData != null) {
+                    if(responseData.code == 1000) {
+                        if(responseData.mentorPickResult != null){
+                            var teepick = responseData.mentorPickResult
+                            setMentorPickAdapter(teepick)
+                        }
+                        else{
+                            Log.e("전","${responseData.mentorPickResult}")
+                            Log.d("멘토", "댓글 단 단 구인글이 없습니다.")
                         }
                     }
                 }
@@ -100,13 +110,16 @@ class MentorMyCommentActivity : AppCompatActivity() {
                 response: Response<MyMentorPickResponse>
             ) {
 
-                if(response.isSuccessful) {
-                    val responseData = response.body()
-                    responseData?.let {
-                        (it.MentorPickResult as ArrayList<MyMentorPickItem>?)?.let { it1 ->
-                            setMentorPickAdapter(
-                                it1
-                            )
+                val responseData = response.body()
+                if (responseData != null) {
+                    if(responseData.code == 1000) {
+                        if(responseData.mentorPickResult != null){
+                            var teepick = responseData.mentorPickResult
+                            setMentorPickAdapter(teepick)
+                        }
+                        else{
+                            Log.e("전","${responseData.mentorPickResult}")
+                            Log.d("멘토", "댓글 단 구인글이 없습니다.")
                         }
                     }
                 }
@@ -125,16 +138,29 @@ class MentorMyCommentActivity : AppCompatActivity() {
                 call: Call<ProbByMeResponse>,
                 response: Response<ProbByMeResponse>
             ) {
-                if(response.isSuccessful) {
-                    val responseData = response.body()
-                    responseData?.let {
-                        (it.result as ArrayList<ProbByMeItem>?)?.let { it1 -> setAdapter(it1) }
+                val responseData = response.body()
+                if (responseData != null) {
+                    if(responseData.code == 1000) {
+                        if(responseData.result != null){
+                            var teepick = responseData.result
+                            Log.e("어뎁터 전","${responseData.result}")
+                            setAdapter(teepick)
+                            Log.e("어텝터 후","${responseData.result}")
+                        }
+                        else{
+                            Log.e("전","${responseData.result}")
+                            Log.d("문제", "내가 쓴 질문이 없습니다.")
+                        }
+                    }
+                    else{
+                        Log.e("전","에러에러에러")
+
                     }
                 }
             }
 
             override fun onFailure(call: Call<ProbByMeResponse>, t: Throwable) {
-
+                Log.e("전","에러에러에러")
             }
         })
         //내가 답한 질문
@@ -144,13 +170,16 @@ class MentorMyCommentActivity : AppCompatActivity() {
                 response: Response<ProbSolByMeResponse>
             ) {
 
-                if(response.isSuccessful) {
-                    val responseData = response.body()
-                    responseData?.let {
-                        (it.solResult as ArrayList<ProbSolByMeItem>?)?.let { it1 ->
-                            setSolAdapter(
-                                it1
-                            )
+                val responseData = response.body()
+                if (responseData != null) {
+                    if(responseData.code == 1000) {
+                        if(responseData.solResult != null){
+                            var teepick = responseData.solResult
+                            setSolAdapter(teepick)
+                        }
+                        else{
+                            Log.e("전","${responseData.solResult}")
+                            Log.d("문제", "내가 답한 질문이 없습니다.")
                         }
                     }
                 }
@@ -168,7 +197,8 @@ class MentorMyCommentActivity : AppCompatActivity() {
         viewBinding.rv.adapter = probAdapter
         viewBinding.rv.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        viewBinding.rv.setHasFixedSize(false)
+//        viewBinding.rv.setHasFixedSize(false)
+        Log.d("데이터 수","${resultList.size}")
         probAdapter.notifyItemChanged(resultList.size)
     }
 
@@ -177,7 +207,8 @@ class MentorMyCommentActivity : AppCompatActivity() {
         viewBinding.rv.adapter = probSolAdapter
         viewBinding.rv.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        viewBinding.rv.setHasFixedSize(false)
+//        viewBinding.rv.setHasFixedSize(false)
+        Log.d("데이터 수","${resultList.size}")
         probSolAdapter.notifyItemChanged(resultList.size)
     }
 
@@ -186,7 +217,8 @@ class MentorMyCommentActivity : AppCompatActivity() {
         viewBinding.rvMentor.adapter = mentorPickAdapter
         viewBinding.rvMentor.layoutManager =
             GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false)
-        viewBinding.rvMentor.setHasFixedSize(false)
+//        viewBinding.rvMentor.setHasFixedSize(false)
+        Log.d("데이터 수","${resultList.size}")
         mentorPickAdapter.notifyItemChanged(resultList.size)
 
     }
@@ -197,6 +229,7 @@ class MentorMyCommentActivity : AppCompatActivity() {
         viewBinding.rvMentee.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 //        viewBinding.rvMentee.setHasFixedSize(false)
+        Log.d("데이터 수","${resultList.size}")
         menteePickAdapter.notifyItemChanged(resultList.size)
     }
 }

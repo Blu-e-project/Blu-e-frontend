@@ -32,7 +32,8 @@ class ProbByMeRVAdapter(private val dataList: ArrayList<ProbByMeItem> = arrayLis
     }
 
     override fun getItemCount(): Int {
-        return dataList.count()
+        return dataList.size
+
     }
 
 }

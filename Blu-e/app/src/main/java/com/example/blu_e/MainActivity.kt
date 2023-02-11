@@ -27,30 +27,60 @@ import java.io.InputStream
 class MainActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMainBinding
     var profileImageBase64: String? = null
+    var role: Int = MainApplication.prefs.getString("role", "").toInt()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(viewBinding.containerFragment.id, HomeMentorFragment())
-            .commitAllowingStateLoss()
-
+        if(role == 1) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(viewBinding.containerFragment.id, HomeMentorFragment())
+                .commitAllowingStateLoss()
+        }
+        else{
+            supportFragmentManager
+                .beginTransaction()
+                .replace(viewBinding.containerFragment.id, HomeMenteeFragment())
+                .commitAllowingStateLoss()
+        }
         viewBinding.navBottom.run {
             setOnItemSelectedListener {
                 when (it.itemId) {
                     R.id.menu_home -> {
-                        supportFragmentManager
-                            .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, HomeMentorFragment())
-                            .commitAllowingStateLoss()
+                        if(role == 1) {
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(viewBinding.containerFragment.id, HomeMentorFragment())
+                                .commitAllowingStateLoss()
+                        }
+                        else{
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(viewBinding.containerFragment.id, HomeMenteeFragment())
+                                .commitAllowingStateLoss()
+                        }
                     }
                     R.id.menu_group -> {
-                        supportFragmentManager
-                            .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, HomeMentorButtonFragment())
-                            .commitAllowingStateLoss()
+                        if(role == 1) {
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(
+                                    viewBinding.containerFragment.id,
+                                    HomeMentorButtonFragment()
+                                )
+                                .commitAllowingStateLoss()
+                        }
+                        else{
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(
+                                    viewBinding.containerFragment.id,
+                                    HomeMenteeButtonFragment()
+                                )
+                                .commitAllowingStateLoss()
+                        }
                     }
                     R.id.menu_noti -> {
                         supportFragmentManager

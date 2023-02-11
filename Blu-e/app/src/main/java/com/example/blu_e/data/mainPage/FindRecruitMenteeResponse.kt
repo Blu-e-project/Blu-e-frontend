@@ -4,8 +4,8 @@ data class FindRecruitMenteeResponse (
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: FindRecruitMenteeItem
-) {
+    val result: ArrayList<FindRecruitMenteeItem>
+)
     data class FindRecruitMenteeItem (
         val pickId: Int,
         val title: String,
@@ -14,5 +14,5 @@ data class FindRecruitMenteeResponse (
         val mentoringMethod: String,
         val wishGender: String
     )
-}
+
 

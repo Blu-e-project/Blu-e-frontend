@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewMenteeCardBinding
 import com.example.blu_e.databinding.RecyclerviewQuestionCardBinding
 
-class RetrofitProblemRVAdapter(private val items: ArrayList<AllProblemsResponse.Items> = arrayListOf()) :
+class RetrofitProblemRVAdapter(private val items: ArrayList<Items> = arrayListOf()) :
     RecyclerView.Adapter<RetrofitProblemRVAdapter.ViewHolder>() {
     //각 항목에 필요한 기능 구현, ViewHolder 반환
     inner class ViewHolder(private val viewBinding: RecyclerviewQuestionCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun bind(data: AllProblemsResponse.Items) {
+        fun bind(data: Items) {
             viewBinding.questionCardSubject.text = data.subject
             viewBinding.questionCardProblem.text = data.problem
             viewBinding.questionCardUnit.text = data.unit

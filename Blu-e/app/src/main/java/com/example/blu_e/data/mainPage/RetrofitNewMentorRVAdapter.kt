@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewNewMenteeCardBinding
 import com.example.blu_e.databinding.RecyclerviewNewMentorCardBinding
 
-class RetrofitNewMentorRVAdapter(private val items: ArrayList<FindMentorsResponse.FindMentorsItem> = arrayListOf()) :
+class RetrofitNewMentorRVAdapter(private val items: ArrayList<FindMentorItem> = arrayListOf()) :
     RecyclerView.Adapter<RetrofitNewMentorRVAdapter.ViewHolder>() {
     //각 항목에 필요한 기능 구현, ViewHolder 반환
     inner class ViewHolder(private val viewBinding: RecyclerviewNewMentorCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun bind(data: FindMentorsResponse.FindMentorsItem) {
+        fun bind(data: FindMentorItem) {
             viewBinding.pickMentorId.text = data.nickname
         }
     }

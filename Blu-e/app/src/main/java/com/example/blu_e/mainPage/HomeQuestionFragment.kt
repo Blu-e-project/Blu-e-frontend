@@ -26,8 +26,17 @@ class HomeQuestionFragment : Fragment() {
     private lateinit var mContext: MainActivity
 
     private val api = RetroInterface.create() //retrofit 객체
-    private lateinit var list: ArrayList<AllProblemsResponse.Items>
-    private lateinit var adapter: RetrofitProblemRVAdapter
+    var problemList: ArrayList<Items> = arrayListOf()
+
+    companion object {
+        fun newInstance(list: ArrayList<FindFiveProblemItems>, id: Int) =
+            HomeQuestionFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("list", list)
+                    putInt("id", id)
+                }
+            }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -52,7 +61,7 @@ class HomeQuestionFragment : Fragment() {
             mContext!!.openFragment(14)
         }
     }
-
+/*
     override fun onResume() {
         super.onResume()
 
@@ -70,37 +79,48 @@ class HomeQuestionFragment : Fragment() {
 
         viewBinding.recyclerViewQuestion.adapter = questionAdapter
         viewBinding.recyclerViewQuestion.layoutManager = grid
-    }
+    }*/
 
     private fun loadData() {
-        api.findProblems ().enqueue(object :
-            Callback<AllProblemsResponse> {
+        api.findProblems().enqueue(object : Callback<AllProblemsResponse> {
             override fun onResponse(
                 call: Call<AllProblemsResponse>,
                 response: Response<AllProblemsResponse>
             ) {
-                if (response.isSuccessful) {
-                    val body = response.body() ?: return
-                    if (body.code == 1000) {
-                        Log.d("목록 불러오기", "성공")
-                        list = body.result as ArrayList<AllProblemsResponse.Items>
-                        adapter = RetrofitProblemRVAdapter(list)
+                val responseData = response.body() ?: return
+                if (responseData != null) {
+                    if (responseData.code == 1000) {
+                        if (responseData.result != null) {
+                            problemList?.addAll(responseData.result)
+                            Log.e("멘토 구인글", "${problemList}")
+                            problemList?.let { problemAdapter(it) }
 
-                        viewBinding.recyclerViewQuestion.adapter = adapter
-                        viewBinding.recyclerViewQuestion.layoutManager = LinearLayoutManager(mContext)
-                        adapter.notifyItemChanged(list.size)
+                            val adapter2 = RetrofitProblemRVAdapter(problemList)
 
-                        val intent = Intent(mContext, ProfileActivity::class.java)
-                        intent.putExtra("userId", "userId")
+                            adapter2.setItemClickListener(object: RetrofitProblemRVAdapter.ItemClickListener{
+                                override fun onClick(view: View, position: Int) {
+                                    /*var detailFragment = HomeQuestionFragment.newInstance(problemList, position)
+                                    mContext.supportFragmentManager.beginTransaction().replace(
+                                        mContext.viewBinding.containerFragment.id, detailFragment
+                                    ).commit()*/
+                                }
+                            })
+                        } else {
+                            Log.d("멘토 구인글", "멘토 구인글이 없어용")
+                        }
                     }
-                }
-                else {
-                    Log.d("새로운 멘토 리스트", "실패")
                 }
             }
             override fun onFailure(call: Call<AllProblemsResponse>, t: Throwable) {
-                Log.e("새로운 멘토 리스트", "failure")
+                Log.e("멘토 구인글", "에러에러에러")
             }
         })
+    }
+
+    private fun problemAdapter(resultList: ArrayList<Items>) {
+        val adapter = RetrofitProblemRVAdapter(resultList)
+        viewBinding.recyclerViewQuestion.adapter = adapter
+        viewBinding.recyclerViewQuestion.layoutManager = GridLayoutManager(mContext, 2)
+        adapter.notifyItemChanged(resultList.size)
     }
 }

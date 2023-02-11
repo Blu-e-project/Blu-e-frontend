@@ -1,5 +1,6 @@
 package com.example.blu_e.mainPage
 //멘티를 구하고 있어요!
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
 import com.example.blu_e.MainApplication
 import com.example.blu_e.data.RetroInterface
@@ -24,9 +26,17 @@ class HomeRecruitMenteeFragment : Fragment() {
     private lateinit var mContext: MainActivity
     private val api = RetroInterface.create() //retrofit 객체
 
-    private lateinit var mentorList: ArrayList<FindRecruitMenteeResponse.FindRecruitMenteeItem>
-    private lateinit var adapter: RetrofitRecruitMenteeRVAdapter
+    var menteeList: ArrayList<FindRecruitMenteeItem> = arrayListOf()
 
+    companion object {
+        fun newInstance(list: ArrayList<FindHotMenteeItem>, id: Int) =
+            HomeRecruitMenteeFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("list", list)
+                    putInt("id", id)
+                }
+            }
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context as MainActivity
@@ -50,6 +60,57 @@ class HomeRecruitMenteeFragment : Fragment() {
             mContext!!.openFragment(15)
         }
     }
+
+    private fun loadData() { //멘티를 구하고 있어요
+        api.findRecruitMentee ().enqueue(object : Callback<FindRecruitMenteeResponse> {
+            @SuppressLint("SuspiciousIndentation")
+            override fun onResponse(
+                call: Call<FindRecruitMenteeResponse>,
+                response: Response<FindRecruitMenteeResponse>
+            ) {
+                val responseData = response.body() ?: return
+                Log.d("loadData1 목록 불러오기", "성공1")
+
+                if (responseData != null) {
+                    if (responseData.code == 1000) {
+                        Log.d("loadData1 목록 불러오기", "성공2")
+
+                        if (responseData.result != null) {
+                            Log.d("loadData1 목록 불러오기", "성공3")
+
+                            menteeList?.addAll(responseData.result)
+                            Log.e("문제", "${menteeList}")
+                            menteeList?.let { recruitMenteeAdapter(it) }
+
+                            val adapter2 = RetrofitRecruitMenteeRVAdapter(menteeList)
+
+                            adapter2.setItemClickListener(object: RetrofitRecruitMenteeRVAdapter.ItemClickListener{
+                                override fun onClick(view: View, position: Int) {
+                                    var intent = Intent(mContext, RequestMentoringActivity::class.java)
+                                    intent.putExtra("pickId", "pickId")
+                                }
+                            })
+                        }
+                        else {
+                            Log.d("문제", "내가 답한 질문이 없습니다.")
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<FindRecruitMenteeResponse>, t: Throwable) {
+                Log.e("내가 답한 질문", "에러에러에러")
+            }
+        })
+    }
+
+    private fun recruitMenteeAdapter(resultList: ArrayList<FindRecruitMenteeItem>) {
+        val adapter = RetrofitRecruitMenteeRVAdapter(resultList)
+        viewBinding.recyclerViewMentee.adapter = adapter
+        viewBinding.recyclerViewMentee.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        adapter.notifyItemChanged(resultList.size)
+    }
+
+/*
 
     override fun onResume() {
         super.onResume()
@@ -76,35 +137,6 @@ class HomeRecruitMenteeFragment : Fragment() {
         viewBinding.recyclerViewMentee.layoutManager = grid
     }
 
-    private fun loadData() {
-        api.findRecruitMentee ().enqueue(object :
-            Callback<FindRecruitMenteeResponse> {
-            override fun onResponse(
-                call: Call<FindRecruitMenteeResponse>,
-                response: Response<FindRecruitMenteeResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val body = response.body() ?: return
-                    if (body.code == 1000) {
-                        Log.d("목록 불러오기", "성공")
-                        mentorList = body.result as ArrayList<FindRecruitMenteeResponse.FindRecruitMenteeItem>
-                        adapter = RetrofitRecruitMenteeRVAdapter(mentorList)
-
-                        viewBinding.recyclerViewMentee.adapter = adapter
-                        viewBinding.recyclerViewMentee.layoutManager = GridLayoutManager(mContext, 2)
-
-                        val intent = Intent(mContext, RequestMentoringActivity::class.java)
-                        intent.putExtra("userId", "userId")
-                    }
-                }
-                else {
-                    Log.d("새로운 멘토 리스트", "실패")
-                }
-            }
-            override fun onFailure(call: Call<FindRecruitMenteeResponse>, t: Throwable) {
-                Log.e("새로운 멘토 리스트", "failure")
-            }
-        })
-    }
+*/
 }
 

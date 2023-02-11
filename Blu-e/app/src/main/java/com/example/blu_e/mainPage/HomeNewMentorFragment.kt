@@ -1,5 +1,6 @@
 package com.example.blu_e.mainPage
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,12 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
-import com.example.blu_e.MainApplication
 import com.example.blu_e.data.RetroInterface
-import com.example.blu_e.data.mainPage.FindMentorsResponse
-import com.example.blu_e.data.mainPage.NewMentorData
-import com.example.blu_e.data.mainPage.RetrofitNewMentorRVAdapter
+import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeNewMentorBinding
 import com.example.blu_e.mentoring.ProfileActivity
 import retrofit2.Call
@@ -26,8 +25,17 @@ class HomeNewMentorFragment : Fragment() {
     private lateinit var mContext: MainActivity
 
     private val api = RetroInterface.create() //retrofit 객체
-    private lateinit var list: ArrayList<FindMentorsResponse.FindMentorsItem>
+    private lateinit var mentorList: ArrayList<FindMentorItem>
 
+    companion object {
+        fun newInstance(list: ArrayList<FindFiveMentorItems>, id: Int) =
+            HomeNewMentorFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("list", list)
+                    putInt("id", id)
+                }
+            }
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context as MainActivity
@@ -39,13 +47,13 @@ class HomeNewMentorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = FragmentHomeNewMentorBinding.inflate(layoutInflater)
-        //loadData()
+        loadData()
         return viewBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+/*
         val list: ArrayList<NewMentorData> = arrayListOf()
 
         list.apply {
@@ -65,7 +73,7 @@ class HomeNewMentorFragment : Fragment() {
         viewBinding.recyclerViewNewMentor.layoutManager = GridLayoutManager(mContext, 5)
 
         val intent = Intent(mContext, ProfileActivity::class.java)
-        intent.putExtra("userId", "userId")
+        intent.putExtra("userId", "userId")*/
     }
 
     override fun onResume() {
@@ -75,37 +83,53 @@ class HomeNewMentorFragment : Fragment() {
         viewBinding.backHome.setOnClickListener {
             mContext!!.openFragment(15)
         }
-
-        api.findMentors().enqueue(object :
-            Callback<FindMentorsResponse> {
+    }
+    private fun loadData() { //새로운 멘티가 있어요
+        api.findMentors ().enqueue(object : Callback<FindMentorsResponse> {
+            @SuppressLint("SuspiciousIndentation")
             override fun onResponse(
                 call: Call<FindMentorsResponse>,
                 response: Response<FindMentorsResponse>
             ) {
-                if (response.isSuccessful) {
-                    val body = response.body() ?: return
-                    if (body.code == 1000) {
-                        Log.d("목록 불러오기", "성공")
-                        list = body.result as ArrayList<FindMentorsResponse.FindMentorsItem>
+                val responseData = response.body() ?: return
+                Log.d("loadData1 목록 불러오기", "성공1")
 
-                        val menteeAdapter = RetrofitNewMentorRVAdapter(list)
-                        val grid = GridLayoutManager(mContext, 5)
+                if (responseData != null) {
+                    if (responseData.code == 1000) {
+                        Log.d("loadData1 목록 불러오기", "성공2")
 
-                        viewBinding.recyclerViewNewMentor.adapter = menteeAdapter
-                        viewBinding.recyclerViewNewMentor.layoutManager = grid
+                        if (responseData.result != null) {
+                            Log.d("loadData1 목록 불러오기", "성공3")
 
-                        val intent = Intent(mContext, ProfileActivity::class.java)
-                        intent.putExtra("userId", "userId")
+                            mentorList?.addAll(responseData.result)
+                            Log.e("문제", "${mentorList}")
+                            mentorList?.let { newMentorAdapter(it) }
+
+                            val adapter2 = RetrofitNewMentorRVAdapter(mentorList)
+
+                            adapter2.setItemClickListener(object: RetrofitNewMentorRVAdapter.ItemClickListener{
+                                override fun onClick(view: View, position: Int) {
+                                    val intent = Intent(mContext, ProfileActivity::class.java)
+                                    intent.putExtra("userId", "userId")
+                                }
+                            })
+                        }
+                        else {
+                            Log.d("문제", "내가 답한 질문이 없습니다.")
+                        }
                     }
-                }
-                else {
-                    Log.d("새로운 멘토 리스트", "실패")
                 }
             }
             override fun onFailure(call: Call<FindMentorsResponse>, t: Throwable) {
-                Log.e("새로운 멘토 리스트", "failure")
+                Log.e("내가 답한 질문", "에러에러에러")
             }
         })
+    }
+    private fun newMentorAdapter(resultList: ArrayList<FindMentorItem>) {
+        val adapter = RetrofitNewMentorRVAdapter(resultList)
+        viewBinding.recyclerViewNewMentor.adapter = adapter
+        viewBinding.recyclerViewNewMentor.layoutManager = GridLayoutManager(mContext, 5)
+        adapter.notifyItemChanged(resultList.size)
     }
 
 

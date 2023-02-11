@@ -282,7 +282,8 @@ interface RetroInterface {
     fun findRecruitMentee(): Call<FindRecruitMenteeResponse>
 
     //문제 부분 조회(최신 5개)
-    @GET("/problems/main")
+    @GET("/problem-five")
+    fun findFiveProblem(): Call<FindFiveProblemResponse>
 
     //-----------------------------------------------------주영-----------------------------------------
     //27 내 정보 수정

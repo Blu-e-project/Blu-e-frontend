@@ -27,11 +27,10 @@ class HomeRecruitMentorFragment : Fragment() {
 
     private val api = RetroInterface.create() //retrofit 객체
 
-    private lateinit var mentorList: ArrayList<FindRecruitMentorResponse.FindRecruitMentorItem>
-    private lateinit var adapter2: RetrofitRecruitMentorRVAdapter
+    var mentorList: ArrayList<FindRecruitMentorItem> = arrayListOf()
 
     companion object {
-        fun newInstance(list: ArrayList<FindHotMentorResponse.FindHotMentorItem>, id: Int) =
+        fun newInstance(list: ArrayList<FindHotMentorItem>, id: Int) =
             HomeRecruitMentorFragment().apply {
             arguments = Bundle().apply {
                 putSerializable("list", list)
@@ -62,7 +61,7 @@ class HomeRecruitMentorFragment : Fragment() {
             mContext!!.openFragment(14)
         }
     }
-
+/*
     override fun onResume() {
         super.onResume()
 
@@ -80,36 +79,46 @@ class HomeRecruitMentorFragment : Fragment() {
 
         viewBinding.recyclerViewMentor.adapter = mentorAdapter
         viewBinding.recyclerViewMentor.layoutManager = grid
-    }
+    }*/
 
-    private fun loadData() {
-        api.findRecruitMentors ().enqueue(object :
-            Callback<FindRecruitMentorResponse> {
+    private fun loadData() { //새로운 멘티가 있어요
+        api.findRecruitMentors ().enqueue(object : Callback<FindRecruitMentorResponse> {
             override fun onResponse(
                 call: Call<FindRecruitMentorResponse>,
                 response: Response<FindRecruitMentorResponse>
             ) {
-                if (response.isSuccessful) {
-                    val body = response.body() ?: return
-                    if (body.code == 1000) {
-                        Log.d("목록 불러오기", "성공")
-                        mentorList = body.result as ArrayList<FindRecruitMentorResponse.FindRecruitMentorItem>
-                        adapter2 = RetrofitRecruitMentorRVAdapter(mentorList)
+                val responseData = response.body() ?: return
+                if (responseData != null) {
+                    if (responseData.code == 1000) {
+                        if (responseData.result != null) {
+                            mentorList?.addAll(responseData.result)
+                            Log.e("멘토 구인글", "${mentorList}")
+                            mentorList?.let { recruitMentorAdapter(it) }
 
-                        viewBinding.recyclerViewMentor.adapter = adapter2
-                        viewBinding.recyclerViewMentor.layoutManager = GridLayoutManager(mContext, 2)
+                            val adapter2 = RetrofitRecruitMentorRVAdapter(mentorList)
 
-                        val intent = Intent(mContext, RequestMentoringActivity::class.java)
-                        intent.putExtra("userId", "userId")
+                            adapter2.setItemClickListener(object: RetrofitRecruitMentorRVAdapter.ItemClickListener{
+                                override fun onClick(view: View, position: Int) {
+                                    var intent = Intent(mContext, RequestMentoringActivity::class.java)
+                                    intent.putExtra("pickId", "pickId")
+                                }
+                            })
+                        } else {
+                            Log.d("멘토 구인글", "멘토 구인글이 없어용")
+                        }
                     }
-                }
-                else {
-                    Log.d("새로운 멘토 리스트", "실패")
                 }
             }
             override fun onFailure(call: Call<FindRecruitMentorResponse>, t: Throwable) {
-                Log.e("새로운 멘토 리스트", "failure")
+                Log.e("멘토 구인글", "에러에러에러")
             }
         })
+    }
+
+    private fun recruitMentorAdapter(resultList: ArrayList<FindRecruitMentorItem>) {
+        val adapter = RetrofitRecruitMentorRVAdapter(resultList)
+        viewBinding.recyclerViewMentor.adapter = adapter
+        viewBinding.recyclerViewMentor.layoutManager = GridLayoutManager(mContext, 2)
+        adapter.notifyItemChanged(resultList.size)
     }
 }

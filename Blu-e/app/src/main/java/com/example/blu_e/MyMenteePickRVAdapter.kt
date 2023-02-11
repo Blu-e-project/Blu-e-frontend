@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewMentorCardBinding
 
-class MyMenteePickRVAdapter(private val dataList: ArrayList<MyMenteePickItem> = arrayListOf(), val context: Context):
+class MyMenteePickRVAdapter(private val dataList: ArrayList<MyMenteePickItem> = arrayListOf()):
 RecyclerView.Adapter<MyMenteePickRVAdapter.ViewHolder>(){
     inner class ViewHolder(private val viewBinding: RecyclerviewMentorCardBinding): RecyclerView.ViewHolder(viewBinding.root){
-        fun bind(data:MyMenteePickItem, context: Context){
+        fun bind(data:MyMenteePickItem){
             viewBinding.mentorCardTitle.text = data.area
             viewBinding.mentorCardDesiredSubject.text = data.subject
             viewBinding.mentorCardDesiredPeriod.text = data.period.toString()
@@ -24,10 +24,10 @@ RecyclerView.Adapter<MyMenteePickRVAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(dataList[position], context)
+        holder.bind(dataList[position])
     }
 
     override fun getItemCount(): Int {
-        return dataList.count()
+        return dataList.size
     }
 }

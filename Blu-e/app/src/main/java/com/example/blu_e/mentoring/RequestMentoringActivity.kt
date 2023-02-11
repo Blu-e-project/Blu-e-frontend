@@ -89,7 +89,7 @@ class RequestMentoringActivity : AppCompatActivity() {
                 if (it.itemId == R.id.deleteMenu) {
                     if(isMentor == 1) {
                         //멘티 구하는 글의 삭제
-                        /*api.deleteAPostOfMentee(pickId).enqueue(object: Callback<ResponseData> {
+                        api.deleteAPostOfMentee(pickId).enqueue(object: Callback<ResponseData> {
                             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 val body = response.body()
                                 if(body != null) {
@@ -102,10 +102,10 @@ class RequestMentoringActivity : AppCompatActivity() {
                             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                                 Log.d("멘티 구인글메뉴","삭제 실패")
                             }
-                        })*/
+                        })
                     } else {
                         //멘토 구하는 글의 삭제
-                        /*api.deleteAPostOfMentor(pickId).enqueue(object: Callback<ResponseData> {
+                        api.deleteAPostOfMentor(pickId).enqueue(object: Callback<ResponseData> {
                             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                 val body = response.body()
                                 if(body != null) {
@@ -118,7 +118,7 @@ class RequestMentoringActivity : AppCompatActivity() {
                             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                                 Log.d("멘토 구인글 메뉴","삭제 실패")
                             }
-                        })*/
+                        })
                     }
                 } else if (it.itemId == R.id.updateMenu) {
                     //수정 폼으로 화면 넘어감

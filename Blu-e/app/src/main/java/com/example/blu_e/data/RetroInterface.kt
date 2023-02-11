@@ -91,7 +91,6 @@ interface RetroInterface {
     fun commentWritingAsMentor(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
 
     //매칭 수락 버튼
-    @FormUrlEncoded
     @POST("/mentoring/mentors/{pickId}/comments/{pickCommentId}/matching")
     fun requestMatching(@Path("pickId") pickId: Int,  @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 

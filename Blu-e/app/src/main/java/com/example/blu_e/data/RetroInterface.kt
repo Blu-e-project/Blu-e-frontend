@@ -102,10 +102,10 @@ interface RetroInterface {
 
     //멘토 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentors/{pickId}/comments/{pickCommentId}")
-    fun commentDeleteAsMentee(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
+    fun commentDeleteInMentorPost(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
     //멘티 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentees/{pickId}/comments/{pickCommentId}")
-    fun commentDeleteAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
+    fun commentDeleteInMenteePost(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 
     //궁금한 문제 작성
 

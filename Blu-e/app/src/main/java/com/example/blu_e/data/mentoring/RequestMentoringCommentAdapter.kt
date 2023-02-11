@@ -11,17 +11,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.blu_e.MainApplication
 import com.example.blu_e.R
+import com.example.blu_e.data.ResponseData
+import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.databinding.ItemRequestMentoringCommentBinding
 import com.example.blu_e.mentoring.ProfileActivity
 import com.example.blu_e.mentoring.RequestMentoringActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickComment>?, private val context: Context): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
-//    private val api = RetroInterface.create()
+    private val api = RetroInterface.create()
     private var acceptCheck = 1
     private var completedCheck = 0
     private var menuCheck = 1
     private var userId = MainApplication.prefs.getString("userId", "")
-    private var requestMentoring: RequestMentoringActivity = RequestMentoringActivity()
+    private var role = MainApplication.prefs.getString("role", "")
+    private var commentId = 0
 
     fun updateAcceptBtnv(n: Int) {
         acceptCheck = n
@@ -55,9 +61,11 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
             commentContent.text = commentItem.contents
 
             //댓쓴이와 유저 비교
-            if (commentItem.pickCommentId == userId.toInt()) {
+            Log.d("commenId", commentItem.userId.toString())
+            Log.d("userId", userId)
+            if (commentItem.userId == userId.toInt()) {
                 menuCheck = 1
-                requestMentoring.disappearCommentForm()
+                Log.d("점 3개 보여라 얍", "!")
             } else {
                 menuCheck = 0
             }
@@ -83,6 +91,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 completedCheck = 1
                 menuCheck = 0
 
+                //api.requestMatching(RequestMentoringActivity.pickId, )
                 //****여기가 관건.. 매칭 안 된 사람들 댓글 수락, 매칭 UI 없애기 -> listener(commentListData[position]) or 새로고침****
                 //매칭 됐다고 서버에 알리기 (댓글 다 삭제해 줄 예정)
             }
@@ -95,18 +104,37 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 pop.setOnMenuItemClickListener {
                     if(it.itemId == R.id.deleteMenu) {
                         Log.d("댓글메뉴확인", "삭제될겁니다.")
-                        /*api.commentDelete(2, 2).enqueue(object: Callback<PickCommentResponse> {
-                            override fun onResponse(call: Call<PickCommentResponse>, response: Response<PickCommentResponse>) {
-                                //성공시
-                                val body = response.body()?: return
-                                Log.d("댓글 삭제", body.message)
-                            }
+                        Log.d("댓글 삭제할건데 내 userId는", userId.toInt().toString())
+                        Log.d("댓글 삭제할 건데 그 pickId는 ", RequestMentoringActivity.pickId.toString())
+                        Log.d("댓글 삭제할 건데 내 role은 ", role)
+                        if(role.toInt() == 2) {
+                            api.commentDeleteInMentorPost(RequestMentoringActivity.pickId, userId.toInt()).enqueue(object: Callback<ResponseData> {
+                                override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+                                    //성공시
+                                    val body = response.body()?: return
+                                    Log.d("멘토 구인글의 댓글 삭제", body.message)
+                                }
 
-                            override fun onFailure(call: Call<PickCommentResponse>, t: Throwable) {
-                                //실패시
-                                Log.d("댓글 삭제", "실패")
-                            }
-                        })*/
+                                override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                                    //실패시
+                                    Log.d("멘토 구인글의 댓글 삭제", "실패")
+                                }
+                            })
+                        }
+                        else if(role.toInt() == 1) {
+                            api.commentDeleteInMenteePost(RequestMentoringActivity.pickId, userId.toInt()).enqueue(object: Callback<ResponseData> {
+                                override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+                                    //성공시
+                                    val body = response.body()?: return
+                                    Log.d("멘티 구인글의 댓글 삭제", body.message)
+                                }
+
+                                override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                                    //실패시
+                                    Log.d("멘티 구인글의 댓글 삭제", "실패")
+                                }
+                            })
+                        }
                     }
                     else if(it.itemId == R.id.updateMenu) {
                             Log.d("댓글메뉴확인", "수정될겁니다.")

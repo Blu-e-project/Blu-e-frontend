@@ -1,6 +1,7 @@
 package com.example.blu_e
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -33,7 +34,7 @@ class MyMentorPickRVAdapter(private val dataList: ArrayList<MyMentorPickItem> = 
     }
 
     override fun getItemCount(): Int {
-        return dataList.count()
+        return dataList.size
     }
 
 }

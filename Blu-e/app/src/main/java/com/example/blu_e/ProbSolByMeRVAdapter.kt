@@ -29,7 +29,7 @@ class ProbSolByMeRVAdapter(private val dataList: ArrayList<ProbSolByMeItem> = ar
     }
 
     override fun getItemCount(): Int {
-        return dataList.count()
+        return dataList.size
     }
 
 }

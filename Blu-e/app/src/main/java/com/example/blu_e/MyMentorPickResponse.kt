@@ -7,7 +7,7 @@ data class MyMentorPickResponse(
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val MentorPickResult: ArrayList<MyMentorPickItem>?
+    val mentorPickResult: ArrayList<MyMentorPickItem>?
 )
 data class MyMentorPickItem(
     val pickId: Int,

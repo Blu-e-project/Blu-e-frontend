@@ -54,7 +54,8 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
         fun bind(commentItem: PickComment) {
             val url = ""
             Glide.with(context)
-                .load(commentItem.userImg)
+                //.load(commentItem.userImg)
+                .load(R.drawable.ic_baseline_person_24)
                 .circleCrop()
                 .into(memberPicture)
 //            memberNickName.text = User(commentItem.userId)   .nickname

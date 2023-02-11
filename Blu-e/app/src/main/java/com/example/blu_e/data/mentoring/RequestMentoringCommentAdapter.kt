@@ -21,13 +21,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickComment>?, private val context: Context): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
+class RequestMentoringCommentAdapter(private val commentListData: ArrayList<PickComment>?, private val context: Context , private val listener: (PickComment) -> Unit): RecyclerView.Adapter<RequestMentoringCommentAdapter.RequestMentoringCommentViewHolder>() {
     private val api = RetroInterface.create()
     private var acceptCheck = 1
     private var completedCheck = 0
     private var menuCheck = 1
     private var userId = MainApplication.prefs.getString("userId", "")
     private var role = MainApplication.prefs.getString("role", "")
+    private var matchedPos = 0
 
     fun updateAcceptBtnv(n: Int) {
         acceptCheck = n
@@ -82,6 +83,34 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
         return RequestMentoringCommentViewHolder(viewBinding)
     }
 
+    override fun onBindViewHolder(holder: RequestMentoringCommentViewHolder, position: Int, payloads: MutableList<Any>) {
+        if(payloads.isEmpty()) {
+            super.onBindViewHolder(holder, position, payloads)
+        }
+        else {
+            for (payload in payloads) {
+                if (payload is String) {
+                    if (payload.equals("onlyMatchedMemberWillBeSurvived")) {
+                        val pos = position
+                        Log.d("위치", pos.toString())
+                        Log.d("matchedPos", matchedPos.toString())
+                        if(matchedPos != pos) {
+                            holder.accpetButton.visibility = View.GONE
+                            holder.completedText.visibility = View.GONE
+                            holder.changeCommentMenu.visibility = View.GONE
+                        } else {
+                            holder.accpetButton.visibility = View.GONE
+                            holder.completedText.visibility = View.VISIBLE
+                            holder.changeCommentMenu.visibility = View.GONE
+                            Log.d("매칭된 사람이어야 하는데 ",  holder.memberNickName.toString())
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
     override fun onBindViewHolder(holder: RequestMentoringCommentViewHolder, position: Int) {
         holder.bind(commentListData!![position])
         if(acceptCheck == 1 && completedCheck == 0) {
@@ -92,6 +121,9 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 acceptCheck = 0
                 completedCheck = 1
                 menuCheck = 0
+                //매칭 안 된 사람들 댓글 수락, 매칭 UI 없애기
+                matchedPos = holder.adapterPosition
+                listener(commentListData[position])
 
                 api.requestMatching(RequestMentoringActivity.pickId, holder.commentId).enqueue(object: Callback<ResponseData> {
                     override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
@@ -106,8 +138,6 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                         Log.d("멘토 멘티 매칭되었습니다.", "실패")
                     }
                 })
-
-                //****여기가 관건.. 매칭 안 된 사람들 댓글 수락, 매칭 UI 없애기 -> listener(commentListData[position]) or 새로고침****
             }
         }
         if(menuCheck == 1) {
@@ -118,9 +148,6 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 pop.setOnMenuItemClickListener {
                     if(it.itemId == R.id.deleteMenu) {
                         Log.d("댓글메뉴확인", "삭제될겁니다.")
-                        Log.d("댓글 삭제할건데 내 userId는", userId.toInt().toString())
-                        Log.d("댓글 삭제할 건데 그 pickId는 ", RequestMentoringActivity.pickId.toString())
-                        Log.d("댓글 삭제할 건데 내 role은 ", role)
                         if(role.toInt() == 2) {
                             api.commentDeleteInMentorPost(RequestMentoringActivity.pickId, holder.commentId).enqueue(object: Callback<ResponseData> {
                                 override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {

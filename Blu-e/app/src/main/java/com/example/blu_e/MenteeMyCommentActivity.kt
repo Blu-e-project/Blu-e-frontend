@@ -2,6 +2,7 @@ package com.example.blu_e
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.data.RetroInterface
@@ -29,13 +30,21 @@ class MenteeMyCommentActivity : AppCompatActivity() {
                 response: Response<MyMenteePickResponse>
             ) {
                 val responseData = response.body()
-                responseData?.let {
-                    setMenteePickAdapter(it.MenteePickResult as ArrayList<MyMenteePickItem>)
+                if (responseData != null) {
+                    if(responseData.code == 1000) {
+                        if(responseData.MenteePickResult != null){
+                            var teepick = responseData.MenteePickResult
+//                            setMenteePickAdapter(teepick)
+                        }
+                        else{
+                            Log.d("멘티", "댓글 단 구인글이 없습니다.")
+                        }
+                    }
                 }
             }
 
             override fun onFailure(call: Call<MyMenteePickResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("데이터 불러오기", "실패")
             }
 
         })
@@ -154,7 +163,7 @@ class MenteeMyCommentActivity : AppCompatActivity() {
     }
 
     private fun setMenteePickAdapter(resultList: ArrayList<MyMenteePickItem>){
-        val menteePickAdapter = MyMenteePickRVAdapter(resultList, this)
+        val menteePickAdapter = MyMenteePickRVAdapter(resultList)
         viewBinding.rvMentee.adapter = menteePickAdapter
         viewBinding.rvMentee.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

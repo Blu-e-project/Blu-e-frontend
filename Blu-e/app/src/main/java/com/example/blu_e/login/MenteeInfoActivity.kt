@@ -29,10 +29,9 @@ import java.time.format.DateTimeFormatter
 
 class MenteeInfoActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMenteeInfoBinding
-        private val api = RetroInterface.create()
-    @RequiresApi(Build.VERSION_CODES.O)
+    private val api = RetroInterface.create()
     lateinit var uri: Uri
-    lateinit var profileImageBase64: String
+    var profileImageBase64: String? = null
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +76,7 @@ class MenteeInfoActivity : AppCompatActivity() {
                     val createAt = LocalDate.now()
                     val updateAt = LocalDate.now()
                     val status = 1
-                    api.signUp(id, password,phone, name,nickname,birthDate,education,null, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
+                    api.signUp(id, password,phone!!, name,nickname,birthDate,education,"쓰레기값", grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
                         .enqueue(object : Callback<SignupResponse> {
                             override fun onResponse(
                                 call: Call<SignupResponse>,
@@ -86,7 +85,7 @@ class MenteeInfoActivity : AppCompatActivity() {
                                 val responseData = response.body()
                                 if (responseData != null) {
                                     if(responseData.code == 1000){
-                                       var intent = Intent(this@MenteeInfoActivity, MenteeSignUpSuccessActivity::class.java)
+                                       val intent = Intent(this@MenteeInfoActivity, MenteeSignUpSuccessActivity::class.java)
                                        startActivity(intent)
                                     } else{
                                         val msg = when(responseData.code) {
@@ -100,7 +99,6 @@ class MenteeInfoActivity : AppCompatActivity() {
                             }
 
                             override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-                                TODO("Not yet implemented")
                             }
                         })
 
@@ -112,7 +110,7 @@ class MenteeInfoActivity : AppCompatActivity() {
                 }
             }
         }
-    @RequiresApi(Build.VERSION_CODES.O)
+
     private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 
         if(it.resultCode == RESULT_OK && it.data != null){

@@ -66,9 +66,10 @@ class MentorSmsActivity : AppCompatActivity() {
                         if (responseData != null) {
                             if(responseData.code == 1000){
                                 //성공
-                                var intent = Intent(this@MentorSmsActivity, MentorInfoActivity::class.java)
-                                intent.putExtra("metorPhoneNum", phoneNum)
-                                startActivity(intent)
+                                val mintent = Intent(this@MentorSmsActivity, MentorInfoActivity::class.java)
+                                mintent.putExtra("mentorPhoneNum", phoneNum)
+                                Log.d("전번", "${phoneNum}")
+                                startActivity(mintent)
                             }
                             else if(responseData.code == 2019){
                                 //인증 문자 발송에 실패했습니다. 다이얼로그

@@ -1,5 +1,6 @@
 package com.example.blu_e.login
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -34,6 +35,7 @@ class FindPwActivity : AppCompatActivity() {
         viewBinding.smsBtn.setOnClickListener {
             phoneNum = viewBinding.phoneNumber.text.toString()
             api.sendPhoneNum(phoneNum).enqueue(object : Callback<SignupResponse> {
+                @SuppressLint("SuspiciousIndentation")
                 override fun onResponse(
                     call: Call<SignupResponse>,
                     response: Response<SignupResponse>

@@ -5,6 +5,7 @@ import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.data.mentoring.PickCommentResponse
 import com.example.blu_e.data.mentoring.PickResponse
+import com.example.blu_e.data.mypage.ResponseHistory
 import com.example.blu_e.data.mypage.ResponseReviewList
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -84,11 +85,11 @@ interface RetroInterface {
     //멘토 구하는 글에 댓글 생성
     @FormUrlEncoded
     @POST("/mentoring/mentors/{pickId}/comments")
-    fun commentWritingAsMentee(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
+    fun commentWritingInMentorPost(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
     //멘티 구하는 글에 댓글 생성
     @FormUrlEncoded
     @POST("/mentoring/mentees/{pickId}/comments")
-    fun commentWritingAsMentor(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
+    fun commentWritingInMenteePost(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
 
     //매칭 수락 버튼
     @POST("/mentoring/mentors/{pickId}/comments/{pickCommentId}/matching")
@@ -329,7 +330,7 @@ interface RetroInterface {
 
     //65 멘토링 내역 조회
     @GET("/myPage/myMentoring")
-    fun myMentoring():Call<ResponseMentoring>
+    fun myMentoring():Call<ResponseHistory>
 
     //66 특정 멘토에 대한 리뷰 조회
     @GET("/main/mentors/{userId}/review")

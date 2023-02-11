@@ -27,30 +27,60 @@ import java.io.InputStream
 class MainActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMainBinding
     var profileImageBase64: String? = null
+    var role: Int = MainApplication.prefs.getString("role", "").toInt()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(viewBinding.containerFragment.id, HomeMenteeFragment())
-            .commitAllowingStateLoss()
-
+        if(role == 1) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(viewBinding.containerFragment.id, HomeMentorFragment())
+                .commitAllowingStateLoss()
+        }
+        else{
+            supportFragmentManager
+                .beginTransaction()
+                .replace(viewBinding.containerFragment.id, HomeMenteeFragment())
+                .commitAllowingStateLoss()
+        }
         viewBinding.navBottom.run {
             setOnItemSelectedListener {
                 when (it.itemId) {
                     R.id.menu_home -> {
-                        supportFragmentManager
-                            .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, HomeMenteeFragment())
-                            .commitAllowingStateLoss()
+                        if(role == 1) {
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(viewBinding.containerFragment.id, HomeMentorFragment())
+                                .commitAllowingStateLoss()
+                        }
+                        else{
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(viewBinding.containerFragment.id, HomeMenteeFragment())
+                                .commitAllowingStateLoss()
+                        }
                     }
                     R.id.menu_group -> {
-                        supportFragmentManager
-                            .beginTransaction()
-                            .replace(viewBinding.containerFragment.id, HomeMentorButtonFragment())
-                            .commitAllowingStateLoss()
+                        if(role == 1) {
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(
+                                    viewBinding.containerFragment.id,
+                                    HomeMentorButtonFragment()
+                                )
+                                .commitAllowingStateLoss()
+                        }
+                        else{
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(
+                                    viewBinding.containerFragment.id,
+                                    HomeMenteeButtonFragment()
+                                )
+                                .commitAllowingStateLoss()
+                        }
                     }
                     R.id.menu_noti -> {
                         supportFragmentManager
@@ -106,7 +136,7 @@ class MainActivity : AppCompatActivity() {
             9 -> transaction.replace(viewBinding.containerFragment.id, HomeNewMentorFragment()) //새로운 멘토가 있어요
             10 -> transaction.replace(viewBinding.containerFragment.id, HomeRecruitMenteeFragment()) //멘티를 구하고 있어요
             11 -> transaction.replace(viewBinding.containerFragment.id, HomeQuestionFragment()) //궁금한 문제가 있어요
-            //12 -> transaction.replace(viewBinding.containerFragment.id, ()) //궁금한 문제가 있어요_문제 등록하기
+            12 -> transaction.replace(viewBinding.containerFragment.id, HomeMentorFragment()) //궁금한 문제가 있어요_문제 등록하기
             13 -> transaction.replace(viewBinding.containerFragment.id, HomeMentorButtonFragment()) //멘토 구인글 버튼(멘토링 화면 버튼)
             14 -> transaction.replace(viewBinding.containerFragment.id, HomeMentorFragment()) //멘토 홈
             15 -> transaction.replace(viewBinding.containerFragment.id, HomeMenteeFragment()) //멘티 홈

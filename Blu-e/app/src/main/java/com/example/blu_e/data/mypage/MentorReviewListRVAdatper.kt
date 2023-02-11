@@ -17,7 +17,6 @@ class MentorReviewListRVAdatper(private  val dataList: ArrayList<MentorReviewLis
             viewBinding.menteeReviewText.text = data.contents
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         val viewBinding = ItemMentorMyReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DataViewHolder(viewBinding)

@@ -54,7 +54,8 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
         fun bind(commentItem: PickComment) {
             val url = ""
             Glide.with(context)
-                .load(commentItem.userImg)
+                //.load(commentItem.userImg)
+                .load(R.drawable.ic_baseline_person_24)
                 .circleCrop()
                 .into(memberPicture)
 //            memberNickName.text = User(commentItem.userId)   .nickname
@@ -148,7 +149,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 pop.setOnMenuItemClickListener {
                     if(it.itemId == R.id.deleteMenu) {
                         Log.d("댓글메뉴확인", "삭제될겁니다.")
-                        if(role.toInt() == 2) {
+                        if(role.toInt() == 1) {
                             api.commentDeleteInMentorPost(RequestMentoringActivity.pickId, holder.commentId).enqueue(object: Callback<ResponseData> {
                                 override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                     //성공시
@@ -162,7 +163,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                                 }
                             })
                         }
-                        else if(role.toInt() == 1) {
+                        else if(role.toInt() == 2) {
                             api.commentDeleteInMenteePost(RequestMentoringActivity.pickId, holder.commentId).enqueue(object: Callback<ResponseData> {
                                 override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                     //성공시

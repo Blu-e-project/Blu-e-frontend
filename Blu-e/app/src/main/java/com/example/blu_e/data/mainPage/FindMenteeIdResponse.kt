@@ -15,6 +15,7 @@ data class FindMenteeIdResponse (
         val grade: String,
         val address: String,
         val introduce: String,
-        val userImg: String
+        val userImg: String,
+        val role: Int
         )
 }

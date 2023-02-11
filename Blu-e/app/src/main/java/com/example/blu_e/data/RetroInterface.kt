@@ -5,6 +5,7 @@ import com.example.blu_e.data.customercenter.QuestionResponse
 import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.data.mentoring.PickCommentResponse
 import com.example.blu_e.data.mentoring.PickResponse
+import com.example.blu_e.data.mypage.ResponseHistory
 import com.example.blu_e.data.mypage.ResponseReviewList
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -328,7 +329,7 @@ interface RetroInterface {
 
     //65 멘토링 내역 조회
     @GET("/myPage/myMentoring")
-    fun myMentoring():Call<ResponseMentoring>
+    fun myMentoring():Call<ResponseHistory>
 
     //66 특정 멘토에 대한 리뷰 조회
     @GET("/main/mentors/{userId}/review")

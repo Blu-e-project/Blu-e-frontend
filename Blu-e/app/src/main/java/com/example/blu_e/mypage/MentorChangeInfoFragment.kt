@@ -3,6 +3,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -29,6 +30,10 @@ class MentorChangeInfoFragment : Fragment() {
     private val api = RetroInterface.create() //retrofit 객체
     private lateinit var mContext: MainActivity
     private lateinit var viewBinding: FragmentMentorChangeInfoBinding
+    @RequiresApi(Build.VERSION_CODES.O)
+    lateinit var uri: Uri
+    lateinit var profileImageBase64: String
+    @RequiresApi(Build.VERSION_CODES.O)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -46,7 +51,7 @@ class MentorChangeInfoFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//뒤로가기
+        //뒤로가기
         viewBinding.backToCenterAMentor.setOnClickListener {
             mContext!!.openFragment(5)
         }
@@ -60,10 +65,10 @@ class MentorChangeInfoFragment : Fragment() {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             Log.d("이미지", "성공")
-            activityResult.launch(intent)
+            activityResult.launch(intent) //fragment로 바꾸기
         }*/
+*/
 
-         */
         //정보 수정 데이터 보내고 response 받아오기
         viewBinding.btnAddMentor.setOnClickListener {
             var name = viewBinding.nameMentor.text.toString()
@@ -77,6 +82,13 @@ class MentorChangeInfoFragment : Fragment() {
             var address= viewBinding.addrMentor.text.toString()
             var introduce= viewBinding.introduceMentor.text.toString()
             Log.d("정보 수정", "변수에 담기 성공")
+            Log.d("소개", "${introduce}")
+            Log.d("이름", "${name}")
+            Log.d("닉네임", "${nickname}")
+            Log.d("생일", "${birthDate}")
+            Log.d("학교", "${education}")
+            Log.d("주소", "${address}")
+            Log.d("소개", "${introduce}")
 
             val builder = AlertDialog.Builder(mContext)
             api.changeMyinfoMentor(

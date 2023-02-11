@@ -18,11 +18,12 @@ import retrofit2.Response
 class FindIdActivity : AppCompatActivity() {
     lateinit var viewBinding : ActivityFindIdBinding
     private val api = RetroInterface.create()
+    lateinit var phoneNum : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityFindIdBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-        var phoneNum : String?
+
         //뒤로가기(로그인 화면으로)
         viewBinding.backToCenterD.setOnClickListener {
             var intent = Intent(this, LoginActivity::class.java)
@@ -31,8 +32,10 @@ class FindIdActivity : AppCompatActivity() {
         //인증코드 발송
         var phoneNumSuccess = false
         var verifySuccess = false
-        phoneNum = viewBinding.phoneNumber.text.toString()
+
         viewBinding.sendBtn.setOnClickListener {
+            phoneNum = viewBinding.phoneNumber.text.toString()
+            Log.d("번호", "${phoneNum}")
             api.sendPhoneNum(phoneNum).enqueue(object : Callback<SignupResponse>{
                 override fun onResponse(
                     call: Call<SignupResponse>,
@@ -41,6 +44,7 @@ class FindIdActivity : AppCompatActivity() {
                     val responseData = response.body()
                     if (responseData != null) {
                         if(responseData.code == 1000){
+                            Log.d("번호", "성공")
                             phoneNumSuccess = true
                         }
                         else if(responseData.code == 2019){
@@ -58,7 +62,7 @@ class FindIdActivity : AppCompatActivity() {
 
         viewBinding.findIdBtn.setOnClickListener {
             if(phoneNumSuccess) {
-                val verifyEncode = viewBinding.certificateNum.toString()
+                val verifyEncode = viewBinding.certificateNum.text.toString()
                 Log.d("인증코드", "${verifyEncode}")
                 api.verifyCode(phoneNum, verifyEncode).enqueue(object : Callback<SignupResponse> {
                     override fun onResponse(
@@ -70,6 +74,7 @@ class FindIdActivity : AppCompatActivity() {
                             if (responseData.code == 1000) {
                                 //인증번호 성공
                                 verifySuccess = true
+                                Log.d("인증", "${verifySuccess}")
                             } else if (responseData.code == 2020) {
                                 //인증  실패
                             }

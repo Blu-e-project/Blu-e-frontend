@@ -60,6 +60,8 @@ class HomeMentorFragment : Fragment() {
         viewBinding = FragmentHomeMentorBinding.inflate(inflater, container, false)
         Log.e("홈", "들어왔나?")
         loadData1()
+        loadData3()
+
         return viewBinding.root
     }
 
@@ -176,7 +178,8 @@ class HomeMentorFragment : Fragment() {
                         adapter2 = RetrofitHomeNewMenteeRVAdapter(menteeList)
 
                         viewBinding.recyclerViewHomeNewMentee.adapter = adapter2
-                        viewBinding.recyclerViewHomeNewMentee.layoutManager = LinearLayoutManager(mContext)
+                        viewBinding.recyclerViewHomeNewMentee.layoutManager =
+                            LinearLayoutManager(mContext)
                         adapter2.notifyItemChanged(menteeList.size)
 
                         adapter2.setItemClickListener(object :

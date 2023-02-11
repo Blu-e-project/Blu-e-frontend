@@ -59,8 +59,8 @@ class MentorInfoActivity : AppCompatActivity() {
                     val id = viewBinding.userId.text.toString()
                     val password = viewBinding.userPw.text.toString()
 //                    //본인인증에서 번호 가져옴
-                   // val phone = intent.getStringExtra("phoneNum").toString()
-                     val phone = "01012222222"
+                    val phone = intent.getStringExtra("mentorPhoneNum").toString()
+                    Log.d("번호", "${phone}")
                     val name = viewBinding.name.text.toString()
                     val nickname = viewBinding.nickname.text.toString()
                     //string ->LocalDate로 바꿔야함
@@ -81,7 +81,6 @@ class MentorInfoActivity : AppCompatActivity() {
                     val updateAt = LocalDate.now()
                     val status = 1
 
-                    Log.d("회원가입","api전")
                     api.signUp(id, password,phone, name,nickname,birthDate,education,department, grade,address, introduce,role,createAt,updateAt,status, profileImageBase64)
                         .enqueue(object :Callback<SignupResponse>{
                             override fun onResponse(

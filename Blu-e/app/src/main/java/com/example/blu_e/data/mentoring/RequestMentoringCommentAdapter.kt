@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.blu_e.MainApplication
@@ -27,7 +28,6 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
     private var menuCheck = 1
     private var userId = MainApplication.prefs.getString("userId", "")
     private var role = MainApplication.prefs.getString("role", "")
-    private var commentId = 0
 
     fun updateAcceptBtnv(n: Int) {
         acceptCheck = n
@@ -48,6 +48,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
         var accpetButton = viewBinding.acceptButton
         var completedText = viewBinding.completedText
         var changeCommentMenu = viewBinding.requestMemberCommentDeleteIcon
+        var commentId = 0
 
         fun bind(commentItem: PickComment) {
             val url = ""
@@ -59,6 +60,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
             memberNickName.text = commentItem.nickname
             showWrittenDate.text = commentItem.createdAt.toString()
             commentContent.text = commentItem.contents
+            commentId = commentItem.pickCommentId
 
             //댓쓴이와 유저 비교
             Log.d("commenId", commentItem.userId.toString())
@@ -91,9 +93,21 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                 completedCheck = 1
                 menuCheck = 0
 
-                //api.requestMatching(RequestMentoringActivity.pickId, )
+                api.requestMatching(RequestMentoringActivity.pickId, holder.commentId).enqueue(object: Callback<ResponseData> {
+                    override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+                        //성공시
+                        val body = response.body()?: return
+                        Toast.makeText(context, body.message, Toast.LENGTH_SHORT).show()
+                        Log.d("멘토 멘티 매칭되었습니다.", body.message)
+                    }
+
+                    override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                        //실패시
+                        Log.d("멘토 멘티 매칭되었습니다.", "실패")
+                    }
+                })
+
                 //****여기가 관건.. 매칭 안 된 사람들 댓글 수락, 매칭 UI 없애기 -> listener(commentListData[position]) or 새로고침****
-                //매칭 됐다고 서버에 알리기 (댓글 다 삭제해 줄 예정)
             }
         }
         if(menuCheck == 1) {
@@ -108,7 +122,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                         Log.d("댓글 삭제할 건데 그 pickId는 ", RequestMentoringActivity.pickId.toString())
                         Log.d("댓글 삭제할 건데 내 role은 ", role)
                         if(role.toInt() == 2) {
-                            api.commentDeleteInMentorPost(RequestMentoringActivity.pickId, userId.toInt()).enqueue(object: Callback<ResponseData> {
+                            api.commentDeleteInMentorPost(RequestMentoringActivity.pickId, holder.commentId).enqueue(object: Callback<ResponseData> {
                                 override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                     //성공시
                                     val body = response.body()?: return
@@ -122,7 +136,7 @@ class RequestMentoringCommentAdapter(private val commentListData: ArrayList<Pick
                             })
                         }
                         else if(role.toInt() == 1) {
-                            api.commentDeleteInMenteePost(RequestMentoringActivity.pickId, userId.toInt()).enqueue(object: Callback<ResponseData> {
+                            api.commentDeleteInMenteePost(RequestMentoringActivity.pickId, holder.commentId).enqueue(object: Callback<ResponseData> {
                                 override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                                     //성공시
                                     val body = response.body()?: return

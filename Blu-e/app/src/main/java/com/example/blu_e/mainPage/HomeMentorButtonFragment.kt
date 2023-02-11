@@ -11,6 +11,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.blu_e.MainActivity
 import com.example.blu_e.MentorMyCommentActivity
 import com.example.blu_e.RecruitMenteeActivity
+import com.example.blu_e.RecruitMentorActivity
 import com.example.blu_e.databinding.FragmentHomeMentorButtonBinding
 import com.example.blu_e.databinding.FragmentHomeNewMenteeBinding
 
@@ -32,7 +33,8 @@ class HomeMentorButtonFragment: Fragment() {
             startActivity(intent)
         }
         viewBinding.btnRecruitMentor.setOnClickListener {
-            mContext.openFragment(7)
+            val intent = Intent(mContext, RecruitMentorActivity::class.java)
+            startActivity(intent)
         }
     }
 

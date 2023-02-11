@@ -21,5 +21,7 @@ class ProfileActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+
+
     }
 }

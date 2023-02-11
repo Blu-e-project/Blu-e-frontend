@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context=".mentoring.ProfileActivity">
 
     <View
         android:id="@+id/view"
@@ -217,6 +217,17 @@
                     android:lineHeight="18sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="220dp">
+                <Button
+                    android:id="@+id/btnReview"
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="리뷰 보기"
+                    android:background="#D9D9D9" />
             </TableRow>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

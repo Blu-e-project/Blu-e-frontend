@@ -91,7 +91,6 @@ interface RetroInterface {
     fun commentWritingAsMentor(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
 
     //매칭 수락 버튼
-    @FormUrlEncoded
     @POST("/mentoring/mentors/{pickId}/comments/{pickCommentId}/matching")
     fun requestMatching(@Path("pickId") pickId: Int,  @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 
@@ -104,10 +103,10 @@ interface RetroInterface {
 
     //멘토 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentors/{pickId}/comments/{pickCommentId}")
-    fun commentDeleteAsMentee(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
+    fun commentDeleteInMentorPost(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
     //멘티 구하는 글의 댓글 삭제
     @DELETE("/mentoring/mentees/{pickId}/comments/{pickCommentId}")
-    fun commentDeleteAsMentor(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
+    fun commentDeleteInMenteePost(@Path("pickId") pickId: Int, @Path("pickCommentId") pickCommentId: Int): Call<ResponseData>
 
     //궁금한 문제 작성
 
@@ -210,7 +209,7 @@ interface RetroInterface {
 
     //59. 내가 답변한 질문글 조회 API
     @GET("/problemSolByMe")
-    fun problemSolByMe(): Call<ProbSolByMeResponse>
+    fun problemSolByMe(): Call<ProbByMeResponse>
 
     //61. 내가 작성한 멘토 구인글 조회 API
     @GET("/myPage/myMentorPick")

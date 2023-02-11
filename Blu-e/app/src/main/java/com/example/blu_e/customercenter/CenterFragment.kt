@@ -74,6 +74,10 @@ class CenterFragment : Fragment() {
                 ).commit()
             }
         })
+        viewBinding.exampleBtn.setOnClickListener {
+            var intent = Intent(getActivity(), RequestMentoringActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {

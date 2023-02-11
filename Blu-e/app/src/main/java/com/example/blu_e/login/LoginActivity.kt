@@ -63,6 +63,9 @@ class LoginActivity : AppCompatActivity() {
                                         if(menteeResponseData.code == 1000){
                                             MainApplication.prefs.setString("role", "2")
                                         }
+                                        else{
+                                            MainApplication.prefs.setString("role", "1")
+                                        }
                                     }
                                 }
 
@@ -74,29 +77,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
 
                             })
-
-                            api.findMentorID(userId).enqueue(object: Callback<FindMentorIdResponse>{
-                                override fun onResponse(
-                                    call: Call<FindMentorIdResponse>,
-                                    response: Response<FindMentorIdResponse>
-                                ) {
-                                    val mentorResponseData = response.body()
-                                    if (mentorResponseData != null) {
-                                        if(mentorResponseData.code == 1000){
-                                            MainApplication.prefs.setString("role", "1")
-                                        }
-                                    }
-                                }
-
-                                override fun onFailure(
-                                    call: Call<FindMentorIdResponse>,
-                                    t: Throwable
-                                ) {
-
-                                }
-
-                            })
-//                            Log.d("사용자 역할 정보", "${MainApplication.prefs.getString("role","")}")
+                            Log.d("사용자 역할 정보", "${MainApplication.prefs.getString("role","")}")
                             startActivity(intent)
                         }
                         //비밀번호를 입력해주세요x

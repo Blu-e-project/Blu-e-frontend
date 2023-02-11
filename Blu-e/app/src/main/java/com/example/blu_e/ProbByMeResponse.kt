@@ -15,5 +15,5 @@ data class ProbByMeItem(
     val unit: String,
     val problem: String,
     val contents: String,
-    val image: Text
+    val image: String?
 )

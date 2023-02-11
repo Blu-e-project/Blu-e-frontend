@@ -31,7 +31,6 @@ import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 import java.util.*
 
-
 class RequestMentoringActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRequestMentoringBinding
     private var matchingStatus: Int = 1 //모집중 default
@@ -50,7 +49,7 @@ class RequestMentoringActivity : AppCompatActivity() {
     private val api = RetroInterface.create()
 
     companion object {
-        const val pickId: Int = 9 //클릭한 pickId 받아서 여기에 저장!!
+        const val pickId: Int = 15//클릭한 pickId 받아서 여기에 저장!!
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -288,9 +287,10 @@ class RequestMentoringActivity : AppCompatActivity() {
         viewBinding.countReaded.text = infoPost.get(0).viewCount.toString()
     }
     fun commentCommonPart(receivedCommentList: ArrayList<PickComment>) {
-        Log.d("이 함수 안들어왔니?", "?")
         commentList.addAll(receivedCommentList)
-        adapter = RequestMentoringCommentAdapter(receivedCommentList,this@RequestMentoringActivity)
+        adapter = RequestMentoringCommentAdapter(receivedCommentList,this@RequestMentoringActivity){
+                pickMemberComment -> adapter!!.notifyItemRangeChanged(0, adapter!!.itemCount,"onlyMatchedMemberWillBeSurvived")
+        }
         viewBinding.recyclerViewComment.layoutManager = LinearLayoutManager(this@RequestMentoringActivity)
         viewBinding.recyclerViewComment.adapter = adapter
 

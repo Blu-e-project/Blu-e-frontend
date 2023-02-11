@@ -84,11 +84,11 @@ interface RetroInterface {
     //멘토 구하는 글에 댓글 생성
     @FormUrlEncoded
     @POST("/mentoring/mentors/{pickId}/comments")
-    fun commentWritingAsMentee(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
+    fun commentWritingInMentorPost(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
     //멘티 구하는 글에 댓글 생성
     @FormUrlEncoded
     @POST("/mentoring/mentees/{pickId}/comments")
-    fun commentWritingAsMentor(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
+    fun commentWritingInMenteePost(@Path("pickId") pickId: Int, @Field("contents") contents: String): Call<ResponseData>
 
     //매칭 수락 버튼
     @POST("/mentoring/mentors/{pickId}/comments/{pickCommentId}/matching")

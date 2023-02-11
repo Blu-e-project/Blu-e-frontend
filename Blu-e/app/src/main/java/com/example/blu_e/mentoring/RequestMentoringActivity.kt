@@ -174,6 +174,11 @@ class RequestMentoringActivity : AppCompatActivity() {
             callMentorPostAndComment()
         }
     }
+    fun updateRecyclerView(newlist: ArrayList<PickComment>) {
+        commentList.clear()
+        commentList.addAll(newlist)
+        adapter!!.notifyDataSetChanged()
+    }
     //sendMessage
     fun sendMessage() {
         val now = System.currentTimeMillis()
@@ -183,13 +188,14 @@ class RequestMentoringActivity : AppCompatActivity() {
         //+ 로그인 유저가 멘티 회원임.
         if(role.toInt() == 2) {
             Log.d("여기로 들어왔을과?", "묭!")
-            api.commentWritingAsMentee(pickId, commentContent).enqueue(object: Callback<ResponseData> {
+            api.commentWritingInMenteePost(pickId, commentContent).enqueue(object: Callback<ResponseData> {
                 override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                     val body = response.body()
                     if(body != null) {
                         if(body.code == 1000) {
                             Log.d("멘티 구인글의 댓글 등록하기", body.message)
-                            viewBinding.recyclerViewComment.adapter!!.notifyItemChanged(commentList.size)
+                            adapter!!.notifyItemChanged(commentList.size)
+                            viewBinding.recyclerViewComment.adapter = adapter
                         } else if (body.code == 2700 || body.code == 2701 || body.code == 2702) {
                             Log.d("멘티 구인글의 댓글 등록하기 실패: ", body.message)
                             Toast.makeText(this@RequestMentoringActivity, body.message, Toast.LENGTH_SHORT).show()
@@ -204,13 +210,15 @@ class RequestMentoringActivity : AppCompatActivity() {
         else if (role.toInt() == 1) {
             //+ 로그인 유저가 멘토회원임.
             Log.d("여기로 들어왔을과?", "믱!")
-            api.commentWritingAsMentor(pickId, commentContent).enqueue(object: Callback<ResponseData> {
+            api.commentWritingInMentorPost(pickId, commentContent).enqueue(object: Callback<ResponseData> {
                 override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                     val body = response.body()
                     if(body != null) {
                         if(body.code == 1000) {
                             Log.d("멘토 구인글의 댓글 등록하기", body.message)
-                            viewBinding.recyclerViewComment.adapter!!.notifyItemChanged(commentList.size)
+                            Log.d("commentList.size", commentList.size.toString())
+                            adapter!!.notifyItemChanged(commentList.size)
+                            viewBinding.recyclerViewComment.adapter = adapter
                         } else if (body.code == 2700 || body.code == 2701 || body.code == 2702 || body.code == 2703) {
                             Log.d("멘토 구인글의 댓글 등록하기 실패: ", body.message)
                             Toast.makeText(this@RequestMentoringActivity, body.message, Toast.LENGTH_SHORT).show()

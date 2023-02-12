@@ -49,7 +49,7 @@ class RequestMentoringActivity : AppCompatActivity() {
     private val api = RetroInterface.create()
 
     companion object {
-        const val pickId: Int = 12//클릭한 pickId 받아서 여기에 저장!!
+        var pickId: Int = 0//클릭한 pickId 받아서 여기에 저장!!
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +57,8 @@ class RequestMentoringActivity : AppCompatActivity() {
         viewBinding = ActivityRequestMentoringBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
+        pickId = intent.getIntExtra("pickId", 0)
+        Log.d("pickId", "$pickId 잘갖고오니?")
         //뒤로 가기
         viewBinding.backToCenterD.setOnClickListener {
             finish()
@@ -65,6 +67,7 @@ class RequestMentoringActivity : AppCompatActivity() {
         viewBinding.entireRefresh.setOnRefreshListener {
             finish()
             var refreshIntent = Intent(this, RequestMentoringActivity::class.java)
+            refreshIntent.putExtra("pickId", pickId)
             startActivity(refreshIntent)
 
             viewBinding.entireRefresh.isRefreshing = false

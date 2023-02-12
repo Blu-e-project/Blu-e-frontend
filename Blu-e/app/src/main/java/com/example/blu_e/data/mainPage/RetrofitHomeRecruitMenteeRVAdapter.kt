@@ -1,24 +1,28 @@
 package com.example.blu_e.data.mainPage
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewMenteeCardBinding
+import com.example.blu_e.mentoring.RequestMentoringActivity
 
-class RetrofitHomeRecruitMenteeRVAdapter(private val items: ArrayList<FindHotMenteeItem> = arrayListOf()) :
+class RetrofitHomeRecruitMenteeRVAdapter(private val items: ArrayList<FindHotMenteeItem> = arrayListOf(), private val context: Context) :
     RecyclerView.Adapter<RetrofitHomeRecruitMenteeRVAdapter.ViewHolder>() {
+    var pickId = 0
     //각 항목에 필요한 기능 구현, ViewHolder 반환
     inner class ViewHolder(private val viewBinding: RecyclerviewMenteeCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
-
         fun bind(data: FindHotMenteeItem) {
             viewBinding.menteeCardTitle.text = data.title
             viewBinding.menteeCardDesiredSubject.text = data.subject
             viewBinding.menteeCardDesiredStartPeriod.text = data.period
             viewBinding.menteeCardMethod.text = data.mentoringMethod
             viewBinding.menteeCardArea.text = data.wishGender
+            pickId = data.pickId
         }
     }
 
@@ -35,7 +39,11 @@ class RetrofitHomeRecruitMenteeRVAdapter(private val items: ArrayList<FindHotMen
         holder.bind(model)
         holder.itemView.setOnClickListener {
             Log.d("selected", position.toString())
-            itemClickListener.onClick(it, position)
+            Log.d("pickId", items!![position].pickId.toString())
+            var intent: Intent = Intent(context, RequestMentoringActivity::class.java)
+            intent.putExtra("pickId", items!![position].pickId)
+            context.startActivity(intent)
+//            itemClickListener.onClick(it, position, pickId)
         }
     }
 
@@ -43,7 +51,7 @@ class RetrofitHomeRecruitMenteeRVAdapter(private val items: ArrayList<FindHotMen
     override fun getItemCount(): Int = items.size
 
     interface ItemClickListener {
-        fun onClick(view: View, position: Int)
+        fun onClick(view: View, position: Int, pickId: Int)
     }
 
     private lateinit var itemClickListener: ItemClickListener

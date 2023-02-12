@@ -95,7 +95,7 @@ class HomeRecruitMentorFragment : Fragment() {
                             Log.e("멘토 구인글", "${mentorList}")
                             mentorList?.let { recruitMentorAdapter(it) }
 
-                            val adapter2 = RetrofitRecruitMentorRVAdapter(mentorList)
+                            val adapter2 = RetrofitRecruitMentorRVAdapter(mentorList, mContext)
 
                             adapter2.setItemClickListener(object: RetrofitRecruitMentorRVAdapter.ItemClickListener{
                                 override fun onClick(view: View, position: Int) {
@@ -116,7 +116,7 @@ class HomeRecruitMentorFragment : Fragment() {
     }
 
     private fun recruitMentorAdapter(resultList: ArrayList<FindRecruitMentorItem>) {
-        val adapter = RetrofitRecruitMentorRVAdapter(resultList)
+        val adapter = RetrofitRecruitMentorRVAdapter(resultList, mContext)
         viewBinding.recyclerViewMentor.adapter = adapter
         viewBinding.recyclerViewMentor.layoutManager = GridLayoutManager(mContext, 2)
         adapter.notifyItemChanged(resultList.size)

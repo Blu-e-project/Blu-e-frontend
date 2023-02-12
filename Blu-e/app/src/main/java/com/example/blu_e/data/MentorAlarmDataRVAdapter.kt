@@ -12,11 +12,6 @@ class MentorAlarmDataRVAdapter(private val dataList: ArrayList<MentorAlarmData> 
             viewBinding.nicknameMentee.text = data.mentee
             viewBinding.mentoringStatus.text = data.mathcing
             viewBinding.mentoringStatus2.text=data.mathcing2
-            /*var role = MainApplication.prefs.getString("role", "")
-            var isMentor: Int = role.toInt() //멘토: 1, 멘티: 2
-            if(role.toInt() == 2) { //멘티 로그인 시
-                viewBinding.mentoringStatus.text="멘토 신청"
-            }*/
         }
     }
 

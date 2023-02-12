@@ -1,13 +1,17 @@
 package com.example.blu_e
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewMentorCardBinding
+import com.example.blu_e.mentoring.RequestMentoringActivity
 
-class MyMenteePickRVAdapter(private val dataList: ArrayList<MyMenteePickItem> = arrayListOf()):
+class MyMenteePickRVAdapter(private val dataList: ArrayList<MyMenteePickItem> = arrayListOf(), private val context: Context):
 RecyclerView.Adapter<MyMenteePickRVAdapter.ViewHolder>(){
+    var pickId = 0
     inner class ViewHolder(private val viewBinding: RecyclerviewMentorCardBinding): RecyclerView.ViewHolder(viewBinding.root){
         fun bind(data:MyMenteePickItem){
             viewBinding.mentorCardTitle.text = data.area.toString()
@@ -15,6 +19,7 @@ RecyclerView.Adapter<MyMenteePickRVAdapter.ViewHolder>(){
             viewBinding.mentorCardDesiredPeriod.text = data.period.toString()
             viewBinding.mentorCardMethod.text = data.mentoringMethod.toString()
             viewBinding.mentorCardGender.text= data.wishGender.toString()
+            pickId = data.pickId
         }
     }
 
@@ -24,7 +29,15 @@ RecyclerView.Adapter<MyMenteePickRVAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(dataList[position])
+        val model = dataList!![position]
+        holder.bind(model)
+        holder.itemView.setOnClickListener {
+            Log.d("selected", position.toString())
+            Log.d("pickId", dataList!![position].pickId.toString())
+            var intent: Intent = Intent(context, RequestMentoringActivity::class.java)
+            intent.putExtra("pickId", dataList!![position].pickId)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -40,7 +40,7 @@
         android:id="@+id/image_metor_reviewList"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@drawable/rounded_gray"
+        android:background="@drawable/ic_baseline_person_24"
         android:layout_marginLeft="21dp"
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"

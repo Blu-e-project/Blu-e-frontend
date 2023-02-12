@@ -10,7 +10,7 @@
         android:id="@+id/memberPicture_m"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/rounded_gray"
+        android:src="@drawable/ic_baseline_person_24"
         android:layout_marginStart="27dp"
         android:layout_marginTop="19dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="21dp"
-        android:text="임금님"
+        android:text="안녕"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/memberPicture_m"
         app:layout_constraintTop_toTopOf="@+id/memberPicture_m" />
 
@@ -30,7 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="멘티님"
+        android:text="멘토님"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/memberNickName_m"
         app:layout_constraintTop_toTopOf="@+id/memberNickName_m" />
 

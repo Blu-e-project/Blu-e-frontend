@@ -79,7 +79,7 @@
         android:id="@+id/ment_tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="▷ 원하는 멘티와 매칭해봅시다! "
+        android:text="▷ 원하는 멘토와 매칭해봅시다! "
         app:layout_constraintTop_toBottomOf="@id/mentoringTitleView"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"

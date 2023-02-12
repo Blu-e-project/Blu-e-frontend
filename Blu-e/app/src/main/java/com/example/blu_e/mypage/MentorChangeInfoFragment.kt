@@ -26,8 +26,8 @@ import retrofit2.Response
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class MentorChangeInfoFragment : Fragment() {
-    private val api = RetroInterface.create() //retrofit 객체
+class MentorChangeInfoFragment : Fragment() {}
+    /*private val api = RetroInterface.create() //retrofit 객체
     private lateinit var mContext: MainActivity
     private lateinit var viewBinding: FragmentMentorChangeInfoBinding
     @RequiresApi(Build.VERSION_CODES.O)
@@ -61,13 +61,13 @@ class MentorChangeInfoFragment : Fragment() {
         //}
 
         //갤러리 사진 선택
-        /*viewBinding.imageEditBtnMentor.setOnClickListener {
+        *//*viewBinding.imageEditBtnMentor.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             Log.d("이미지", "성공")
             activityResult.launch(intent) //fragment로 바꾸기
-        }*/
-*/
+        }*//*
+*//*
 
         //정보 수정 데이터 보내고 response 받아오기
         viewBinding.btnAddMentor.setOnClickListener {
@@ -89,17 +89,7 @@ class MentorChangeInfoFragment : Fragment() {
             Log.d("학교", "${education}")
             Log.d("주소", "${address}")
             Log.d("소개", "${introduce}")
-
-            val builder = AlertDialog.Builder(mContext)
-            api.changeMyinfoMentor(
-                name,
-                nickname,
-                birthDate,
-            education,
-                address,
-                introduce
-            ).enqueue(object :
-                Callback<ResponseData> {
+            api.changeMyinfoMentor(name,nickname, birthDate, education, address, introduce).enqueue(object : Callback<ResponseData> {
                 override fun onResponse(
                     call: Call<ResponseData>,
                     response: Response<ResponseData>
@@ -266,7 +256,7 @@ class MentorChangeInfoFragment : Fragment() {
                 }
 
             })
-        }
+        }*/
 
     }
 

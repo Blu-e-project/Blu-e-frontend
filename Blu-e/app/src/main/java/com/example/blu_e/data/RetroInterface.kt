@@ -334,4 +334,9 @@ interface RetroInterface {
     //66 특정 멘토에 대한 리뷰 조회
     @GET("/main/mentors/{userId}/review")
     fun MentorReviewList(@Path("userId")userId:Int):Call<ResponseReviewList>
+
+    //69 이미지 수정
+    @FormUrlEncoded
+    @PATCH("/mypages/user/image")
+    fun changeImage(@Field("image")image: String?):Call<ResponseData>
 }

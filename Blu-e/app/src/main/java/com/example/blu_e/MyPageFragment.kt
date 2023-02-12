@@ -63,12 +63,13 @@ class MyPageFragment : Fragment() {
         adapter.setItemClickListener (object : ListInMyPageAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 val transaction = mContext.supportFragmentManager.beginTransaction()
+                val chagngeinfo = Intent(mContext, ChangeInfoActivity::class.java)
                 val history = Intent(mContext, MentorHistoryActivity::class.java)
                 val aboutme = Intent(mContext,MentorAboutMeReviewActivity::class.java)
                 val myreview = Intent(mContext, MentorMyReviewActivity::class.java)
                 val intent4 = Intent(mContext,MyPostCommentActivity::class.java)
                 when(position) {
-                    0 -> transaction.replace(mContext.viewBinding.containerFragment.id, MentorChangeInfoFragment()).commit() //"멘토 정보 수정"
+                    0 ->  startActivity(chagngeinfo)//"멘토 정보 수정"
                     1 -> startActivity(history) //멘토링 내역
                     2 -> transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit() //"멘티 신고"
                     3 -> startActivity(aboutme) //"나에 대한 리뷰"

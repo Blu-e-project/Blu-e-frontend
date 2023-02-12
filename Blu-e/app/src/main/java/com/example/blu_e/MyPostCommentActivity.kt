@@ -198,7 +198,7 @@ class MyPostCommentActivity : AppCompatActivity() {
     }
 
     private fun setMentorPickAdapter(resultList: ArrayList<MyMentorPickItem>) {
-        val mentorPickAdapter = MyMentorPickRVAdapter(resultList)
+        val mentorPickAdapter = MyMentorPickRVAdapter(resultList, this)
         viewBinding.rvMentor.adapter = mentorPickAdapter
         viewBinding.rvMentor.layoutManager =
             GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false)
@@ -207,7 +207,7 @@ class MyPostCommentActivity : AppCompatActivity() {
     }
 
     private fun setMenteePickAdapter(resultList: ArrayList<MyMenteePickItem>) {
-        val menteePickAdapter = MyMenteePickRVAdapter(resultList)
+        val menteePickAdapter = MyMenteePickRVAdapter(resultList, this)
         viewBinding.rvMentee.adapter = menteePickAdapter
         viewBinding.rvMentee.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

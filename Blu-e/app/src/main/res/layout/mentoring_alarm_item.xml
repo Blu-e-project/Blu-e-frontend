@@ -9,7 +9,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/ic_baseline_person_24"
+        android:background="@drawable/notifications"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +61,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_gray"
+        android:background="@drawable/ic_baseline_person_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.928"
         app:layout_constraintStart_toStartOf="parent"

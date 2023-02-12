@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.blu_e.MainActivity
+import com.example.blu_e.MainApplication
 import com.example.blu_e.databinding.ItemAboutMeReviewBinding
 import com.google.gson.internal.bind.TypeAdapters.URL
 import com.squareup.picasso.Picasso
@@ -25,7 +26,11 @@ class MentorAboutMeReviewRVAdapter(private  val dataList: ArrayList<MentorReview
         fun bind(data: MentorReviewListData){
             viewBinding.nicknameMenteeReviewList.text = data.nickname
             viewBinding.menteeReviewText.text = data.contents
-
+            var role = MainApplication.prefs.getString("role", "")
+            var isMentor: Int = role.toInt() //멘토: 1, 멘티: 2
+            if(role.toInt() == 2) { //멘티 로그인 시
+                viewBinding.menteeTv.text="멘토"
+            }
             /*Picasso.get()
                 .load(data.userImg)
                 .into(viewBinding.imageMenteeReviewList)

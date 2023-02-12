@@ -3,6 +3,7 @@ package com.example.blu_e.data.mypage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.blu_e.MainApplication
 import com.example.blu_e.databinding.MentoringHistoryItemBinding
 
 class MentorHistoryDataRVAdapter(private  val dataList: ArrayList<MentorHistoryData> = arrayListOf()): RecyclerView.Adapter<MentorHistoryDataRVAdapter.DataViewHolder>() {
@@ -10,6 +11,11 @@ class MentorHistoryDataRVAdapter(private  val dataList: ArrayList<MentorHistoryD
         fun bind(data: MentorHistoryData){
             viewBinding.nickname.text = data.mentee
             viewBinding.matchingBtn.text = data.matching
+            var role = MainApplication.prefs.getString("role", "")
+            var isMentor: Int = role.toInt() //멘토: 1, 멘티: 2
+            if(role.toInt() == 2) { //멘티 로그인 시
+                viewBinding.menteeTv.text="멘토"
+            }
         }
     }
 

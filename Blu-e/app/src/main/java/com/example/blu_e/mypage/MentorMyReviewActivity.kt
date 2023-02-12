@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blu_e.MainActivity
+import com.example.blu_e.MainApplication
 import com.example.blu_e.customercenter.QuestionDetailFragment
 import com.example.blu_e.data.*
 import com.example.blu_e.data.mypage.MentorReviewListData
@@ -33,6 +34,11 @@ class MentorMyReviewActivity:AppCompatActivity() {
         //뒤로 가기 버튼
         viewBinding.backToMypage.setOnClickListener {
             finish()
+        }
+        var role = MainApplication.prefs.getString("role", "")
+        var isMentor: Int = role.toInt() //멘토: 1, 멘티: 2
+        if(role.toInt() == 2) { //멘티 로그인 시
+            viewBinding.menteementor.text="멘티님"
         }
 
         //멘토 - 내가 쓴 리뷰 목록 불러오기

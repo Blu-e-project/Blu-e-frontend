@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.MainActivity
+import com.example.blu_e.MainApplication
 import com.example.blu_e.databinding.ItemMentorMyReviewBinding
 
 class MentorReviewListRVAdatper(private  val dataList: ArrayList<MentorReviewListData> = arrayListOf()): RecyclerView.Adapter<MentorReviewListRVAdatper.DataViewHolder>() {
@@ -15,6 +16,11 @@ class MentorReviewListRVAdatper(private  val dataList: ArrayList<MentorReviewLis
         fun bind(data: MentorReviewListData){
             viewBinding.nicknameMenteeReviewList.text = data.nickname
             viewBinding.menteeReviewText.text = data.contents
+            var role = MainApplication.prefs.getString("role", "")
+            var isMentor: Int = role.toInt() //멘토: 1, 멘티: 2
+            if(role.toInt() == 2) { //멘티 로그인 시
+                viewBinding.menteeTv.text="멘토"
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {

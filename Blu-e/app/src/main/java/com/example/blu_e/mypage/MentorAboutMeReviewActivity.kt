@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.blu_e.MainApplication
 import com.example.blu_e.data.RetroInterface
 import com.example.blu_e.data.mypage.MentorAboutMeReviewRVAdapter
 import com.example.blu_e.data.mypage.MentorReviewListData
@@ -21,6 +22,11 @@ class MentorAboutMeReviewActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMentorAboutMeReviewBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+        var role = MainApplication.prefs.getString("role", "")
+        var isMentor: Int = role.toInt() //멘토: 1, 멘티: 2
+        if(role.toInt() == 2) { //멘티 로그인 시
+            viewBinding.mentormentee.text="멘티님"
+        }
 
         /*val dataList: ArrayList<MentorReviewListData> = arrayListOf()
         val dataRVAdapter = MentorReviewListRVAdatper(dataList)

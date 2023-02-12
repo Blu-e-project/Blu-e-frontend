@@ -19,6 +19,8 @@ import com.example.blu_e.login.LoginActivity
 import com.example.blu_e.mypage.*
 
 class MyPageFragment : Fragment() {
+    private var role = MainApplication.prefs.getString("role", "")
+    var isMentor: Int = role.toInt() //멘토: 1, 멘티: 2
     private lateinit var mContext: MainActivity
     private lateinit var viewBinding: FragmentMyPageBinding
     private lateinit var settingTitleList: ArrayList<ListInMyPageData>
@@ -65,14 +67,14 @@ class MyPageFragment : Fragment() {
                 val transaction = mContext.supportFragmentManager.beginTransaction()
                 val chagngeinfo = Intent(mContext, ChangeInfoActivity::class.java)
                 val history = Intent(mContext, MentorHistoryActivity::class.java)
-                val aboutme = Intent(mContext,MentorAboutMeReviewActivity::class.java)
+                val aboutme_mentor = Intent(mContext,MentorAboutMeReviewActivity::class.java)
                 val myreview = Intent(mContext, MentorMyReviewActivity::class.java)
                 val intent4 = Intent(mContext,MyPostCommentActivity::class.java)
                 when(position) {
-                    0 ->  startActivity(chagngeinfo)//"멘토 정보 수정"
+                    0 ->  transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit()//"멘토 정보 수정"
                     1 -> startActivity(history) //멘토링 내역
                     2 -> transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit() //"멘티 신고"
-                    3 -> startActivity(aboutme) //"나에 대한 리뷰"
+                    3 -> startActivity(aboutme_mentor) //"나에 대한 리뷰"
                     4 -> startActivity(intent4)
                     5 -> startActivity(myreview) //내가 쓴 리뷰
                     6 -> "버전"

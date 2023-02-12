@@ -39,15 +39,16 @@ class MentorAlarmFragment : Fragment() {
             alarmData = MentorAlarmData(i)
             dataList.add(i, alarmData)
         }
-        dataList.get(0).mentee = "엘라"
-        dataList.get(0).mathcing = "멘티 신청"
-        dataList.get(0).mathcing2 = "엘라 멘티님이 멘티 신청을 하였습니다"
-        dataList.get(1).mentee = "금림"
-        dataList.get(1).mathcing = "매칭 성공"
-        dataList.get(1).mathcing2 = "금림 멘티님과 매칭이 완료되었습니다"
-        dataList.get(2).mentee = "금림"
-        dataList.get(2).mathcing = "멘티 신청"
-        dataList.get(2).mathcing2 = "금림 멘티님이 멘티 신청을 하였습니다"
+
+                dataList.get(0).mentee = "엘라"
+                dataList.get(0).mathcing = "멘티 신청"
+                dataList.get(0).mathcing2 = "엘라 멘티님이 멘티 신청을 하였습니다"
+                dataList.get(1).mentee = "금림"
+                dataList.get(1).mathcing = "매칭 성공ㅅ"
+                dataList.get(1).mathcing2 = "금림 멘티님과 매칭이 완료되었습니다"
+                dataList.get(2).mentee = "금림"
+                dataList.get(2).mathcing = "멘티 신청"
+                dataList.get(2).mathcing2 = "금림 멘티님이 멘티 신청을 하였습니다"
 
         adapter = MentorAlarmDataRVAdapter(dataList)
         viewBinding.rvDataAlarm.adapter = adapter

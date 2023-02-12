@@ -12,6 +12,8 @@ import com.example.blu_e.data.MentorAlarmDataRVAdapter
 import com.example.blu_e.databinding.FragmentMentorAlarmBinding
 
 class MentorAlarmFragment : Fragment() {
+    var role = MainApplication.prefs.getString("role", "")
+    var isMentor: Int = role.toInt() //멘토: 1, 멘티: 2
 
     private lateinit var mContext: MainActivity
     lateinit var viewBinding: FragmentMentorAlarmBinding
@@ -39,16 +41,29 @@ class MentorAlarmFragment : Fragment() {
             alarmData = MentorAlarmData(i)
             dataList.add(i, alarmData)
         }
+        if(role.toInt() == 1) { //멘토 로그인 시
 
-                dataList.get(0).mentee = "엘라"
-                dataList.get(0).mathcing = "멘티 신청"
-                dataList.get(0).mathcing2 = "엘라 멘티님이 멘티 신청을 하였습니다"
-                dataList.get(1).mentee = "금림"
-                dataList.get(1).mathcing = "매칭 성공ㅅ"
-                dataList.get(1).mathcing2 = "금림 멘티님과 매칭이 완료되었습니다"
-                dataList.get(2).mentee = "금림"
-                dataList.get(2).mathcing = "멘티 신청"
-                dataList.get(2).mathcing2 = "금림 멘티님이 멘티 신청을 하였습니다"
+            dataList.get(0).mentee = "엘라"
+            dataList.get(0).mathcing = "멘티 신청"
+            dataList.get(0).mathcing2 = "엘라 멘티님이 멘티 신청을 하였습니다"
+            dataList.get(1).mentee = "금림"
+            dataList.get(1).mathcing = "매칭 성공"
+            dataList.get(1).mathcing2 = "금림 멘티님과 매칭이 완료되었습니다"
+            dataList.get(2).mentee = "금림"
+            dataList.get(2).mathcing = "멘티 신청"
+            dataList.get(2).mathcing2 = "금림 멘티님이 멘티 신청을 하였습니다"
+        }
+        else{
+            dataList.get(0).mentee = "엘라"
+            dataList.get(0).mathcing = "멘토 신청"
+            dataList.get(0).mathcing2 = "엘라 멘토님이 멘토 신청을 하였습니다"
+            dataList.get(1).mentee = "금림"
+            dataList.get(1).mathcing = "매칭 성공"
+            dataList.get(1).mathcing2 = "금림 멘토님과 매칭이 완료되었습니다"
+            dataList.get(2).mentee = "금림"
+            dataList.get(2).mathcing = "멘토 신청"
+            dataList.get(2).mathcing2 = "금림 멘토님이 멘토 신청을 하였습니다"
+        }
 
         adapter = MentorAlarmDataRVAdapter(dataList)
         viewBinding.rvDataAlarm.adapter = adapter

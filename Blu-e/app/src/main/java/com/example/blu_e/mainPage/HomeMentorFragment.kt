@@ -226,7 +226,7 @@ class HomeMentorFragment : Fragment() {
                             Log.e("멘토 구인글", "${mentorList}")
                             mentorList?.let { recruitMentorAdapter(it) }
 
-                            val adapter2 = RetrofitHomeRecruitMentorRVAdapter(mentorList)
+                            val adapter2 = RetrofitHomeRecruitMentorRVAdapter(mentorList, mContext)
 
                             adapter2.setItemClickListener(object: RetrofitHomeRecruitMentorRVAdapter.ItemClickListener{
                                 override fun onClick(view: View, position: Int) {
@@ -263,7 +263,7 @@ class HomeMentorFragment : Fragment() {
     }
 
     private fun recruitMentorAdapter(resultList: ArrayList<FindHotMentorItem>) {
-        val adapter = RetrofitHomeRecruitMentorRVAdapter(resultList)
+        val adapter = RetrofitHomeRecruitMentorRVAdapter(resultList, mContext)
         viewBinding.recyclerViewMentor.adapter = adapter
         viewBinding.recyclerViewMentor.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         adapter.notifyItemChanged(resultList.size)

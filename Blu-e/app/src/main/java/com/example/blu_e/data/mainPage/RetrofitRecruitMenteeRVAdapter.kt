@@ -1,14 +1,18 @@
 package com.example.blu_e.data.mainPage
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blu_e.databinding.RecyclerviewMenteeCardBinding
+import com.example.blu_e.mentoring.RequestMentoringActivity
 
-class RetrofitRecruitMenteeRVAdapter(private val items: ArrayList<FindRecruitMenteeItem> = arrayListOf()) :
+class RetrofitRecruitMenteeRVAdapter(private val items: ArrayList<FindRecruitMenteeItem> = arrayListOf(), private val context: Context) :
     RecyclerView.Adapter<RetrofitRecruitMenteeRVAdapter.ViewHolder>() {
+    var pickId = 0
     //각 항목에 필요한 기능 구현, ViewHolder 반환
     inner class ViewHolder(private val viewBinding: RecyclerviewMenteeCardBinding):
         RecyclerView.ViewHolder(viewBinding.root) {
@@ -19,6 +23,7 @@ class RetrofitRecruitMenteeRVAdapter(private val items: ArrayList<FindRecruitMen
             viewBinding.menteeCardDesiredStartPeriod.text = data.period
             viewBinding.menteeCardMethod.text = data.mentoringMethod
             viewBinding.menteeCardArea.text = data.wishGender
+            pickId = data.pickId
         }
     }
 
@@ -35,7 +40,11 @@ class RetrofitRecruitMenteeRVAdapter(private val items: ArrayList<FindRecruitMen
         holder.bind(model)
         holder.itemView.setOnClickListener {
             Log.d("selected", position.toString())
-            itemClickListener.onClick(it, position)
+            Log.d("pickId", items!![position].pickId.toString())
+            var intent: Intent = Intent(context, RequestMentoringActivity::class.java)
+            intent.putExtra("pickId", items!![position].pickId)
+            context.startActivity(intent)
+//            itemClickListener.onClick(it, position)
         }
     }
 

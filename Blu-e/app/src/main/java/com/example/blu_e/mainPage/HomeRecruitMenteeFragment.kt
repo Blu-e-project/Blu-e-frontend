@@ -82,7 +82,7 @@ class HomeRecruitMenteeFragment : Fragment() {
                             Log.e("문제", "${menteeList}")
                             menteeList?.let { recruitMenteeAdapter(it) }
 
-                            val adapter2 = RetrofitRecruitMenteeRVAdapter(menteeList)
+                            val adapter2 = RetrofitRecruitMenteeRVAdapter(menteeList, mContext)
 
                             adapter2.setItemClickListener(object: RetrofitRecruitMenteeRVAdapter.ItemClickListener{
                                 override fun onClick(view: View, position: Int) {
@@ -104,7 +104,7 @@ class HomeRecruitMenteeFragment : Fragment() {
     }
 
     private fun recruitMenteeAdapter(resultList: ArrayList<FindRecruitMenteeItem>) {
-        val adapter = RetrofitRecruitMenteeRVAdapter(resultList)
+        val adapter = RetrofitRecruitMenteeRVAdapter(resultList, mContext)
         viewBinding.recyclerViewMentee.adapter = adapter
         viewBinding.recyclerViewMentee.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         adapter.notifyItemChanged(resultList.size)

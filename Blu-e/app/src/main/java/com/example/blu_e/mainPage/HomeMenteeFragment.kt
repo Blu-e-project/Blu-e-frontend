@@ -20,6 +20,7 @@ import com.example.blu_e.data.mainPage.*
 import com.example.blu_e.databinding.FragmentHomeMenteeBinding
 import com.example.blu_e.mentoring.AskQuestionActivity
 import com.example.blu_e.mentoring.RegisterQuestionFormActivity
+import com.example.blu_e.mentoring.RequestMentoringActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,8 +46,6 @@ class HomeMenteeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = FragmentHomeMenteeBinding.inflate(layoutInflater)
-        loadData1()
-        loadData2()
         return viewBinding.root
     }
 
@@ -71,6 +70,12 @@ class HomeMenteeFragment : Fragment() {
             val intent = Intent(activity, RecruitMentorActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadData1()
+        loadData2()
     }
     /*
     override fun onResume() {
@@ -184,16 +189,19 @@ class HomeMenteeFragment : Fragment() {
                             Log.e("문제", "${mentorList}")
                             menteeList?.let { recruitMenteeAdapter(it) }
 
-                            val adapter2 = RetrofitHomeRecruitMenteeRVAdapter(menteeList)
+                            val adapter2 = RetrofitHomeRecruitMenteeRVAdapter(menteeList, mContext)
 
-                            adapter2.setItemClickListener(object: RetrofitHomeRecruitMenteeRVAdapter.ItemClickListener{
-                                override fun onClick(view: View, position: Int) {
-                                    var detailFragment = HomeRecruitMenteeFragment.newInstance(menteeList, position)
-                                    mContext.supportFragmentManager.beginTransaction().replace(
-                                        mContext.viewBinding.containerFragment.id, detailFragment
-                                    ).commit()
-                                }
-                            })
+//                            adapter2.setItemClickListener(object: RetrofitHomeRecruitMenteeRVAdapter.ItemClickListener {
+//                                override fun onClick(view: View, position: Int, pickId: Int) {
+//                                    val intent: Intent = Intent(mContext, RequestMentoringActivity::class.java)
+//                                    intent.putExtra("pickId", pickId)
+//                                    startActivity(intent)
+//                                    var detailFragment = HomeRecruitMenteeFragment.newInstance(menteeList, position)
+//                                    mContext.supportFragmentManager.beginTransaction().replace(
+//                                        mContext.viewBinding.containerFragment.id, detailFragment
+//                                    ).commit()
+//                                }
+//                            })
                         }
                         else {
                             Log.d("문제", "내가 답한 질문이 없습니다.")
@@ -215,7 +223,7 @@ class HomeMenteeFragment : Fragment() {
     }
 
     private fun recruitMenteeAdapter(resultList: ArrayList<FindHotMenteeItem>) {
-        val adapter = RetrofitHomeRecruitMenteeRVAdapter(resultList)
+        val adapter = RetrofitHomeRecruitMenteeRVAdapter(resultList, mContext)
         viewBinding.recyclerViewMentee.adapter = adapter
         viewBinding.recyclerViewMentee.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         adapter.notifyItemChanged(resultList.size)

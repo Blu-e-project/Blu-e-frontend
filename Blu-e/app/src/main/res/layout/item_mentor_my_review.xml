@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mentee_tv"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+       android:layout_marginRight="26.65dp" />
 
     <TextView
         android:id="@+id/nickname_mentee_review_list"

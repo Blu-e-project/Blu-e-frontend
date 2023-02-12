@@ -285,6 +285,13 @@ class RequestMentoringActivity : AppCompatActivity() {
         val startDate = infoPost.get(0).periodStart
         val endDate  = infoPost.get(0).periodEnd
 
+        val start2 = startDate
+        val end2 = endDate
+
+        val splitStartDate2 = start2.substring(0 until 10)
+        viewBinding.start.text = splitStartDate2
+        val splitEndDate2 = end2.substring(0 until 10)
+        viewBinding.end.text = splitEndDate2
         /*val calendar = Calendar.getInstance()
         calendar.time = startDate
         val startDate2: LocalDate = LocalDate.of(
@@ -306,8 +313,13 @@ class RequestMentoringActivity : AppCompatActivity() {
         viewBinding.subject.text = infoPost.get(0).subject
         viewBinding.mentoring.text = infoPost.get(0).mentoringMethod
 
-        viewBinding.start.text = startDate.toString()
-        viewBinding.end.text = endDate.toString()
+        val start = startDate
+        val end = endDate
+
+        val splitStartDate = start.substring(0 until 10)
+        viewBinding.start.text = splitStartDate
+        val splitEndDate = end.substring(0 until 10)
+        viewBinding.end.text = splitEndDate
 
         viewBinding.gender.text = infoPost.get(0).wishGender
         viewBinding.countReaded.text = infoPost.get(0).viewCount.toString()

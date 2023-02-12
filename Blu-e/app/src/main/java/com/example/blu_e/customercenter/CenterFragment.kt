@@ -50,9 +50,10 @@ class CenterFragment : Fragment() {
             faqExampleList.add(i, questionExample)
         }
         faqExampleList.get(0).title = "Q&A를 남기고 싶어요."
-        faqExampleList.get(0).answer = "자주하는 질문1에 대한 답변"
+        faqExampleList.get(0).answer = "하단 Q&A 등록하기를 통해 질문을 등록하실 수 있습니다."
         faqExampleList.get(1).title = "멘토/멘티 신고는 어떻게 하나요?"
-        faqExampleList.get(1).answer = "자주하는 질문2에 대한 답변"
+        faqExampleList.get(1).answer = "하단 마이페이지에서 멘토/멘티 신고를 눌러서\n" +
+                "신고 제목과멘토/멘티의 이름, 신고 사유를 작\n성한 후 첨부 자료가 있으시다면 첨부 해주시면 됩\n니다. 지속적으로 신고가 들어오는 멘토/멘티의 경우 \n활동이 중단될 수 있습니다.\n"
         faqExampleList.get(2).title = "모든 서비스가 무료인가요?"
         faqExampleList.get(2).answer = "자주하는 질문3에 대한 답변"
         faqExampleList.get(3).title = "멘토는 같은 지역에 멘티만 구할 수 있나요?"
@@ -74,10 +75,10 @@ class CenterFragment : Fragment() {
                 ).commit()
             }
         })
-        viewBinding.exampleBtn.setOnClickListener {
+        /*viewBinding.exampleBtn.setOnClickListener {
             var intent = Intent(getActivity(), RequestMentoringActivity::class.java)
             startActivity(intent)
-        }
+        }*/
     }
 
     override fun onResume() {

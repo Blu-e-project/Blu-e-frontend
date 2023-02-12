@@ -60,13 +60,13 @@ class ChangeInfoActivity : AppCompatActivity() {
                     if (responseData != null) {
                         if (responseData.code == 1000) {
                             val builder = AlertDialog.Builder(this@ChangeInfoActivity)
-                            builder.setTitle("프로필 사진 수정")
+                            /*builder.setTitle("프로필 사진 수정")
                                 .setMessage("프로필 사진 수정이 완료되었습니다.")
                                 .setPositiveButton("확인",
                                     DialogInterface.OnClickListener { dialog, id ->
                                         finish()
                                     })
-                            builder.show()
+                            builder.show()*/
                         }
 
                     }
@@ -129,7 +129,43 @@ class ChangeInfoActivity : AppCompatActivity() {
                                     })
                             builder.show()
                         }
-
+                        /*else if(responseData.code==2501){
+                            Toast.makeText(this@ChangeInfoActivity, "이름을 입력해주세요", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2507){
+                            Toast.makeText(this@ChangeInfoActivity, "이름을 7자 이내로 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2502){
+                            Toast.makeText(this@ChangeInfoActivity, "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2508){
+                            Toast.makeText(this@ChangeInfoActivity, "닉네임을 7자 이내로 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2503){
+                            Toast.makeText(this@ChangeInfoActivity, "생일을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2504){
+                            Toast.makeText(this@ChangeInfoActivity, "학력을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2509){
+                            Toast.makeText(this@ChangeInfoActivity, "학력을 20자 이내로 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2505){
+                            Toast.makeText(this@ChangeInfoActivity, "실거주지를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2510){
+                            Toast.makeText(this@ChangeInfoActivity, "실거주지는 50자 이하로 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2506){
+                            Toast.makeText(this@ChangeInfoActivity, "자기소개를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==2511){
+                            Toast.makeText(this@ChangeInfoActivity, "자기소개는 100자리 이하로 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(responseData.code==3500){
+                            Toast.makeText(this@ChangeInfoActivity, "중복된 닉네임입니다.", Toast.LENGTH_SHORT).show()
+                        }
+*/
                     }
                 }
 

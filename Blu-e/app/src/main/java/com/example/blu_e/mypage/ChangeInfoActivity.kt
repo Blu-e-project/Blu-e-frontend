@@ -59,16 +59,14 @@ class ChangeInfoActivity : AppCompatActivity() {
                     val responseData = response.body()
                     if (responseData != null) {
                         if (responseData.code == 1000) {
-                            Toast.makeText(this@ChangeInfoActivity,"수정 완료",Toast.LENGTH_SHORT).show()
-                        /*
-                            val builder = AlertDialog.Builder(this)
+                            val builder = AlertDialog.Builder(this@ChangeInfoActivity)
                             builder.setTitle("프로필 사진 수정")
                                 .setMessage("프로필 사진 수정이 완료되었습니다.")
                                 .setPositiveButton("확인",
                                     DialogInterface.OnClickListener { dialog, id ->
                                         finish()
                                     })
-                            builder.show()*/
+                            builder.show()
                         }
 
                     }
@@ -81,39 +79,36 @@ class ChangeInfoActivity : AppCompatActivity() {
 
         }
         //정보수정버튼클릭시
-        viewBinding.btnChange.setOnClickListener {
-            Log.d("토스트", "성공")
-            Toast.makeText(this@ChangeInfoActivity,"수정 완료",Toast.LENGTH_SHORT).show()
-            Log.d("토스트", "성공")
-            /*val builder = AlertDialog.Builder(this)
+        /*viewBinding.btnChange.setOnClickListener {
+            val builder = AlertDialog.Builder(this@ChangeInfoActivity)
             builder.setTitle("정보 수정")
                 .setMessage("정보 수정이 완료되었습니다.")
                 .setPositiveButton("확인",
                     DialogInterface.OnClickListener { dialog, id ->
                         finish()
                     })
-            builder.show()*/
+            builder.show()
 
-        }
-        /*viewBinding.btnChange.setOnClickListener {
+        }*/
+        viewBinding.btnChange.setOnClickListener {
             var name = viewBinding.nameChange.text.toString()
             var nickname = viewBinding.nicknameChange.text.toString()
             //string ->LocalDate로 바꿔야함
-            val birthStr = viewBinding.birthTvChange.text.toString()
+            val birthStr = viewBinding.birthChange.text.toString()
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val birth = LocalDate.parse(birthStr, formatter).atStartOfDay()
             val birthDate = birth.toLocalDate()
             var education = viewBinding.educationChange.text.toString()
             var address = viewBinding.addrChange.text.toString()
             var introduce = viewBinding.introduceChange.text.toString()
-            Log.d("정보 수정", "변수에 담기 성공")
+            /*Log.d("정보 수정", "변수에 담기 성공")
             Log.d("소개", "${introduce}")
             Log.d("이름", "${name}")
             Log.d("닉네임", "${nickname}")
             Log.d("생일", "${birthDate}")
             Log.d("학교", "${education}")
             Log.d("주소", "${address}")
-            Log.d("소개", "${introduce}")
+            Log.d("소개", "${introduce}")*/
 
             api.changeMyinfoMentor(
                 name, nickname, birthDate, education, address, introduce
@@ -125,12 +120,14 @@ class ChangeInfoActivity : AppCompatActivity() {
                     val responseData = response.body()
                     if (responseData != null) {
                         if (responseData.code == 1000) {
-                            val msg = when (responseData.code) {
-                                2001 -> "아이디를 입력해주세요"
-                                2002 -> "아이드는 35자리로 이하로 입력해주세요."
-                                2003 -> "비밀번호를 입력하세요"
-                                else -> {}
-                            }
+                            val builder = AlertDialog.Builder(this@ChangeInfoActivity)
+                            builder.setTitle("정보 수정")
+                                .setMessage("정보 수정이 완료되었습니다.")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        finish()
+                                    })
+                            builder.show()
                         }
 
                     }
@@ -140,7 +137,7 @@ class ChangeInfoActivity : AppCompatActivity() {
 
                 }
             })
-        }*/
+        }
     }
 
     private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(

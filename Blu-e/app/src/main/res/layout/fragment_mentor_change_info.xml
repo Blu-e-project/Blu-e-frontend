@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--<View
+    <View
         android:id="@+id/chagneView_mentor"
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -307,7 +307,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />-->
+        app:layout_constraintVertical_bias="0.944" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

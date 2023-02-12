@@ -71,7 +71,7 @@ class MyPageFragment : Fragment() {
                 val myreview = Intent(mContext, MentorMyReviewActivity::class.java)
                 val intent4 = Intent(mContext,MyPostCommentActivity::class.java)
                 when(position) {
-                    0 ->  transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit()//"멘토 정보 수정"
+                    0 ->  startActivity(chagngeinfo)//"멘토 정보 수정"
                     1 -> startActivity(history) //멘토링 내역
                     2 -> transaction.replace(mContext.viewBinding.containerFragment.id, AccusationFragment()).commit() //"멘티 신고"
                     3 -> startActivity(aboutme_mentor) //"나에 대한 리뷰"

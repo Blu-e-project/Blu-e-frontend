@@ -31,13 +31,15 @@
         android:textSize="18sp"
         android:lineHeight="22sp"
         android:textStyle="bold"
-        android:text="내가 쓴 글/ 내가 단 댓글"
+        android:text="내가 쓴 글"
         android:textColor="@color/black"
         android:layout_marginLeft="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/mentoringTitleView"/>
+
+    <!--        android:text="내가 쓴 글/ 내가 단 댓글"-->
 
     <View
         android:id="@+id/mentoringTitleView2"
@@ -65,7 +67,7 @@
         android:textSize="18sp"
         android:lineHeight="22sp"
         android:textStyle="bold"
-        android:text="내가 쓴 글/ 내가 단 댓글"
+        android:text="내가 쓴 글"
         android:textColor="@color/black"
         android:layout_marginLeft="19dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,7 +79,7 @@
         android:id="@+id/ment_tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="▷ 멘티를 구하고 있어요!"
+        android:text="▷ 원하는 멘티와 매칭해봅시다! "
         app:layout_constraintTop_toBottomOf="@id/mentoringTitleView"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +100,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/recyclerview_mentor_card"
         />
-    <TextView
+    <!--<TextView
         android:id="@+id/ment_tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -147,5 +149,5 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/recyclerview_question_card"
-        />
+        />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

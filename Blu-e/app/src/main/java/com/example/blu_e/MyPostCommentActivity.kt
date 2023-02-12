@@ -120,7 +120,7 @@ class MyPostCommentActivity : AppCompatActivity() {
                         if(responseData.result != null){
                             torList?.addAll(responseData.result)
                             Log.e("멘토", "${torList}")
-                            torList?.let { setMentorPickAdapter(it) }
+//                            torList?.let { setMentorPickAdapter(it) }
                         }
                         else{
                             Log.d("멘토", "댓글 단 구인글이 없습니다.")
@@ -172,7 +172,7 @@ class MyPostCommentActivity : AppCompatActivity() {
                         if(responseData.result != null){
                             probList?.addAll(responseData.result)
                             Log.e("문제", "${probList}")
-                            probList?.let { setProbAdapter(it) }
+//                            probList?.let { setProbAdapter(it) }
                         }
                         else{
                             Log.d("문제", "내가 답한 질문이 없습니다.")
@@ -188,6 +188,7 @@ class MyPostCommentActivity : AppCompatActivity() {
         })
 
     }
+/*
 
     private fun setProbAdapter(resultList: ArrayList<ProbByMeItem>) {
         val probAdapter = ProbByMeRVAdapter(resultList)
@@ -205,6 +206,7 @@ class MyPostCommentActivity : AppCompatActivity() {
         mentorPickAdapter.notifyItemChanged(resultList.size)
 
     }
+*/
 
     private fun setMenteePickAdapter(resultList: ArrayList<MyMenteePickItem>) {
         val menteePickAdapter = MyMenteePickRVAdapter(resultList, this)

@@ -124,6 +124,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="2dp"
         android:fontFamily="sans-serif"
+        android:text="[답변 대기 중]"
         android:hint="하단 Q&amp;A 등록하기를 통해 질문을 등록하실 수 있습니다."
         android:textColor="@color/black"
         android:textSize="15sp"

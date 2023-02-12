@@ -92,8 +92,8 @@
 
     <TextView
         android:id="@+id/showAnswer_f"
-        android:layout_width="335dp"
-        android:layout_height="55dp"
+        android:layout_width="320dp"
+        android:layout_height="149dp"
         android:layout_marginTop="96dp"
         android:fontFamily="sans-serif"
         android:hint="하단 Q&amp;A 등록하기를 통해 질문을 등록하실 수 있습니다."

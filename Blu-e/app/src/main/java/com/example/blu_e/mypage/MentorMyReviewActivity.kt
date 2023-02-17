@@ -11,6 +11,7 @@ import com.example.blu_e.MainActivity
 import com.example.blu_e.MainApplication
 import com.example.blu_e.customercenter.QuestionDetailFragment
 import com.example.blu_e.data.*
+import com.example.blu_e.data.customercenter.QuestionAdapter
 import com.example.blu_e.data.mypage.MentorReviewListData
 import com.example.blu_e.data.mypage.MentorReviewListRVAdatper
 import com.example.blu_e.data.mypage.ResponseReviewList
@@ -56,12 +57,22 @@ class MentorMyReviewActivity:AppCompatActivity() {
                             //데이터 불러오기
                             rvlist = body.result
                             val dataRVAdapter = MentorReviewListRVAdatper(rvlist)
-                            //dataRVAdapter.notifyItemInserted(2)
                             viewBinding.rvDataMenteeList.adapter = dataRVAdapter
                             viewBinding.rvDataMenteeList.layoutManager =
                                 LinearLayoutManager(this@MentorMyReviewActivity)
                             dataRVAdapter.notifyItemChanged(rvlist.size)
+
+                            /*dataRVAdapter.setItemClickListener(object: MentorReviewListRVAdatper.ItemClickListener{
+                                override fun onClick(view: View, position: Int) {
+                                    var detailFragment = QuestionDetailFragment.newInstance(qs, position)
+                                    mContext.supportFragmentManager.beginTransaction().replace(
+                                        mContext.viewBinding.containerFragment.id, detailFragment
+                                    ).commit()
+                                }
+                            }*/
+
                         }
+
 
                             //item 클릭시 내가 쓴 리뷰 수정 또는 삭제
                             /*dataRVAdapter.setItemClickListener(object: MentorReviewListRVAdatper.ItemClickListener{

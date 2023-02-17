@@ -29,7 +29,8 @@ class MentorReviewListRVAdatper(private  val dataList: ArrayList<MentorReviewLis
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.bind(dataList[position])
+        val model = dataList!![position]
+        holder.bind(model)
         holder.itemView.setOnClickListener {
             Log.d("selected", position.toString())
             itemClickListener.onClick(it, position)
